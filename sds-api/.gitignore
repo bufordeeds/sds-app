@@ -2,7 +2,7 @@
 node_modules
 /dist
 documentation/theme Vuse document
-sds-api/lib/db/diagnostic.data
+sds-api/lib/db/*
 
 
 # local env files

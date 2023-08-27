@@ -1,0 +1,38 @@
+.mgm-title{
+    font-size: 20pt;
+    font-weight: 500;
+    color: var(--color-headline);
+    width: 100%;
+
+    padding-top: 20px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.mgm-subtitle{
+    font-size: 20pt;
+    font-weight: 500;
+    color: var(--color-headline);
+    width: 100%;
+
+    padding-top: 20px;
+    /*padding-bottom: 20px;*/
+    /*padding-left: 20px;*/
+    text-align: center;
+}
+
+/*.content-container-bg{*/
+
+/*    background-color: var(--color-bg);*/
+/*    padding: 20px;*/
+/*    !*margin: 10px;*!*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*}*/
+
+.mgm-content-container{
+
+
+}

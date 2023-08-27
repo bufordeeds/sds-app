@@ -1,0 +1,41 @@
+.DS_Store
+node_modules
+/dist
+documentation/theme Vuse document
+sds-api/lib/db/diagnostic.data
+
+
+# local env files
+.env.local
+.env.*.local
+.env-dev
+.env-prod
+/keys/*
+auth0_settings.json
+DO_spaces_config.json
+
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+parsing_errors.json
+parsing_erros.json
+local_log.log
+
+/testing/*.pdf
+/zlocal_dev
+/tmp_files*
+
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+
+# profiling files
+/.profiling

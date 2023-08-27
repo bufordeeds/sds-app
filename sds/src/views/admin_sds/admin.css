@@ -1,0 +1,27 @@
+
+.admin-headline{
+    font-weight: 600;
+    font-size: 20pt;
+    color: var(--color-headline);
+    padding: 10px 10px 0px 10px;
+}
+
+.admin-container-bg{
+    background-color: var(--color-bg);
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px;
+    min-height: calc(100vh - 350px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-content-container{
+    background-color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px;
+    width: 100%;
+    max-width: var(--max-width);
+}

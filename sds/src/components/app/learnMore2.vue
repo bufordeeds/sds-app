@@ -1,265 +1,328 @@
 <template>
-   <div  style="background-color: white; display: flex; flex-wrap: wrap; padding: 20px 30px 20px 60px">
-      <div class="menu-col mr-6 mt-4" style="width: 100%">
+  <div style="background-color: white; display: flex; flex-wrap: wrap; padding: 20px 30px 20px 60px">
+    <div
+      class="menu-col mr-6 mt-4"
+      style="width: 100%"
+    >
+      <v-row>
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <div class="menu-header">
+            About us
+          </div>
 
-         <v-row>
-            <v-col cols="12" sm="6">
-               <div class="menu-header">
-                  About us
-               </div>
+          <router-link
+            v-for="item in about_us"
+            :key="item.url"
+            :to="item.url"
+          >
+            <div class="link-container">
+              <div class="hex-container">
+                <!--<img :src="require('../../assets/images/icons/' +item.icon)" width="18px">-->
+                <div style="width: 22px">
+                  <svg
+                    viewBox="0 0 760.155 703.155"
+                    style="width: 100%; height: 100%;"
+                    :style="'stroke:'+item.color"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="760.155px"
+                    height="703.155px"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      stroke-width="110.77px"
+                      stroke-linecap="butt"
+                      stroke-linejoin="miter"
+                      fill="none"
+                      d="M468.884,111.385 L585.385,323.884 L468.884,536.384 L235.885,536.384 L119.384,323.884 L235.885,111.385 L468.884,111.385 Z"
+                    />
+                  </svg>
+                </div>
+              </div>
 
-               <router-link v-for="item in about_us" :key="item.url" :to="item.url" >
-                  <div class="link-container">
-                     <div class="hex-container">
-                        <!--<img :src="require('../../assets/images/icons/' +item.icon)" width="18px">-->
-                        <div style="width: 22px">
-                           <svg viewBox="0 0 760.155 703.155" style="width: 100%; height: 100%;"
-                                :style="'stroke:'+item.color"
-                               xmlns="http://www.w3.org/2000/svg"
-                               xmlns:xlink="http://www.w3.org/1999/xlink"
-                               width="760.155px" height="703.155px">
-                              <path fill-rule="evenodd"  stroke-width="110.77px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
-                                    d="M468.884,111.385 L585.385,323.884 L468.884,536.384 L235.885,536.384 L119.384,323.884 L235.885,111.385 L468.884,111.385 Z"/>
-                           </svg>
-                        </div>
-
-                     </div>
-
-                     <div>
-                        <div class="item-header">
-                           {{item.h1}}
-                        </div>
-                        <div class="item-header2">
-                           {{item.h2}}
-                        </div>
-
-                     </div>
-                  </div>
-
-               </router-link>
-
-
-               <a v-for="item in links" :key="item.href" :href="item.href" >
-                  <div class="link-container">
-                     <div class="hex-container">
-                        <!--<img :src="require('../../assets/images/icons/' +item.icon)" width="18px">-->
-                        <div style="width: 22px">
-                           <svg viewBox="0 0 760.155 703.155" style="width: 100%; height: 100%;"
-                                :style="'stroke:'+item.color"
-                                xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                width="760.155px" height="703.155px">
-                              <path fill-rule="evenodd"  stroke-width="110.77px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
-                                    d="M468.884,111.385 L585.385,323.884 L468.884,536.384 L235.885,536.384 L119.384,323.884 L235.885,111.385 L468.884,111.385 Z"/>
-                           </svg>
-                        </div>
-
-                     </div>
-
-                     <div>
-                        <div class="item-header" :style="item.color_h1? 'color:'+item.color_h1 : '' ">
-                           {{item.h1}}
-                        </div>
-                        <div class="item-header2">
-                           {{item.h2}}
-                        </div>
-
-                     </div>
-                  </div>
-
-               </a>
+              <div>
+                <div class="item-header">
+                  {{ item.h1 }}
+                </div>
+                <div class="item-header2">
+                  {{ item.h2 }}
+                </div>
+              </div>
+            </div>
+          </router-link>
 
 
+          <a
+            v-for="item in links"
+            :key="item.href"
+            :href="item.href"
+          >
+            <div class="link-container">
+              <div class="hex-container">
+                <!--<img :src="require('../../assets/images/icons/' +item.icon)" width="18px">-->
+                <div style="width: 22px">
+                  <svg
+                    viewBox="0 0 760.155 703.155"
+                    style="width: 100%; height: 100%;"
+                    :style="'stroke:'+item.color"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="760.155px"
+                    height="703.155px"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      stroke-width="110.77px"
+                      stroke-linecap="butt"
+                      stroke-linejoin="miter"
+                      fill="none"
+                      d="M468.884,111.385 L585.385,323.884 L468.884,536.384 L235.885,536.384 L119.384,323.884 L235.885,111.385 L468.884,111.385 Z"
+                    />
+                  </svg>
+                </div>
 
+              </div>
 
+              <div>
+                <div
+                  class="item-header"
+                  :style="item.color_h1? 'color:'+item.color_h1 : '' "
+                >
+                  {{ item.h1 }}
+                </div>
+                <div class="item-header2">
+                  {{ item.h2 }}
+                </div>
 
-               <!--<div class="link-container">-->
-               <!--   <router-link to="/learn-more/mission">What is our mission, purpose and focus?</router-link>-->
-               <!--</div>-->
+              </div>
+            </div>
 
-               <!--<div class="link-container">-->
-               <!--   <router-link to="/learn-more/what-is-service-animal">What is a Service Dog?</router-link>-->
-               <!--</div>-->
-
-               <!--<div class="link-container">-->
-               <!--   <router-link to="/learn-more/how-do-i-get-service-dog">-->
-               <!--      How do I get a Service Dog?-->
-               <!--   </router-link>-->
-               <!--</div>-->
-
-               <!--<div class="link-container">-->
-               <!--   <router-link to="/learn-more/what-should-service-dog-act-like">-->
-               <!--      What Should a Service Dog Act like?-->
-               <!--   </router-link>-->
-               <!--</div>-->
-
-               <!--<div class="link-container">-->
-               <!--   <router-link to="/learn-more/sds-training-and-behavior-standards">-->
-               <!--      SDS Training and Behavior Standards-->
-               <!--   </router-link>-->
-               <!--</div>-->
-
-               <!--<div class="link-container">-->
-               <!--   <router-link to="/faq">-->
-               <!--      Common Questions-->
-               <!--   </router-link>-->
-               <!--</div>-->
-
-               <!--<div class="link-container">-->
-               <!--   <router-link to="/learn-more/media-library">-->
-               <!--      Media Library-->
-               <!--   </router-link>-->
-               <!--</div>-->
-
-            </v-col>
-
-            <v-col cols="12" sm="6" >
-               <div class="menu-header">
-                  For professionals
-               </div>
-
-
-               <router-link v-for="item in for_pros" :key="item.url" :to="item.url" >
-                  <div class="link-container">
-                     <div class="hex-container">
-                        <!--<img :src="require('../../assets/images/icons/' +item.icon)" width="18px">-->
-                        <div style="width: 22px">
-                           <svg viewBox="0 0 760.155 703.155" style="width: 100%; height: 100%;"
-                                :style="'stroke:'+item.color"
-                                xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                width="760.155px" height="703.155px">
-                              <path fill-rule="evenodd"  stroke-width="110.77px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
-                                    d="M468.884,111.385 L585.385,323.884 L468.884,536.384 L235.885,536.384 L119.384,323.884 L235.885,111.385 L468.884,111.385 Z"/>
-                           </svg>
-                        </div>
-                     </div>
-
-                     <div>
-                        <div class="item-header">
-                           {{item.h1}}
-                        </div>
-                        <div class="item-header2">
-                           {{item.h2}}
-                        </div>
-
-                     </div>
-                  </div>
-               </router-link>
-
-
-               <div class="menu-header" style="margin-top: 20px">
-                  For the public
-               </div>
-
-               <router-link v-for="item in for_public" :key="item.url" :to="item.url" >
-                  <div class="link-container">
-                     <div class="hex-container">
-                        <!--<img :src="require('../../assets/images/icons/' +item.icon)" width="18px">-->
-                        <div style="width: 22px">
-                           <svg viewBox="0 0 760.155 703.155" style="width: 100%; height: 100%;"
-                                :style="'stroke:'+item.color"
-                                xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                width="760.155px" height="703.155px">
-                              <path fill-rule="evenodd"  stroke-width="110.77px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
-                                    d="M468.884,111.385 L585.385,323.884 L468.884,536.384 L235.885,536.384 L119.384,323.884 L235.885,111.385 L468.884,111.385 Z"/>
-                           </svg>
-                        </div>
-                     </div>
-
-                     <div>
-                        <div class="item-header">
-                           {{item.h1}}
-                        </div>
-                        <div class="item-header2">
-                           {{item.h2}}
-                        </div>
-
-                     </div>
-                  </div>
-               </router-link>
-
-
-               <!--<div class="link-container">-->
-               <!--   <router-link to="/learn-more/for-trainers">-->
-               <!--      For trainers and training orgs-->
-               <!--   </router-link>-->
-               <!--</div>-->
-
-               <!--<div class="link-container">-->
-               <!--   <router-link to="/learn-more/for-physicians-therapists">-->
-               <!--      For physicians and therapists-->
-               <!--   </router-link>-->
-               <!--</div>-->
-
-               <!--<div class="link-container">-->
-               <!--   <router-link to="/learn-more/for-colleges">-->
-               <!--      For colleges and universities-->
-               <!--   </router-link>-->
-               <!--</div>-->
-            </v-col>
-
-            <!--<v-col cols="12" sm="6" md="3">-->
-               <!--<div class="menu-header">-->
-               <!--   For the public-->
-               <!--</div>-->
-
-               <!--<div class="link-container">-->
-               <!--   <router-link to="/learn-more/what-todo-when-see-dog">-->
-               <!--      What should you do when you see a Service Dog?-->
-               <!--   </router-link>-->
-               <!--</div>-->
-
-               <!--<div class="link-container">-->
-               <!--   <router-link to="/learn-more/how-can-i-tell-if-legitimate">-->
-               <!--      How can I tell if a Service Animal is Legitimate?-->
-               <!--   </router-link>-->
-               <!--</div>-->
-
-               <!--<div class="link-container">-->
-               <!--   <router-link to="/learn-more/business-rights">-->
-               <!--      Business Rights Concerning Service Dogs-->
-               <!--   </router-link>-->
-               <!--</div>-->
-
-               <!--<div class="link-container">-->
-               <!--   <router-link to="/learn-more/landlord-hoa-rights">-->
-               <!--      Landlord/HOA Rights Concerning Service Dogs-->
-               <!--   </router-link>-->
-               <!--</div>-->
-            <!--</v-col>-->
+          </a>
 
 
 
-            <!--<v-col cols="12" sm="6" md="3">-->
-            <!--   <div class="menu-header">-->
-            <!--      Learn more-->
-            <!--   </div>-->
-
-            <!--   <div class="link-container">-->
-            <!--      <a href="https://www.facebook.com/servicedog">-->
-            <!--         Join us on Facebook-->
-            <!--      </a>-->
-            <!--   </div>-->
-
-            <!--   <div class="link-container">-->
-            <!--      <a href="https://anythingpawsable.com/">-->
-            <!--         Visit Anything Pawsable-->
-            <!--      </a>-->
-            <!--   </div>-->
 
 
-            <!--</v-col>-->
-         </v-row>
+          <!--<div class="link-container">-->
+          <!--   <router-link to="/learn-more/mission">What is our mission, purpose and focus?</router-link>-->
+          <!--</div>-->
 
-      </div>
-   </div>
+          <!--<div class="link-container">-->
+          <!--   <router-link to="/learn-more/what-is-service-animal">What is a Service Dog?</router-link>-->
+          <!--</div>-->
+
+          <!--<div class="link-container">-->
+          <!--   <router-link to="/learn-more/how-do-i-get-service-dog">-->
+          <!--      How do I get a Service Dog?-->
+          <!--   </router-link>-->
+          <!--</div>-->
+
+          <!--<div class="link-container">-->
+          <!--   <router-link to="/learn-more/what-should-service-dog-act-like">-->
+          <!--      What Should a Service Dog Act like?-->
+          <!--   </router-link>-->
+          <!--</div>-->
+
+          <!--<div class="link-container">-->
+          <!--   <router-link to="/learn-more/sds-training-and-behavior-standards">-->
+          <!--      SDS Training and Behavior Standards-->
+          <!--   </router-link>-->
+          <!--</div>-->
+
+          <!--<div class="link-container">-->
+          <!--   <router-link to="/faq">-->
+          <!--      Common Questions-->
+          <!--   </router-link>-->
+          <!--</div>-->
+
+          <!--<div class="link-container">-->
+          <!--   <router-link to="/learn-more/media-library">-->
+          <!--      Media Library-->
+          <!--   </router-link>-->
+          <!--</div>-->
+        </v-col>
+
+        <v-col
+          cols="12"
+          sm="6"
+        >
+          <div class="menu-header">
+            For professionals
+          </div>
+
+
+          <router-link
+            v-for="item in for_pros"
+            :key="item.url"
+            :to="item.url"
+          >
+            <div class="link-container">
+              <div class="hex-container">
+                <!--<img :src="require('../../assets/images/icons/' +item.icon)" width="18px">-->
+                <div style="width: 22px">
+                  <svg
+                    viewBox="0 0 760.155 703.155"
+                    style="width: 100%; height: 100%;"
+                    :style="'stroke:'+item.color"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="760.155px"
+                    height="703.155px"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      stroke-width="110.77px"
+                      stroke-linecap="butt"
+                      stroke-linejoin="miter"
+                      fill="none"
+                      d="M468.884,111.385 L585.385,323.884 L468.884,536.384 L235.885,536.384 L119.384,323.884 L235.885,111.385 L468.884,111.385 Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <div>
+                <div class="item-header">
+                  {{ item.h1 }}
+                </div>
+                <div class="item-header2">
+                  {{ item.h2 }}
+                </div>
+              </div>
+            </div>
+          </router-link>
+
+
+          <div
+            class="menu-header"
+            style="margin-top: 20px"
+          >
+            For the public
+          </div>
+
+          <router-link
+            v-for="item in for_public"
+            :key="item.url"
+            :to="item.url"
+          >
+            <div class="link-container">
+              <div class="hex-container">
+                <!--<img :src="require('../../assets/images/icons/' +item.icon)" width="18px">-->
+                <div style="width: 22px">
+                  <svg
+                    viewBox="0 0 760.155 703.155"
+                    style="width: 100%; height: 100%;"
+                    :style="'stroke:'+item.color"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="760.155px"
+                    height="703.155px"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      stroke-width="110.77px"
+                      stroke-linecap="butt"
+                      stroke-linejoin="miter"
+                      fill="none"
+                      d="M468.884,111.385 L585.385,323.884 L468.884,536.384 L235.885,536.384 L119.384,323.884 L235.885,111.385 L468.884,111.385 Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <div>
+                <div class="item-header">
+                  {{ item.h1 }}
+                </div>
+                <div class="item-header2">
+                  {{ item.h2 }}
+                </div>
+              </div>
+            </div>
+          </router-link>
+
+
+          <!--<div class="link-container">-->
+          <!--   <router-link to="/learn-more/for-trainers">-->
+          <!--      For trainers and training orgs-->
+          <!--   </router-link>-->
+          <!--</div>-->
+
+          <!--<div class="link-container">-->
+          <!--   <router-link to="/learn-more/for-physicians-therapists">-->
+          <!--      For physicians and therapists-->
+          <!--   </router-link>-->
+          <!--</div>-->
+
+          <!--<div class="link-container">-->
+          <!--   <router-link to="/learn-more/for-colleges">-->
+          <!--      For colleges and universities-->
+          <!--   </router-link>-->
+          <!--</div>-->
+        </v-col>
+
+        <!--<v-col cols="12" sm="6" md="3">-->
+        <!--<div class="menu-header">-->
+        <!--   For the public-->
+        <!--</div>-->
+
+        <!--<div class="link-container">-->
+        <!--   <router-link to="/learn-more/what-todo-when-see-dog">-->
+        <!--      What should you do when you see a Service Dog?-->
+        <!--   </router-link>-->
+        <!--</div>-->
+
+        <!--<div class="link-container">-->
+        <!--   <router-link to="/learn-more/how-can-i-tell-if-legitimate">-->
+        <!--      How can I tell if a Service Animal is Legitimate?-->
+        <!--   </router-link>-->
+        <!--</div>-->
+
+        <!--<div class="link-container">-->
+        <!--   <router-link to="/learn-more/business-rights">-->
+        <!--      Business Rights Concerning Service Dogs-->
+        <!--   </router-link>-->
+        <!--</div>-->
+
+        <!--<div class="link-container">-->
+        <!--   <router-link to="/learn-more/landlord-hoa-rights">-->
+        <!--      Landlord/HOA Rights Concerning Service Dogs-->
+        <!--   </router-link>-->
+        <!--</div>-->
+        <!--</v-col>-->
+
+
+
+        <!--<v-col cols="12" sm="6" md="3">-->
+        <!--   <div class="menu-header">-->
+        <!--      Learn more-->
+        <!--   </div>-->
+
+        <!--   <div class="link-container">-->
+        <!--      <a href="https://www.facebook.com/servicedog">-->
+        <!--         Join us on Facebook-->
+        <!--      </a>-->
+        <!--   </div>-->
+
+        <!--   <div class="link-container">-->
+        <!--      <a href="https://anythingpawsable.com/">-->
+        <!--         Visit Anything Pawsable-->
+        <!--      </a>-->
+        <!--   </div>-->
+
+
+        <!--</v-col>-->
+      </v-row>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-   name: "learnMore",
+   name: "LearnMore",
    data(){
       return {
          about_us:[
@@ -296,7 +359,7 @@ export default {
 }
 </script>
 
-<style >
+<style>
 .menu-header{
     font-size: 16pt;
     font-weight: 600;

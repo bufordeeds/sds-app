@@ -1,11 +1,13 @@
 <template>
-<div style="position: relative; width:100%">
-   <img src="../assets/images/content/SDSSecureProfileExampleAsset_15.png" width="100%">
-   <div class="line-animation">
+  <div style="position: relative; width:100%">
+    <img
+      src="../assets/images/content/SDSSecureProfileExampleAsset_15.png"
+      width="100%"
+    >
+    <div class="line-animation">
       <line-animation2 :speed="2" />
-
-   </div>
-</div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -15,7 +17,7 @@ tried to make the lines animated in the screenshot but it would take a lot of wo
  */
 import LineAnimation2 from "@/components/LineAnimation2";
 export default {
-   name: "trainerScreenShot",
+   name: "TrainerScreenShot",
    components: {LineAnimation2}
 }
 </script>

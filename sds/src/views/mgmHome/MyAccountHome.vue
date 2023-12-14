@@ -1,513 +1,643 @@
 <template>
-   <div>
+  <div>
+    <v-dialog
+      v-model="show_behaviors"
+      max-width="1000px"
+      origin="bottom center"
+      content-class="agreement_class"
+      :fullscreen="agreement_full"
+    >
+      <!--:style="agreement_full ? 'height: 100vh; ': ''"-->
+      <behavior-standards
+
+        @join="on_join"
+      />
+    </v-dialog>
 
 
-      <v-dialog v-model="show_behaviors" max-width="1000px" origin="bottom center"
-                content-class="agreement_class" :fullscreen="agreement_full">
-
-
-         <!--:style="agreement_full ? 'height: 100vh; ': ''"-->
-         <behavior-standards
-
-             @join="on_join"
-
-         />
-      </v-dialog>
 
 
 
+    <div
+      id="account_top"
+      class="page-title-app"
+    >
+      Account Home
+    </div>
 
-
-      <div class="page-title-app" id="account_top">
-         Account Home
+    <div class="content-container-bg">
+      <div
+        class="page-title pb-4"
+        style="display: flex; justify-content: center; font-size: 18pt"
+      >
+        {{ user.account_type === 'TRAINER' ? "Pro ": '' }}
+        Solutions for Service Dog{{ heading_txt_completed }}s
       </div>
 
-      <div class="content-container-bg">
+      <v-row>
+        <v-col
+          cols="12"
+          :md="cols_md"
+          style="display:flex; flex-direction: column; align-items: center"
+        >
+          <div
+            class="account-status-container"
+            :class="showBuyFirst? 'mt-4':''"
+          >
+            <!--           <div  v-if="!$auth.profile.acct_active || true">-->
+            <!--             <div style="font-size: 20pt; font-weight: 500; color: var(&#45;&#45;color-warning)">-->
+            <!--               Account Inactive-->
+            <!--             </div>-->
+            <!--             <div v-if="user.account_status && user.account_status.date_accepted != null">-->
+            <!--               Your Behavior Standards Agreement has expired.<br> <br>-->
+            <!--               Please review and accept the Behavior Standards Agreement again to re-activate your account-->
+            <!--             </div>-->
+            <!--             <div v-else>-->
+            <!--               Please accept our Training and Behavior Standards Agreement to activate your membership.-->
 
-         <div class="page-title pb-4" style="display: flex; justify-content: center; font-size: 18pt">
-            {{user.account_type === 'TRAINER'? "Pro ": ''}}
-            Solutions for Service Dog {{heading_txt_completed}}s
-         </div>
+            <!--             </div>-->
 
-         <v-row>
-            <v-col cols="12" :md="cols_md" style="display:flex; flex-direction: column; align-items: center" >
-
-
-               <div class="account-status-container" :class="showBuyFirst? 'mt-4':''">
-                  <!--           <div  v-if="!$auth.profile.acct_active || true">-->
-                  <!--             <div style="font-size: 20pt; font-weight: 500; color: var(&#45;&#45;color-warning)">-->
-                  <!--               Account Inactive-->
-                  <!--             </div>-->
-                  <!--             <div v-if="user.account_status && user.account_status.date_accepted != null">-->
-                  <!--               Your Behavior Standards Agreement has expired.<br> <br>-->
-                  <!--               Please review and accept the Behavior Standards Agreement again to re-activate your account-->
-                  <!--             </div>-->
-                  <!--             <div v-else>-->
-                  <!--               Please accept our Training and Behavior Standards Agreement to activate your membership.-->
-
-                  <!--             </div>-->
-
-                  <!--             <div class="pa-4" style="display: flex; justify-content: center;">-->
-                  <!--               <v-btn color="var(&#45;&#45;color-btn)" class="white&#45;&#45;text" @click="show_behaviors=true;" style="border-radius: 0px; width: 100%">-->
-                  <!--                 Begin Now-->
-                  <!--               </v-btn>-->
-                  <!--             </div>-->
-                  <!--           </div>-->
+            <!--             <div class="pa-4" style="display: flex; justify-content: center;">-->
+            <!--               <v-btn color="var(&#45;&#45;color-btn)" class="white&#45;&#45;text" @click="show_behaviors=true;" style="border-radius: 0px; width: 100%">-->
+            <!--                 Begin Now-->
+            <!--               </v-btn>-->
+            <!--             </div>-->
+            <!--           </div>-->
 
 
 
-                  <div  v-if="!$auth.profile.acct_active">
-                     <div style="display: flex; justify-content: center;" class="pt-5 pb-5">
-                        <img src="../../assets/images/content/circle_check_not.png" width = "100px" style=" align-self: flex-start; ">
-                     </div>
+            <div v-if="!$auth.profile.acct_active">
+              <div
+                style="display: flex; justify-content: center;"
+                class="pt-5 pb-5"
+              >
+                <img
+                  src="../../assets/images/content/circle_check_not.png"
+                  width="100px"
+                  style=" align-self: flex-start; "
+                >
+              </div>
 
 
-                     <div class="headings">
-                        Activate Membership
-                     </div>
-                     <div style="text-align: center">
-                        Please accept our Training and Behavior Standards Agreement to activate your membership.
-                     </div>
+              <div class="headings">
+                Activate Membership
+              </div>
+              <div style="text-align: center">
+                Please accept our Training and Behavior Standards Agreement to activate your membership.
+              </div>
 
-                     <div class="pa-4" style="display: flex; justify-content: center;">
-                        <v-btn color="var(--color-btn)" class="white--text" @click="click_behaviors()" style="border-radius: 0px; width: 100%">
-                           Begin Now
-                        </v-btn>
-                     </div>
+              <div
+                class="pa-4"
+                style="display: flex; justify-content: center;"
+              >
+                <v-btn
+                  color="var(--color-btn)"
+                  class="white--text"
+                  style="border-radius: 0px; width: 100%"
+                  @click="click_behaviors()"
+                >
+                  Begin Now
+                </v-btn>
+              </div>
+            </div>
+
+
+            <div v-else>
+              <div
+                style="display: flex; justify-content: center"
+                class="pt-5 pb-5"
+              >
+                <img
+                  src="../../assets/images/content/circle_check_green.png"
+                  width="100px"
+                  style="align-self: flex-start; "
+                >
+              </div>
+
+
+              <div class="headings">
+                Membership Active
+              </div>
+              <div style="text-align: center">
+                Renew Your Service Dog Standards Training and Behavior Agreement before {{ agreement_expiry }}.
+              </div>
+
+
+
+
+              <div
+                class="pa-4"
+                style="display: flex; justify-content: center;"
+              >
+                <v-btn
+                  color="var(--color-btn)"
+                  class="white--text"
+                  style="border-radius: 0px; width: 100%"
+                  @click="show_behaviors=true;"
+                >
+                  Renew Agreement
+                </v-btn>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <!--         <div class="account-status-container mt-4" v-if="$auth.profile.acct_active">-->
+          <!--           <div>-->
+          <!--             Here's how much time is left on your agreement before it needs to be renewed.-->
+          <!--           </div>-->
+          <!--           <div class="mt-4" style="display:flex; flex-direction: column; align-items: center">-->
+          <!--             <v-progress-circular-->
+          <!--                 :rotate="-90"-->
+          <!--                 :size="180"-->
+          <!--                 :width="20"-->
+          <!--                 :value="percent_time_left < 0? 100 : percent_time_left"-->
+          <!--                 :color="circle_color"-->
+          <!--                 style="transform: scaleX(-1)"-->
+          <!--             >-->
+          <!--               <div style="transform: scaleX(-1); color: grey">-->
+          <!--                 &lt;!&ndash;                  <div style="text-align: center">&ndash;&gt;-->
+          <!--                 &lt;!&ndash;                     Time Remaining&ndash;&gt;-->
+          <!--                 &lt;!&ndash;                  </div>&ndash;&gt;-->
+          <!--                 <div style="text-align: center" v-if="time_left.years > 0">-->
+          <!--                   {{time_left.years}} Year{{time_left.years===1?'':'s'}}-->
+          <!--                 </div>-->
+          <!--                 <div style="text-align: center" v-if="time_left.months > 0">-->
+          <!--                   {{round(time_left.months, 0)}} Month{{time_left.months < 2?'':'s'}}-->
+          <!--                 </div>-->
+
+          <!--                 <div style="text-align: center" v-if="time_left.months < 2 && time_left.years <= 0">-->
+          <!--                   {{round(time_left.days, 0)}} Day{{time_left.days < 1?'':'s'}}-->
+          <!--                 </div>-->
+
+
+          <!--               </div>-->
+
+
+          <!--             </v-progress-circular>-->
+
+          <!--             <div v-if="time_left.years < 1 && time_left.months < 6"-->
+          <!--                  class="pa-4 mt-4" style="display: flex; justify-content: center;">-->
+          <!--               <v-btn color="var(&#45;&#45;color-btn)" @click="show_behaviors=true;">-->
+          <!--                 Renew Agreement-->
+          <!--               </v-btn>-->
+          <!--             </div>-->
+          <!--           </div>-->
+
+          <!--         </div>-->
+
+
+
+          <div
+            v-if="$auth.profile.acct_active"
+            class="account-status-container mt-4"
+            :style="{order: showBuyFirst? -1: 0}"
+          >
+            <div
+              style="display: flex; justify-content: center"
+              class="pt-5 pb-5"
+            >
+              <img
+                src="../../assets/images/content/cart.png"
+                width="100px"
+                style="align-self: flex-start; "
+              >
+            </div>
+
+
+            <div class="headings">
+              Order Kits
+            </div>
+            <div style="text-align: center">
+              Order Client Kits for Clients or Replacement Items
+            </div>
+            <div
+              class="pa-4"
+              style="display: flex; justify-content: center;"
+            >
+              <v-btn
+                color="var(--color-btn)"
+                class="white--text"
+                style="border-radius: 0px; width: 100%"
+                to="/store"
+              >
+                Begin Now
+              </v-btn>
+            </div>
+          </div>
+
+
+
+
+
+
+          <div
+            v-if="$auth.profile.acct_active && isTrainer"
+            class="account-status-container mt-4"
+          >
+            <div
+              style="display: flex; justify-content: center"
+              class="pt-5 pb-5"
+            >
+              <img
+                src="../../assets/images/icons/donate_heart.png"
+                width="100px"
+                style="align-self: flex-start; "
+              >
+            </div>
+
+
+            <div class="headings">
+              Donate
+            </div>
+
+            <div style="text-align: center">
+              Please support Voluntary Service Dog Standards and help us keep our servers and coffee maker running.
+            </div>
+
+            <div
+              class="pa-4"
+              style="display: flex; justify-content: center;"
+            >
+              <v-btn
+                color="var(--color-btn)"
+                class="white--text"
+                style="border-radius: 0px; width: 100%"
+                to="/donate"
+              >
+                Donate
+              </v-btn>
+            </div>
+          </div>
+        </v-col>
+
+
+
+
+
+
+        <!------------------------------------ Column 2 ----------------------------------------------------------------->
+        <v-col
+          cols="12"
+          md="6"
+          style="display:flex; flex-direction: column; align-items: center"
+        >
+          <!----------------------  ----------------------------------->
+          <div
+            v-if="$auth.profile.acct_active && isTrainer"
+            class="account-status-container"
+          >
+            <!--           :value="percent_time_left < 0? 100 : percent_time_left"-->
+            <div
+              class="mt-8 "
+              style="display:flex; flex-direction: column; align-items: center"
+            >
+              <v-progress-circular
+                :rotate="-90"
+                :size="100"
+                :width="7"
+                :value="percent_completed"
+                color="var(--color-btn)"
+              >
+                <div style="color: grey">
+                  <div style="text-align: center; font-weight: 600; font-size: 16pt; padding-top: 2px">
+                    {{ round(percent_completed, 0) }}%
+                  </div>
+                </div>
+              </v-progress-circular>
+            </div>
+
+
+            <div
+              class="pb-4 pt-4 headings"
+              style="display: flex; flex-direction: column; align-items: center"
+            >
+              <div>
+                {{ heading_txt_completed }} Profile
+              </div>
+              <div>{{ percent_completed }}% Complete</div>
+            </div>
+
+            <div
+              v-for="(item, ix) in profile_items.sections"
+              :key="item.txt + ix"
+              style="display:flex; align-items: flex-start; padding: 5px 0px 5px 10px;"
+            >
+              <div style="padding-top: 3px">
+                <img
+                  v-if="item.done"
+                  src="../../assets/images/content/check-box-with-check-sign.png"
+                  height="20px"
+                  style="align-self: flex-start; "
+                >
+                <img
+                  v-else
+                  src="../../assets/images/content/check-box.png"
+                  height="20px"
+                  style="align-self: flex-start; "
+                >
+              </div>
+
+
+              <div class="ml-2">
+                {{ item.txt }}
+              </div>
+
+              <div v-if="!item.done && item.section">
+                <v-tooltip bottom>
+                  <template #activator="{ on, attrs }">
+                    <v-btn
+                      icon
+                      x-small
+                      style="border-radius: 50%"
+                      @click="on_skip_section_click(item.section)"
+                    >
+                      <v-icon
+                        x-small
+                        v-bind="attrs"
+                        v-on="on"
+                      >
+                        close
+                      </v-icon>
+                    </v-btn>
+                  </template>
+                  <span>This item isn't applicable to me</span>
+                </v-tooltip>
+              </div>
+            </div>
+
+
+
+            <!--skipped sections-->
+            <div
+              v-if="profile_items.skipped.length>0"
+              style="margin-top: 10px; font-size: 10pt"
+            >
+              Skipped Sections
+              <v-btn
+                icon
+                style="border-radius: 50%"
+                @click="show_skipped = !show_skipped"
+              >
+                <v-icon
+                  v-if="!show_skipped"
+                  small
+                >
+                  visibility
+                </v-icon>
+                <v-icon
+                  v-else
+                  small
+                >
+                  visibility_off
+                </v-icon>
+              </v-btn>
+              <template v-if="show_skipped">
+                <div
+                  v-for="(item, ix) in profile_items.skipped"
+                  :key="item.txt + ix"
+                  style="display:flex; align-items: flex-start; padding: 5px 0px 5px 10px;"
+                >
+                  <!--<div style="padding-top: 3px">-->
+                  <!--   <img v-if="item.done" src="../../assets/images/content/check-box-with-check-sign.png" height="20px">-->
+                  <!--   <img v-else src="../../assets/images/content/check-box.png" height="20px">-->
+                  <!--</div>-->
+
+
+                  <div class="ml-2">
+                    {{ item.txt }}
                   </div>
 
-
-                  <div v-else>
-                     <div style="display: flex; justify-content: center" class="pt-5 pb-5">
-                        <img src="../../assets/images/content/circle_check_green.png" width = "100px" style="align-self: flex-start; ">
-                     </div>
-
-
-                     <div class="headings">
-                        Membership Active
-                     </div>
-                     <div style="text-align: center">
-                        Renew Your Service Dog Standards Training and Behavior Agreement before {{agreement_expiry}}.
-                     </div>
-
-
-
-
-                     <div class="pa-4" style="display: flex; justify-content: center;">
+                  <div v-if="!item.done && item.section">
+                    <v-tooltip bottom>
+                      <template #activator="{ on, attrs }">
                         <v-btn
-                            color="var(--color-btn)" class="white--text"
-                            style="border-radius: 0px; width: 100%"
-                            @click="show_behaviors=true;"
+                          icon
+                          x-small
+                          style="border-radius: 50%"
+                          @click="on_skip_section_click(item.section)"
                         >
-                           Renew Agreement
+                          <v-icon
+                            small
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            add
+                          </v-icon>
                         </v-btn>
-                     </div>
+                      </template>
+                      <span>Reactivate this section</span>
+                    </v-tooltip>
                   </div>
-
-               </div>
-
-
-
-
-
-               <!--         <div class="account-status-container mt-4" v-if="$auth.profile.acct_active">-->
-               <!--           <div>-->
-               <!--             Here's how much time is left on your agreement before it needs to be renewed.-->
-               <!--           </div>-->
-               <!--           <div class="mt-4" style="display:flex; flex-direction: column; align-items: center">-->
-               <!--             <v-progress-circular-->
-               <!--                 :rotate="-90"-->
-               <!--                 :size="180"-->
-               <!--                 :width="20"-->
-               <!--                 :value="percent_time_left < 0? 100 : percent_time_left"-->
-               <!--                 :color="circle_color"-->
-               <!--                 style="transform: scaleX(-1)"-->
-               <!--             >-->
-               <!--               <div style="transform: scaleX(-1); color: grey">-->
-               <!--                 &lt;!&ndash;                  <div style="text-align: center">&ndash;&gt;-->
-               <!--                 &lt;!&ndash;                     Time Remaining&ndash;&gt;-->
-               <!--                 &lt;!&ndash;                  </div>&ndash;&gt;-->
-               <!--                 <div style="text-align: center" v-if="time_left.years > 0">-->
-               <!--                   {{time_left.years}} Year{{time_left.years===1?'':'s'}}-->
-               <!--                 </div>-->
-               <!--                 <div style="text-align: center" v-if="time_left.months > 0">-->
-               <!--                   {{round(time_left.months, 0)}} Month{{time_left.months < 2?'':'s'}}-->
-               <!--                 </div>-->
-
-               <!--                 <div style="text-align: center" v-if="time_left.months < 2 && time_left.years <= 0">-->
-               <!--                   {{round(time_left.days, 0)}} Day{{time_left.days < 1?'':'s'}}-->
-               <!--                 </div>-->
-
-
-               <!--               </div>-->
-
-
-               <!--             </v-progress-circular>-->
-
-               <!--             <div v-if="time_left.years < 1 && time_left.months < 6"-->
-               <!--                  class="pa-4 mt-4" style="display: flex; justify-content: center;">-->
-               <!--               <v-btn color="var(&#45;&#45;color-btn)" @click="show_behaviors=true;">-->
-               <!--                 Renew Agreement-->
-               <!--               </v-btn>-->
-               <!--             </div>-->
-               <!--           </div>-->
-
-               <!--         </div>-->
-
-
-
-               <div class="account-status-container mt-4" v-if="$auth.profile.acct_active" :style="{order: showBuyFirst? -1: 0}" >
-                  <div style="display: flex; justify-content: center" class="pt-5 pb-5">
-                     <img src="../../assets/images/content/cart.png" width = "100px" style="align-self: flex-start; ">
-                  </div>
-
-
-                  <div class="headings">
-                     Order Kits
-                  </div>
-                  <div style="text-align: center">
-                     Order Client Kits for Clients or Replacement Items
-                  </div>
-                  <div class="pa-4" style="display: flex; justify-content: center;">
-                     <v-btn
-                         color="var(--color-btn)" class="white--text"
-                         style="border-radius: 0px; width: 100%"
-                         to="/store"
-                     >
-                        Begin Now
-                     </v-btn>
-                  </div>
-               </div>
-
-
-
-
-
-
-               <div class="account-status-container mt-4" v-if="$auth.profile.acct_active && isTrainer">
-                  <div style="display: flex; justify-content: center" class="pt-5 pb-5">
-                     <img src="../../assets/images/icons/donate_heart.png" width = "100px" style="align-self: flex-start; ">
-                  </div>
-
-
-                  <div class="headings">
-                     Donate
-                  </div>
-
-                  <div  style="text-align: center">
-                     Please support Voluntary Service Dog Standards and help us keep our servers and coffee maker running.
-                  </div>
-
-                  <div class="pa-4" style="display: flex; justify-content: center;">
-                     <v-btn
-                         color="var(--color-btn)" class="white--text"
-                         style="border-radius: 0px; width: 100%"
-                         to="/donate"
-                     >
-                        Donate
-                     </v-btn>
-                  </div>
-               </div>
-
-
-
-            </v-col>
-
-
-
-
-
-
-            <!------------------------------------ Column 2 ----------------------------------------------------------------->
-            <v-col cols="12" md="6" style="display:flex; flex-direction: column; align-items: center">
-               <!----------------------  ----------------------------------->
-               <div class="account-status-container" v-if="$auth.profile.acct_active && isTrainer" >
-
-
-                  <!--           :value="percent_time_left < 0? 100 : percent_time_left"-->
-                  <div class="mt-8 " style="display:flex; flex-direction: column; align-items: center">
-                     <v-progress-circular
-                         :rotate="-90"
-                         :size="100"
-                         :width="7"
-                         :value="percent_completed"
-                         color="var(--color-btn)"
-                     >
-                        <div style="color: grey">
-                           <div style="text-align: center; font-weight: 600; font-size: 16pt; padding-top: 2px" >
-                              {{round(percent_completed, 0)}}%
-                           </div>
-                        </div>
-                     </v-progress-circular>
-
-                  </div>
-
-
-                  <div class="pb-4 pt-4 headings" style="display: flex; flex-direction: column; align-items: center">
-                     <div>
-                        {{heading_txt_completed}} Profile
-                     </div>
-                     <div>{{percent_completed}}% Complete</div>
-                  </div>
-
-                  <div v-for="(item, ix) in profile_items.sections" :key="item.txt + ix"
-                       style="display:flex; align-items: flex-start; padding: 5px 0px 5px 10px;"
-                  >
-                     <div style="padding-top: 3px">
-                        <img v-if="item.done" src="../../assets/images/content/check-box-with-check-sign.png" height="20px" style="align-self: flex-start; ">
-                        <img v-else src="../../assets/images/content/check-box.png" height="20px" style="align-self: flex-start; ">
-                     </div>
-
-
-                     <div class="ml-2">
-                        {{item.txt}}
-                     </div>
-
-                     <div v-if="!item.done && item.section">
-                        <v-tooltip bottom>
-                           <template v-slot:activator="{ on, attrs }">
-                              <v-btn icon x-small style="border-radius: 50%"
-                                     @click="on_skip_section_click(item.section)">
-                                 <v-icon
-                                     x-small
-                                     v-bind="attrs"
-                                     v-on="on"
-                                 >
-                                    close
-                                 </v-icon>
-                              </v-btn>
-
-                           </template>
-                           <span>This item isn't applicable to me</span>
-                        </v-tooltip>
-
-                     </div>
-                  </div>
-
-
-
-                  <!--skipped sections-->
-                  <div v-if="profile_items.skipped.length>0" style="margin-top: 10px; font-size: 10pt">
-                     Skipped Sections
-                     <v-btn icon @click="show_skipped = !show_skipped" style="border-radius: 50%">
-                        <v-icon v-if="!show_skipped" small>visibility</v-icon>
-                        <v-icon v-else small>visibility_off</v-icon>
-                     </v-btn>
-                     <template v-if="show_skipped">
-                        <div v-for="(item, ix) in profile_items.skipped" :key="item.txt + ix"
-                             style="display:flex; align-items: flex-start; padding: 5px 0px 5px 10px;"
-                        >
-                           <!--<div style="padding-top: 3px">-->
-                           <!--   <img v-if="item.done" src="../../assets/images/content/check-box-with-check-sign.png" height="20px">-->
-                           <!--   <img v-else src="../../assets/images/content/check-box.png" height="20px">-->
-                           <!--</div>-->
-
-
-                           <div class="ml-2">
-                              {{item.txt}}
-                           </div>
-
-                           <div v-if="!item.done && item.section">
-                              <v-tooltip bottom>
-                                 <template v-slot:activator="{ on, attrs }">
-                                    <v-btn icon x-small style="border-radius: 50%"
-                                           @click="on_skip_section_click(item.section)">
-                                       <v-icon
-                                           small
-                                           v-bind="attrs"
-                                           v-on="on"
-                                       >
-                                          add
-                                       </v-icon>
-                                    </v-btn>
-
-                                 </template>
-                                 <span>Reactivate this section</span>
-                              </v-tooltip>
-
-                           </div>
-                        </div>
-                     </template>
-
-                  </div>
-
-                  <div class="pa-4" style="display: flex; justify-content: center;">
-                     <v-btn
-                         color="var(--color-btn)" class="white--text"
-                         style="border-radius: 0px; width: 100%"
-                         to="/manageProfile"
-                     >
-                        Edit Profile
-                     </v-btn>
-                  </div>
-
-
-
-
-
-
-               </div>
-
-               <!--&lt;!&ndash;edit button&ndash;&gt;-->
-               <!--<div style="width: 100%; display: flex; justify-content: flex-end; margin-top: -40px; margin-bottom: 12px; padding-right: 10px" >-->
-
-               <!--   <v-btn text small color="blue" >-->
-               <!--      Edit Profile-->
-               <!--   </v-btn>-->
-               <!--</div>-->
-
-
-
-
-
-
-
-               <div class="account-status-container" v-if="$auth.profile.acct_active && !isTrainer">
-                  <div style="display: flex; justify-content: center" class="pt-5 pb-5">
-                     <img src="../../assets/images/icons/donate_heart.png" width = "100px" style="align-self: flex-start; ">
-                  </div>
-
-
-                  <div class="headings">
-                     Donate
-                  </div>
-
-                  <div  style="text-align: center">
-                     Please support Voluntary Service Dog Standards and help us keep our servers and coffee maker running.
-                  </div>
-
-                  <div class="pa-4" style="display: flex; justify-content: center;">
-                     <v-btn
-                         color="var(--color-btn)" class="white--text"
-                         style="border-radius: 0px; width: 100%"
-                         to="/donate"
-                     >
-                        Donate
-                     </v-btn>
-                  </div>
-               </div>
-
-
-
-
-
-
-               <div class="account-status-container mt-4 pb-8" v-if="$auth.profile.acct_active">
-                  <div style="display: flex; justify-content: center" class="pt-5 pb-5">
-                     <img src="../../assets/images/content/cloud-download.png" width = "100px" style="align-self: flex-start; ">
-                  </div>
-
-
-                  <div class="headings pb-1">
-                     Downloadables
-                  </div>
-
-                  <!--<a href="/downloads/Service_Dog_Standards_Training_and_Behavior_Standards_SDSPAT-21.pdf"-->
-                  <!--   target="_blank" style="text-decoration: none;">-->
-                  <!--   <div style="display: flex; justify-content: center; align-items: center; background-color: var(&#45;&#45;color-bg)" class="ml-4 mr-4 pa-3">-->
-                  <!--      <img src="../../assets/images/content/pdf_icon.png" width="50">-->
-                  <!--      <div style="max-width: 250px; font-size: 11pt; color: var(&#45;&#45;color-subheading); font-weight: 500" class="pl-2">-->
-                  <!--         Service Dogs Standards Training and Behavior Agreement-->
-                  <!--      </div>-->
-                  <!--   </div>-->
-                  <!--</a>-->
-                  <!--<div style="height: 10px"></div>-->
-                  <!--<a href="/downloads/Service_Dog_Standards_Public_Access_Test_SDSPAT-A21.pdf" target="_blank" style="text-decoration: none; ">-->
-                  <!--   <div style="display: flex; justify-content: center; align-items: center; background-color: var(&#45;&#45;color-bg)" class="ml-4 mr-4 pa-3">-->
-                  <!--      <img src="../../assets/images/content/pdf_icon.png" width="50">-->
-                  <!--      <div style="max-width: 250px; font-size: 11pt; color: var(&#45;&#45;color-subheading); font-weight: 500" class="pl-2">-->
-                  <!--         Service Dog Standards Public Access Test-->
-                  <!--      </div>-->
-                  <!--   </div>-->
-                  <!--</a>-->
-
-
-
-
-                  <div style="background-color: var(--color-bg)" class="ml-4 mr-4 pa-3">
-                     <div style="display: flex; justify-content: center; align-items: center; " >
-                        <img src="../../assets/images/content/pdf_icon.png" width="50" style="align-self: flex-start; ">
-                        <div style="max-width: 250px; font-size: 11pt; color: var(--color-subheading); font-weight: 500" class="pl-2">
-                           Service Dogs Standards Training and Behavior Agreement
-                        </div>
-                     </div>
-
-
-                     <div style="margin-left:60px" class="pt-2">
-                        <!--<a href="/downloads/Service_Dog_Standards_Training_and_Behavior_Standards_SDSTBS-21.pdf"-->
-                        <!--   target="_blank" style="text-decoration: none;">-->
-                        <!--   Open in new window-->
-                        <!--</a>-->
-                        <!--<br>-->
-                        <a href="/downloads/Service_Dog_Standards_Training_and_Behavior_Standards_SDSTBS-21.pdf"
-                           style="text-decoration: none;" download>
-                           Download
-                        </a>
-                     </div>
-                  </div>
-
-                  <div style="height: 10px"></div>
-
-                  <div style="background-color: var(--color-bg)" class="ml-4 mr-4 pa-3">
-                     <div style="display: flex; justify-content: center; align-items: center; " >
-                        <img src="../../assets/images/content/pdf_icon.png" width="50" style="align-self: flex-start; ">
-                        <div style="max-width: 250px; font-size: 11pt; color: var(--color-subheading); font-weight: 500" class="pl-2">
-                           Service Dog Standards Public Access Test
-                        </div>
-                     </div>
-
-
-                     <div style="margin-left:60px" class="pt-0">
-                        <!--<a href="/downloads/Service_Dog_Standards_Public_Access_Test_SDSPAT-A21.pdf"-->
-                        <!--   target="_blank" style="text-decoration: none;">-->
-                        <!--   Open in new window-->
-                        <!--</a>-->
-                        <!--<br>-->
-                        <a href="/downloads/Service_Dog_Standards_Public_Access_Test_SDSPAT-A21.pdf"
-                           style="text-decoration: none;" download>
-                           Download
-                        </a>
-                     </div>
-                  </div>
-
-
-
-
-                  <div style="height: 15px"></div>
-               </div>
-
-
-
-
-
-
-
-
-
-            </v-col>
-         </v-row>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
-
-   </div>
+                </div>
+              </template>
+            </div>
+
+            <div
+              class="pa-4"
+              style="display: flex; justify-content: center;"
+            >
+              <v-btn
+                color="var(--color-btn)"
+                class="white--text"
+                style="border-radius: 0px; width: 100%"
+                to="/manageProfile"
+              >
+                Edit Profile
+              </v-btn>
+            </div>
+          </div>
+
+          <!--&lt;!&ndash;edit button&ndash;&gt;-->
+          <!--<div style="width: 100%; display: flex; justify-content: flex-end; margin-top: -40px; margin-bottom: 12px; padding-right: 10px" >-->
+
+          <!--   <v-btn text small color="blue" >-->
+          <!--      Edit Profile-->
+          <!--   </v-btn>-->
+          <!--</div>-->
+
+
+
+
+
+
+
+          <div
+            v-if="$auth.profile.acct_active && !isTrainer"
+            class="account-status-container"
+          >
+            <div
+              style="display: flex; justify-content: center"
+              class="pt-5 pb-5"
+            >
+              <img
+                src="../../assets/images/icons/donate_heart.png"
+                width="100px"
+                style="align-self: flex-start; "
+              >
+            </div>
+
+
+            <div class="headings">
+              Donate
+            </div>
+
+            <div style="text-align: center">
+              Please support Voluntary Service Dog Standards and help us keep our servers and coffee maker running.
+            </div>
+
+            <div
+              class="pa-4"
+              style="display: flex; justify-content: center;"
+            >
+              <v-btn
+                color="var(--color-btn)"
+                class="white--text"
+                style="border-radius: 0px; width: 100%"
+                to="/donate"
+              >
+                Donate
+              </v-btn>
+            </div>
+          </div>
+
+
+
+
+
+
+          <div
+            v-if="$auth.profile.acct_active"
+            class="account-status-container mt-4 pb-8"
+          >
+            <div
+              style="display: flex; justify-content: center"
+              class="pt-5 pb-5"
+            >
+              <img
+                src="../../assets/images/content/cloud-download.png"
+                width="100px"
+                style="align-self: flex-start; "
+              >
+            </div>
+
+
+            <div class="headings pb-1">
+              Downloadables
+            </div>
+
+            <!--<a href="/downloads/Service_Dog_Standards_Training_and_Behavior_Standards_SDSPAT-21.pdf"-->
+            <!--   target="_blank" style="text-decoration: none;">-->
+            <!--   <div style="display: flex; justify-content: center; align-items: center; background-color: var(&#45;&#45;color-bg)" class="ml-4 mr-4 pa-3">-->
+            <!--      <img src="../../assets/images/content/pdf_icon.png" width="50">-->
+            <!--      <div style="max-width: 250px; font-size: 11pt; color: var(&#45;&#45;color-subheading); font-weight: 500" class="pl-2">-->
+            <!--         Service Dogs Standards Training and Behavior Agreement-->
+            <!--      </div>-->
+            <!--   </div>-->
+            <!--</a>-->
+            <!--<div style="height: 10px"></div>-->
+            <!--<a href="/downloads/Service_Dog_Standards_Public_Access_Test_SDSPAT-A21.pdf" target="_blank" style="text-decoration: none; ">-->
+            <!--   <div style="display: flex; justify-content: center; align-items: center; background-color: var(&#45;&#45;color-bg)" class="ml-4 mr-4 pa-3">-->
+            <!--      <img src="../../assets/images/content/pdf_icon.png" width="50">-->
+            <!--      <div style="max-width: 250px; font-size: 11pt; color: var(&#45;&#45;color-subheading); font-weight: 500" class="pl-2">-->
+            <!--         Service Dog Standards Public Access Test-->
+            <!--      </div>-->
+            <!--   </div>-->
+            <!--</a>-->
+
+
+
+
+            <div
+              style="background-color: var(--color-bg)"
+              class="ml-4 mr-4 pa-3"
+            >
+              <div style="display: flex; justify-content: center; align-items: center; ">
+                <img
+                  src="../../assets/images/content/pdf_icon.png"
+                  width="50"
+                  style="align-self: flex-start; "
+                >
+                <div
+                  style="max-width: 250px; font-size: 11pt; color: var(--color-subheading); font-weight: 500"
+                  class="pl-2"
+                >
+                  Service Dogs Standards Training and Behavior Agreement
+                </div>
+              </div>
+
+
+              <div
+                style="margin-left:60px"
+                class="pt-2"
+              >
+                <!--<a href="/downloads/Service_Dog_Standards_Training_and_Behavior_Standards_SDSTBS-21.pdf"-->
+                <!--   target="_blank" style="text-decoration: none;">-->
+                <!--   Open in new window-->
+                <!--</a>-->
+                <!--<br>-->
+                <a
+                  href="/downloads/Service_Dog_Standards_Training_and_Behavior_Standards_SDSTBS-21.pdf"
+                  style="text-decoration: none;"
+                  download
+                >
+                  Download
+                </a>
+              </div>
+            </div>
+
+            <div style="height: 10px" />
+
+            <div
+              style="background-color: var(--color-bg)"
+              class="ml-4 mr-4 pa-3"
+            >
+              <div style="display: flex; justify-content: center; align-items: center; ">
+                <img
+                  src="../../assets/images/content/pdf_icon.png"
+                  width="50"
+                  style="align-self: flex-start; "
+                >
+                <div
+                  style="max-width: 250px; font-size: 11pt; color: var(--color-subheading); font-weight: 500"
+                  class="pl-2"
+                >
+                  Service Dog Standards Public Access Test
+                </div>
+              </div>
+
+
+              <div
+                style="margin-left:60px"
+                class="pt-0"
+              >
+                <!--<a href="/downloads/Service_Dog_Standards_Public_Access_Test_SDSPAT-A21.pdf"-->
+                <!--   target="_blank" style="text-decoration: none;">-->
+                <!--   Open in new window-->
+                <!--</a>-->
+                <!--<br>-->
+                <a
+                  href="/downloads/Service_Dog_Standards_Public_Access_Test_SDSPAT-A21.pdf"
+                  style="text-decoration: none;"
+                  download
+                >
+                  Download
+                </a>
+              </div>
+            </div>
+
+
+
+
+            <div style="height: 15px" />
+          </div>
+        </v-col>
+      </v-row>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -767,6 +897,22 @@ export default {
 
 
 
+   },
+
+   created(){
+     if (this.$route.query.reload == 'true'){
+        this.$router.push({ path: '/accountHome', query: { reload: 'false' } , replace: true})
+        setTimeout(()=>{
+           window.location.reload(); //used when redirecting back to this page from the stand alone behavior standards viewer
+        }, 0)
+
+     }
+   },
+   mounted(){
+      // console.log('debug')
+      this.$store.commit("set_show_side_nav", true);
+
+      this.get_profile();
    }, //computed
 
    methods: {
@@ -850,22 +996,6 @@ export default {
       },
 
 
-   },
-
-   created(){
-     if (this.$route.query.reload == 'true'){
-        this.$router.push({ path: '/accountHome', query: { reload: 'false' } , replace: true})
-        setTimeout(()=>{
-           window.location.reload(); //used when redirecting back to this page from the stand alone behavior standards viewer
-        }, 0)
-
-     }
-   },
-   mounted(){
-      // console.log('debug')
-      this.$store.commit("set_show_side_nav", true);
-
-      this.get_profile();
    },
 
 }

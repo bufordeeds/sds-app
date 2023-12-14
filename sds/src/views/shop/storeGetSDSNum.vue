@@ -1,167 +1,190 @@
 <template>
-   <div>
+  <div>
+    <div class="sds-content-container-bg">
+      <div
+        class="sds-content-container"
+        style="display: flex; flex-direction: column; align-items: center"
+      >
+        <div
+          class="sds-subtitle"
+          :style="$vuetify.breakpoint.smAndDown? 'font-size: 15pt' : ''"
+          style="text-align: center"
+        >
+          Customize your materials
+        </div>
+        <img
+          src="../../assets/images/products/SDSProductPackage.png"
+          style="max-width: 750px; width: 90%"
+        >
+        <div style="font-size: 10pt; padding-left: 20px; margin-top: -20px">
+          <!--               Click on any item to enlarge.  Items not to scale.-->
+        </div>
 
 
 
-      <div class="sds-content-container-bg">
-         <div class="sds-content-container" style="display: flex; flex-direction: column; align-items: center">
-            <div class="sds-subtitle" :style="$vuetify.breakpoint.smAndDown? 'font-size: 15pt' : ''" style="text-align: center">
-               Customize your materials
-            </div>
-            <img src="../../assets/images/products/SDSProductPackage.png"
-                 style="max-width: 750px; width: 90%"
+
+        <!---------------------- container for the "continue" buttons --------------------------------------------->
+        <div
+          v-if="!show_dogs"
+          style="display: flex; flex-direction: column; align-items: center"
+        >
+          <div style="color: var(--color-subheading); margin-top: 30px; font-weight: 600">
+            Enter SDS Number
+          </div>
+
+          <my-form
+            ref="form"
+            style="display: flex; justify-content: center"
+          >
+            <!--<text-input-->
+            <!--    style="max-width: 250px; margin-top: 10px"-->
+            <!--    label="SDS Number"-->
+            <!--    hide-label-on-input-->
+            <!--    border-color="var(&#45;&#45;color-primary)"-->
+            <!--    v-model="sds_number"-->
+            <!--    :rules="[isRequired]"-->
+            <!--&gt;</text-input>-->
+
+
+
+            <v-menu
+              v-model="show_dog_list"
+              bottom
+              nudge-bottom="50px"
+              :disabled="dogs.length==0"
             >
-            <div style="font-size: 10pt; padding-left: 20px; margin-top: -20px">
-<!--               Click on any item to enlarge.  Items not to scale.-->
-            </div>
+              <template #activator="props">
+                <div v-on="props.on">
+                  <text-input
+
+                    v-model="sds_number"
+                    style="max-width: 250px; margin-top: 10px"
+                    label="SDS Number"
+                    hide-label-on-input
+                    border-color="var(--color-primary)"
+                    :rules="[isRequired]"
+                  />
+                </div>
+              </template>
+
+              <dog-list
+                :dogs="dogs"
+                @click="sds_number='SDS-'+$event"
+              />
+            </v-menu>
+          </my-form>
 
 
+          <div style="color: var(--color-subheading); margin-top: 5px; font-weight: 600; font-size: 8pt; display: flex; justify-content: center; max-width: 250px; width: 100%">
+            <!--<router-link to="/?advanced_search=true" target="_blank">-->
+            <!--   Find SDS number-->
+            <!--</router-link>-->
 
 
-            <!---------------------- container for the "continue" buttons --------------------------------------------->
-            <div v-if="!show_dogs"
-                 style="display: flex; flex-direction: column; align-items: center"
+            <!--<router-link to="/manageServiceDogs" v-if="$auth.authenticated " >-->
+            <!--   View All Dogs-->
+            <!--</router-link>-->
+
+
+            <v-btn
+              x-small
+              to="/manageServiceDogs"
             >
-               <div style="color: var(--color-subheading); margin-top: 30px; font-weight: 600">
-                  Enter SDS Number
-               </div>
-
-               <my-form ref="form" style="display: flex; justify-content: center">
-                  <!--<text-input-->
-                  <!--    style="max-width: 250px; margin-top: 10px"-->
-                  <!--    label="SDS Number"-->
-                  <!--    hide-label-on-input-->
-                  <!--    border-color="var(&#45;&#45;color-primary)"-->
-                  <!--    v-model="sds_number"-->
-                  <!--    :rules="[isRequired]"-->
-                  <!--&gt;</text-input>-->
-
-
-
-                  <v-menu
-                      v-model="show_dog_list"
-                      bottom
-                      nudge-bottom="50px"
-                      :disabled="dogs.length==0"
-                  >
-                     <template   v-slot:activator="props">
-                        <div v-on="props.on">
-                           <text-input
-
-                               style="max-width: 250px; margin-top: 10px"
-                               label="SDS Number"
-                               hide-label-on-input
-                               border-color="var(--color-primary)"
-                               v-model="sds_number"
-                               :rules="[isRequired]"
-                           ></text-input>
-                        </div>
-
-
-                     </template>
-
-                     <dog-list
-                         :dogs="dogs"
-                         @click="sds_number='SDS-'+$event"
-                     />
-
-
-                  </v-menu>
-
-               </my-form>
-
-
-               <div style="color: var(--color-subheading); margin-top: 5px; font-weight: 600; font-size: 8pt; display: flex; justify-content: center; max-width: 250px; width: 100%">
-                  <!--<router-link to="/?advanced_search=true" target="_blank">-->
-                  <!--   Find SDS number-->
-                  <!--</router-link>-->
-
-
-                  <!--<router-link to="/manageServiceDogs" v-if="$auth.authenticated " >-->
-                  <!--   View All Dogs-->
-                  <!--</router-link>-->
-
-
-                  <v-btn x-small to="/manageServiceDogs">
-                     View All Dogs
-                  </v-btn>
-
-               </div>
+              View All Dogs
+            </v-btn>
+          </div>
 
 
 
 
-               <div style="height: 30px"></div>
+          <div style="height: 30px" />
 
 
-               <!--            arrow button 2-->
-               <v-btn dark text class="ma-0 pa-0" style="height: 40px" @click="get_dog">
-                  <div style="background-color: var(--color-btn); height: 40px; display: flex; justify-content: center; align-items: center; width: 170px">
-                     Continue</div>
-                  <div class="btn-arrow-right"></div>
-               </v-btn>
+          <!--            arrow button 2-->
+          <v-btn
+            dark
+            text
+            class="ma-0 pa-0"
+            style="height: 40px"
+            @click="get_dog"
+          >
+            <div style="background-color: var(--color-btn); height: 40px; display: flex; justify-content: center; align-items: center; width: 170px">
+              Continue
+            </div>
+            <div class="btn-arrow-right" />
+          </v-btn>
+        </div>
+
+
+
+
+
+
+        <!------------------------------ show user's dogs --------------------------------------------------------->
+        <div
+          v-else
+          style="margin-top: 25px;"
+        >
+          <div class="reg-body">
+            <div class="table-header">
+              Choose the animal you need a kit for
             </div>
 
 
+            <table style="width: 100%">
+              <colgroup>
+                <col
+                  span="1"
+                  style="width: 80%;"
+                >
+                <col
+                  span="1"
+                  style="width: 20%;"
+                >
+              </colgroup>
+              <tbody>
+                <tr style="background-color: #b7dbf1">
+                  <th>Service Dog</th>
+                  <th>Registration</th>
+                </tr>
 
+                <tr
+                  v-for="(item, ix) in dogs"
+                  :key="item._id"
+                >
+                  <td>
+                    <input
+                      v-model="dogs[ix].loc_selected"
+                      type="checkbox"
+                    >
+                    {{ item.name }}
+                  </td>
+                  <td style="color: var(--color-subheading)">
+                    {{ item.dog_num }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-
-
-            <!------------------------------ show user's dogs --------------------------------------------------------->
-            <div v-else style="margin-top: 25px;">
-
-               <div  class="reg-body">
-                  <div class="table-header">
-                     Choose the animal you need a kit for
-                  </div>
-
-
-                  <table style="width: 100%">
-                     <colgroup>
-                        <col span="1" style="width: 80%;">
-                        <col span="1" style="width: 20%;">
-
-                     </colgroup>
-                     <tbody>
-                     <tr style="background-color: #b7dbf1">
-                        <th>Service Dog</th>
-                        <th>Registration</th>
-                     </tr>
-
-                     <tr v-for="(item, ix) in dogs" :key="item._id">
-
-                        <td>
-                           <input type="checkbox" v-model="dogs[ix].loc_selected">
-                           {{item.name}}
-                        </td>
-                        <td style="color: var(--color-subheading)">
-                           {{item.dog_num}}
-                        </td>
-                     </tr>
-
-
-                     </tbody>
-                  </table>
-               </div>
-
-               <div class="mt-3">
-                  <v-btn dark text class="ma-0 pa-0" style="height: 40px" @click="add_to_cart">
-                     <div style="background-color: var(--color-btn); height: 40px; display: flex; justify-content: center; align-items: center; width: 170px">
-                        Add to cart</div>
-                     <div class="btn-arrow-right"></div>
-                  </v-btn>
-               </div>
-
-
-            </div>
-
-
-
-
-         </div>
+          <div class="mt-3">
+            <v-btn
+              dark
+              text
+              class="ma-0 pa-0"
+              style="height: 40px"
+              @click="add_to_cart"
+            >
+              <div style="background-color: var(--color-btn); height: 40px; display: flex; justify-content: center; align-items: center; width: 170px">
+                Add to cart
+              </div>
+              <div class="btn-arrow-right" />
+            </v-btn>
+          </div>
+        </div>
       </div>
-
-   </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -174,8 +197,8 @@ import DogList from "@/components/inputs/DogList";
 
 export default {
    name: "StorePage1",
-   mixins: [data_getters,validation],
    components: {MyForm, TextInput, DogList},
+   mixins: [data_getters,validation],
    data() {
       return {
 
@@ -189,6 +212,35 @@ export default {
 
          dog_to_add: null,
          loading_dog: false,
+
+      }
+   },
+
+
+   async created(){
+      if (this.$auth.isAuthenticated()){
+         await this.get_dogs();
+
+         // this.sds_number = this.$auth.profile.member_num;
+
+        let cart = await this.make_request('/store/getActiveCart');
+
+        if (cart != null){
+          this.$store.commit('set_cart_items', cart.items);
+          console.log('i ran')
+          // await this.continue_forward();
+
+          for (let i in this.dogs){
+
+            let ix = helpers.findWithAttr(cart.items, 'details.dog_num', this.dogs[i].dog_num)
+            if (ix > -1){
+              this.dogs[i].loc_selected = true;
+            }
+          }
+
+
+        }
+
 
       }
    },
@@ -301,35 +353,6 @@ export default {
      //   }
      // }
 
-   },
-
-
-   async created(){
-      if (this.$auth.isAuthenticated()){
-         await this.get_dogs();
-
-         // this.sds_number = this.$auth.profile.member_num;
-
-        let cart = await this.make_request('/store/getActiveCart');
-
-        if (cart != null){
-          this.$store.commit('set_cart_items', cart.items);
-          console.log('i ran')
-          // await this.continue_forward();
-
-          for (let i in this.dogs){
-
-            let ix = helpers.findWithAttr(cart.items, 'details.dog_num', this.dogs[i].dog_num)
-            if (ix > -1){
-              this.dogs[i].loc_selected = true;
-            }
-          }
-
-
-        }
-
-
-      }
    }
 }
 </script>

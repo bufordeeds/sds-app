@@ -1,118 +1,154 @@
 <template>
-   <div>
-
-
-      <div class="page-title-app">
-         My Orders
-      </div>
-      <div class="content-container-bg">
-
-
-         <div class="order-container" v-for="order in orders" :key="order._id">
-
-            <!---------------order header details ----------------------------------------------------->
-            <v-row dense class="order-header ma-0">
-               <v-col md="2" order-md="1" order="3">
-                  <div class="order-header-label">
-                     ORDER PLACED
-                  </div>
-                  <div class="order-header-value">
-
-                     {{fmt_date(order.date_ordered)}}
-                  </div>
-               </v-col>
-
-               <v-col md="2" order-md="2" order="4">
-                  <div class="order-header-label">
-                     TOTAL
-                  </div>
-                  <div class="order-header-value">
-                     {{fmt_number(order.order_total, {prefix: '$', places:2})}}
-                  </div>
-
-                  <div class="order-header-value" style="font-size: 10pt">
-                     {{get_pmt_info(order)}}
-                  </div>
-               </v-col>
-
-               <v-col cols="12" sm="6" md="4" order-md="3" order="2">
-                  <div class="order-header-label">
-                     SHIP TO
-                  </div>
-                  <div class="order-header-value" style="font-size:10pt">
-                     <div>
-                        {{order.easypost.shipment.to_address.street1}}
-                     </div>
-                     <div>
-                        {{order.easypost.shipment.to_address.city}}, {{order.easypost.shipment.to_address.state}}
-                        {{order.easypost.shipment.to_address.zip}}
-                     </div>
-
-                  </div>
-               </v-col>
-
-               <v-col cols="12" sm="6" md="4" order-md="4" order="1">
-                  <div class="order-header-label">
-                     <div >
-                        ORDER NUMBER
-                     </div>
-                  </div>
-                  <div class="order-header-value" style="font-size: 10pt">
-                     {{order._id}}
-                  </div>
-               </v-col>
-
-
-            </v-row>
-
-
-            <!---------------order main details ----------------------------------------------------->
-            <div class="order-body" >
-
-               <div class="status-text" :style="{'flex-direction': $vuetify.breakpoint.smAndUp? 'row': 'column'}">
-                  <status-line
-                      style="margin-top: -20px; margin-bottom: -50px"
-                      :width="$vuetify.breakpoint.width > 350? 250: 200"
-                      :status="order.status"/>
-
-                  <v-spacer />
-
-                  <a :href="tracking_url(order)" target="_blank" v-if="tracking_url(order)!==null"
-                     :style="{'margin-top': $vuetify.breakpoint.smAndUp? '0': '50px'}"
-                  >
-                     <span v-if="order.status !== 'Delivered'">
-                     Track Package
-                     </span>
-                     <span v-else>
-                        Detailed Tracking
-                     </span>
-                  </a>
-               </div>
-
-               <div v-if="order.status === 'Delivered'" class="mt-4">
-                  {{status_txt(order)}}
-               </div>
-
-               <div v-else class="mt-4" style="height: 10px">
-
-               </div>
-
-               <v-divider class="mt-3 mb-4"></v-divider>
-
-               <item-box
-                   v-for="(item, ix) in order.items" :key="order._id  + ix"
-                   style="width: 100%"
-                   :item="item"
-                   :show-actions="false"
-               />
-
-
+  <div>
+    <div class="page-title-app">
+      My Orders
+    </div>
+    <div class="content-container-bg">
+      <div
+        v-for="order in orders"
+        :key="order._id"
+        class="order-container"
+      >
+        <!---------------order header details ----------------------------------------------------->
+        <v-row
+          dense
+          class="order-header ma-0"
+        >
+          <v-col
+            md="2"
+            order-md="1"
+            order="3"
+          >
+            <div class="order-header-label">
+              ORDER PLACED
             </div>
-         </div>
-         <!--order container-->
+            <div class="order-header-value">
+              {{ fmt_date(order.date_ordered) }}
+            </div>
+          </v-col>
 
+          <v-col
+            md="2"
+            order-md="2"
+            order="4"
+          >
+            <div class="order-header-label">
+              TOTAL
+            </div>
+            <div class="order-header-value">
+              {{ fmt_number(order.order_total, {prefix: '$', places:2}) }}
+            </div>
+
+            <div
+              class="order-header-value"
+              style="font-size: 10pt"
+            >
+              {{ get_pmt_info(order) }}
+            </div>
+          </v-col>
+
+          <v-col
+            cols="12"
+            sm="6"
+            md="4"
+            order-md="3"
+            order="2"
+          >
+            <div class="order-header-label">
+              SHIP TO
+            </div>
+            <div
+              class="order-header-value"
+              style="font-size:10pt"
+            >
+              <div>
+                {{ order.easypost.shipment.to_address.street1 }}
+              </div>
+              <div>
+                {{ order.easypost.shipment.to_address.city }}, {{ order.easypost.shipment.to_address.state }}
+                {{ order.easypost.shipment.to_address.zip }}
+              </div>
+            </div>
+          </v-col>
+
+          <v-col
+            cols="12"
+            sm="6"
+            md="4"
+            order-md="4"
+            order="1"
+          >
+            <div class="order-header-label">
+              <div>
+                ORDER NUMBER
+              </div>
+            </div>
+            <div
+              class="order-header-value"
+              style="font-size: 10pt"
+            >
+              {{ order._id }}
+            </div>
+          </v-col>
+        </v-row>
+
+
+        <!---------------order main details ----------------------------------------------------->
+        <div class="order-body">
+          <div
+            class="status-text"
+            :style="{'flex-direction': $vuetify.breakpoint.smAndUp? 'row': 'column'}"
+          >
+            <status-line
+              style="margin-top: -20px; margin-bottom: -50px"
+              :width="$vuetify.breakpoint.width > 350? 250: 200"
+              :status="order.status"
+            />
+
+            <v-spacer />
+
+            <a
+              v-if="tracking_url(order)!==null"
+              :href="tracking_url(order)"
+              target="_blank"
+              :style="{'margin-top': $vuetify.breakpoint.smAndUp? '0': '50px'}"
+            >
+              <span v-if="order.status !== 'Delivered'">
+                Track Package
+              </span>
+              <span v-else>
+                Detailed Tracking
+              </span>
+            </a>
+          </div>
+
+          <div
+            v-if="order.status === 'Delivered'"
+            class="mt-4"
+          >
+            {{ status_txt(order) }}
+          </div>
+
+          <div
+            v-else
+            class="mt-4"
+            style="height: 10px"
+          />
+
+          <v-divider class="mt-3 mb-4" />
+
+          <item-box
+            v-for="(item, ix) in order.items"
+            :key="order._id + ix"
+            style="width: 100%"
+            :item="item"
+            :show-actions="false"
+          />
+        </div>
       </div>
-   </div>
+      <!--order container-->
+    </div>
+  </div>
 </template>
 
 <script>
@@ -127,12 +163,17 @@ import {DateTime} from "luxon";
 
 export default {
    name: "Orders",
-   mixins: [data_getters, utilities],
    components: {ItemBox, StatusLine},
+   mixins: [data_getters, utilities],
    data(){
       return {
          orders: [],
       }
+   },
+
+   created(){
+      this.$store.commit("set_show_side_nav", true);
+      this.get_my_orders();
    },
 
 
@@ -209,11 +250,6 @@ export default {
 
       }
 
-   },
-
-   created(){
-      this.$store.commit("set_show_side_nav", true);
-      this.get_my_orders();
    },
 
 

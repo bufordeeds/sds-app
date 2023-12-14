@@ -1,82 +1,84 @@
 <template>
-   <v-card max-width="400" min-width="350px" >
-
-      <v-card-title>{{type}} Password</v-card-title>
-      <my-form ref="form">
-         <v-container>
-            <v-row dense v-if="error_msg" class="ma-0 pl-2" style="color: var(--color-input-error); ">
-               {{error_msg}}
-            </v-row>
-            <v-row>
-               <v-col>
-<!--                  <v-text-field-->
-<!--                      label="Email Address"-->
-<!--                      v-model="email"-->
-<!--                      hint="Please enter you email address"-->
-<!--                      :rules="[isRequired, checkEmail]"-->
-<!--                      outlined-->
-<!--                      dense-->
-<!--                  ></v-text-field>-->
-
-
-                  <my-text-input
-                      label="Email Address"
-                      v-model="email"
-                      :rules="[isRequired, checkEmail]"
-                      disabled
-                  />
-
-
-               </v-col>
-            </v-row>
+  <v-card
+    max-width="400"
+    min-width="350px"
+  >
+    <v-card-title>{{ type }} Password</v-card-title>
+    <my-form ref="form">
+      <v-container>
+        <v-row
+          v-if="error_msg"
+          dense
+          class="ma-0 pl-2"
+          style="color: var(--color-input-error); "
+        >
+          {{ error_msg }}
+        </v-row>
+        <v-row>
+          <v-col>
+            <!--                  <v-text-field-->
+            <!--                      label="Email Address"-->
+            <!--                      v-model="email"-->
+            <!--                      hint="Please enter you email address"-->
+            <!--                      :rules="[isRequired, checkEmail]"-->
+            <!--                      outlined-->
+            <!--                      dense-->
+            <!--                  ></v-text-field>-->
 
 
-            <v-row dense>
-               <v-col>
-
-                  <my-text-input
-                      label="Password"
-                      v-model="password"
-                      hint="Enter your password"
-                      :rules="[isRequired]"
-                      :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
-                      @click:append="showPass = !showPass"
-                      :is-password="!showPass"
-                  />
+            <my-text-input
+              v-model="email"
+              label="Email Address"
+              :rules="[isRequired, checkEmail]"
+              disabled
+            />
+          </v-col>
+        </v-row>
 
 
-<!--                  <v-text-field-->
-<!--                      label="Password"-->
-<!--                      v-model="password"-->
-<!--                      hint="Enter your password"-->
-<!--                      :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"-->
-<!--                      @click:append="showPass = !showPass"-->
-<!--                      :type="showPass ? 'text' : 'password'"-->
-<!--                      :rules="[isRequired]"-->
-<!--                      @keyup.enter="login"-->
-<!--                      outlined-->
-<!--                      dense-->
-<!--                  ></v-text-field>-->
-               </v-col>
-            </v-row>
-
-            <v-row class="pt-4">
-               <v-spacer></v-spacer>
-               <div class="pr-3">
-                  <v-btn color="var(--color-primary)" dark @click="reset_pw">{{type}} Password</v-btn>
-               </div>
-
-            </v-row>
-         </v-container>
-
-      </my-form>
+        <v-row dense>
+          <v-col>
+            <my-text-input
+              v-model="password"
+              label="Password"
+              hint="Enter your password"
+              :rules="[isRequired]"
+              :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
+              :is-password="!showPass"
+              @click:append="showPass = !showPass"
+            />
 
 
+            <!--                  <v-text-field-->
+            <!--                      label="Password"-->
+            <!--                      v-model="password"-->
+            <!--                      hint="Enter your password"-->
+            <!--                      :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"-->
+            <!--                      @click:append="showPass = !showPass"-->
+            <!--                      :type="showPass ? 'text' : 'password'"-->
+            <!--                      :rules="[isRequired]"-->
+            <!--                      @keyup.enter="login"-->
+            <!--                      outlined-->
+            <!--                      dense-->
+            <!--                  ></v-text-field>-->
+          </v-col>
+        </v-row>
 
-
-
-
-   </v-card>
+        <v-row class="pt-4">
+          <v-spacer />
+          <div class="pr-3">
+            <v-btn
+              color="var(--color-primary)"
+              dark
+              @click="reset_pw"
+            >
+              {{ type }} Password
+            </v-btn>
+          </div>
+        </v-row>
+      </v-container>
+    </my-form>
+  </v-card>
 </template>
 
 <script>

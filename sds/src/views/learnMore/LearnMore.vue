@@ -1,23 +1,20 @@
 <template>
-<div>
-   <our-mission v-if="page==='mission'"/>
-   <what-is-a-service-animal v-if="page==='what-is-service-animal'"/>
-   <what-should-service-dog-act-like v-if="page==='what-should-service-dog-act-like'" />
-   <for-trainers v-if="page==='for-trainers'" />
-   <for-physicians-therapists v-if="page==='for-physicians-therapists'"/>
-   <for-colleges v-if="page==='for-colleges'"/>
-   <what-todo-when-see-dog v-if="page === 'what-todo-when-see-dog'"/>
-   <how-can-i-tell-if-legitimate v-if="page === 'how-can-i-tell-if-legitimate'"/>
-   <business-rights v-if="page === 'business-rights'"/>
-   <landlord-hoa-rights v-if="page==='landlord-hoa-rights'"/>
-   <how-do-i-get-service-dog v-if="page ==='how-do-i-get-service-dog'" />
+  <div>
+    <our-mission v-if="page==='mission'" />
+    <what-is-a-service-animal v-if="page==='what-is-service-animal'" />
+    <what-should-service-dog-act-like v-if="page==='what-should-service-dog-act-like'" />
+    <for-trainers v-if="page==='for-trainers'" />
+    <for-physicians-therapists v-if="page==='for-physicians-therapists'" />
+    <for-colleges v-if="page==='for-colleges'" />
+    <what-todo-when-see-dog v-if="page === 'what-todo-when-see-dog'" />
+    <how-can-i-tell-if-legitimate v-if="page === 'how-can-i-tell-if-legitimate'" />
+    <business-rights v-if="page === 'business-rights'" />
+    <landlord-hoa-rights v-if="page==='landlord-hoa-rights'" />
+    <how-do-i-get-service-dog v-if="page ==='how-do-i-get-service-dog'" />
 
-   <media-library v-if="page==='media-library'"/>
-   <sds-training-and-behavior-standards v-if="page==='sds-training-and-behavior-standards'"/>
-
-
-
-</div>
+    <media-library v-if="page==='media-library'" />
+    <sds-training-and-behavior-standards v-if="page==='sds-training-and-behavior-standards'" />
+  </div>
 </template>
 
 <script>

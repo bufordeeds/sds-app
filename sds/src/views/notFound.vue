@@ -1,30 +1,39 @@
 <template>
-  <div >
-
+  <div>
     <!--<div style="position: relative; z-index: -1" width="100%">-->
-      <!--<v-img src="../assets/images/content/math.png"  ></v-img>-->
+    <!--<v-img src="../assets/images/content/math.png"  ></v-img>-->
     <!--</div>-->
 
-    <meta name="robots" content="noindex">
+    <meta
+      name="robots"
+      content="noindex"
+    >
     <!-------------------------------------------------------contact us------------------------------------------------>
-    <Section background="black" class="pt-10">
-
-        <v-container fluid  style="max-width: 1000px">
-
-
-          <v-row  justify="center" align="center">
-            <v-col cols="12" md="12" justify="center" >
-
-              <div style="text-align: center">
-                <p style="font-size: 1.5em">Opps, we can't seem to find that page.</p>
-
-              </div>
-
-            </v-col>
-          </v-row>
-        </v-container>
-
-
+    <Section
+      background="black"
+      class="pt-10"
+    >
+      <v-container
+        fluid
+        style="max-width: 1000px"
+      >
+        <v-row
+          justify="center"
+          align="center"
+        >
+          <v-col
+            cols="12"
+            md="12"
+            justify="center"
+          >
+            <div style="text-align: center">
+              <p style="font-size: 1.5em">
+                Opps, we can't seem to find that page.
+              </p>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
     </Section>
 
 
@@ -33,19 +42,41 @@
 
     <!--<div class="process-section">-->
 
-      <!--some extra space for the moment-->
+    <!--some extra space for the moment-->
 
     <!--</div>-->
-
-
-
   </div>
-
 </template>
 
 
 
 
+
+
+<script>
+// @ is an alias to /src
+import Section from '@/components/Section.vue'
+
+
+
+
+// see https://stackoverflow.com/questions/54218371/how-to-get-a-404-response-in-vue-router
+
+
+export default {
+  name: 'Home',
+  components: {Section, },
+   data(){return {
+   }},
+
+   created(){
+      // window.location.replace("https://noexist.espy.ai/");
+   }
+
+
+
+}
+</script>
 
 
 <style scoped lang="scss">
@@ -156,29 +187,3 @@
 
 
 </style>
-
-
-<script>
-// @ is an alias to /src
-import Section from '@/components/Section.vue'
-
-
-
-
-// see https://stackoverflow.com/questions/54218371/how-to-get-a-404-response-in-vue-router
-
-
-export default {
-  name: 'home',
-  components: {Section, },
-   data(){return {
-   }},
-
-   created(){
-      // window.location.replace("https://noexist.espy.ai/");
-   }
-
-
-
-}
-</script>

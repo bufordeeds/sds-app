@@ -1,12 +1,9 @@
 <template>
-   <div >
-
-      <div>
-         Member center
-
-      </div>
-
-   </div>
+  <div>
+    <div>
+      Member center
+    </div>
+  </div>
 </template>
 
 <script>

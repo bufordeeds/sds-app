@@ -1,53 +1,13 @@
 <template>
-  <div :class="get_css_classes" >
-
-    <slot></slot>
+  <div :class="get_css_classes">
+    <slot />
   </div>
 </template>
 
 
-<style scoped lang="scss" >
-  @import '../assets/styles/variables';
-
-
-  .sds-flex-section{
-    /*margin:0;*/
-    /*padding:10px;*/
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-  }
-
-  .section-theme-dark{
-    color: rgba(255, 255, 255, 1);
-    background-color: $color-section-bg-dark;
-  }
-
-  .section-theme-light{
-    color: rgb(0, 0, 0);
-    background-color: $color-section-bg-light;
-  }
-
-
-  .section-transparent{
-    background: none !important;
-
-  }
-
-
-
-
-
-
-</style>
 <script>
 export default {
   name: 'Section',
-   data: () => ({
-      test: 1
-   }),
 
 
 
@@ -58,6 +18,9 @@ export default {
 
 
    },
+   data: () => ({
+      test: 1
+   }),
 
    computed: {
      get_css_classes(){
@@ -98,3 +61,39 @@ export default {
    }
 };
 </script>
+<style scoped lang="scss">
+  @import '../assets/styles/variables';
+
+
+  .sds-flex-section{
+    /*margin:0;*/
+    /*padding:10px;*/
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .section-theme-dark{
+    color: rgba(255, 255, 255, 1);
+    background-color: $color-section-bg-dark;
+  }
+
+  .section-theme-light{
+    color: rgb(0, 0, 0);
+    background-color: $color-section-bg-light;
+  }
+
+
+  .section-transparent{
+    background: none !important;
+
+  }
+
+
+
+
+
+
+</style>

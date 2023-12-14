@@ -1,106 +1,115 @@
 <template>
-   <div >
+  <div>
+    <check-address
+      ref="addrCheck"
+      :address-new="user.private_info.address"
 
+      :address-old="private_info_address_old"
+      @checked-address="save_profile({checked_addr: $event})"
+      @close="saving_data = false"
+    />
 
-      <check-address
-          :address-new="user.private_info.address"
-          :address-old="private_info_address_old"
+    <upload-user-image
+      v-if="show_upload_image"
+      file-type="profile"
+      :show.sync="show_upload_image"
+      :user_id="user._id"
+      @uploaded="on_image_upload"
+    />
 
-          @checked-address="save_profile({checked_addr: $event})"
-          @close="saving_data = false"
-          ref="addrCheck"
-      />
-
-      <upload-user-image
-          file-type="profile"
-          :show.sync="show_upload_image"
-          v-if="show_upload_image"
-          @uploaded="on_image_upload"
-          :user_id="user._id"
-      ></upload-user-image>
-
-      <change-email v-model="show_change_email"></change-email>
+    <change-email v-model="show_change_email" />
 
 
 
-      <div class="centered-flex-column white-bg" style="padding-top: 50px">
+    <div
+      class="centered-flex-column white-bg"
+      style="padding-top: 50px"
+    >
+      <!-- row for profile image-->
+      <div style="display:flex; padding-bottom: 25px;">
+        <div
+          class="profile-image-container mr-4"
+          style="cursor: pointer;"
+          @click="show_upload_image=true;"
+        >
+          <img
+            :src="user_image"
+            style="max-height: 200px; max-width: 200px"
+          >
+          <div style="font-size: 11pt; color: blue; padding-top: 5px; ">
+            Change Profile Image
+          </div>
+        </div>
 
-         <!-- row for profile image-->
-         <div style="display:flex; padding-bottom: 25px;">
-            <div class="profile-image-container mr-4" @click="show_upload_image=true;" style="cursor: pointer;">
-               <img :src="user_image" style="max-height: 200px; max-width: 200px">
-               <div style="font-size: 11pt; color: blue; padding-top: 5px; ">
-                  Change Profile Image
-               </div>
+
+        <div class="account-settings-container">
+          <!--<div v-if="isAdmin"-->
+          <!--     style=" margin-top:15px" >-->
+          <!--   <div style="color: var(&#45;&#45;color-subheading); font-size: medium">-->
+          <!--      (Admin) Deactivation-->
+          <!--   </div>-->
+
+          <!--   <status-->
+          <!--       style="width: 150px;"-->
+          <!--       v-model="user.deactivated"-->
+          <!--       :list="[{txt: 'Deactivate', val: true}, {txt: 'Reactivate', val: false},]"-->
+          <!--       item-text="txt"-->
+          <!--       item-value="val"-->
+          <!--       :color-map="{'true': '#bf1e2e', 'false': '#8dc63f' }"-->
+          <!--   ></status>-->
+
+          <!--</div>-->
+
+
+          <div style="width: 150px; margin-top:10px">
+            <div style="color: var(--color-subheading); font-size: medium">
+              Account Type
             </div>
 
-
-            <div class="account-settings-container">
-
-               <!--<div v-if="isAdmin"-->
-               <!--     style=" margin-top:15px" >-->
-               <!--   <div style="color: var(&#45;&#45;color-subheading); font-size: medium">-->
-               <!--      (Admin) Deactivation-->
-               <!--   </div>-->
-
-               <!--   <status-->
-               <!--       style="width: 150px;"-->
-               <!--       v-model="user.deactivated"-->
-               <!--       :list="[{txt: 'Deactivate', val: true}, {txt: 'Reactivate', val: false},]"-->
-               <!--       item-text="txt"-->
-               <!--       item-value="val"-->
-               <!--       :color-map="{'true': '#bf1e2e', 'false': '#8dc63f' }"-->
-               <!--   ></status>-->
-
-               <!--</div>-->
-
-
-               <div style="width: 150px; margin-top:10px" >
-                  <div style="color: var(--color-subheading); font-size: medium">
-                     Account Type
-                  </div>
-
-                  <div>
-                     {{user.account_type}}
-                  </div>
-               </div>
-
-
-               <!--<div style="width: 150px; margin-top:15px" >-->
-               <!--   <div style="color: var(&#45;&#45;color-subheading); font-size: medium">-->
-               <!--      Profile Status-->
-               <!--   </div>-->
-
-               <!--   <status-->
-               <!--       v-model="user.account_visibility"-->
-               <!--       list-type="user"-->
-               <!--   ></status>-->
-               <!--</div>-->
-
-
-               <div style="width: 150px; margin-top:15px" >
-                  <div style="color: var(--color-subheading); font-size: medium; display: flex">
-                     Email
-                     <!--<v-btn-->
-                     <!--    small text style="padding: 0px; margin-left: 5px; margin-top: -2px;"-->
-                     <!--    @click="show_change_email=true"-->
-                     <!--&gt;-->
-                     <!--   (Change)-->
-                     <!--</v-btn>-->
-                  </div>
-
-                  <div style="display: flex">
-                     {{user.email}}
-                  </div>
-
-                  <div v-if="user.email_change" style="color: red; font-size: 10pt; text-align: left; white-space: nowrap" class="pt-1">
-                     Waiting on confirmation for {{user.email_change.new_email}}
-                  </div>
-               </div>
+            <div>
+              {{ user.account_type }}
             </div>
-         </div>
+          </div>
 
+
+          <!--<div style="width: 150px; margin-top:15px" >-->
+          <!--   <div style="color: var(&#45;&#45;color-subheading); font-size: medium">-->
+          <!--      Profile Status-->
+          <!--   </div>-->
+
+          <!--   <status-->
+          <!--       v-model="user.account_visibility"-->
+          <!--       list-type="user"-->
+          <!--   ></status>-->
+          <!--</div>-->
+
+
+          <div style="width: 150px; margin-top:15px">
+            <div style="color: var(--color-subheading); font-size: medium; display: flex">
+              Email
+              <!--<v-btn-->
+              <!--    small text style="padding: 0px; margin-left: 5px; margin-top: -2px;"-->
+              <!--    @click="show_change_email=true"-->
+              <!--&gt;-->
+              <!--   (Change)-->
+              <!--</v-btn>-->
+            </div>
+
+            <div style="display: flex">
+              {{ user.email }}
+            </div>
+
+            <div
+              v-if="user.email_change"
+              style="color: red; font-size: 10pt; text-align: left; white-space: nowrap"
+              class="pt-1"
+            >
+              Waiting on confirmation for {{ user.email_change.new_email }}
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
 
 
 
@@ -118,123 +127,118 @@
 
 
 
-      <my-form ref="form">
-         <v-container style="max-width: 700px;">
-
-            <div class="mgm-subtitle">
-               Personal Info
-            </div>
-
-
-            <v-row dense>
-               <v-col>
-                  <sds-input
-                      label="First Name*"
-                      v-model="user.name_first"
-                      :rules="isAdmin? []: [x => isRequired(x, 'First Name')]"
-                  ></sds-input>
-               </v-col>
-
-               <v-col>
-                  <sds-input
-                      label="Last Name*"
-                      v-model="user.name_last"
-                      :rules="isAdmin? []: [x => isRequired(x, 'Last Name')]"
-                  ></sds-input>
-               </v-col>
-            </v-row>
+    <my-form ref="form">
+      <v-container style="max-width: 700px;">
+        <div class="mgm-subtitle">
+          Personal Info
+        </div>
 
 
-            <v-row dense>
-               <v-col>
-                  <sds-input
-                      label="Address*"
-                      v-model="user.private_info.address.street1"
-                      :rules="isAdmin? []: [x => isRequired(x, 'Address')]"
-                  ></sds-input>
-               </v-col>
+        <v-row dense>
+          <v-col>
+            <sds-input
+              v-model="user.name_first"
+              label="First Name*"
+              :rules="isAdmin? []: [x => isRequired(x, 'First Name')]"
+            />
+          </v-col>
 
-            </v-row>
+          <v-col>
+            <sds-input
+              v-model="user.name_last"
+              label="Last Name*"
+              :rules="isAdmin? []: [x => isRequired(x, 'Last Name')]"
+            />
+          </v-col>
+        </v-row>
 
 
-            <v-row dense>
-               <v-col cols="5">
-                  <sds-input
-                      label="City*"
-                      v-model="user.private_info.address.city"
-                      :rules="isAdmin? []: [x => isRequired(x, 'City')]"
-                  ></sds-input>
-               </v-col>
+        <v-row dense>
+          <v-col>
+            <sds-input
+              v-model="user.private_info.address.street1"
+              label="Address*"
+              :rules="isAdmin? []: [x => isRequired(x, 'Address')]"
+            />
+          </v-col>
+        </v-row>
 
-               <v-col cols="3">
-                  <!--                     <sds-input-->
-                  <!--                         label="State*"-->
-                  <!--                         v-model="user.address.state"-->
-                  <!--                         :rules="[x => isRequired(x, 'State')]"-->
-                  <!--                     ></sds-input>-->
 
-                  <!--<my-drop-down-->
-                  <!--    label="State*"-->
-                  <!--    v-model="user.private_info.address.state"-->
-                  <!--    :list="states"-->
-                  <!--    item-value="abbr"-->
-                  <!--    item-text="txt"-->
-                  <!--    show-value-->
-                  <!--    :rules="isAdmin? []: [isRequired]"-->
-                  <!--/>-->
+        <v-row dense>
+          <v-col cols="5">
+            <sds-input
+              v-model="user.private_info.address.city"
+              label="City*"
+              :rules="isAdmin? []: [x => isRequired(x, 'City')]"
+            />
+          </v-col>
 
-                  <sds-input
-                      label="State*"
-                      v-model="user.private_info.address.state"
-                      :rules="isAdmin? []: [x => isRequired(x, 'State')]"
-                  ></sds-input>
-               </v-col>
+          <v-col cols="3">
+            <!--                     <sds-input-->
+            <!--                         label="State*"-->
+            <!--                         v-model="user.address.state"-->
+            <!--                         :rules="[x => isRequired(x, 'State')]"-->
+            <!--                     ></sds-input>-->
 
-               <v-col cols="4">
-                  <sds-input
-                      label="Zip*"
-                      v-model="user.private_info.address.zip"
-                      :rules="isAdmin? []: [x => isRequired(x, 'Zip')]"
-                  ></sds-input>
-               </v-col>
-            </v-row>
+            <!--<my-drop-down-->
+            <!--    label="State*"-->
+            <!--    v-model="user.private_info.address.state"-->
+            <!--    :list="states"-->
+            <!--    item-value="abbr"-->
+            <!--    item-text="txt"-->
+            <!--    show-value-->
+            <!--    :rules="isAdmin? []: [isRequired]"-->
+            <!--/>-->
+
+            <sds-input
+              v-model="user.private_info.address.state"
+              label="State*"
+              :rules="isAdmin? []: [x => isRequired(x, 'State')]"
+            />
+          </v-col>
+
+          <v-col cols="4">
+            <sds-input
+              v-model="user.private_info.address.zip"
+              label="Zip*"
+              :rules="isAdmin? []: [x => isRequired(x, 'Zip')]"
+            />
+          </v-col>
+        </v-row>
 
 
 
-            <v-row dense>
-               <v-col cols="5">
-                  <sds-input
-                      label="Phone"
-                      v-model="user.private_info.phone"
-                      :rules="isAdmin? []: [x => isPhone(x, )]"
-                  ></sds-input>
-               </v-col>
+        <v-row dense>
+          <v-col cols="5">
+            <sds-input
+              v-model="user.private_info.phone"
+              label="Phone"
+              :rules="isAdmin? []: [x => isPhone(x, )]"
+            />
+          </v-col>
+        </v-row>
+      </v-container>
+    </my-form>
+
+    <v-row
+      class="ma-0 pt-4"
+      style="width: 100%"
+    >
+      <v-spacer />
+      <v-btn
+        color="var(--color-primary)"
+        :loading="saving_data"
+        large
+        @click="save_profile"
+      >
+        Save Changes
+      </v-btn>
+      <v-spacer />
+    </v-row>
 
 
-            </v-row>
-
-
-         </v-container>
-      </my-form>
-
-      <v-row class="ma-0 pt-4" style="width: 100%">
-         <v-spacer></v-spacer>
-         <v-btn
-             @click="save_profile"
-             color="var(--color-primary)"
-             :loading="saving_data"
-             large
-         >
-
-            Save Changes
-         </v-btn>
-         <v-spacer></v-spacer>
-      </v-row>
-
-
-      <div style="height: 40px;"/>
-
-   </div>
+    <div style="height: 40px;" />
+  </div>
 </template>
 
 <script>
@@ -340,6 +344,18 @@ export default {
       user_id(){
          this.get_profile();
       }
+   },
+
+
+   mounted(){
+      console.log('debug')
+      this.$store.commit("set_show_side_nav", true);
+
+      this.get_profile();
+   },
+
+   beforeDestroy() {
+      // this.$store.commit("set_show_side_nav", false);
    },
 
    methods:{
@@ -452,18 +468,6 @@ export default {
 
       },
 
-   },
-
-
-   mounted(){
-      console.log('debug')
-      this.$store.commit("set_show_side_nav", true);
-
-      this.get_profile();
-   },
-
-   beforeDestroy() {
-      // this.$store.commit("set_show_side_nav", false);
    }
 }
 </script>

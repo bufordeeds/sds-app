@@ -1,99 +1,136 @@
 <template>
-<div>
+  <div>
+    <div style="display:flex; justify-content: center">
+      <a
+        href="https://www.anythingpawsable.com"
+        target="_blank"
+      >
+        <!--<img src="../assets/images/content/ap_logo_regular.png" style="max-width:400px; width:90%">-->
 
-   <div style="display:flex; justify-content: center">
-      <a href="https://www.anythingpawsable.com" target="_blank" >
-      <!--<img src="../assets/images/content/ap_logo_regular.png" style="max-width:400px; width:90%">-->
-
-         <img src="../assets/images/content/SDSAnythingPawsableAsset12.png" style=" width:100%">
+        <img
+          src="../assets/images/content/SDSAnythingPawsableAsset12.png"
+          style=" width:100%"
+        >
       </a>
-   </div>
+    </div>
 
-   <div class="mt-5 mb-4" style="font-size: 15pt; font-weight: 400">
+    <div
+      class="mt-5 mb-4"
+      style="font-size: 15pt; font-weight: 400"
+    >
       We're committed to educating Service Dog owners, working dog handlers and the public.  Learn more at our sister
       publication, Anything Pawsable.
-   </div>
+    </div>
 
 
-   <template v-if="articles.length>0">
+    <template v-if="articles.length>0">
       <v-row v-if="!ismobile">
-         <v-col v-for="(item, ix) in articles" :key="'ap_article' + ix" cols="12" sm="4">
-            <!--         <v-img :src="item.image.SRC" width="100%"/>-->
-            <a :href="item.link" target="_blank">
-               <v-img
-                   :src="item.image.SRC"
-                   width="100%"
-                   aspect-ratio="1.778"
-               ></v-img>
+        <v-col
+          v-for="(item, ix) in articles"
+          :key="'ap_article' + ix"
+          cols="12"
+          sm="4"
+        >
+          <!--         <v-img :src="item.image.SRC" width="100%"/>-->
+          <a
+            :href="item.link"
+            target="_blank"
+          >
+            <v-img
+              :src="item.image.SRC"
+              width="100%"
+              aspect-ratio="1.778"
+            />
+          </a>
+
+
+          <div
+            style="display: flex;  font-weight: 600; font-size: 10pt"
+            class="pl-1 pr-1"
+          >
+            <div>{{ item.author }}</div>
+            <v-spacer />
+            <div>{{ fmt_date(item.date) }}</div>
+          </div>
+
+
+          <div style="margin-top: 50px; font-weight: 600">
+            <a
+              :href="item.link"
+              target="_blank"
+              style="text-decoration: none; color: inherit"
+            >
+              {{ item.title }}
             </a>
-
-
-            <div style="display: flex;  font-weight: 600; font-size: 10pt" class="pl-1 pr-1">
-               <div>{{item.author}}</div>
-               <v-spacer/>
-               <div>{{fmt_date(item.date)}}</div>
-            </div>
-
-
-            <div style="margin-top: 50px; font-weight: 600">
-               <a :href="item.link" target="_blank" style="text-decoration: none; color: inherit">
-                  {{item.title}}
-               </a>
-            </div>
-            <div style="margin-top: 10px">
-               {{item.description}} ...
-            </div>
-         </v-col>
+          </div>
+          <div style="margin-top: 10px">
+            {{ item.description }} ...
+          </div>
+        </v-col>
       </v-row>
 
       <v-row v-else>
-         <v-col v-for="(item, ix) in articles" :key="'ap_article' + ix" cols="12" sm="4">
-            <!--         <v-img :src="item.image.SRC" width="100%"/>-->
+        <v-col
+          v-for="(item, ix) in articles"
+          :key="'ap_article' + ix"
+          cols="12"
+          sm="4"
+        >
+          <!--         <v-img :src="item.image.SRC" width="100%"/>-->
 
-            <div style="margin-top: 30px; margin-bottom: 10px; font-weight: 600">
-               <a :href="item.link" target="_blank" style="text-decoration: none; color: inherit">
-                  {{item.title}}
-               </a>
-            </div>
-            <a :href="item.link" target="_blank">
-               <v-img
-                   :src="item.image.SRC"
-                   width="100%"
-                   aspect-ratio="1.778"
-               ></v-img>
+          <div style="margin-top: 30px; margin-bottom: 10px; font-weight: 600">
+            <a
+              :href="item.link"
+              target="_blank"
+              style="text-decoration: none; color: inherit"
+            >
+              {{ item.title }}
             </a>
+          </div>
+          <a
+            :href="item.link"
+            target="_blank"
+          >
+            <v-img
+              :src="item.image.SRC"
+              width="100%"
+              aspect-ratio="1.778"
+            />
+          </a>
 
 
 
-            <div style="display: flex;  font-weight: 600; font-size: 10pt" class="pl-1 pr-1">
-               <div>{{item.author}}</div>
-               <v-spacer/>
-               <div>{{fmt_date(item.date)}}</div>
-            </div>
+          <div
+            style="display: flex;  font-weight: 600; font-size: 10pt"
+            class="pl-1 pr-1"
+          >
+            <div>{{ item.author }}</div>
+            <v-spacer />
+            <div>{{ fmt_date(item.date) }}</div>
+          </div>
 
 
 
-            <div style="margin-top: 10px">
-               {{item.description}} ...
-            </div>
-         </v-col>
+          <div style="margin-top: 10px">
+            {{ item.description }} ...
+          </div>
+        </v-col>
       </v-row>
+    </template>
 
-   </template>
-
-   <div v-else style="display: flex; flex-display:column; align-items: center; justify-content: center; margin-top: 30px">
+    <div
+      v-else
+      style="display: flex; flex-display:column; align-items: center; justify-content: center; margin-top: 30px"
+    >
       <v-progress-circular
-          size="200"
-          indeterminate
-          color="var(--color-btn)"
+        size="200"
+        indeterminate
+        color="var(--color-btn)"
       >
-         Loading stories
+        Loading stories
       </v-progress-circular>
-   </div>
-
-
-
-</div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -105,7 +142,7 @@ import utilities from "@/mixins/utilities"; //for encoding/decoding html strings
 
 
 export default {
-   name: "wpEmbed",
+   name: "WpEmbed",
    mixins: [data_getters, utilities],
    data(){
       return {
@@ -119,6 +156,10 @@ export default {
       ismobile(){
          return !this.$vuetify.breakpoint.mdAndUp
       },
+   },
+
+   created(){
+      this.get_ap_data();
    },
 
    methods:{
@@ -141,10 +182,6 @@ export default {
          //
          // this.articles = xml.rss.channel.item.map(x => x['content:encoded']);
       }
-   },
-
-   created(){
-      this.get_ap_data();
    }
 }
 </script>

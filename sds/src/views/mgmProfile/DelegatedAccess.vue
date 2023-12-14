@@ -1,34 +1,26 @@
 <template>
-   <div>
-
-
-      <template v-if="isHandler">
-         <div class="mgm-title">
-            Users That Access To My Account
-         </div>
-         <div class="mgm-content-container-bg">
-
-
-
-            <table-delegated-users
-            ></table-delegated-users>
-         </div>
-      </template>
-
-
-
+  <div>
+    <template v-if="isHandler">
       <div class="mgm-title">
-         Users That I have Access To
+        Users That Access To My Account
       </div>
       <div class="mgm-content-container-bg">
-
-         <table-delegated-accounts
-             :users="users_access_granted"
-             @updated="get_delegated_accounts"
-         ></table-delegated-accounts>
+        <table-delegated-users />
       </div>
+    </template>
 
-   </div>
+
+
+    <div class="mgm-title">
+      Users That I have Access To
+    </div>
+    <div class="mgm-content-container-bg">
+      <table-delegated-accounts
+        :users="users_access_granted"
+        @updated="get_delegated_accounts"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -39,8 +31,8 @@ import TableDelegatedAccounts from "@/views/mgmProfile/TableDelegatedAccounts";
 
 export default {
    name: "DelegatedAccess",
-   mixins: [data_getters],
    components:{TableDelegatedUsers,TableDelegatedAccounts, },
+   mixins: [data_getters],
    data(){
       return {
 
@@ -66,6 +58,13 @@ export default {
         return this.$auth.profile.acct_type === 'HANDLER'
      }
    },
+
+   created(){
+      this.$store.commit("set_show_side_nav", true);
+      // this.get_my_delegated_users();
+      this.get_delegated_accounts();
+
+   },
    methods:{
       // async get_my_delegated_users() {
       //    try{
@@ -89,13 +88,6 @@ export default {
 
 
 
-
-   },
-
-   created(){
-      this.$store.commit("set_show_side_nav", true);
-      // this.get_my_delegated_users();
-      this.get_delegated_accounts();
 
    }
 }

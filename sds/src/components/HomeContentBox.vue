@@ -1,83 +1,93 @@
 <template>
+  <div style="height: 100%">
+    <v-dialog
+      v-model="show_full"
+      max-width="600px"
+    >
+      <v-card>
+        <v-row
+          dense
+          class="ma-0 pr-1"
+          style="z-index: 10; position: relative"
+        >
+          <v-spacer />
+          <v-btn
+            icon
+            @click="show_full=false"
+          >
+            <v-icon>close</v-icon>
+          </v-btn>
+        </v-row>
+        <div
+          class="box-container"
+          style="margin-top: -30px"
+        >
+          <div class="box-icon">
+            <slot name="icon" />
+          </div>
 
-   <div style="height: 100%">
-      <v-dialog v-model="show_full" max-width="600px">
-         <v-card>
-            <v-row dense class="ma-0 pr-1" style="z-index: 10; position: relative">
-               <v-spacer/>
-               <v-btn icon @click="show_full=false">
-                  <v-icon>close</v-icon>
-               </v-btn>
-            </v-row>
-            <div class="box-container" style="margin-top: -30px">
-
-               <div class="box-icon">
-                  <slot name="icon"></slot>
-               </div>
-
-               <div style="text-align: left">
-
-                  <div class="box-header" style="text-align: center">
-                     <slot name="header"></slot>
-                  </div>
-
-                  <div class="box-content">
-                     <slot name="content"></slot>
-                  </div>
-
-                  <div class="box-content">
-                     <slot name="content_full"></slot>
-                  </div>
-               </div>
-
-<!--               <div style="margin-top: 10px; ">-->
-<!--                  <v-btn text color="#2d76ba" @click="show_full=true">-->
-<!--                     <div style="justify-content: flex-start; font-size:12pt; display: flex; align-items: flex-end">-->
-<!--                        Learn More-->
-<!--                        <div class="triangle ml-1 mb-1 mb-1"></div>-->
-<!--                     </div>-->
-<!--                  </v-btn>-->
-<!--               </div>-->
-
-
-            </div>
-         </v-card>
-      </v-dialog>
-
-
-
-
-
-      <div class="box-container">
-
-         <div class="box-icon">
-            <slot name="icon"></slot>
-         </div>
-
-         <div style="max-width: 300px; ; text-align: center">
-
-            <div class="box-header">
-               <slot name="header"></slot>
+          <div style="text-align: left">
+            <div
+              class="box-header"
+              style="text-align: center"
+            >
+              <slot name="header" />
             </div>
 
             <div class="box-content">
-               <slot name="content"></slot>
+              <slot name="content" />
             </div>
-         </div>
 
-         <div style="margin-top: 10px; ">
-            <v-btn text color="#2d76ba" @click="show_full=true">
-               <div style="justify-content: flex-start; font-size:12pt; display: flex; align-items: flex-end">
-                  Learn More
-                  <div class="triangle ml-1 mb-1 mb-1"></div>
-               </div>
-            </v-btn>
-         </div>
+            <div class="box-content">
+              <slot name="content_full" />
+            </div>
+          </div>
+
+          <!--               <div style="margin-top: 10px; ">-->
+          <!--                  <v-btn text color="#2d76ba" @click="show_full=true">-->
+          <!--                     <div style="justify-content: flex-start; font-size:12pt; display: flex; align-items: flex-end">-->
+          <!--                        Learn More-->
+          <!--                        <div class="triangle ml-1 mb-1 mb-1"></div>-->
+          <!--                     </div>-->
+          <!--                  </v-btn>-->
+          <!--               </div>-->
+        </div>
+      </v-card>
+    </v-dialog>
 
 
+
+
+
+    <div class="box-container">
+      <div class="box-icon">
+        <slot name="icon" />
       </div>
-   </div>
 
+      <div style="max-width: 300px; ; text-align: center">
+        <div class="box-header">
+          <slot name="header" />
+        </div>
+
+        <div class="box-content">
+          <slot name="content" />
+        </div>
+      </div>
+
+      <div style="margin-top: 10px; ">
+        <v-btn
+          text
+          color="#2d76ba"
+          @click="show_full=true"
+        >
+          <div style="justify-content: flex-start; font-size:12pt; display: flex; align-items: flex-end">
+            Learn More
+            <div class="triangle ml-1 mb-1 mb-1" />
+          </div>
+        </v-btn>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

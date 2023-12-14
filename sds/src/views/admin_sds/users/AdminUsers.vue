@@ -1,145 +1,59 @@
 <template>
-   <div>
+  <div>
+    <!-------- edit user dialog -------------------------------------------------------->
+    <v-dialog
+      v-model="show_edit_user"
+      persistent
+    >
+      <v-row
+        dense
+        style="margin-bottom: -40px"
+      >
+        <v-spacer />
+        <v-btn
+          icon
+          @click="show_edit_user=false"
+        >
+          <v-icon>close</v-icon>
+        </v-btn>
+      </v-row>
+      <!--<edit-profile-->
+      <!--    v-if="selected_user"-->
+      <!--    :user_id="selected_user._id"-->
+      <!--    @update="on_record_update"-->
+      <!--    @update-image="on_record_update_image"-->
+      <!--&gt;</edit-profile>-->
 
 
-      <!-------- edit user dialog -------------------------------------------------------->
-      <v-dialog v-model="show_edit_user" persistent>
-         <v-row dense style="margin-bottom: -40px">
-            <v-spacer/>
-            <v-btn icon @click="show_edit_user=false">
-               <v-icon>close</v-icon>
-            </v-btn>
-         </v-row>
-         <!--<edit-profile-->
-         <!--    v-if="selected_user"-->
-         <!--    :user_id="selected_user._id"-->
-         <!--    @update="on_record_update"-->
-         <!--    @update-image="on_record_update_image"-->
-         <!--&gt;</edit-profile>-->
+      <div
+        class="content-container-bg"
+        style="background-color: var(--color-bg)"
+      >
+        <edit-trainer-info
+          v-if="selected_user && selected_user.account_type === 'TRAINER'"
+          :user_id="selected_user._id"
+          @user_updated="on_record_update"
+          @photo_updated="on_record_update({close:false})"
+        />
 
 
-         <div class="content-container-bg" style="background-color: var(--color-bg)">
-            <edit-trainer-info
-                v-if="selected_user  && selected_user.account_type === 'TRAINER'"
-                :user_id="selected_user._id"
-                @user_updated="on_record_update"
-                @photo_updated="on_record_update({close:false})"
-            />
+        <edit-admin-info
+          v-if="selected_user && selected_user.account_type === 'SDS-ADMIN'"
+          :user_id="selected_user._id"
+          @user_updated="on_record_update"
+          @photo_updated="on_record_update({close:false})"
+        />
 
-
-            <edit-admin-info
-                v-if="selected_user  && selected_user.account_type === 'SDS-ADMIN'"
-                :user_id="selected_user._id"
-                @user_updated="on_record_update"
-                @photo_updated="on_record_update({close:false})"
-            />
-
-            <div class="content-container-sm">
-            <edit-handler-info
-                v-if="selected_user && selected_user.account_type === 'HANDLER'"
-                :user_id="selected_user._id"
-                @user_updated="on_record_update"
-                @update-image="on_record_update({close:false})"
-
-            />
-         </div>
-         </div>
-
-      </v-dialog>
-
-
-
-
-
-
-
-
-
-
-
-      <!-------- edit dog dialog -------------------------------------------------------->
-      <v-dialog v-model="show_edit_dog" persistent max-width="400px">
-         <v-row dense style="margin-bottom: -40px">
-            <v-spacer/>
-            <v-btn icon @click="show_edit_dog=false">
-               <v-icon>close</v-icon>
-            </v-btn>
-         </v-row>
-
-
-         <!--<div class="content-container-bg" style="background-color: var(&#45;&#45;color-bg)">-->
-         <!--   -->
-
-         <!--</div>-->
-
-         <edit-dog-dialog
-             v-if="show_edit_dog"
-             :dog="selected_dog"
-             @update="on_record_update"
-             @update-image="on_record_update({close:false})"
-             @close="show_edit_dog=false;"
-         />
-
-      </v-dialog>
-
-
-
-
-
-
-      <!---------------Edit comment dialog ------------------------------->
-      <v-dialog v-model="show_edit_comments" persistent max-width="700px">
-         <v-card class="pa-3" v-if="show_edit_comments">
-            <div class="dialog-heading" style="display: flex">
-               Admin Comments
-               <v-spacer/>
-               <v-btn icon @click="show_edit_comments=false">
-                  <v-icon>close</v-icon>
-               </v-btn>
-            </div>
-            <my-form>
-               <my-text-area
-                   label="Comments"
-                   v-model="selected_user.admin.comment"
-               />
-            </my-form>
-
-            <div style="display: flex">
-               <v-spacer/>
-               <v-btn @click="save_comments_user">Save</v-btn>
-            </div>
-         </v-card>
-
-
-      </v-dialog>
-
-
-
-      <!---------------Edit comment dialog dog ------------------------------->
-      <v-dialog v-model="show_edit_comments_dog" persistent max-width="700px">
-         <v-card class="pa-3" v-if="show_edit_comments_dog">
-            <div class="dialog-heading" style="display: flex">
-               Admin Comments
-               <v-spacer/>
-               <v-btn icon @click="show_edit_comments_dog=false">
-                  <v-icon>close</v-icon>
-               </v-btn>
-            </div>
-            <my-form>
-               <my-text-area
-                   label="Comments"
-                   v-model="selected_dog.admin.comment"
-               />
-            </my-form>
-
-            <div style="display: flex">
-               <v-spacer/>
-               <v-btn @click="save_comments_dog">Save</v-btn>
-            </div>
-         </v-card>
-
-
-      </v-dialog>
+        <div class="content-container-sm">
+          <edit-handler-info
+            v-if="selected_user && selected_user.account_type === 'HANDLER'"
+            :user_id="selected_user._id"
+            @user_updated="on_record_update"
+            @update-image="on_record_update({close:false})"
+          />
+        </div>
+      </div>
+    </v-dialog>
 
 
 
@@ -151,6 +65,124 @@
 
 
 
+    <!-------- edit dog dialog -------------------------------------------------------->
+    <v-dialog
+      v-model="show_edit_dog"
+      persistent
+      max-width="400px"
+    >
+      <v-row
+        dense
+        style="margin-bottom: -40px"
+      >
+        <v-spacer />
+        <v-btn
+          icon
+          @click="show_edit_dog=false"
+        >
+          <v-icon>close</v-icon>
+        </v-btn>
+      </v-row>
+
+
+      <!--<div class="content-container-bg" style="background-color: var(&#45;&#45;color-bg)">-->
+      <!--   -->
+
+      <!--</div>-->
+
+      <edit-dog-dialog
+        v-if="show_edit_dog"
+        :dog="selected_dog"
+        @update="on_record_update"
+        @update-image="on_record_update({close:false})"
+        @close="show_edit_dog=false;"
+      />
+    </v-dialog>
+
+
+
+
+
+
+    <!---------------Edit comment dialog ------------------------------->
+    <v-dialog
+      v-model="show_edit_comments"
+      persistent
+      max-width="700px"
+    >
+      <v-card
+        v-if="show_edit_comments"
+        class="pa-3"
+      >
+        <div
+          class="dialog-heading"
+          style="display: flex"
+        >
+          Admin Comments
+          <v-spacer />
+          <v-btn
+            icon
+            @click="show_edit_comments=false"
+          >
+            <v-icon>close</v-icon>
+          </v-btn>
+        </div>
+        <my-form>
+          <my-text-area
+            v-model="selected_user.admin.comment"
+            label="Comments"
+          />
+        </my-form>
+
+        <div style="display: flex">
+          <v-spacer />
+          <v-btn @click="save_comments_user">
+            Save
+          </v-btn>
+        </div>
+      </v-card>
+    </v-dialog>
+
+
+
+    <!---------------Edit comment dialog dog ------------------------------->
+    <v-dialog
+      v-model="show_edit_comments_dog"
+      persistent
+      max-width="700px"
+    >
+      <v-card
+        v-if="show_edit_comments_dog"
+        class="pa-3"
+      >
+        <div
+          class="dialog-heading"
+          style="display: flex"
+        >
+          Admin Comments
+          <v-spacer />
+          <v-btn
+            icon
+            @click="show_edit_comments_dog=false"
+          >
+            <v-icon>close</v-icon>
+          </v-btn>
+        </div>
+        <my-form>
+          <my-text-area
+            v-model="selected_dog.admin.comment"
+            label="Comments"
+          />
+        </my-form>
+
+        <div style="display: flex">
+          <v-spacer />
+          <v-btn @click="save_comments_dog">
+            Save
+          </v-btn>
+        </div>
+      </v-card>
+    </v-dialog>
 
 
 
@@ -160,145 +192,158 @@
 
 
 
-      <!----------------------------------main content----------------------------------------------------------------->
 
 
-      <div class="page-title-app">
-         Manage Users
+
+
+
+
+
+
+
+
+
+    <!----------------------------------main content----------------------------------------------------------------->
+
+
+    <div class="page-title-app">
+      Manage Users
+    </div>
+
+    <div class="content-container-bg">
+      <div
+        style="display: flex; width: 100%"
+        class="pl-0 pt-4"
+      >
+        <my-date-picker
+          v-model="date_start"
+          style="width: 150px; background-color: white"
+          label="Date From"
+          readonly
+        />
+
+        <my-date-picker
+          v-model="date_end"
+          class="ml-4"
+          style="width: 150px; background-color: white"
+          label="Date To"
+          readonly
+        />
       </div>
 
-      <div class="content-container-bg">
-         <div style="display: flex; width: 100%" class="pl-0 pt-4">
-            <my-date-picker
-                style="width: 150px; background-color: white"
-                label="Date From"
-                readonly
-                v-model="date_start"
 
+      <my-form ref="form">
+        <v-row dense>
+          <v-col>
+            <my-drop-down
+              v-model="user_type"
+              label="Search Type"
+              :list="type_list"
+              item-text="txt"
+              item-value="val"
             />
+          </v-col>
 
-            <my-date-picker
-                class="ml-4"
-                style="width: 150px; background-color: white"
-                label="Date To"
-                readonly
-                v-model="date_end"
-
+          <v-col>
+            <my-text-input
+              v-model="name_first"
+              label="First Name"
+              clearable
+              @keyup-enter="search"
             />
+          </v-col>
 
-
-         </div>
-
-
-         <my-form ref="form">
-            <v-row dense>
-
-               <v-col >
-                  <my-drop-down
-                      label="Search Type"
-                      v-model="user_type"
-                      :list="type_list"
-                      item-text="txt"
-                      item-value="val"
-
-                  />
-               </v-col>
-
-               <v-col >
-                  <my-text-input
-                      label="First Name"
-                      v-model="name_first"
-                      @keyup-enter="search"
-                      clearable
-                  />
-               </v-col>
-
-               <v-col >
-                  <my-text-input
-                      label="Last Name"
-                      v-model="name_last" @keyup-enter="search"
-                      clearable
-                  />
-               </v-col>
-
-
-               <v-col >
-                  <my-text-input
-                      label="City"
-                      v-model="user_city" @keyup-enter="search"
-                      clearable
-                  />
-               </v-col>
-
-
-               <v-col >
-                  <my-text-input
-                      label="State"
-                      v-model="user_state" @keyup-enter="search"
-                      clearable
-                  />
-               </v-col>
-
-               <v-col v-if="!isDog">
-                  <my-text-input
-                      label="Email"
-                      v-model="email"
-                      @keyup-enter="search"
-                      clearable
-                  />
-
-               </v-col>
-
-
-
-               <v-col v-if="isDog">
-                  <my-text-input
-                      label="Dog's Name"
-                      v-model="dog_name"
-                      @keyup-enter="search"
-                      clearable
-                  />
-               </v-col>
-
-               <v-col v-if="isDog">
-                  <my-text-input
-                      label="SDS Number"
-                      v-model="sds_num"
-                      clearable
-                  />
-               </v-col>
-
-               <v-btn class="mt-6" @click="search">Search</v-btn>
-            </v-row>
-
-            <v-row dense>
-
-            </v-row>
-         </my-form>
-
-
-
-         <div class="content-container mt-8" style="background-color: white">
-
-
-            <table-dogs
-                v-if="isDog"
-                :dogs="dogs"
-                @edit-comment="on_edit_comment_dog"
-                @click-user="on_click_dog_user"
-                @click-dog="on_click_dog"
+          <v-col>
+            <my-text-input
+              v-model="name_last"
+              label="Last Name"
+              clearable
+              @keyup-enter="search"
             />
+          </v-col>
 
-            <table-users
-                v-else
-                :users="users"
-                @click-user="on_click_user"
-                @edit-comment="on_edit_comment_user"
+
+          <v-col>
+            <my-text-input
+              v-model="user_city"
+              label="City"
+              clearable
+              @keyup-enter="search"
             />
+          </v-col>
 
-         </div>
+
+          <v-col>
+            <my-text-input
+              v-model="user_state"
+              label="State"
+              clearable
+              @keyup-enter="search"
+            />
+          </v-col>
+
+          <v-col v-if="!isDog">
+            <my-text-input
+              v-model="email"
+              label="Email"
+              clearable
+              @keyup-enter="search"
+            />
+          </v-col>
+
+
+
+          <v-col v-if="isDog">
+            <my-text-input
+              v-model="dog_name"
+              label="Dog's Name"
+              clearable
+              @keyup-enter="search"
+            />
+          </v-col>
+
+          <v-col v-if="isDog">
+            <my-text-input
+              v-model="sds_num"
+              label="SDS Number"
+              clearable
+            />
+          </v-col>
+
+          <v-btn
+            class="mt-6"
+            @click="search"
+          >
+            Search
+          </v-btn>
+        </v-row>
+
+        <v-row dense />
+      </my-form>
+
+
+
+      <div
+        class="content-container mt-8"
+        style="background-color: white"
+      >
+        <table-dogs
+          v-if="isDog"
+          :dogs="dogs"
+          @edit-comment="on_edit_comment_dog"
+          @click-user="on_click_dog_user"
+          @click-dog="on_click_dog"
+        />
+
+        <table-users
+          v-else
+          :users="users"
+          @click-user="on_click_user"
+          @edit-comment="on_edit_comment_user"
+        />
       </div>
-   </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -322,9 +367,9 @@ import {DateTime} from "luxon";
 
 export default {
    name: "AdminUsers",
-   mixins: [data_getters],
    components: {MyDropDown, myDatePicker, tableUsers, tableDogs, EditHandlerInfo, EditTrainerInfo, EditAdminInfo,
       MyTextArea, EditDogDialog},
+   mixins: [data_getters],
    data(){
       return {
          user_type: 'DOG',
@@ -393,6 +438,18 @@ export default {
          this.search();
 
       }
+   },
+
+
+
+   created(){
+      this.$store.commit("set_show_side_nav", true);
+
+
+   },
+
+   mounted(){
+      this.search();
    },
 
    methods: {
@@ -651,18 +708,6 @@ export default {
 
 
 
-   },
-
-
-
-   created(){
-      this.$store.commit("set_show_side_nav", true);
-
-
-   },
-
-   mounted(){
-      this.search();
    }
 
 

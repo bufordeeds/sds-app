@@ -1,7 +1,14 @@
 <template>
-   <v-btn icon x-small :color="icon_color" @click="on_click">
-      <v-icon small >{{icon_dir}}</v-icon>
-   </v-btn>
+  <v-btn
+    icon
+    x-small
+    :color="icon_color"
+    @click="on_click"
+  >
+    <v-icon small>
+      {{ icon_dir }}
+    </v-icon>
+  </v-btn>
 </template>
 
 <script>

@@ -1,157 +1,187 @@
 <template>
-
-   <div>
-
-      <upload-user-image
-          v-if="show_upload_image && dog"
-          :show.sync="show_upload_image"
-          file-type="profile"
-          @uploaded="updated_image"
-          :dog_id="dog._id"
-      ></upload-user-image>
+  <div>
+    <upload-user-image
+      v-if="show_upload_image && dog"
+      :show.sync="show_upload_image"
+      file-type="profile"
+      :dog_id="dog._id"
+      @uploaded="updated_image"
+    />
 
 
 
-      <v-card style="overflow: auto ">
-         <v-card-title>
-            {{title_txt}}
-         </v-card-title>
-         <my-form ref="form">
-            <v-container>
-               <v-row class="ma-0" v-if="dog">
-                  <v-col>
-                     <div class="profile-image-container" @click="show_upload_image=true;">
-<!--                        <img v-if="!value.profile_image" src="../../assets/images/content/dog-no-image.png" width="75px">-->
-<!--                        <img v-else :src="value.profile_image.Location" width="75px">-->
-                       <avatar
-                           profile-type="dog"
-                           :image="value.profile_image"
-                           size="75" />
+    <v-card style="overflow: auto ">
+      <v-card-title>
+        {{ title_txt }}
+      </v-card-title>
+      <my-form ref="form">
+        <v-container>
+          <v-row
+            v-if="dog"
+            class="ma-0"
+          >
+            <v-col>
+              <div
+                class="profile-image-container"
+                @click="show_upload_image=true;"
+              >
+                <!--                        <img v-if="!value.profile_image" src="../../assets/images/content/dog-no-image.png" width="75px">-->
+                <!--                        <img v-else :src="value.profile_image.Location" width="75px">-->
+                <avatar
+                  profile-type="dog"
+                  :image="value.profile_image"
+                  size="75"
+                />
 
-                        <div style="font-size: 11pt; color: blue; padding-top: 5px; padding-left: 10px">
-                           Change <br> Profile Image
-                        </div>
-                     </div>
-
-
-                  </v-col>
-
-
-
-               </v-row>
-
-
-
-               <v-row dense class="ma-0">
-
-                  <v-col cols="12" xs="6">
-<!--                     <v-text-field-->
-<!--                         label="Service Dog's Name"-->
-<!--                         outlined-->
-<!--                         v-model="value.name"-->
-<!--                         :rules="[x=>isRequired(x, 'Name')]"-->
-<!--                     ></v-text-field>-->
-                     <my-text-input
-                         label="Service Dog's Name"
-                         v-model="value.name"
-                         :rules="[x=>isRequired(x, 'Name')]"
-                     ></my-text-input>
-                  </v-col>
-
-<!--               </v-row>-->
-<!--               <v-row class="ma-0">-->
-                  <v-col cols="12" xs="6">
-<!--                     <v-select-->
-<!--                         label="Current Status"-->
-<!--                         :menu-props="{ bottom: true, offsetY: true }"-->
-<!--                         :items="list"-->
-<!--                         item-text="txt"-->
-<!--                         item-value="val"-->
-<!--                         outlined-->
-<!--                         v-model="value.status"-->
-<!--                         :rules="[x=>isRequired(x, 'Status')]"-->
-<!--                     ></v-select>-->
+                <div style="font-size: 11pt; color: blue; padding-top: 5px; padding-left: 10px">
+                  Change <br> Profile Image
+                </div>
+              </div>
+            </v-col>
+          </v-row>
 
 
 
-                     <my-drop-down
-                         label="Current Status"
-                         :menu-props="{ bottom: true, offsetY: true }"
-                         :list="list"
-                         item-text="txt"
-                         item-value="val"
-                         outlined
-                         v-model="value.status"
-                         :rules="[x=>isRequired(x, 'Status')]"
-                     />
-                  </v-col>
+          <v-row
+            dense
+            class="ma-0"
+          >
+            <v-col
+              cols="12"
+              xs="6"
+            >
+              <!--                     <v-text-field-->
+              <!--                         label="Service Dog's Name"-->
+              <!--                         outlined-->
+              <!--                         v-model="value.name"-->
+              <!--                         :rules="[x=>isRequired(x, 'Name')]"-->
+              <!--                     ></v-text-field>-->
+              <my-text-input
+                v-model="value.name"
+                label="Service Dog's Name"
+                :rules="[x=>isRequired(x, 'Name')]"
+              />
+            </v-col>
+
+            <!--               </v-row>-->
+            <!--               <v-row class="ma-0">-->
+            <v-col
+              cols="12"
+              xs="6"
+            >
+              <!--                     <v-select-->
+              <!--                         label="Current Status"-->
+              <!--                         :menu-props="{ bottom: true, offsetY: true }"-->
+              <!--                         :items="list"-->
+              <!--                         item-text="txt"-->
+              <!--                         item-value="val"-->
+              <!--                         outlined-->
+              <!--                         v-model="value.status"-->
+              <!--                         :rules="[x=>isRequired(x, 'Status')]"-->
+              <!--                     ></v-select>-->
 
 
-                  <v-col cols="12" xs="6">
-                     <my-text-input
-                         label="Breed*"
-                         v-model="value.breed"
-                         :rules="[isRequired]"
-                     ></my-text-input>
-                  </v-col>
 
-                  <v-col cols="12" xs="6">
-                     <my-drop-down
-                         label="How big is your dog?*"
-                         v-model="value.size"
-                         :list="list_size_dog"
-                         item-value="val"
-                         item-text="val"
-                         :rules="[isRequired]"
-                     />
-                  </v-col>
-
-                  <v-col cols="12" xs="6">
-                     <my-text-input
-                         label="Birth Year*"
-                         v-model="value.birth_year"
-                         :rules="[isNumber, x=>checkLength(x, 4, {type: 'eq'})]"
-                     ></my-text-input>
-                  </v-col>
-
-                  <v-col cols="12" xs="6">
-                     <my-text-input
-                         label="Coat Color"
-                         v-model="value.coat_color"
-                     ></my-text-input>
-                  </v-col>
-                  <v-col cols="12" xs="6">
-                     <my-text-input
-                         label="Microchip Number"
-                         v-model="value.microchip_num"
-                     ></my-text-input>
-                  </v-col>
+              <my-drop-down
+                v-model="value.status"
+                label="Current Status"
+                :menu-props="{ bottom: true, offsetY: true }"
+                :list="list"
+                item-text="txt"
+                item-value="val"
+                outlined
+                :rules="[x=>isRequired(x, 'Status')]"
+              />
+            </v-col>
 
 
-                  <v-col cols="6">
-                     <my-text-input
-                         v-if="value.status === 'InMemoriam'"
-                         label="Date Passed"
-                         v-model="value.died"
-                         :rules="[isDate]"
-                     ></my-text-input>
-                  </v-col>
-               </v-row>
+            <v-col
+              cols="12"
+              xs="6"
+            >
+              <my-text-input
+                v-model="value.breed"
+                label="Breed*"
+                :rules="[isRequired]"
+              />
+            </v-col>
+
+            <v-col
+              cols="12"
+              xs="6"
+            >
+              <my-drop-down
+                v-model="value.size"
+                label="How big is your dog?*"
+                :list="list_size_dog"
+                item-value="val"
+                item-text="val"
+                :rules="[isRequired]"
+              />
+            </v-col>
+
+            <v-col
+              cols="12"
+              xs="6"
+            >
+              <my-text-input
+                v-model="value.birth_year"
+                label="Birth Year*"
+                :rules="[isNumber, x=>checkLength(x, 4, {type: 'eq'})]"
+              />
+            </v-col>
+
+            <v-col
+              cols="12"
+              xs="6"
+            >
+              <my-text-input
+                v-model="value.coat_color"
+                label="Coat Color"
+              />
+            </v-col>
+            <v-col
+              cols="12"
+              xs="6"
+            >
+              <my-text-input
+                v-model="value.microchip_num"
+                label="Microchip Number"
+              />
+            </v-col>
 
 
-               <v-row justify="end" class="ma-0 pt-4">
-                  <v-btn @click="$emit('close')" color="grey" class="mr-2">
-                     Cancel
-                  </v-btn>
+            <v-col cols="6">
+              <my-text-input
+                v-if="value.status === 'InMemoriam'"
+                v-model="value.died"
+                label="Date Passed"
+                :rules="[isDate]"
+              />
+            </v-col>
+          </v-row>
 
-                  <v-btn @click="save_dog">{{btn_txt}}</v-btn>
-               </v-row>
-            </v-container>
-         </my-form>
 
-      </v-card>
-   </div>
+          <v-row
+            justify="end"
+            class="ma-0 pt-4"
+          >
+            <v-btn
+              color="grey"
+              class="mr-2"
+              @click="$emit('close')"
+            >
+              Cancel
+            </v-btn>
 
+            <v-btn @click="save_dog">
+              {{ btn_txt }}
+            </v-btn>
+          </v-row>
+        </v-container>
+      </my-form>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -221,6 +251,22 @@ export default {
       }
    },
 
+   created(){
+      if (this.dog === null){
+         this.value = {}
+      }
+      else{
+         this.value = _.cloneDeep(this.dog);
+
+         if (this.value.born != null){
+            this.value.born = DateTime.fromISO(this.value.born).toFormat('M/d/yyyy');
+         }
+         if (this.value.died != null){
+            this.value.died = DateTime.fromISO(this.value.died).toFormat('M/d/yyyy');
+         }
+      }
+   },
+
    methods:{
       // updateValue(key, value) {
       //    let ans = _.cloneDeep(this.value);
@@ -284,22 +330,6 @@ export default {
          }
 
       },
-   },
-
-   created(){
-      if (this.dog === null){
-         this.value = {}
-      }
-      else{
-         this.value = _.cloneDeep(this.dog);
-
-         if (this.value.born != null){
-            this.value.born = DateTime.fromISO(this.value.born).toFormat('M/d/yyyy');
-         }
-         if (this.value.died != null){
-            this.value.died = DateTime.fromISO(this.value.died).toFormat('M/d/yyyy');
-         }
-      }
    }
 }
 </script>

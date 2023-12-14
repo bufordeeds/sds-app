@@ -1,22 +1,24 @@
 <template>
-   <div class="background" :class="color_class"   >
-      <div class="content">
-         <div class="status">
-            {{status_map[status]}}
-         </div>
-
-         <div v-if="born != null && status==='InMemoriam'">
-            Born {{born}}
-         </div>
-         <div v-if="died != null && status==='InMemoriam'">
-            Died {{died}}
-         </div>
-
+  <div
+    class="background"
+    :class="color_class"
+  >
+    <div class="content">
+      <div class="status">
+        {{ status_map[status] }}
       </div>
 
+      <div v-if="born != null && status==='InMemoriam'">
+        Born {{ born }}
+      </div>
+      <div v-if="died != null && status==='InMemoriam'">
+        Died {{ died }}
+      </div>
+    </div>
 
-      <div class="chevron"></div>
-   </div>
+
+    <div class="chevron" />
+  </div>
 </template>
 
 <script>

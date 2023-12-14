@@ -1,238 +1,363 @@
 <template>
-   <div style="width: 100%; overflow: auto " >
-
-      <!--<div class="progress-wait" v-if="cropping">-->
-      <!--   <v-progress-circular-->
-      <!--       size="100"-->
-      <!--       indeterminate-->
-      <!--       width="10"-->
-      <!--       color="var(&#45;&#45;color-primary)"-->
-      <!--   ></v-progress-circular>-->
-      <!--</div>-->
-
+  <div style="width: 100%; overflow: auto ">
+    <!--<div class="progress-wait" v-if="cropping">-->
+    <!--   <v-progress-circular-->
+    <!--       size="100"-->
+    <!--       indeterminate-->
+    <!--       width="10"-->
+    <!--       color="var(&#45;&#45;color-primary)"-->
+    <!--   ></v-progress-circular>-->
+    <!--</div>-->
 
 
-      <div class="header pl-1 pr-1" >
-         <div class="dialog-heading" :style="{'font-size': isMobile? '12pt': '16pt'}">Image Editor/Uploader</div>
 
-                  <v-btn icon @click="$emit('close')">
-                     <v-icon>close</v-icon>
-                  </v-btn>
+    <div class="header pl-1 pr-1">
+      <div
+        class="dialog-heading"
+        :style="{'font-size': isMobile? '12pt': '16pt'}"
+      >
+        Image Editor/Uploader
       </div>
 
-      <hr class="mb-2" />
-
-      <input
-          ref="input"
-          type="file"
-          name="image"
-          accept="image/*"
-          @change="setImage"
-      />
-
-      <div class="content">
-
-         <section class="cropper-area mr-4" style="display: flex; flex-direction: column">
-            <div class=" " style="width: 100%;">
-
-               <upload-file-drop
-                   v-if="imgSrc==null"
-                   @file-dropped="setImage($event, true)"
-               ></upload-file-drop>
-
-
-               <vue-cropper
-                   ref="cropper"
-                   :aspect-ratio="cropRatio"
-                   :src="imgSrc"
-                   preview=".preview"
-                   :style="cropper_style"
-                   style="width: 100%; "
-                   :containerStyle="{'max-height': 'calc(100vh - 250px)'}"
-
-               />
-
-<!--               -->
-<!--               <div-->
-<!--                   v-if="imgSrc!==null"-->
-<!--                   style="display: flex; justify-content: flex-end; margin-top: -30px; padding-right:10px; margin-bottom: 10px"-->
-<!--               >-->
-<!--                  <v-btn x-small @click="imgSrc=null">-->
-<!--                     Clear-->
-<!--                  </v-btn>-->
-<!--               </div>-->
-            </div>
-
-
-            <div class="action-row" :style="isMobile?'order:3;':''">
-               <div class="pb-1">
-                  <v-btn
-                      small
-                      color="var(--color-btn)"
-                      @click="zoom(0.2)"
-                      class="action-button"
-                      :disabled="disabled"
-                  >
-                     <v-icon>zoom_in</v-icon>
-                  </v-btn>
-
-
-                  <v-btn
-                      small
-                      color="var(--color-btn)"
-                      @click="zoom(-0.2)"
-                      class="action-button"
-                      :disabled="disabled"
-                  >
-                     <v-icon>zoom_out</v-icon>
-                  </v-btn>
-
-
-                  <v-btn
-                      small
-                      color="var(--color-btn)"
-                      @click="rotate(-90)"
-                      class="action-button"
-                      :disabled="disabled"
-                  >
-                     <v-icon>rotate_left</v-icon>
-                  </v-btn>
-
-                  <v-btn
-                      small
-                      color="var(--color-btn)"
-                      @click="rotate(90)"
-                      class="action-button"
-                      :disabled="disabled"
-                  >
-                     <v-icon>rotate_right</v-icon>
-                  </v-btn>
-               </div>
-
-
-
-               <div class="pb-1">
-                  <!-- move left-->
-                  <v-btn
-                      small
-                      color="var(--color-btn)"
-                      @click="move(-10, 0)"
-                      class="action-button"
-                      :disabled="disabled"
-                  >
-                     <v-icon style="transform: rotate(180deg)">arrow_right_alt</v-icon>
-                  </v-btn>
-
-
+      <v-btn
+        icon
+        @click="$emit('close')"
+      >
+        <v-icon>close</v-icon>
+      </v-btn>
+    </div>
+
+    <hr class="mb-2">
+
+    <input
+      ref="input"
+      type="file"
+      name="image"
+      accept="image/*"
+      @change="setImage"
+    >
+
+    <div class="content">
+      <section
+        class="cropper-area mr-4"
+        style="display: flex; flex-direction: column"
+      >
+        <div
+          class=" "
+          style="width: 100%;"
+        >
+          <upload-file-drop
+            v-if="imgSrc==null"
+            @file-dropped="setImage($event, true)"
+          />
+
+
+          <vue-cropper
+            ref="cropper"
+            :aspect-ratio="cropRatio"
+            :src="imgSrc"
+            preview=".preview"
+            :style="cropper_style"
+            style="width: 100%; "
+            :container-style="{'max-height': 'calc(100vh - 250px)'}"
+          />
+
+          <!--               -->
+          <!--               <div-->
+          <!--                   v-if="imgSrc!==null"-->
+          <!--                   style="display: flex; justify-content: flex-end; margin-top: -30px; padding-right:10px; margin-bottom: 10px"-->
+          <!--               >-->
+          <!--                  <v-btn x-small @click="imgSrc=null">-->
+          <!--                     Clear-->
+          <!--                  </v-btn>-->
+          <!--               </div>-->
+        </div>
+
+
+        <div
+          class="action-row"
+          :style="isMobile?'order:3;':''"
+        >
+          <div class="pb-1">
+            <v-btn
+              small
+              color="var(--color-btn)"
+              class="action-button"
+              :disabled="disabled"
+              @click="zoom(0.2)"
+            >
+              <v-icon>zoom_in</v-icon>
+            </v-btn>
+
+
+            <v-btn
+              small
+              color="var(--color-btn)"
+              class="action-button"
+              :disabled="disabled"
+              @click="zoom(-0.2)"
+            >
+              <v-icon>zoom_out</v-icon>
+            </v-btn>
+
+
+            <v-btn
+              small
+              color="var(--color-btn)"
+              class="action-button"
+              :disabled="disabled"
+              @click="rotate(-90)"
+            >
+              <v-icon>rotate_left</v-icon>
+            </v-btn>
+
+            <v-btn
+              small
+              color="var(--color-btn)"
+              class="action-button"
+              :disabled="disabled"
+              @click="rotate(90)"
+            >
+              <v-icon>rotate_right</v-icon>
+            </v-btn>
+          </div>
+
+
+
+          <div class="pb-1">
+            <!-- move left-->
+            <v-btn
+              small
+              color="var(--color-btn)"
+              class="action-button"
+              :disabled="disabled"
+              @click="move(-10, 0)"
+            >
+              <v-icon style="transform: rotate(180deg)">
+                arrow_right_alt
+              </v-icon>
+            </v-btn>
+
+
+
+
+            <!-- move right-->
+            <v-btn
+              small
+              color="var(--color-btn)"
+              class="action-button"
+              :disabled="disabled"
+              @click="move(10, 0)"
+            >
+              <v-icon>arrow_right_alt</v-icon>
+            </v-btn>
+
+            <!-- move up-->
+            <v-btn
+              small
+              color="var(--color-btn)"
+              class="action-button"
+              :disabled="disabled"
+              @click="move(0, -10)"
+            >
+              <v-icon style="transform: rotate(-90deg)">
+                arrow_right_alt
+              </v-icon>
+            </v-btn>
 
+            <!-- move down-->
+            <v-btn
+              small
+              color="var(--color-btn)"
+              class="action-button"
+              :disabled="disabled"
+              @click="move(0, 10)"
+            >
+              <v-icon style="transform: rotate(90deg)">
+                arrow_right_alt
+              </v-icon>
+            </v-btn>
+          </div>
+        </div>
 
-                  <!-- move right-->
-                  <v-btn
-                      small
-                      color="var(--color-btn)"
-                      @click="move(10, 0)"
-                      class="action-button"
-                      :disabled="disabled"
-                  >
-                     <v-icon>arrow_right_alt</v-icon>
-                  </v-btn>
 
-                  <!-- move up-->
-                  <v-btn
-                      small
-                      color="var(--color-btn)"
-                      @click="move(0, -10)"
-                      class="action-button"
-                      :disabled="disabled"
-                  >
-                     <v-icon style="transform: rotate(-90deg)">arrow_right_alt</v-icon>
-                  </v-btn>
 
-                  <!-- move down-->
-                  <v-btn
-                      small
-                      color="var(--color-btn)"
-                      @click="move(0, 10)"
-                      class="action-button"
-                      :disabled="disabled"
-                  >
-                     <v-icon style="transform: rotate(90deg)">arrow_right_alt</v-icon>
-                  </v-btn>
-               </div>
 
-            </div>
 
 
+        <div
+          class="action-row mb-4"
+          :style="isMobile?'margin-top: -0px;':''"
+        >
+          <div class="action-row">
+            <v-btn
+              small
+              color="var(--color-btn)"
+              class="action-button"
+              :disabled="disabled"
+              @click="imgSrc=null"
+            >
+              <v-icon small>
+                delete
+              </v-icon>
+              Clear
+            </v-btn>
 
+            <v-btn
+              small
+              color="var(--color-btn)"
+              class="action-button"
+              :disabled="disabled"
+              @click="reset"
+            >
+              <v-icon>settings_backup_restore</v-icon>
+              Reset
+            </v-btn>
+          </div>
 
 
+          <div class="action-row">
+            <v-btn
+              small
+              color="var(--color-btn)"
+              class="action-button"
+              @click="showFileChooser"
+            >
+              Select Image
+            </v-btn>
 
-            <div class="action-row mb-4" :style="isMobile?'margin-top: -0px;':''">
 
-               <div class="action-row" >
-                  <v-btn
-                      small
-                      color="var(--color-btn)"
-                      @click="imgSrc=null"
-                      class="action-button"
-                      :disabled="disabled"
-                  >
-                     <v-icon small> delete</v-icon>
-                     Clear
-                  </v-btn>
+            <v-btn
+              small
+              color="#08b108"
+              class="action-button"
+              :disabled="disabled"
+              :loading="cropping"
+              @click="cropImage"
+            >
+              Save/Upload
+            </v-btn>
+          </div>
+        </div>
 
-                  <v-btn
-                      small
-                      color="var(--color-btn)"
-                      @click="reset"
-                      class="action-button"
-                      :disabled="disabled"
-                  >
-                     <v-icon>settings_backup_restore</v-icon>
-                     Reset
-                  </v-btn>
-               </div>
 
 
-               <div class="action-row" >
-                  <v-btn
-                      small
-                      color="var(--color-btn)"
-                      @click="showFileChooser"
-                      class="action-button"
-                  >
-                     Select Image
-                  </v-btn>
 
 
-                  <v-btn
-                      small
-                      color="#08b108"
-                      @click="cropImage"
-                      class="action-button"
-                      :disabled="disabled"
-                      :loading="cropping"
-                  >
-                     Save/Upload
+
+
 
-                  </v-btn>
-               </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
-            </div>
 
+        <!--<v-row dense>-->
+        <!--   <v-col cols="12" sm="6" class="action-row">-->
+        <!--      <v-btn-->
+        <!--          small-->
+        <!--          color="var(&#45;&#45;color-btn)"-->
+        <!--          @click="zoom(0.2)"-->
+        <!--          class="action-button"-->
+        <!--          :disabled="disabled"-->
+        <!--      >-->
+        <!--         <v-icon>zoom_in</v-icon>-->
+        <!--      </v-btn>-->
 
 
+        <!--      <v-btn-->
+        <!--          small-->
+        <!--          color="var(&#45;&#45;color-btn)"-->
+        <!--          @click="zoom(-0.2)"-->
+        <!--          class="action-button"-->
+        <!--          :disabled="disabled"-->
+        <!--      >-->
+        <!--         <v-icon>zoom_out</v-icon>-->
+        <!--      </v-btn>-->
 
 
+        <!--      <v-btn-->
+        <!--          small-->
+        <!--          color="var(&#45;&#45;color-btn)"-->
+        <!--          @click="rotate(-90)"-->
+        <!--          class="action-button"-->
+        <!--          :disabled="disabled"-->
+        <!--      >-->
+        <!--         <v-icon>rotate_left</v-icon>-->
+        <!--      </v-btn>-->
 
+        <!--      <v-btn-->
+        <!--          small-->
+        <!--          color="var(&#45;&#45;color-btn)"-->
+        <!--          @click="rotate(90)"-->
+        <!--          class="action-button"-->
+        <!--          :disabled="disabled"-->
+        <!--      >-->
+        <!--         <v-icon>rotate_right</v-icon>-->
+        <!--      </v-btn>-->
+        <!--   </v-col>-->
 
+        <!--   <v-col cols="12" sm="6" class="action-row">-->
+        <!--      &lt;!&ndash; move left&ndash;&gt;-->
+        <!--      <v-btn-->
+        <!--          small-->
+        <!--          color="var(&#45;&#45;color-btn)"-->
+        <!--          @click="move(-10, 0)"-->
+        <!--          class="action-button"-->
+        <!--          :disabled="disabled"-->
+        <!--      >-->
+        <!--         <v-icon style="transform: rotate(180deg)">arrow_right_alt</v-icon>-->
+        <!--      </v-btn>-->
 
 
 
 
+        <!--      &lt;!&ndash; move right&ndash;&gt;-->
+        <!--      <v-btn-->
+        <!--          small-->
+        <!--          color="var(&#45;&#45;color-btn)"-->
+        <!--          @click="move(10, 0)"-->
+        <!--          class="action-button"-->
+        <!--          :disabled="disabled"-->
+        <!--      >-->
+        <!--         <v-icon>arrow_right_alt</v-icon>-->
+        <!--      </v-btn>-->
 
+        <!--      &lt;!&ndash; move up&ndash;&gt;-->
+        <!--      <v-btn-->
+        <!--          small-->
+        <!--          color="var(&#45;&#45;color-btn)"-->
+        <!--          @click="move(0, -10)"-->
+        <!--          class="action-button"-->
+        <!--          :disabled="disabled"-->
+        <!--      >-->
+        <!--         <v-icon style="transform: rotate(-90deg)">arrow_right_alt</v-icon>-->
+        <!--      </v-btn>-->
 
+        <!--      &lt;!&ndash; move down&ndash;&gt;-->
+        <!--      <v-btn-->
+        <!--          small-->
+        <!--          color="var(&#45;&#45;color-btn)"-->
+        <!--          @click="move(0, 10)"-->
+        <!--          class="action-button"-->
+        <!--          :disabled="disabled"-->
+        <!--      >-->
+        <!--         <v-icon style="transform: rotate(90deg)">arrow_right_alt</v-icon>-->
+        <!--      </v-btn>-->
+        <!--   </v-col>-->
+        <!--</v-row>-->
 
 
 
@@ -245,198 +370,93 @@
 
 
 
-            <!--<v-row dense>-->
-            <!--   <v-col cols="12" sm="6" class="action-row">-->
-            <!--      <v-btn-->
-            <!--          small-->
-            <!--          color="var(&#45;&#45;color-btn)"-->
-            <!--          @click="zoom(0.2)"-->
-            <!--          class="action-button"-->
-            <!--          :disabled="disabled"-->
-            <!--      >-->
-            <!--         <v-icon>zoom_in</v-icon>-->
-            <!--      </v-btn>-->
 
 
-            <!--      <v-btn-->
-            <!--          small-->
-            <!--          color="var(&#45;&#45;color-btn)"-->
-            <!--          @click="zoom(-0.2)"-->
-            <!--          class="action-button"-->
-            <!--          :disabled="disabled"-->
-            <!--      >-->
-            <!--         <v-icon>zoom_out</v-icon>-->
-            <!--      </v-btn>-->
+        <!--<v-row dense>-->
+        <!--   <v-col cols="12" sm="6" class="action-row">-->
 
+        <!--      <v-btn-->
+        <!--          small-->
+        <!--          color="var(&#45;&#45;color-btn)"-->
+        <!--          @click="imgSrc=null"-->
+        <!--          class="action-button"-->
+        <!--          :disabled="disabled"-->
+        <!--      >-->
+        <!--         <v-icon small> delete</v-icon>-->
+        <!--         Clear-->
+        <!--      </v-btn>-->
 
-            <!--      <v-btn-->
-            <!--          small-->
-            <!--          color="var(&#45;&#45;color-btn)"-->
-            <!--          @click="rotate(-90)"-->
-            <!--          class="action-button"-->
-            <!--          :disabled="disabled"-->
-            <!--      >-->
-            <!--         <v-icon>rotate_left</v-icon>-->
-            <!--      </v-btn>-->
+        <!--      <v-btn-->
+        <!--          small-->
+        <!--          color="var(&#45;&#45;color-btn)"-->
+        <!--          @click="reset"-->
+        <!--          class="action-button"-->
+        <!--          :disabled="disabled"-->
+        <!--      >-->
+        <!--         <v-icon>settings_backup_restore</v-icon>-->
+        <!--         Reset-->
+        <!--      </v-btn>-->
 
-            <!--      <v-btn-->
-            <!--          small-->
-            <!--          color="var(&#45;&#45;color-btn)"-->
-            <!--          @click="rotate(90)"-->
-            <!--          class="action-button"-->
-            <!--          :disabled="disabled"-->
-            <!--      >-->
-            <!--         <v-icon>rotate_right</v-icon>-->
-            <!--      </v-btn>-->
-            <!--   </v-col>-->
+        <!--   </v-col>-->
 
-            <!--   <v-col cols="12" sm="6" class="action-row">-->
-            <!--      &lt;!&ndash; move left&ndash;&gt;-->
-            <!--      <v-btn-->
-            <!--          small-->
-            <!--          color="var(&#45;&#45;color-btn)"-->
-            <!--          @click="move(-10, 0)"-->
-            <!--          class="action-button"-->
-            <!--          :disabled="disabled"-->
-            <!--      >-->
-            <!--         <v-icon style="transform: rotate(180deg)">arrow_right_alt</v-icon>-->
-            <!--      </v-btn>-->
 
 
 
+        <!--   <v-col cols="12" sm="6" class="action-row" >-->
 
-            <!--      &lt;!&ndash; move right&ndash;&gt;-->
-            <!--      <v-btn-->
-            <!--          small-->
-            <!--          color="var(&#45;&#45;color-btn)"-->
-            <!--          @click="move(10, 0)"-->
-            <!--          class="action-button"-->
-            <!--          :disabled="disabled"-->
-            <!--      >-->
-            <!--         <v-icon>arrow_right_alt</v-icon>-->
-            <!--      </v-btn>-->
 
-            <!--      &lt;!&ndash; move up&ndash;&gt;-->
-            <!--      <v-btn-->
-            <!--          small-->
-            <!--          color="var(&#45;&#45;color-btn)"-->
-            <!--          @click="move(0, -10)"-->
-            <!--          class="action-button"-->
-            <!--          :disabled="disabled"-->
-            <!--      >-->
-            <!--         <v-icon style="transform: rotate(-90deg)">arrow_right_alt</v-icon>-->
-            <!--      </v-btn>-->
+        <!--         <v-btn-->
+        <!--             small-->
+        <!--             color="var(&#45;&#45;color-btn)"-->
+        <!--             @click="showFileChooser"-->
+        <!--             class="action-button"-->
+        <!--         >-->
+        <!--            Select Image-->
+        <!--         </v-btn>-->
 
-            <!--      &lt;!&ndash; move down&ndash;&gt;-->
-            <!--      <v-btn-->
-            <!--          small-->
-            <!--          color="var(&#45;&#45;color-btn)"-->
-            <!--          @click="move(0, 10)"-->
-            <!--          class="action-button"-->
-            <!--          :disabled="disabled"-->
-            <!--      >-->
-            <!--         <v-icon style="transform: rotate(90deg)">arrow_right_alt</v-icon>-->
-            <!--      </v-btn>-->
-            <!--   </v-col>-->
-            <!--</v-row>-->
 
+        <!--         <v-btn-->
+        <!--             small-->
+        <!--             color="#08b108"-->
+        <!--             @click="cropImage"-->
+        <!--             class="action-button"-->
+        <!--             :disabled="disabled"-->
+        <!--             :loading="cropping"-->
+        <!--         >-->
+        <!--            Save/Upload-->
 
+        <!--         </v-btn>-->
 
+        <!--   </v-col>-->
+        <!--</v-row>-->
+      </section>
 
 
 
 
+      <section
+        v-if="!isMobile"
+        class="preview-area"
+        :style="cropper_style"
+      >
+        <p>Preview</p>
+        <div
+          class="preview sds-preview"
+          style="background-color: #c4c4c4"
+        />
 
-
-
-
-
-
-
-            <!--<v-row dense>-->
-            <!--   <v-col cols="12" sm="6" class="action-row">-->
-
-            <!--      <v-btn-->
-            <!--          small-->
-            <!--          color="var(&#45;&#45;color-btn)"-->
-            <!--          @click="imgSrc=null"-->
-            <!--          class="action-button"-->
-            <!--          :disabled="disabled"-->
-            <!--      >-->
-            <!--         <v-icon small> delete</v-icon>-->
-            <!--         Clear-->
-            <!--      </v-btn>-->
-
-            <!--      <v-btn-->
-            <!--          small-->
-            <!--          color="var(&#45;&#45;color-btn)"-->
-            <!--          @click="reset"-->
-            <!--          class="action-button"-->
-            <!--          :disabled="disabled"-->
-            <!--      >-->
-            <!--         <v-icon>settings_backup_restore</v-icon>-->
-            <!--         Reset-->
-            <!--      </v-btn>-->
-
-            <!--   </v-col>-->
-
-
-
-
-            <!--   <v-col cols="12" sm="6" class="action-row" >-->
-
-
-            <!--         <v-btn-->
-            <!--             small-->
-            <!--             color="var(&#45;&#45;color-btn)"-->
-            <!--             @click="showFileChooser"-->
-            <!--             class="action-button"-->
-            <!--         >-->
-            <!--            Select Image-->
-            <!--         </v-btn>-->
-
-
-            <!--         <v-btn-->
-            <!--             small-->
-            <!--             color="#08b108"-->
-            <!--             @click="cropImage"-->
-            <!--             class="action-button"-->
-            <!--             :disabled="disabled"-->
-            <!--             :loading="cropping"-->
-            <!--         >-->
-            <!--            Save/Upload-->
-
-            <!--         </v-btn>-->
-
-            <!--   </v-col>-->
-            <!--</v-row>-->
-
-
-
-
-         </section>
-
-
-
-
-         <section class="preview-area" :style="cropper_style" v-if="!isMobile">
-            <p>Preview</p>
-            <div class="preview sds-preview" style="background-color: #c4c4c4"/>
-
-            <!--            <p>Cropped Image</p>-->
-            <!--            <div class="cropped-image">-->
-            <!--               <img-->
-            <!--                   v-if="cropImg"-->
-            <!--                   :src="cropImg"-->
-            <!--                   alt="Cropped Image"-->
-            <!--               />-->
-            <!--               <div v-else class="crop-placeholder" />-->
-            <!--            </div>-->
-         </section>
-      </div>
-
-
-   </div>
+        <!--            <p>Cropped Image</p>-->
+        <!--            <div class="cropped-image">-->
+        <!--               <img-->
+        <!--                   v-if="cropImg"-->
+        <!--                   :src="cropImg"-->
+        <!--                   alt="Cropped Image"-->
+        <!--               />-->
+        <!--               <div v-else class="crop-placeholder" />-->
+        <!--            </div>-->
+      </section>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -472,22 +492,6 @@ export default {
 
       };
    },
-
-   watch:{
-      show(newVal){
-         if (newVal !== this.show2){
-            this.show2 = newVal;
-         }
-
-      },
-
-      show2(newVal){
-        if (newVal !== this.show){
-           this.$emit('update:show', newVal);
-        }
-
-     }
-   },
    computed: {
       // preview_style(){
       //    return 'height: calc('
@@ -520,6 +524,22 @@ export default {
 
 
 
+   },
+
+   watch:{
+      show(newVal){
+         if (newVal !== this.show2){
+            this.show2 = newVal;
+         }
+
+      },
+
+      show2(newVal){
+        if (newVal !== this.show){
+           this.$emit('update:show', newVal);
+        }
+
+     }
    },
    methods: {
       cropImage() {

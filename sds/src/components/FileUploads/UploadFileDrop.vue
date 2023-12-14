@@ -1,24 +1,26 @@
 <template>
-   <div class="pa-5">
+  <div class="pa-5">
+    <div style="display: flex; justify-content: center">
+      <div
+        ref="fileDrop"
+        class="file-drop"
+        :class="fileDropClass"
+      >
+        <div
+          v-if="file === null"
+          style="text-align: center"
+        >
+          Drag Image Here To Select
+        </div>
 
-
-      <div style="display: flex; justify-content: center">
-         <div ref="fileDrop" class="file-drop" :class="fileDropClass">
-            <div v-if="file === null"
-                style="text-align: center">
-               Drag Image Here To Select
-            </div>
-
-            <img
-                v-else
-                ref="file_img"
-                class="image-preview"
-            >
-         </div>
+        <img
+          v-else
+          ref="file_img"
+          class="image-preview"
+        >
       </div>
-
-
-   </div>
+    </div>
+  </div>
 </template>
 
 <script>

@@ -1,62 +1,83 @@
 <template>
-	<v-dialog v-model="value2" max-width="500" persistent>
-		<v-card class="pa-3">
-			<div
-				class="dialog-heading"
-				style="
+  <v-dialog
+    v-model="value2"
+    max-width="500"
+    persistent
+  >
+    <v-card class="pa-3">
+      <div
+        class="dialog-heading"
+        style="
 					display: flex;
 					color: var(--color-headline);
 					font-size: 18pt;
 				"
-			>
-				Flag this profile
+      >
+        Flag this profile
 
-				<v-spacer />
-				<v-btn icon @click="value2 = false">
-					<v-icon>close</v-icon>
-				</v-btn>
-			</div>
+        <v-spacer />
+        <v-btn
+          icon
+          @click="value2 = false"
+        >
+          <v-icon>close</v-icon>
+        </v-btn>
+      </div>
 
-			<my-form ref="form" v-if="loading !== false">
-				Thank you for helping keep our resources up-to-date! Please fill
-				out this form to flag this listing.
+      <my-form
+        v-if="loading !== false"
+        ref="form"
+      >
+        Thank you for helping keep our resources up-to-date! Please fill
+        out this form to flag this listing.
 
-				<v-row dense class="ma-0">
-					<v-col cols="12">
-						<my-text-input
-							label="Your Name"
-							v-model="flag_info.name"
-							:rules="[isRequired]"
-						/>
-					</v-col>
+        <v-row
+          dense
+          class="ma-0"
+        >
+          <v-col cols="12">
+            <my-text-input
+              v-model="flag_info.name"
+              label="Your Name"
+              :rules="[isRequired]"
+            />
+          </v-col>
 
-					<v-col cols="12">
-						<my-text-input
-							label="Your Email"
-							v-model="flag_info.email"
-							:rules="[isRequired, isEmail]"
-						/>
-					</v-col>
-				</v-row>
+          <v-col cols="12">
+            <my-text-input
+              v-model="flag_info.email"
+              label="Your Email"
+              :rules="[isRequired, isEmail]"
+            />
+          </v-col>
+        </v-row>
 
-				<my-text-area
-					class="mt-2"
-					v-model="flag_info.message"
-					label="Tell us why you're flagging this profile"
-					:rules="[isRequired]"
-				/>
+        <my-text-area
+          v-model="flag_info.message"
+          class="mt-2"
+          label="Tell us why you're flagging this profile"
+          :rules="[isRequired]"
+        />
 
-				<div class="dialog-heading mt-3" style="display: flex">
-					<v-spacer />
-					<v-btn @click="submit_flag_request" :loading="loading">
-						Flag it!
-					</v-btn>
-				</div>
-			</my-form>
+        <div
+          class="dialog-heading mt-3"
+          style="display: flex"
+        >
+          <v-spacer />
+          <v-btn
+            :loading="loading"
+            @click="submit_flag_request"
+          >
+            Flag it!
+          </v-btn>
+        </div>
+      </my-form>
 
-			<div v-else>Your flag request was successfully submitted.</div>
-		</v-card>
-	</v-dialog>
+      <div v-else>
+        Your flag request was successfully submitted.
+      </div>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>
@@ -66,8 +87,8 @@ import data_getters from '@/mixins/data_getters';
 
 export default {
 	name: 'FlagUserDialog',
-	mixins: [validation, data_getters],
 	components: { MyTextArea },
+	mixins: [validation, data_getters],
 	props: {
 		value: Boolean,
 

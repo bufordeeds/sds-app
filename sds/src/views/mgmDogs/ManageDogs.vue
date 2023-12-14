@@ -1,275 +1,301 @@
 <template>
-   <div >
-
-      <v-dialog v-model="show_add_dog" max-width="500px" persistent >
-         <add-dog
-             v-if="show_add_dog"
-             :dog="edit_dog"
-             :user_id="edit_dog_user_id"
-             @close="show_add_dog=false"
-             @update="update_dogs"
-             @update-image="update_dogs(false)"
-
-         ></add-dog>
-      </v-dialog>
-
-
-
-      <v-dialog v-model="show_add_trainer" max-width="500px" persistent>
-         <add-user
-             v-if="show_add_trainer"
-             :delegate="null"
-             :dog="edit_dog"
-             :type="add_user_type"
-             @close="show_add_trainer=false"
-             @added="show_add_trainer=false; update_dogs()"
-             invite-type="trainer"
-         ></add-user>
-      </v-dialog>
+  <div>
+    <v-dialog
+      v-model="show_add_dog"
+      max-width="500px"
+      persistent
+    >
+      <add-dog
+        v-if="show_add_dog"
+        :dog="edit_dog"
+        :user_id="edit_dog_user_id"
+        @close="show_add_dog=false"
+        @update="update_dogs"
+        @update-image="update_dogs(false)"
+      />
+    </v-dialog>
 
 
-      <v-dialog v-model="show_add_user" max-width="500px" persistent >
-         <add-client
-             v-if="show_add_user"
-             :delegate="null"
-             :dog="edit_dog"
-             :type="add_user_type"
-             @close="show_add_user=false"
-             @added="show_add_user=false; update_dogs()"
-         ></add-client>
-      </v-dialog>
+
+    <v-dialog
+      v-model="show_add_trainer"
+      max-width="500px"
+      persistent
+    >
+      <add-user
+        v-if="show_add_trainer"
+        :delegate="null"
+        :dog="edit_dog"
+        :type="add_user_type"
+        invite-type="trainer"
+        @close="show_add_trainer=false"
+        @added="show_add_trainer=false; update_dogs()"
+      />
+    </v-dialog>
 
 
-      <v-dialog v-model="show_transfer_dog" max-width="500px" persistent>
-         <transfer-dog
-             v-if="show_transfer_dog"
-             :dog="edit_dog"
-             type="HANDLER"
-             @close="show_transfer_dog=false"
-             @added="show_transfer_dog=false; update_dogs()"
-             invite-type="trainer"
-         ></transfer-dog>
-      </v-dialog>
+    <v-dialog
+      v-model="show_add_user"
+      max-width="500px"
+      persistent
+    >
+      <add-client
+        v-if="show_add_user"
+        :delegate="null"
+        :dog="edit_dog"
+        :type="add_user_type"
+        @close="show_add_user=false"
+        @added="show_add_user=false; update_dogs()"
+      />
+    </v-dialog>
 
 
-      <v-dialog v-model="show_add_kit" :fullscreen="$vuetify.breakpoint.width<650">
-         <div style="background-color: white; padding: 10px" >
-            <add-kit-index
-                v-if="show_add_kit"
-                :dog="dog_cart"
-                @close="show_add_kit=false"
-                simple
-                :reorder="isReorder"
+    <v-dialog
+      v-model="show_transfer_dog"
+      max-width="500px"
+      persistent
+    >
+      <transfer-dog
+        v-if="show_transfer_dog"
+        :dog="edit_dog"
+        type="HANDLER"
+        invite-type="trainer"
+        @close="show_transfer_dog=false"
+        @added="show_transfer_dog=false; update_dogs()"
+      />
+    </v-dialog>
+
+
+    <v-dialog
+      v-model="show_add_kit"
+      :fullscreen="$vuetify.breakpoint.width<650"
+    >
+      <div style="background-color: white; padding: 10px">
+        <add-kit-index
+          v-if="show_add_kit"
+          :dog="dog_cart"
+          simple
+          :reorder="isReorder"
+          @close="show_add_kit=false"
+        />
+      </div>
+    </v-dialog>
+
+
+
+
+
+
+    <!----------------search row ---------------------------------------------------------------------->
+
+    <div class="page-title-app">
+      <span v-if="!isTrainer">
+        Manage Service Dogs
+      </span>
+      <span v-if="isTrainer">
+        Manage Clients & Dogs
+      </span>
+    </div>
+
+    <div class="content-container-bg">
+      <my-form
+        v-if="isTrainer"
+        style="width: 90%"
+      >
+        <v-row
+          dense
+          class="ma-0"
+        >
+          <v-col
+            cols="12"
+            md="7"
+          >
+            <my-text-input
+              v-model="search_txt"
+              label="Search"
+              :append-icon="search_txt ? 'close': null"
+              @click:append="search_txt=null; get_my_dogs()"
+              @keyup-enter="search_dogs"
             />
-         </div>
+          </v-col>
 
-      </v-dialog>
-
-
-
-
-
-
-      <!----------------search row ---------------------------------------------------------------------->
-
-      <div class="page-title-app">
-         <span v-if="!isTrainer">
-         Manage Service Dogs
-         </span>
-         <span v-if="isTrainer">
-         Manage Clients & Dogs
-         </span>
+          <v-col md="3">
+            <my-drop-down
+              v-model="search_field"
+              label="Search Field"
+              :list="searchByList"
+              item-text="txt"
+              item-value="val"
+            />
+          </v-col>
 
 
+
+          <v-btn
+            style="margin-top: 23px"
+            @click="search_dogs"
+          >
+            Search
+          </v-btn>
+        </v-row>
+      </my-form>
+
+
+
+
+
+
+
+
+
+      <!----------------main tables ----------------------------------------------------------------------------->
+
+      <div
+        v-if="isTrainer"
+        class="mgm-subtitle"
+        style="width: 100%;"
+      >
+        My Dogs
       </div>
 
-      <div class="content-container-bg" >
 
-         <my-form style="width: 90%" v-if="isTrainer">
-            <v-row dense class="ma-0">
+      <dog-table
+        :user="user"
+        :dogs="my_dogs"
+        :expanded="expanded_user"
+        :show-add-dogs="true"
+        :is-handler="!isTrainer"
 
-               <v-col cols="12" md="7">
-                  <my-text-input
-                      label="Search"
-                      v-model="search_txt"
-                      :append-icon="search_txt ? 'close': null"
-                      @click:append="search_txt=null; get_my_dogs()"
-                      @keyup-enter="search_dogs"
-                  />
-               </v-col>
+        :show-transfer="true"
+        my-dogs
+        @show-add-dog="add_dog(user, null)"
+        @show-edit-dog="add_dog(user, $event.dog)"
 
-               <v-col  md="3" >
-                  <my-drop-down
-                      v-model="search_field"
-                      label="Search Field"
-                      :list="searchByList"
-                      item-text="txt"
-                      item-value="val"
-                  />
-               </v-col>
+        @show-add-trainer="add_user('TRAINER', $event.dog)"
+        @show-add-handler="add_user('HANDLER', $event.dog)"
 
+        @show-add-dog-cart="add_to_cart( $event.dog, $event.isReorder)"
 
+        @show-transfer-dog="transfer_dog($event.dog)"
+      />
 
-               <v-btn style="margin-top: 23px" @click="search_dogs">
-                  Search
-               </v-btn>
 
 
-            </v-row>
 
-         </my-form>
 
+      <template v-if="isTrainer">
+        <div class="mgm-subtitle">
+          My Clients
+        </div>
 
+        <div
+          style="display: flex; justify-content: flex-end; width: 100%; "
+          :style="isMobile?'margin-top: 10px': 'margin-top: -30px'"
+        >
+          <v-btn
+            small
+            @click="show_add_user=true"
+          >
+            Add Client
+          </v-btn>
+        </div>
 
 
+        <!--:showAddDogs="client.handler_id_FR.account_status.date_expiry != null"-->
+        <template v-if="my_clients.length>0">
+          <dog-table
+            v-for="(client, ix) in my_clients"
 
+            :key="client.handler_id"
+            class="mt-2"
 
+            :user="client.handler_id_FR"
+            :dogs="client.dogs"
+            :expanded.sync="my_clients[ix].loc_expanded"
+            :is-handler="isTrainer"
 
+            @show-add-dog="add_dog(user, null)"
+            @show-edit-dog="add_dog(user, $event.dog)"
 
+            @show-transfer-dog="transfer_dog($event.dog)"
+            @show-add-dog-cart="add_to_cart( $event.dog)"
+          />
+        </template>
 
-         <!----------------main tables ----------------------------------------------------------------------------->
+        <div
+          v-else
+          class="pa-3 mt-3"
+          style="background-color: white; width: 100%; padding: 10px;border-radius: 5px;border: 1px solid rgb(210, 209, 209); text-align: center"
+        >
+          You have no clients yet
+        </div>
+      </template>
 
-         <div class="mgm-subtitle" style="width: 100%;" v-if="isTrainer">
-            My Dogs
-         </div>
 
 
-         <dog-table
-             :user="user"
-             :dogs="my_dogs"
-             :expanded="expanded_user"
-             :show-add-dogs="true"
-             :is-handler="!isTrainer"
 
-             :show-transfer="true"
-             my-dogs
-             @show-add-dog="add_dog(user, null)"
-             @show-edit-dog="add_dog(user, $event.dog)"
 
-             @show-add-trainer="add_user('TRAINER', $event.dog)"
-             @show-add-handler="add_user('HANDLER', $event.dog)"
 
-             @show-add-dog-cart="add_to_cart( $event.dog, $event.isReorder)"
 
-             @show-transfer-dog="transfer_dog($event.dog)"
-         ></dog-table>
 
 
+      <!--         <div class="mgm-subtitle">-->
+      <!--            Dogs I've Trained-->
+      <!--         </div>-->
 
 
+      <!--         <user-reg-->
+      <!--             :user="user"-->
+      <!--             :dogs="my_dogs_train"-->
+      <!--             :expanded="expanded_user"-->
 
-         <template v-if="isTrainer">
-            <div class="mgm-subtitle">
-               My Clients
-            </div>
+      <!--             @show-add-dog="add_dog(user, null)"-->
+      <!--             @show-edit-dog="add_dog(user, $event.dog)"-->
 
-            <div style="display: flex; justify-content: flex-end; width: 100%; "
-                 :style="isMobile?'margin-top: 10px': 'margin-top: -30px'"
-            >
-               <v-btn small @click="show_add_user=true">
-                  Add Client
-               </v-btn>
+      <!--             @show-add-trainer="add_user('TRAINER', $event.dog)"-->
+      <!--             @show-add-handler="add_user('HANDLER', $event.dog)"-->
+      <!--         ></user-reg>-->
 
-            </div>
 
 
-            <!--:showAddDogs="client.handler_id_FR.account_status.date_expiry != null"-->
-            <template v-if="my_clients.length>0">
-               <dog-table
-                   class="mt-2"
+      <!--         <div class="mgm-subtitle">-->
+      <!--            Dogs I'm Handler For-->
+      <!--         </div>-->
 
-                   v-for="(client, ix) in my_clients"
-                   :key="client.handler_id"
 
-                   :user="client.handler_id_FR"
-                   :dogs="client.dogs"
-                   :expanded.sync="my_clients[ix].loc_expanded"
-                   :is-handler="isTrainer"
+      <!--         <user-reg-->
+      <!--             :user="user"-->
+      <!--             :dogs="my_dogs_handle"-->
+      <!--             :expanded="expanded_user"-->
 
-                   @show-add-dog="add_dog(user, null)"
-                   @show-edit-dog="add_dog(user, $event.dog)"
+      <!--             @show-add-dog="add_dog(user, null)"-->
+      <!--             @show-edit-dog="add_dog(user, $event.dog)"-->
 
-                   @show-transfer-dog="transfer_dog($event.dog)"
-                   @show-add-dog-cart="add_to_cart( $event.dog)"
-               ></dog-table>
-            </template>
+      <!--             @show-add-trainer="add_user('TRAINER', $event.dog)"-->
+      <!--             @show-add-handler="add_user('HANDLER', $event.dog)"-->
+      <!--         ></user-reg>-->
 
-            <div v-else class="pa-3 mt-3"
-                 style="background-color: white; width: 100%; padding: 10px;border-radius: 5px;border: 1px solid rgb(210, 209, 209); text-align: center"
-            >
-               You have no clients yet
-            </div>
 
-         </template>
 
 
+      <!--         <div class="mgm-subtitle">-->
+      <!--            My Delegated Accounts-->
+      <!--         </div>-->
 
 
 
-
-
-
-
-<!--         <div class="mgm-subtitle">-->
-<!--            Dogs I've Trained-->
-<!--         </div>-->
-
-
-<!--         <user-reg-->
-<!--             :user="user"-->
-<!--             :dogs="my_dogs_train"-->
-<!--             :expanded="expanded_user"-->
-
-<!--             @show-add-dog="add_dog(user, null)"-->
-<!--             @show-edit-dog="add_dog(user, $event.dog)"-->
-
-<!--             @show-add-trainer="add_user('TRAINER', $event.dog)"-->
-<!--             @show-add-handler="add_user('HANDLER', $event.dog)"-->
-<!--         ></user-reg>-->
-
-
-
-<!--         <div class="mgm-subtitle">-->
-<!--            Dogs I'm Handler For-->
-<!--         </div>-->
-
-
-<!--         <user-reg-->
-<!--             :user="user"-->
-<!--             :dogs="my_dogs_handle"-->
-<!--             :expanded="expanded_user"-->
-
-<!--             @show-add-dog="add_dog(user, null)"-->
-<!--             @show-edit-dog="add_dog(user, $event.dog)"-->
-
-<!--             @show-add-trainer="add_user('TRAINER', $event.dog)"-->
-<!--             @show-add-handler="add_user('HANDLER', $event.dog)"-->
-<!--         ></user-reg>-->
-
-
-
-
-<!--         <div class="mgm-subtitle">-->
-<!--            My Delegated Accounts-->
-<!--         </div>-->
-
-
-
-<!--         <user-reg-->
-<!--             class="mb-5"-->
-<!--             v-for="item in delegated_accounts"-->
-<!--             :key="item.user._id"-->
-<!--             :user="item.user"-->
-<!--             :dogs="item.dogs"-->
-<!--             :expanded="item.loc_expanded"-->
-<!--             @show-add-dog="add_dog(item.user, null)"-->
-<!--             @show-edit-dog="add_dog(item.user, $event.dog)"-->
-<!--         ></user-reg>-->
-
-
-      </div>
-
-   </div>
+      <!--         <user-reg-->
+      <!--             class="mb-5"-->
+      <!--             v-for="item in delegated_accounts"-->
+      <!--             :key="item.user._id"-->
+      <!--             :user="item.user"-->
+      <!--             :dogs="item.dogs"-->
+      <!--             :expanded="item.loc_expanded"-->
+      <!--             @show-add-dog="add_dog(item.user, null)"-->
+      <!--             @show-edit-dog="add_dog(item.user, $event.dog)"-->
+      <!--         ></user-reg>-->
+    </div>
+  </div>
 </template>
 
 <script>
@@ -339,6 +365,20 @@ export default {
       isMobile(){
          return this.$vuetify.breakpoint.width < 450;
       }
+   },
+
+
+   mounted(){
+      // console.log('debug')
+      this.$store.commit("set_show_side_nav", true);
+
+      this.get_profile();
+      this.get_my_dogs();
+      // this.get_delegated_accounts();
+   },
+
+   beforeDestroy() {
+      // this.$store.commit("set_show_side_nav", false);
    },
 
    methods:{
@@ -485,20 +525,6 @@ export default {
 
       },
 
-   },
-
-
-   mounted(){
-      // console.log('debug')
-      this.$store.commit("set_show_side_nav", true);
-
-      this.get_profile();
-      this.get_my_dogs();
-      // this.get_delegated_accounts();
-   },
-
-   beforeDestroy() {
-      // this.$store.commit("set_show_side_nav", false);
    }
 }
 </script>

@@ -1,50 +1,70 @@
 <template>
-   <div class="input-container" :style="input_container_style">
-      <div
-           class="label"
-           :style="label_style"
-           style="z-index: 0"
-           @click="set_focus"
+  <div
+    class="input-container"
+    :style="input_container_style"
+  >
+    <div
+      class="label"
+      :style="label_style"
+      style="z-index: 0"
+      @click="set_focus"
+    >
+      {{ label }}
+    </div>
+
+
+
+
+    <input
+      ref="input"
+      v-model="local_val"
+      :type="input_type"
+      :class="border_class"
+      :disabled="disabled"
+      :style="input_style"
+      @input="$emit('input', local_val)"
+      @change="$emit('change', local_val)"
+      @blur="$emit('blur')"
+      @keyup.enter="$emit('keyup-enter')"
+    >
+
+    <div
+      v-if="appendIcon2 !=null"
+      style="display:flex; justify-content: flex-end; width: 100%; position: absolute;z-index: 0"
+    >
+      <v-btn
+        icon
+        style="margin-top:-35px"
+        @click="onclick_append"
       >
-         {{label}}
-      </div>
+        <v-icon>
+          {{ appendIcon2 }}
+        </v-icon>
+      </v-btn>
+    </div>
 
 
 
-
-      <input
-          :type="input_type"
-          v-model="local_val"
-          @input="$emit('input', local_val)"
-          @change="$emit('change', local_val)"
-          :class="border_class" :disabled="disabled"
-          :style="input_style"
-          ref="input"
-          @blur="$emit('blur')"
-          @keyup.enter="$emit('keyup-enter')"
+    <div
+      v-if="error_msg !== null"
+      class="error-msg-container"
+    >
+      <svg
+        width="20"
+        height="10"
+        style="margin-left: 20px;"
       >
+        <polygon
+          points="10,0 0,10 20, 10"
+          style="fill:var(--color-input-error);"
+        />
+      </svg>
 
-      <div v-if="appendIcon2 !=null" style="display:flex; justify-content: flex-end; width: 100%; position: absolute;z-index: 0">
-         <v-btn icon style="margin-top:-35px" @click="onclick_append">
-            <v-icon
-            >{{appendIcon2}}</v-icon>
-         </v-btn>
-
-      </div>
-
-
-
-      <div class="error-msg-container" v-if="error_msg !== null">
-         <svg width="20" height="10" style="margin-left: 20px;">
-            <polygon points="10,0 0,10 20, 10" style="fill:var(--color-input-error);" />
-         </svg>
-
-         <span class="error-msg" >
-         {{error_msg}}
-         </span>
-
-      </div>
-   </div>
+      <span class="error-msg">
+        {{ error_msg }}
+      </span>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -54,6 +74,7 @@
 
    export default {
       name: "MyTextField",
+      inject: ['registerThisField', 'unRegisterField'],
 
       props:{
          value: {type: [String, Number], default: null},
@@ -76,7 +97,6 @@
 
 
       },
-      inject: ['registerThisField', 'unRegisterField'],
 
 
 
@@ -86,21 +106,6 @@
             val_fmt: '',
             error_msg: null,
          }
-      },
-
-      watch:{
-         value(newVal){
-
-            if (newVal !== this.local_val){
-               this.local_val = newVal;
-            }
-         },
-        local_val(){
-           this.validate();
-           // if (this.error_msg !== null){
-           //    this.validate();
-           // }
-        }
       },
 
       computed: {
@@ -187,6 +192,35 @@
 
       },
 
+      watch:{
+         value(newVal){
+
+            if (newVal !== this.local_val){
+               this.local_val = newVal;
+            }
+         },
+        local_val(){
+           this.validate();
+           // if (this.error_msg !== null){
+           //    this.validate();
+           // }
+        }
+      },
+
+
+      created(){
+         // console.log('debug', this)
+
+         if (this.registerThisField !=  null){
+            this.field_id = this.registerThisField(this);
+         }
+
+      },
+
+      beforeDestroy() {
+         this.unRegisterField(this.field_id);
+      },
+
       methods:{
 
          onclick_append(){
@@ -221,20 +255,6 @@
             // console.log( this.$refs)
             this.$refs.input.focus();
          }
-      },
-
-
-      created(){
-         // console.log('debug', this)
-
-         if (this.registerThisField !=  null){
-            this.field_id = this.registerThisField(this);
-         }
-
-      },
-
-      beforeDestroy() {
-         this.unRegisterField(this.field_id);
       }
 
    }
@@ -243,7 +263,7 @@
 
 <style scoped src="./input_styles.css"></style>
 
-<style scoped >
+<style scoped>
 
 
    /*.v-input{*/

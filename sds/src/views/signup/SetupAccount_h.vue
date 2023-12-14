@@ -1,147 +1,148 @@
 <template>
-   <div class="">
+  <div class="">
+    <div class="page-title">
+      Sign Up
+    </div>
 
-
-      <div class="page-title">
-         Sign Up
+    <div
+      class="content-container-bg "
+      style="position: relative; padding-top: 40px"
+    >
+      <!-------- stepper header ------------------------------------------------------------------------------------>
+      <div class="row-container">
+        <stepper :step="step" />
       </div>
 
-      <div class="content-container-bg " style="position: relative; padding-top: 40px" >
-
-         <!-------- stepper header ------------------------------------------------------------------------------------>
-         <div class="row-container">
-            <stepper :step="step"  />
-         </div>
 
 
-
-         <!-------- stepper container --------------------------------------------------------------------------------->
-         <div class="stepper-container">
-
-
-            <!-------- step 1 container --------------------------------------------------------->
-            <div v-if="step===1" style="display: flex; justify-content: center; align-items: center; ">
-               <select-acct-type
-                   @user-type-selected="acct_type=$event; step += 1"
-               ></select-acct-type>
-            </div>
-
-
-            <!-------- step 2 container --------------------------------------------------------->
-            <div v-if="step===2" style="display: flex; justify-content: center; align-items: center; ">
-               <signup
-                   v-if="verified_email == null"
-                   @email-verified="on_email_confirmed"
-                   :show-email-confirm="accountCreated"
-                   :acct-type="acct_type"
-               ></signup>
+      <!-------- stepper container --------------------------------------------------------------------------------->
+      <div class="stepper-container">
+        <!-------- step 1 container --------------------------------------------------------->
+        <div
+          v-if="step===1"
+          style="display: flex; justify-content: center; align-items: center; "
+        >
+          <select-acct-type
+            @user-type-selected="acct_type=$event; step += 1"
+          />
+        </div>
 
 
-               <div   v-else>
-                  <password-reset
-                      :email-fill="verified_email"
-                      heading="Email verified.  Please create password"
-                      pw-reset
-                      @pass-updated="step=3"
-                  >
-                     <template v-slot:heading>
-                        <div style="text-align: center; font-size: 18pt">
-                           Welcome Back!   <br>
-                           Please choose a password.
-                        </div>
-                     </template>
+        <!-------- step 2 container --------------------------------------------------------->
+        <div
+          v-if="step===2"
+          style="display: flex; justify-content: center; align-items: center; "
+        >
+          <signup
+            v-if="verified_email == null"
+            :show-email-confirm="accountCreated"
+            :acct-type="acct_type"
+            @email-verified="on_email_confirmed"
+          />
 
-                     <template v-slot:button-text>
-                        Continue
-                     </template>
-                  </password-reset>
-               </div>
 
-            </div>
+          <div v-else>
+            <password-reset
+              :email-fill="verified_email"
+              heading="Email verified.  Please create password"
+              pw-reset
+              @pass-updated="step=3"
+            >
+              <template #heading>
+                <div style="text-align: center; font-size: 18pt">
+                  Welcome Back!   <br>
+                  Please choose a password.
+                </div>
+              </template>
+
+              <template #button-text>
+                Continue
+              </template>
+            </password-reset>
+          </div>
+        </div>
 
 
 
 
 
 
-            <!-------- step 3 container --------------------------------------------------------->
-            <div v-if="step===3">
+        <!-------- step 3 container --------------------------------------------------------->
+        <div v-if="step===3">
+          <v-row>
+            <v-col align="center">
+              <div class="my-stepper-container">
+                <terms :agreed.sync="tc_agreed" />
+              </div>
+            </v-col>
+          </v-row>
 
-               <v-row >
-                  <v-col align="center" >
-                     <div class="my-stepper-container">
-                        <terms v-bind:agreed.sync="tc_agreed" ></terms>
-                     </div>
-
-                  </v-col>
-               </v-row>
-
-               <v-row class="ma-0" style="justify-content: center">
-
-                  <v-btn
-                      color="var(--color-primary)"
-                      @click="on_terms_agreed"
-                      :disabled="!tc_agreed"
-                  >
-                     Continue
-                  </v-btn>
-
-               </v-row>
-            </div>
-
-
-
-            <!-------- step 3 container --------------------------------------------------------->
-            <div v-if="step===4">
-               <v-row >
-                  <v-col align="center" >
-                     <div class="my-stepper-container">
-
-                        <handler-info
-                            v-if="isHandler"
-                            @user_updated="on_basic_info"
-                            :setup-mode="true"
-                        />
-
-                        <user-info
-                            v-else
-                            @user_updated="on_basic_info"
-                        />
-                     </div>
-
-                  </v-col>
-               </v-row>
-            </div>
-
-
-            <!-------- step 3 container --------------------------------------------------------->
-            <div v-if="step===5">
-               <v-row >
-                  <v-col align="center" style="margin-top: 50px">
-                     <div >
-                        <img v-if="step===5"
-                             src="../../assets/images/content/checkmark.gif" width="200px"/>
-                     </div>
-                     <div class="pt-5">
-                        Congratulations on Joining Service Dog Standards!
-                     </div>
-
-                     <div class="mt-8">
-                        <v-btn @click="nav_to_account">
-                           Go to my account
-                        </v-btn>
-                     </div>
+          <v-row
+            class="ma-0"
+            style="justify-content: center"
+          >
+            <v-btn
+              color="var(--color-primary)"
+              :disabled="!tc_agreed"
+              @click="on_terms_agreed"
+            >
+              Continue
+            </v-btn>
+          </v-row>
+        </div>
 
 
 
-                  </v-col>
-               </v-row>
-            </div>
+        <!-------- step 3 container --------------------------------------------------------->
+        <div v-if="step===4">
+          <v-row>
+            <v-col align="center">
+              <div class="my-stepper-container">
+                <handler-info
+                  v-if="isHandler"
+                  :setup-mode="true"
+                  @user_updated="on_basic_info"
+                />
+
+                <user-info
+                  v-else
+                  @user_updated="on_basic_info"
+                />
+              </div>
+            </v-col>
+          </v-row>
+        </div>
 
 
-         </div>
+        <!-------- step 3 container --------------------------------------------------------->
+        <div v-if="step===5">
+          <v-row>
+            <v-col
+              align="center"
+              style="margin-top: 50px"
+            >
+              <div>
+                <img
+                  v-if="step===5"
+                  src="../../assets/images/content/checkmark.gif"
+                  width="200px"
+                >
+              </div>
+              <div class="pt-5">
+                Congratulations on Joining Service Dog Standards!
+              </div>
+
+              <div class="mt-8">
+                <v-btn @click="nav_to_account">
+                  Go to my account
+                </v-btn>
+              </div>
+            </v-col>
+          </v-row>
+        </div>
       </div>
-   </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -169,10 +170,10 @@ import Stepper from "@/views/signup/Stepper";
 
 export default {
    name: "SetupAccount",
-   mixins: [data_getters],
    components: {Stepper, signup, terms, userInfo, selectAcctType,PasswordReset, handlerInfo
       // uploadImage, social, census, behaviors
    },
+   mixins: [data_getters],
    data() {
       return {
          step: 1,
@@ -189,6 +190,74 @@ export default {
 
          census_info: null,
       }
+   }, //methods
+
+
+   computed: {
+
+
+      accountCreated() {
+         console.log(this.$auth.authenticated)
+         if (this.$auth.authenticated) {
+            return true
+         } else {
+            return false;
+         }
+      },
+
+      isHandler(){
+         if (!this.$auth.authenticated){
+            return null
+         }
+         else{
+            return this.$auth.profile.acct_type === 'HANDLER';
+         }
+      },
+
+
+
+
+   },
+   created() {
+
+      if (this.$auth.isAuthenticated() && this.$auth.profile.acct_confirmed){
+         console.log('debug')
+         this.$router.push('/accountHome');
+
+      }
+
+      if (this.$auth.isAuthenticated() && !this.$auth.profile.acct_confirmed) {
+         let setup = this.$auth.profile.setup;
+         if (setup.confirmed_email) {
+            this.step = 3;
+         }
+         if (setup.confirmed_tc) {
+            this.step = 4;
+         }
+
+
+         if (setup.basic_info) {
+            this.step =5;
+         }
+
+         // if (setup.additional_info) {
+         //    this.step = 6;
+         // }
+
+         // if (setup.confirmed_bs) {
+         //    this.step =7;
+         // }
+
+      }
+
+      else{
+         if (this.$route.query.verified_email !=null){
+            this.step = 2;
+            this.verified_email = this.$route.query.verified_email;
+
+         }
+      }
+
    },
 
 
@@ -331,74 +400,6 @@ export default {
 
       },
 
-
-   }, //methods
-
-
-   computed: {
-
-
-      accountCreated() {
-         console.log(this.$auth.authenticated)
-         if (this.$auth.authenticated) {
-            return true
-         } else {
-            return false;
-         }
-      },
-
-      isHandler(){
-         if (!this.$auth.authenticated){
-            return null
-         }
-         else{
-            return this.$auth.profile.acct_type === 'HANDLER';
-         }
-      },
-
-
-
-
-   },
-   created() {
-
-      if (this.$auth.isAuthenticated() && this.$auth.profile.acct_confirmed){
-         console.log('debug')
-         this.$router.push('/accountHome');
-
-      }
-
-      if (this.$auth.isAuthenticated() && !this.$auth.profile.acct_confirmed) {
-         let setup = this.$auth.profile.setup;
-         if (setup.confirmed_email) {
-            this.step = 3;
-         }
-         if (setup.confirmed_tc) {
-            this.step = 4;
-         }
-
-
-         if (setup.basic_info) {
-            this.step =5;
-         }
-
-         // if (setup.additional_info) {
-         //    this.step = 6;
-         // }
-
-         // if (setup.confirmed_bs) {
-         //    this.step =7;
-         // }
-
-      }
-
-      else{
-         if (this.$route.query.verified_email !=null){
-            this.step = 2;
-            this.verified_email = this.$route.query.verified_email;
-
-         }
-      }
 
    }
 

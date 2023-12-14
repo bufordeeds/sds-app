@@ -1,14 +1,12 @@
 <template>
-   <div class="container">
-
-      <div v-if="['about', 'caption'].includes(section)">
-         <textarea
-             class="pa-2"
-             v-model="about"
-             style="background-color: white; width: 100%; min-height: 400px"
-         ></textarea>
-
-      </div>
+  <div class="container">
+    <div v-if="['about', 'caption'].includes(section)">
+      <textarea
+        v-model="about"
+        class="pa-2"
+        style="background-color: white; width: 100%; min-height: 400px"
+      />
+    </div>
 
 
 
@@ -17,71 +15,81 @@
 
 
 
-      <div v-if="['certifications', 'services', 'awards', 'breeds', 'groups', 'social'].includes(section)">
-
-         <my-form>
-            <draggable
-                v-model="list"
-                group="services"
-                @start="drag=true"
-                @end="drag=false"
-                handle=".drag_class_services"
+    <div v-if="['certifications', 'services', 'awards', 'breeds', 'groups', 'social'].includes(section)">
+      <my-form>
+        <draggable
+          v-model="list"
+          group="services"
+          handle=".drag_class_services"
+          @start="drag=true"
+          @end="drag=false"
+        >
+          <div
+            v-for="(item, ix) in list"
+            :key="ix"
+            style="display:flex; margin-bottom: 15px;"
+          >
+            <v-icon class="mt-5 mr-2 drag_class_services">
+              drag_indicator
+            </v-icon>
+            <div
+              v-if="section === 'social'"
+              style="display: flex; width: 100%"
             >
-               <div v-for="(item, ix) in list" :key="ix"
-                    style="display:flex; margin-bottom: 15px;"
-               >
-                  <v-icon class="mt-5 mr-2 drag_class_services">drag_indicator</v-icon>
-                  <div v-if="section === 'social'" style="display: flex; width: 100%">
-                     <sds-input
-                         style="width: 40%; "
-                         :label="'Network '+(ix+1)"
-                         v-model="list[ix].network"
-                     ></sds-input>
+              <sds-input
+                v-model="list[ix].network"
+                style="width: 40%; "
+                :label="'Network '+(ix+1)"
+              />
 
-                     <sds-input
-                         style="width: 60%; margin-left:5px"
-                         label="URL"
-                         v-model="list[ix].url"
-                     ></sds-input>
-                  </div>
-                  <sds-input
-                      v-else
-                      :label="section+ ' '+(ix+1)"
-                      v-model="list[ix]"
-                  ></sds-input>
-
-                  <div style="margin-top: 25px; margin-right: -5px; margin-left: 5px">
-                     <v-btn  icon small @click="list.splice(ix, 1)">
-                        <v-icon small>close</v-icon>
-                     </v-btn>
-                  </div>
-
-               </div>
-            </draggable>
-
-            <div style="display:flex">
-               <v-spacer></v-spacer>
-
-               <div style="margin-top: 20px; margin-right: -10px; margin-bottom: 25px">
-                  <v-btn text @click="add_item">
-                     Add New Item
-                     <i class="material-icons">add</i>
-                  </v-btn>
-               </div>
-
+              <sds-input
+                v-model="list[ix].url"
+                style="width: 60%; margin-left:5px"
+                label="URL"
+              />
             </div>
+            <sds-input
+              v-else
+              v-model="list[ix]"
+              :label="section+ ' '+(ix+1)"
+            />
+
+            <div style="margin-top: 25px; margin-right: -5px; margin-left: 5px">
+              <v-btn
+                icon
+                small
+                @click="list.splice(ix, 1)"
+              >
+                <v-icon small>
+                  close
+                </v-icon>
+              </v-btn>
+            </div>
+          </div>
+        </draggable>
+
+        <div style="display:flex">
+          <v-spacer />
+
+          <div style="margin-top: 20px; margin-right: -10px; margin-bottom: 25px">
+            <v-btn
+              text
+              @click="add_item"
+            >
+              Add New Item
+              <i class="material-icons">add</i>
+            </v-btn>
+          </div>
+        </div>
 
 
-<!--            <div v-for="(item, ix) in services"-->
-<!--            >-->
-<!--               <sds-input-->
-<!--               :label="'Training Service '+(ix+1)"></sds-input>-->
-<!--            </div>-->
-         </my-form>
-
-
-
-      </div>
+        <!--            <div v-for="(item, ix) in services"-->
+        <!--            >-->
+        <!--               <sds-input-->
+        <!--               :label="'Training Service '+(ix+1)"></sds-input>-->
+        <!--            </div>-->
+      </my-form>
+    </div>
 
 
 
@@ -93,13 +101,18 @@
 
 
 
-      <v-row class="ma-0 pt-2">
-<!--         <v-btn @click="$emit('close')">Cancel</v-btn>-->
-         <v-spacer></v-spacer>
-         <v-btn color="var(--color-btn)" class="white--text" @click="save_data">
-            Save</v-btn>
-      </v-row>
-   </div>
+    <v-row class="ma-0 pt-2">
+      <!--         <v-btn @click="$emit('close')">Cancel</v-btn>-->
+      <v-spacer />
+      <v-btn
+        color="var(--color-btn)"
+        class="white--text"
+        @click="save_data"
+      >
+        Save
+      </v-btn>
+    </v-row>
+  </div>
 </template>
 
 <script>
@@ -115,8 +128,8 @@ import draggable from 'vuedraggable'
 
 export default {
    name: "EditProfileSection",
-   mixins: [data_getters],
    components: {sdsInput, myForm , uploadImage, status, draggable},
+   mixins: [data_getters],
    props: {
       section: String, // about|services|certs|awards|groups|social
    },
@@ -133,6 +146,10 @@ export default {
 
          drag: false,
       }
+   },
+
+   created(){
+      this.get_profile_data();
    },
 
    methods:{
@@ -344,10 +361,6 @@ export default {
             throw e;
          }
       }
-   },
-
-   created(){
-      this.get_profile_data();
    }
 
 }

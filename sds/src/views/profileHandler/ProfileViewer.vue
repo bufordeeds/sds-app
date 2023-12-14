@@ -1,9 +1,9 @@
 <template>
-   <div>
-<!--      <user-profile/>-->
+  <div>
+    <!--      <user-profile/>-->
 
-     <team-profile></team-profile>
-   </div>
+    <team-profile />
+  </div>
 </template>
 
 <script>
@@ -18,8 +18,8 @@ import TeamProfile from "@/views/profileHandler/TeamProfile";
 
 export default {
    name: "ProfileViewer",
-   mixins: [data_getters],
    components: {TeamProfile},
+   mixins: [data_getters],
    props: {
       user_id: String,
 
@@ -28,6 +28,10 @@ export default {
       return {
          user: null,
       }
+   },
+
+   created(){
+      this.get_profile()
    },
 
    methods:{
@@ -55,10 +59,6 @@ export default {
             throw e;
          }
       },
-   },
-
-   created(){
-      this.get_profile()
    }
 }
 </script>

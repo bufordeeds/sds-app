@@ -1,140 +1,152 @@
 <template>
-
-      <v-dialog v-model="value2" max-width="400px" content-class="my-dialog-customizations"  persistent>
-         <v-card class="pa-3" style="">
-
-            <div class="dialog-heading" style="display: flex">
-               Advanced Search
-               <v-spacer/>
-               <v-btn icon @click="value2=false" style="margin-top: -10px; margin-right: -5px">
-                  <v-icon>close</v-icon>
-               </v-btn>
-            </div>
-
-
-
-            <div style="display: flex; margin-top: 20px">
-               <my-date-picker
-
-                   label="Date From"
-                   readonly
-                   v-model="date_start"
-                   clearable
-
-                  />
-               <my-date-picker
-                   class="ml-2"
-                   label="Date to"
-                   readonly
-                   v-model="date_end"
-                   clearable
-               />
-            </div>
-
-
-            <div>
-               <my-form>
-                  <my-text-input
-                      label="First Name"
-                      v-model="first_name"
-                      @keyup-enter="search"
-                      clearable
-                  />
-                  <my-text-input
-                      label="Last Name"
-                      v-model="last_name"
-                      @keyup-enter="search"
-                      clearable
-                  />
-
-                  <!--<my-text-input-->
-                  <!--    label="Dog's Name"-->
-                  <!--    v-model="dog_name"-->
-                  <!--    @keyup-enter="search"-->
-                  <!--    clearable-->
-                  <!--/>-->
-
-                  <!--<my-text-input-->
-                  <!--    label="SDS Number"-->
-                  <!--    v-model="sds_number"-->
-                  <!--    @keyup-enter="search"-->
-                  <!--    clearable-->
-                  <!--/>-->
-
-                  <my-drop-down
-                      label="Status"
-                      v-model="status"
-                      :list="status_list"
-                      item-text="txt"
-                      item-value="val"
-                      clearable
-                  />
-
-               </my-form>
-
-
-               <div v-if="err_msg" style="color: var(--color-input-error); text-align: center" class="mt-3">
-                  {{err_msg}}
-               </div>
-               <v-row class="ma-0" style="padding: 10px 0px;">
-                  <v-spacer/>
-
-                  <v-btn @click="search">Search</v-btn>
-               </v-row>
-            </div>
+  <v-dialog
+    v-model="value2"
+    max-width="400px"
+    content-class="my-dialog-customizations"
+    persistent
+  >
+    <v-card
+      class="pa-3"
+      style=""
+    >
+      <div
+        class="dialog-heading"
+        style="display: flex"
+      >
+        Advanced Search
+        <v-spacer />
+        <v-btn
+          icon
+          style="margin-top: -10px; margin-right: -5px"
+          @click="value2=false"
+        >
+          <v-icon>close</v-icon>
+        </v-btn>
+      </div>
 
 
 
+      <div style="display: flex; margin-top: 20px">
+        <my-date-picker
 
-<!--            <div class="dialog-heading"  v-if="show_results" >-->
-<!--               Search Results-->
-<!--            </div>-->
+          v-model="date_start"
+          label="Date From"
+          readonly
+          clearable
+        />
+        <my-date-picker
+          v-model="date_end"
+          class="ml-2"
+          label="Date to"
+          readonly
+          clearable
+        />
+      </div>
 
 
+      <div>
+        <my-form>
+          <my-text-input
+            v-model="first_name"
+            label="First Name"
+            clearable
+            @keyup-enter="search"
+          />
+          <my-text-input
+            v-model="last_name"
+            label="Last Name"
+            clearable
+            @keyup-enter="search"
+          />
 
-<!--            <div v-if="show_results" style="max-height: 50vh; overflow-y: auto" >-->
+          <!--<my-text-input-->
+          <!--    label="Dog's Name"-->
+          <!--    v-model="dog_name"-->
+          <!--    @keyup-enter="search"-->
+          <!--    clearable-->
+          <!--/>-->
 
-<!--               <div v-if="teams.length === 0" style="text-align: center; margin-top: 10px">-->
-<!--                  No Teams found-->
-<!--               </div>-->
+          <!--<my-text-input-->
+          <!--    label="SDS Number"-->
+          <!--    v-model="sds_number"-->
+          <!--    @keyup-enter="search"-->
+          <!--    clearable-->
+          <!--/>-->
 
-<!--               <div-->
-<!--                   v-for="item in teams" :key="item._id"-->
-<!--                   style="border: 1px solid #d7d7d7;"-->
-<!--                   class="pa-2 mt-2"-->
-<!--               >-->
-<!--                  <a style="display: flex; text-decoration: none; color: inherit"-->
-<!--                     :href="'/team/'+item.dog_num"-->
-<!--                       target="_blank"-->
-<!--                  >-->
-<!--                     <div style="display: flex; flex-direction: column; align-items: center">-->
-<!--                        <avatar-->
-<!--                            profile-type="user"-->
-<!--                            :profile="item.handler_id_FR"-->
-<!--                            image-only-->
-<!--                            size="50"-->
-<!--                        />-->
-<!--                        {{get_name_user(item.handler_id_FR)}}-->
-<!--                     </div>-->
+          <my-drop-down
+            v-model="status"
+            label="Status"
+            :list="status_list"
+            item-text="txt"
+            item-value="val"
+            clearable
+          />
+        </my-form>
 
-<!--                     <div style="display: flex; flex-direction: column; align-items: center">-->
-<!--                        <avatar profile-type="dog" :profile="item" image-only size="50"/>-->
-<!--                        {{item.name}}-->
-<!--                     </div>-->
 
-<!--                  </a>-->
-<!--               </div>-->
-<!--            </div>-->
+        <div
+          v-if="err_msg"
+          style="color: var(--color-input-error); text-align: center"
+          class="mt-3"
+        >
+          {{ err_msg }}
+        </div>
+        <v-row
+          class="ma-0"
+          style="padding: 10px 0px;"
+        >
+          <v-spacer />
 
-         </v-card>
-      </v-dialog>
+          <v-btn @click="search">
+            Search
+          </v-btn>
+        </v-row>
+      </div>
 
 
 
 
+      <!--            <div class="dialog-heading"  v-if="show_results" >-->
+      <!--               Search Results-->
+      <!--            </div>-->
 
 
 
+      <!--            <div v-if="show_results" style="max-height: 50vh; overflow-y: auto" >-->
+
+      <!--               <div v-if="teams.length === 0" style="text-align: center; margin-top: 10px">-->
+      <!--                  No Teams found-->
+      <!--               </div>-->
+
+      <!--               <div-->
+      <!--                   v-for="item in teams" :key="item._id"-->
+      <!--                   style="border: 1px solid #d7d7d7;"-->
+      <!--                   class="pa-2 mt-2"-->
+      <!--               >-->
+      <!--                  <a style="display: flex; text-decoration: none; color: inherit"-->
+      <!--                     :href="'/team/'+item.dog_num"-->
+      <!--                       target="_blank"-->
+      <!--                  >-->
+      <!--                     <div style="display: flex; flex-direction: column; align-items: center">-->
+      <!--                        <avatar-->
+      <!--                            profile-type="user"-->
+      <!--                            :profile="item.handler_id_FR"-->
+      <!--                            image-only-->
+      <!--                            size="50"-->
+      <!--                        />-->
+      <!--                        {{get_name_user(item.handler_id_FR)}}-->
+      <!--                     </div>-->
+
+      <!--                     <div style="display: flex; flex-direction: column; align-items: center">-->
+      <!--                        <avatar profile-type="dog" :profile="item" image-only size="50"/>-->
+      <!--                        {{item.name}}-->
+      <!--                     </div>-->
+
+      <!--                  </a>-->
+      <!--               </div>-->
+      <!--            </div>-->
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>

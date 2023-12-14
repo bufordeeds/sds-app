@@ -1,16 +1,18 @@
 <template>
-<div id="movingwaves">
+  <div id="movingwaves">
+    <svg
+      width="600"
+      height="150"
+    >
+      <!--    <g>-->
+      <!--      <path transform = "translate(0, 0)" />-->
+      <!--    </g>-->
 
-  <svg width = "600" height = "150" >
-<!--    <g>-->
-<!--      <path transform = "translate(0, 0)" />-->
-<!--    </g>-->
-
-<!--    <g>-->
-<!--      <path transform = "translate(0, 0)" />-->
-<!--    </g>-->
-  </svg>
-</div>
+      <!--    <g>-->
+      <!--      <path transform = "translate(0, 0)" />-->
+      <!--    </g>-->
+    </svg>
+  </div>
 </template>
 
 <script>
@@ -27,6 +29,24 @@ export default {
       paths1:[],
       t1: []
     }
+
+  },
+
+
+  mounted(){
+    let n = 100;
+    let pi_mul = 6.0; //the x range will be this times pi.
+    let mul_vals = d3.interpolate(1, 5);
+    // console.log(mul_vals)
+
+    this.gen_graph(n, mul_vals(this.t));
+    // this.animate_line()
+    //
+    // setInterval(() =>{
+    //   this.animate_line();
+    //   console.log('i ran')
+    //   }, 1500);
+
 
   },
 
@@ -267,29 +287,11 @@ export default {
 
 
 
-  },
-
-
-  mounted(){
-    let n = 100;
-    let pi_mul = 6.0; //the x range will be this times pi.
-    let mul_vals = d3.interpolate(1, 5);
-    // console.log(mul_vals)
-
-    this.gen_graph(n, mul_vals(this.t));
-    // this.animate_line()
-    //
-    // setInterval(() =>{
-    //   this.animate_line();
-    //   console.log('i ran')
-    //   }, 1500);
-
-
   }
 }
 </script>
 
-<style >
+<style>
 .line {
   fill: none;
   stroke: green;

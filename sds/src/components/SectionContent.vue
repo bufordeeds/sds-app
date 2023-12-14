@@ -1,24 +1,36 @@
 <template>
-  <div class="section-container" >
-
-
-    <div class="heading-container" v-if="show_side_headings">
-             <span class="side-headings" >
-            {{title}}
-          </span>
+  <div class="section-container">
+    <div
+      v-if="show_side_headings"
+      class="heading-container"
+    >
+      <span class="side-headings">
+        {{ title }}
+      </span>
     </div>
 
-    <div v-else :class="get_no_side_class"></div>
+    <div
+      v-else
+      :class="get_no_side_class"
+    />
 
-    <div class="content-container " :class="get_no_margin_class">
-
-      <v-container fluid style="max-width: 1200px">
-        <div v-if="!show_side_headings" class="top-headings display-1"  >
-          {{title}}
+    <div
+      class="content-container "
+      :class="get_no_margin_class"
+    >
+      <v-container
+        fluid
+        style="max-width: 1200px"
+      >
+        <div
+          v-if="!show_side_headings"
+          class="top-headings display-1"
+        >
+          {{ title }}
         </div>
-        <v-row  >
+        <v-row>
           <v-col>
-            <slot></slot>
+            <slot />
           </v-col>
         </v-row>
       </v-container>

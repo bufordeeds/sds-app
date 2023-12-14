@@ -1,9 +1,10 @@
 <template>
   <div>
-    <div class="page-title" style="text-align: center">
-
+    <div
+      class="page-title"
+      style="text-align: center"
+    >
       Privacy Policy
-
     </div>
 
     <div class="content-container-bg">
@@ -22,9 +23,9 @@
         </p>
 
 
-<!--        <div class="heading">-->
-<!--          Online Privacy Standards-->
-<!--        </div>-->
+        <!--        <div class="heading">-->
+        <!--          Online Privacy Standards-->
+        <!--        </div>-->
 
 
         <div class="heading">
@@ -70,7 +71,7 @@
             us via e-mail and through the user administration module in the Control Panel portion of
             servicedogstandards.org.
           </li>
-          <li></li>
+          <li />
         </ul>
 
 
@@ -128,14 +129,9 @@
           Approved third parties may also set cookies when you interact with Service Dog Standards’ services. Third parties include search engines, providers of measurement and analytics services, social media networks and more. Third parties use cookies in the process of delivering content relevant to your interests, to measure effectiveness and to perform services on behalf of Service Dog Standards.
           You can manage browser cookies through your browser settings. The 'Help' feature on most browsers will tell you how to prevent your browser from accepting new cookies, how to have the browser notify you when you receive a new cookie, how to block cookies, and when cookies will expire. If you block all cookies on your browser, neither we nor third parties nor any website on the Internet will transfer cookies to your browser. If you do this, however, you may have to manually adjust some preferences every time you visit a site and some features and services may not work.
         </p>
-
       </div>
-
-
-
     </div>
   </div>
-
 </template>
 
 <script>

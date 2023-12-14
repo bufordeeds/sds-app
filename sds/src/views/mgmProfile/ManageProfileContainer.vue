@@ -1,144 +1,161 @@
 <template>
-   <div>
+  <div>
+    <!------------------- dialog for profile editor ----------------------------------------------------------------->
+    <v-dialog
+      v-model="show_edit_profile"
+      persistent
+      :fullscreen="$vuetify.breakpoint.width < 600"
+    >
+      <v-card
+        class=""
+        style="width: 100%; position: relative;"
+        @keyup.esc="test"
+      >
+        <div style="position: absolute; width: 100%; display: flex; justify-content: flex-end">
+          <v-btn
+            icon
+            @click="show_edit_profile=false"
+          >
+            <v-icon>close</v-icon>
+          </v-btn>
+        </div>
 
-      <!------------------- dialog for profile editor ----------------------------------------------------------------->
-      <v-dialog v-model="show_edit_profile" persistent :fullscreen="$vuetify.breakpoint.width < 600">
-         <v-card class="" style="width: 100%; position: relative;" v-on:keyup.esc="test">
-            <div style="position: absolute; width: 100%; display: flex; justify-content: flex-end">
-               <v-btn icon @click="show_edit_profile=false">
-                  <v-icon >close</v-icon>
-               </v-btn>
-            </div>
+        <!--<edit-profile-->
+        <!--    v-if="show_edit_profile"-->
+        <!--    @update="update_profile"-->
+        <!--&gt;</edit-profile>-->
 
-            <!--<edit-profile-->
-            <!--    v-if="show_edit_profile"-->
-            <!--    @update="update_profile"-->
-            <!--&gt;</edit-profile>-->
-
-            <edit-trainer-info
-                v-if="show_edit_profile"
-                @user_updated="update_profile"
-                @photo_updated="update_photo"
-
-            />
-
-         </v-card>
-      </v-dialog>
-
-
-      <!------------------- dialog for upload banner ----------------------------------------------------------------->
-      <upload-user-image
-          file-type="banner"
-          :show.sync="show_upload_banner"
-          v-if="show_upload_banner"
-          @uploaded="update_profile"
-      ></upload-user-image>
-
+        <edit-trainer-info
+          v-if="show_edit_profile"
+          @user_updated="update_profile"
+          @photo_updated="update_photo"
+        />
+      </v-card>
+    </v-dialog>
 
 
-      <!------------------- dialog for upload profile pic-------------------------------------------------------------->
-
-      <upload-user-image
-          file-type="profile"
-          :show.sync="show_upload_profile"
-          v-if="show_upload_profile"
-          @uploaded="update_profile"
-      ></upload-user-image>
-
-
-      <!------------------- dialog for upload gallery pic-------------------------------------------------------------->
-
-      <upload-user-image
-          file-type="gallery"
-          :show.sync="show_upload_gallery"
-          v-if="show_upload_gallery"
-          @uploaded="update_profile"
-      ></upload-user-image>
+    <!------------------- dialog for upload banner ----------------------------------------------------------------->
+    <upload-user-image
+      v-if="show_upload_banner"
+      file-type="banner"
+      :show.sync="show_upload_banner"
+      @uploaded="update_profile"
+    />
 
 
 
+    <!------------------- dialog for upload profile pic-------------------------------------------------------------->
 
-      <!------------------- dialog for editing a section-------------------------------------------------------------->
-      <v-dialog v-model="show_edit_section" max-width="700px" persistent>
-         <v-card class="pa-0">
-            <div style="display: flex; " >
-               <div style="text-transform: capitalize;" class="pl-3 pt-2 dialog-heading">{{edit_section}}</div>
-               <v-spacer></v-spacer>
-               <v-btn icon @click="show_edit_section=false">
-                  <v-icon>
-                     close
-                  </v-icon>
-               </v-btn>
-            </div>
-
-            <edit-section
-                v-if="show_edit_section"
-               :section="edit_section"
-               @section-updated="on_section_updated"
-            ></edit-section>
-
-         </v-card>
-
-      </v-dialog>
+    <upload-user-image
+      v-if="show_upload_profile"
+      file-type="profile"
+      :show.sync="show_upload_profile"
+      @uploaded="update_profile"
+    />
 
 
-      <!--------------------------------------------------------------------------------------------------------------->
-      <!------------------- Render trainer profile -------------------------------------------------------------------->
-      <!--------------------------------------------------------------------------------------------------------------->
-      <div class="page-title-app">
-         My Info
+    <!------------------- dialog for upload gallery pic-------------------------------------------------------------->
 
-      </div>
+    <upload-user-image
+      v-if="show_upload_gallery"
+      file-type="gallery"
+      :show.sync="show_upload_gallery"
+      @uploaded="update_profile"
+    />
 
 
 
 
+    <!------------------- dialog for editing a section-------------------------------------------------------------->
+    <v-dialog
+      v-model="show_edit_section"
+      max-width="700px"
+      persistent
+    >
+      <v-card class="pa-0">
+        <div style="display: flex; ">
+          <div
+            style="text-transform: capitalize;"
+            class="pl-3 pt-2 dialog-heading"
+          >
+            {{ edit_section }}
+          </div>
+          <v-spacer />
+          <v-btn
+            icon
+            @click="show_edit_section=false"
+          >
+            <v-icon>
+              close
+            </v-icon>
+          </v-btn>
+        </div>
 
-      <trainer-profile
-          v-if="profile_type === 'TRAINER'"
-          :user_id="user_id"
-          @edit-basic="show_edit_profile=true"
-          @upload-banner="show_upload_banner=true"
+        <edit-section
+          v-if="show_edit_section"
+          :section="edit_section"
+          @section-updated="on_section_updated"
+        />
+      </v-card>
+    </v-dialog>
+
+
+    <!--------------------------------------------------------------------------------------------------------------->
+    <!------------------- Render trainer profile -------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------------------->
+    <div class="page-title-app">
+      My Info
+    </div>
+
+
+
+
+
+    <trainer-profile
+      v-if="profile_type === 'TRAINER'"
+      ref="trainer_profile"
+      :user_id="user_id"
+      @edit-basic="show_edit_profile=true"
+      @upload-banner="show_upload_banner=true"
+      @edit-profile-pic="show_upload_profile=true"
+      @edit-gallery="show_upload_gallery=true"
+      @edit-section="on_edit_section"
+    />
+
+
+
+    <div
+      v-if="profile_type === 'HANDLER'"
+      class="content-container-bg"
+    >
+      <div class="content-container-sm">
+        <edit-handler-info
           @edit-profile-pic="show_upload_profile=true"
-          @edit-gallery="show_upload_gallery=true"
-          @edit-section="on_edit_section"
-          ref="trainer_profile"
-      ></trainer-profile>
-
-
-
-      <div class="content-container-bg" v-if="profile_type === 'HANDLER'">
-         <div class="content-container-sm">
-            <edit-handler-info
-                @edit-profile-pic="show_upload_profile=true"
-            />
-         </div>
-
+        />
       </div>
+    </div>
 
 
 
 
-      <!--<edit-profile-->
-      <!--    v-if="profile_type === 'HANDLER'"-->
-      <!--    class="content-container-bg"-->
-      <!--/>-->
+    <!--<edit-profile-->
+    <!--    v-if="profile_type === 'HANDLER'"-->
+    <!--    class="content-container-bg"-->
+    <!--/>-->
 
 
 
 
-<!--      <handler-profile-->
-<!--          v-if="profile_type === 'HANDLER'"-->
-<!--          :user_id="user_id"-->
-<!--          @edit-basic="show_edit_profile=true"-->
-<!--          @upload-banner="show_upload_banner=true"-->
-<!--          @edit-profile-pic="show_upload_profile=true"-->
-<!--          @edit-gallery="show_upload_gallery=true"-->
-<!--          @edit-section="on_edit_section"-->
-<!--      ></handler-profile>-->
-
-
-   </div>
+    <!--      <handler-profile-->
+    <!--          v-if="profile_type === 'HANDLER'"-->
+    <!--          :user_id="user_id"-->
+    <!--          @edit-basic="show_edit_profile=true"-->
+    <!--          @upload-banner="show_upload_banner=true"-->
+    <!--          @edit-profile-pic="show_upload_profile=true"-->
+    <!--          @edit-gallery="show_upload_gallery=true"-->
+    <!--          @edit-section="on_edit_section"-->
+    <!--      ></handler-profile>-->
+  </div>
 </template>
 
 <script>
@@ -156,8 +173,8 @@ import data_getters from "@/mixins/data_getters";
 
 export default {
    name: "ManageProfileContainer",
-  mixins: [data_getters],
    components: {EditProfile, TrainerProfile, UploadUserImage, EditSection, EditTrainerInfo,EditHandlerInfo},
+  mixins: [data_getters],
    data(){
       return {
          show_edit_profile: false,
@@ -186,6 +203,21 @@ export default {
          return this.$auth.profile.acct_type;
       }
 
+   },
+
+   async mounted(){
+
+      //note need this to be a variable, as we "reset" this value to force a page refresh
+      this.user_id = this.$auth.profile.user_id;
+
+      this.$store.commit("set_show_side_nav", true);
+
+      window.addEventListener('keyup', this.close);
+   },
+
+   destroyed() {
+      console.log('destroyed')
+      window.removeEventListener('keyup', this.close);
    },
 
    methods:{
@@ -231,21 +263,6 @@ export default {
 
         })
      }
-   },
-
-   async mounted(){
-
-      //note need this to be a variable, as we "reset" this value to force a page refresh
-      this.user_id = this.$auth.profile.user_id;
-
-      this.$store.commit("set_show_side_nav", true);
-
-      window.addEventListener('keyup', this.close);
-   },
-
-   destroyed() {
-      console.log('destroyed')
-      window.removeEventListener('keyup', this.close);
    },
 }
 </script>

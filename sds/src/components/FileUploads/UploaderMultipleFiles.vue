@@ -1,24 +1,28 @@
 <template>
-   <div>
-      <div ref="fileDrop" class="pa-3 ma-3 file-drop" :class="fileDropClass"
-      >Drag Files Here To Select</div>
+  <div>
+    <div
+      ref="fileDrop"
+      class="pa-3 ma-3 file-drop"
+      :class="fileDropClass"
+    >
+      Drag Files Here To Select
+    </div>
 
-<!--      <input type="file" id="input-file" >-->
+    <!--      <input type="file" id="input-file" >-->
 
-      <div class="preview-container">
-         <div
-             v-for="(item, i) in files"
-             :key="item.name + i"
-         >
-            <img
-                ref="file_img"
-                class="image-preview"
-            >
-            <div>{{item.name}}</div>
-         </div>
-
+    <div class="preview-container">
+      <div
+        v-for="(item, i) in files"
+        :key="item.name + i"
+      >
+        <img
+          ref="file_img"
+          class="image-preview"
+        >
+        <div>{{ item.name }}</div>
       </div>
-   </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -44,40 +48,6 @@ export default {
             return '';
          }
       }
-   },//computed
-
-
-   methods:{
-
-
-      show_files() {
-
-         let files = this.files;
-
-         let preview = this.$refs.preview;
-
-         for (let i = 0; i < files.length; i++) {
-            const file = files[i].file;
-
-            if (!file.type.startsWith('image/')){ continue }
-
-
-            // const img = document.createElement("img");
-            // img.classList.add("image-preview");
-            // img.file = file;
-            // preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
-
-            let img = this.$refs.file_img[i]; // for some reason the ref is an array of a single element
-            console.log('img', img)
-
-            const reader = new FileReader();
-            reader.onload = (function(aImg) {
-               return function(e) {
-                  aImg.src = e.target.result; }; })(img);
-            reader.readAsDataURL(file);
-         }
-      }
-
    },//methods
 
 
@@ -143,6 +113,40 @@ export default {
 
 
       })//nextTick()
+   },//computed
+
+
+   methods:{
+
+
+      show_files() {
+
+         let files = this.files;
+
+         let preview = this.$refs.preview;
+
+         for (let i = 0; i < files.length; i++) {
+            const file = files[i].file;
+
+            if (!file.type.startsWith('image/')){ continue }
+
+
+            // const img = document.createElement("img");
+            // img.classList.add("image-preview");
+            // img.file = file;
+            // preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
+
+            let img = this.$refs.file_img[i]; // for some reason the ref is an array of a single element
+            console.log('img', img)
+
+            const reader = new FileReader();
+            reader.onload = (function(aImg) {
+               return function(e) {
+                  aImg.src = e.target.result; }; })(img);
+            reader.readAsDataURL(file);
+         }
+      }
+
    }
 }
 </script>

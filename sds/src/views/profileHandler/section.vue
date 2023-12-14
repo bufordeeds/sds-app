@@ -1,65 +1,90 @@
 <template>
-   <div class="main-content" :style="border_style">
+  <div
+    class="main-content"
+    :style="border_style"
+  >
+    <!--     Edit control-->
+    <div
+      v-if="editMode"
+      :key="label+'edit'"
+      class="section-edit-container"
+    >
+      <v-switch
+        v-model="checked"
+        label="Include on team profile"
+        color="blue"
+        class="reverse-label-checkbox"
+        hide-details
+        :loading="saving_setting"
+        @change="update_records"
+      />
+      <div style="padding-right: 20px; font-size: 10pt; color: gray">
+        {{ switch_label2 }}
+      </div>
+    </div>
 
 
-      <!--     Edit control-->
-      <div v-if="editMode" class="section-edit-container" :key="label+'edit'">
-         <v-switch
-             label="Include on team profile"
-             color="blue"
-             class="reverse-label-checkbox"
-             hide-details
-             :loading="saving_setting"
-             @change="update_records"
-             v-model="checked"
 
-         ></v-switch>
-         <div style="padding-right: 20px; font-size: 10pt; color: gray"
-         >{{switch_label2}}</div>
+
+
+
+
+    <!-- main content-->
+    <div
+      class="centered-content"
+      style="flex-direction: column;"
+    >
+      <div style="display: flex;">
+        <img
+          :src="iconUrl"
+          width="70"
+          height="70"
+        >
+        <div>
+          <div
+            class="ml-6"
+            :style="{color, 'font-weight': 600}"
+          >
+            {{ label }}
+          </div>
+
+          <div
+            class="ml-6 pr-4"
+            style="color: #3c3c3c; font-weight: 600; max-width: 400px"
+          >
+            {{ heading }}
+          </div>
+        </div>
       </div>
 
+      <slot
+        v-if="expanded"
+        name="expand_content"
+      />
+    </div>
 
+    <div class="pl-2 pr-2 mt-6 ">
+      <v-divider />
+    </div>
 
-
-
-
-
-      <!-- main content-->
-      <div class="centered-content" style="flex-direction: column;">
-
-         <div style="display: flex;">
-            <img :src="iconUrl" width="70" height="70">
-            <div>
-               <div class="ml-6" :style="{color, 'font-weight': 600}">
-                  {{label}}
-               </div>
-
-               <div class="ml-6 pr-4" style="color: #3c3c3c; font-weight: 600; max-width: 400px">
-                  {{heading}}
-               </div>
-
-            </div>
-         </div>
-
-         <slot v-if="expanded" name="expand_content" ></slot>
-
-      </div>
-
-      <div class="pl-2 pr-2 mt-6 ">
-         <v-divider/>
-      </div>
-
-      <div class="centered-content" style="flex-direction: column;" >
-         <v-btn text @click="expanded = !expanded">
-            <div style="display: flex; font-size: 12pt; font-weight: 600; color: #9d9d9d; align-items: center">
-               {{expand_txt}}
-               <div class=" triangle-up" :style="triangle_style" />
-            </div>
-         </v-btn>
-
-
-      </div>
-   </div>
+    <div
+      class="centered-content"
+      style="flex-direction: column;"
+    >
+      <v-btn
+        text
+        @click="expanded = !expanded"
+      >
+        <div style="display: flex; font-size: 12pt; font-weight: 600; color: #9d9d9d; align-items: center">
+          {{ expand_txt }}
+          <div
+            class=" triangle-up"
+            :style="triangle_style"
+          />
+        </div>
+      </v-btn>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -68,7 +93,7 @@ import data_getters from "@/mixins/data_getters";
 
 
 export default {
-   name: "teamModal",
+   name: "TeamModal",
    mixins: [data_getters],
    props:{
       color: String,
@@ -93,20 +118,6 @@ export default {
 
          saving_setting: false,
       }
-   },
-
-   watch:{
-     isChecked(newVal){
-        if (this.checked !== newVal){
-           this.checked = newVal;
-        }
-     },
-
-      // checked(newVal){
-      //
-      //   this.$emit('check-event', {section:this.editEvent, val:newVal});
-      // }
-
    },
 
    computed:{
@@ -145,6 +156,20 @@ export default {
       }
 
 
+
+   },
+
+   watch:{
+     isChecked(newVal){
+        if (this.checked !== newVal){
+           this.checked = newVal;
+        }
+     },
+
+      // checked(newVal){
+      //
+      //   this.$emit('check-event', {section:this.editEvent, val:newVal});
+      // }
 
    },
 

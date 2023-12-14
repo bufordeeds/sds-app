@@ -1,100 +1,104 @@
 <template>
-   <div class="fold2-container">
+  <div class="fold2-container">
+    <div class="fold2">
+      <!--- first column with blue search box ------------------------------------>
+      <div class="member-lookup-box">
+        <div class="fold2-label">
+          Membership Lookup
+        </div>
+        <my-form ref="form1">
+          <my-text-input
+            v-model="search_num"
+            label="Enter 10 digit SDS number"
+            :rules="[isRequired, ]"
+          />
+        </my-form>
+        <v-btn
+          style="width:100%; margin-top: 10px"
+          color="var(--color-btn)"
+          class="white--text"
+          @click="search_user"
+        >
+          Search
+        </v-btn>
 
-      <div class="fold2">
-
-         <!--- first column with blue search box ------------------------------------>
-         <div class="member-lookup-box">
-
-            <div class="fold2-label">Membership Lookup</div>
-            <my-form ref="form1">
-               <my-text-input
-                   label="Enter 10 digit SDS number"
-                   v-model="search_num"
-                   :rules="[isRequired, ]"
-               />
-            </my-form>
-            <v-btn
-                style="width:100%; margin-top: 10px" color="var(--color-btn)" class="white--text"
-                @click="search_user"
-            >
-               Search
-            </v-btn>
 
 
-
-            <div  style="justify-content: flex-end; font-size:12pt; margin-top: 10px; display: flex; align-items: center">
-               <v-btn text class="white--text pr-0" @click="$emit('show-advanced-search')" >
-                  <div style="justify-content: flex-start;  display: flex; align-items: center" >
-                     <div style="font-size:12pt; font-weight: 400">Advanced Search</div>
-                     <div class=" ml-1 triangle" ></div>
-                  </div>
-               </v-btn>
+        <div style="justify-content: flex-end; font-size:12pt; margin-top: 10px; display: flex; align-items: center">
+          <v-btn
+            text
+            class="white--text pr-0"
+            @click="$emit('show-advanced-search')"
+          >
+            <div style="justify-content: flex-start;  display: flex; align-items: center">
+              <div style="font-size:12pt; font-weight: 400">
+                Advanced Search
+              </div>
+              <div class=" ml-1 triangle" />
             </div>
-
-
-         </div>
-
-
-         <!--- 2nd  column with buttons/fold2 content ------------------------------------>
-         <div style="width: 100%; display: flex; flex-direction: column" >
-
-            <!----- 1st row with learn/join buttons ------>
-            <div >
-               <v-row class="ma-0">
-                  <v-col>
-                     <v-btn text class="learn-more-btn" to="/learn-more/mission">
-                        Learn More
-                     </v-btn>
-
-
-                  </v-col>
-                  <v-col style="background-color: #3ab54a; color: white">
-
-                     <v-btn text class="learn-more-btn" color="white" to="/signup">
-                        Join for Free
-                     </v-btn>
-                  </v-col>
-               </v-row>
-
-            </div>
-
-            <div style="height: 100%">
-               <v-row class="ma-0" align="center" style="height: calc(100% )">
-                  <v-col style="font-weight: 600; font-size: 14pt; color: #054e85; padding-left: 30px; padding-right: 30px ">
-                     <div style="display: flex; justify-content: center; align-items: center">
-                        <div>
-                           Free and voluntary training and behavior standards and team management solutions for
-                           Service Dog Trainers and Handlers.
-                        </div>
-
-                     </div>
-
-                     <div class="learn-more-btn-container">
-                        <a href="/learn-more/mission" class="learn-more-txt">
-                           <div style="justify-content: flex-start; font-size:12pt; display: flex; align-items: center">
-                              Learn More
-                              <div class="triangle-blue ml-1 "></div>
-                           </div>
-                        </a>
-                     </div>
-                  </v-col>
-               </v-row>
-            </div>
-
-
-
-
-
-
-
-
-
-
-         </div>
-
+          </v-btn>
+        </div>
       </div>
-   </div>
+
+
+      <!--- 2nd  column with buttons/fold2 content ------------------------------------>
+      <div style="width: 100%; display: flex; flex-direction: column">
+        <!----- 1st row with learn/join buttons ------>
+        <div>
+          <v-row class="ma-0">
+            <v-col>
+              <v-btn
+                text
+                class="learn-more-btn"
+                to="/learn-more/mission"
+              >
+                Learn More
+              </v-btn>
+            </v-col>
+            <v-col style="background-color: #3ab54a; color: white">
+              <v-btn
+                text
+                class="learn-more-btn"
+                color="white"
+                to="/signup"
+              >
+                Join for Free
+              </v-btn>
+            </v-col>
+          </v-row>
+        </div>
+
+        <div style="height: 100%">
+          <v-row
+            class="ma-0"
+            align="center"
+            style="height: calc(100% )"
+          >
+            <v-col style="font-weight: 600; font-size: 14pt; color: #054e85; padding-left: 30px; padding-right: 30px ">
+              <div style="display: flex; justify-content: center; align-items: center">
+                <div>
+                  Free and voluntary training and behavior standards and team management solutions for
+                  Service Dog Trainers and Handlers.
+                </div>
+              </div>
+
+              <div class="learn-more-btn-container">
+                <a
+                  href="/learn-more/mission"
+                  class="learn-more-txt"
+                >
+                  <div style="justify-content: flex-start; font-size:12pt; display: flex; align-items: center">
+                    Learn More
+                    <div class="triangle-blue ml-1 " />
+                  </div>
+                </a>
+              </div>
+            </v-col>
+          </v-row>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -103,7 +107,7 @@
 import validation from "@/mixins/validation";
 
 export default {
-   name: "fold2",
+   name: "Fold2",
    mixins: [validation],
    props:{
       searchNum: String,

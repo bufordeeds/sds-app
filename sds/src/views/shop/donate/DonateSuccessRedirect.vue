@@ -1,57 +1,51 @@
 <template>
-   <div>
+  <div>
+    <div class="page-title">
+      Thank you for your donation!
+    </div>
 
-
-      <div class="page-title">
-         Thank you for your donation!
-      </div>
-
-      <div class="content-container-bg">
-         <div class="animation-container">
-            <div class="dog">
-               <div class="dog-body">
+    <div class="content-container-bg">
+      <div class="animation-container">
+        <div class="dog">
+          <div class="dog-body">
+            <div class="dog-tail">
+              <div class="dog-tail">
+                <div class="dog-tail">
                   <div class="dog-tail">
-                     <div class="dog-tail">
+                    <div class="dog-tail">
+                      <div class="dog-tail">
                         <div class="dog-tail">
-                           <div class="dog-tail">
-                              <div class="dog-tail">
-                                 <div class="dog-tail">
-                                    <div class="dog-tail">
-                                       <div class="dog-tail"></div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
+                          <div class="dog-tail" />
                         </div>
-                     </div>
+                      </div>
+                    </div>
                   </div>
-               </div>
-               <div class="dog-torso"></div>
-               <div class="dog-head">
-                  <div class="dog-ears">
-                     <div class="dog-ear"></div>
-                     <div class="dog-ear"></div>
-                  </div>
-                  <div class="dog-eyes">
-                     <div class="dog-eye"></div>
-                     <div class="dog-eye"></div>
-                  </div>
-                  <div class="dog-muzzle">
-                     <div class="dog-tongue"></div>
-                  </div>
-               </div>
+                </div>
+              </div>
             </div>
-         </div>
+          </div>
+          <div class="dog-torso" />
+          <div class="dog-head">
+            <div class="dog-ears">
+              <div class="dog-ear" />
+              <div class="dog-ear" />
+            </div>
+            <div class="dog-eyes">
+              <div class="dog-eye" />
+              <div class="dog-eye" />
+            </div>
+            <div class="dog-muzzle">
+              <div class="dog-tongue" />
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
 
 
 
-<!--      <div class="ball" tabindex="0"></div>-->
-
-
-
-
-   </div>
+    <!--      <div class="ball" tabindex="0"></div>-->
+  </div>
 </template>
 
 <script>
@@ -63,7 +57,7 @@ import utilities from "@/mixins/utilities";
 import _ from 'lodash';
 
 export default {
-   name: "success",
+   name: "Success",
 
    mixins: [data_getters, utilities],
    data(){
@@ -115,6 +109,13 @@ export default {
 
    },
 
+   async mounted(){
+
+      await this.update_order();
+
+
+   },
+
 
    methods:{
 
@@ -140,13 +141,6 @@ export default {
             console.log(e)
          }
       }
-   },
-
-   async mounted(){
-
-      await this.update_order();
-
-
    }
 }
 </script>

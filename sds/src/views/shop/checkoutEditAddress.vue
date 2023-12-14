@@ -1,72 +1,69 @@
 <template>
+  <my-form ref="form">
+    <v-row
+      v-if="isGuest"
+      dense
+    >
+      <v-col>
+        <my-text-input
+          v-model="email2"
+          label="Email"
+          :rules="[isRequired, isEmail]"
+        />
+      </v-col>
+    </v-row>
 
-      <my-form ref="form">
+    <v-row dense>
+      <v-col>
+        <my-text-input
+          v-model="address2.name"
+          label="Name"
+          :rules="[isRequired]"
+        />
+      </v-col>
+    </v-row>
 
-         <v-row dense v-if="isGuest">
-            <v-col>
-               <my-text-input
-                   label="Email"
-                   v-model="email2"
-                   :rules="[isRequired, isEmail]"
-               />
-            </v-col>
-         </v-row>
+    <v-row dense>
+      <v-col cols="8">
+        <my-text-input
+          v-model="address2.street1"
+          label="Street"
+          :rules="[isRequired]"
+        />
+      </v-col>
 
-         <v-row dense>
-            <v-col>
-               <my-text-input
-                   label="Name"
-                   v-model="address2.name"
-                   :rules="[isRequired]"
-               />
-            </v-col>
-         </v-row>
+      <v-col cols="4">
+        <my-text-input
+          v-model="address2.street2"
+          label="Apt, Suite, etc."
+        />
+      </v-col>
+    </v-row>
 
-         <v-row dense>
-            <v-col cols="8">
-               <my-text-input
-                   label="Street"
-                   v-model="address2.street1"
-                   :rules="[isRequired]"
-               />
-            </v-col>
-
-            <v-col cols="4">
-               <my-text-input
-                   label="Apt, Suite, etc."
-                   v-model="address2.street2"
-               />
-            </v-col>
-         </v-row>
-
-         <v-row>
-
-            <v-col>
-               <my-text-input
-                   label="City"
-                   v-model="address2.city"
-                   :rules="[isRequired]"
-               />
-            </v-col>
-            <v-col>
-               <my-text-input
-                   label="State"
-                   v-model="address2.state"
-                   :rules="[isRequired]"
-               />
-            </v-col>
-            <v-col>
-               <my-text-input
-                   label="Zip"
-                   v-model="address2.zip"
-                   :rules="[isRequired]"
-               />
-            </v-col>
-         </v-row>
-      </my-form>
-
-
-
+    <v-row>
+      <v-col>
+        <my-text-input
+          v-model="address2.city"
+          label="City"
+          :rules="[isRequired]"
+        />
+      </v-col>
+      <v-col>
+        <my-text-input
+          v-model="address2.state"
+          label="State"
+          :rules="[isRequired]"
+        />
+      </v-col>
+      <v-col>
+        <my-text-input
+          v-model="address2.zip"
+          label="Zip"
+          :rules="[isRequired]"
+        />
+      </v-col>
+    </v-row>
+  </my-form>
 </template>
 
 <script>
@@ -74,7 +71,7 @@ import validation from "@/mixins/validation";
 import _ from 'lodash';
 
 export default {
-   name: "checkoutEditAddress",
+   name: "CheckoutEditAddress",
    mixins: [validation],
    props:{
       address: Object,

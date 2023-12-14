@@ -1,13 +1,12 @@
 <template>
-   <div>
-
-      <div class="pa-9" style="height: 100%; background-color: #add5f5">
-         <signup-modal></signup-modal>
-
-      </div>
-
-
-   </div>
+  <div>
+    <div
+      class="pa-9"
+      style="height: 100%; background-color: #add5f5"
+    >
+      <signup-modal />
+    </div>
+  </div>
 </template>
 
 <script>

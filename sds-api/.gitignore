@@ -3,6 +3,7 @@ node_modules
 /dist
 documentation/theme Vuse document
 sds-api/lib/db/*
+/Users/buford/Downloads/sds-app/sds-api/lib/db
 
 
 # local env files

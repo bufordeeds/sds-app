@@ -1,54 +1,68 @@
 <template>
-   <div :class="class_container">
-
-
-
-      <!--mobile version-->
-      <div :class="class_icon_container " :style="icon_bg" v-if="$vuetify.breakpoint.width<500">
-         <img :src="iconUrl" height="50%">
-         <div style="text-align: center; padding-left: 10px">
-            {{label}}
-         </div>
-
+  <div :class="class_container">
+    <!--mobile version-->
+    <div
+      v-if="$vuetify.breakpoint.width<500"
+      :class="class_icon_container "
+      :style="icon_bg"
+    >
+      <img
+        :src="iconUrl"
+        height="50%"
+      >
+      <div style="text-align: center; padding-left: 10px">
+        {{ label }}
       </div>
+    </div>
 
-      <!--Full screen version-->
-      <div :class="class_icon_container " :style="icon_bg" v-else>
-         <img :src="iconUrl" width="50%">
-         <div style="text-align: center; ">
-            {{label}}
-         </div>
-
+    <!--Full screen version-->
+    <div
+      v-else
+      :class="class_icon_container "
+      :style="icon_bg"
+    >
+      <img
+        :src="iconUrl"
+        width="50%"
+      >
+      <div style="text-align: center; ">
+        {{ label }}
       </div>
+    </div>
 
 
 
 
-      <div class="info-box-container" style="overflow-x: auto">
-
-         <slot name="content"></slot>
-
-
-         <div v-if="items != null">
-            <div v-for="(item, ix) in items" :key="'services-'+ix" class="line-item">
-               <template v-if="item != null">
-                  <span v-if="typeof item === 'string'">
-                     {{item}}
-                  </span>
-                  <div v-else >
-                    <span style=" padding-right: 5px;">
-                       {{item.network}}:</span>
-                     <a :href="cleaned_url(item.url)" style="font-size: 10pt; text-decoration: none;">{{shorten(item.url)}}</a>
-                  </div>
-               </template>
+    <div
+      class="info-box-container"
+      style="overflow-x: auto"
+    >
+      <slot name="content" />
 
 
+      <div v-if="items != null">
+        <div
+          v-for="(item, ix) in items"
+          :key="'services-'+ix"
+          class="line-item"
+        >
+          <template v-if="item != null">
+            <span v-if="typeof item === 'string'">
+              {{ item }}
+            </span>
+            <div v-else>
+              <span style=" padding-right: 5px;">
+                {{ item.network }}:</span>
+              <a
+                :href="cleaned_url(item.url)"
+                style="font-size: 10pt; text-decoration: none;"
+              >{{ shorten(item.url) }}</a>
             </div>
-         </div>
-
+          </template>
+        </div>
       </div>
-
-   </div>
+    </div>
+  </div>
 </template>
 
 <script>

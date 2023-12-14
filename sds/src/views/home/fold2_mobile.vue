@@ -1,59 +1,72 @@
 <template>
-   <div class="fold2-container">
-
-
-      <div style="padding-top: 40px; padding-bottom: 40px; width: 100%; ">
-         <v-btn  class="" to="/learn-more/mission" width="100%" height="40px">
-            Learn More
-         </v-btn>
-      </div>
-
-
-
-      <div class="fold2">
-
-         <!--- first column with blue search box ------------------------------------>
-         <div class="member-lookup-box">
-
-            <div class="fold2-label">Membership Lookup</div>
-            <my-form ref="form1">
-               <my-text-input
-                   label="10 digit SDS number"
-                   v-model="search_num"
-                   :rules="[isRequired, ]"
-               />
-            </my-form>
-            <v-btn
-                style="width:100%; margin-top: 10px" color="var(--color-btn)" class="white--text"
-                @click="search_user"
-            >
-               Search
-            </v-btn>
+  <div class="fold2-container">
+    <div style="padding-top: 40px; padding-bottom: 40px; width: 100%; ">
+      <v-btn
+        class=""
+        to="/learn-more/mission"
+        width="100%"
+        height="40px"
+      >
+        Learn More
+      </v-btn>
+    </div>
 
 
 
-            <div  style="justify-content: flex-end; font-size:12pt; margin-top: 10px; display: flex; align-items: center">
-               <v-btn text class="white--text pr-0" @click="$emit('show-advanced-search')" >
-                  <div style="justify-content: flex-start;  display: flex; align-items: center" >
-                     <div style="font-size:12pt; font-weight: 400">Advanced Search</div>
-                     <div class=" ml-1 triangle" ></div>
-                  </div>
-               </v-btn>
+    <div class="fold2">
+      <!--- first column with blue search box ------------------------------------>
+      <div class="member-lookup-box">
+        <div class="fold2-label">
+          Membership Lookup
+        </div>
+        <my-form ref="form1">
+          <my-text-input
+            v-model="search_num"
+            label="10 digit SDS number"
+            :rules="[isRequired, ]"
+          />
+        </my-form>
+        <v-btn
+          style="width:100%; margin-top: 10px"
+          color="var(--color-btn)"
+          class="white--text"
+          @click="search_user"
+        >
+          Search
+        </v-btn>
+
+
+
+        <div style="justify-content: flex-end; font-size:12pt; margin-top: 10px; display: flex; align-items: center">
+          <v-btn
+            text
+            class="white--text pr-0"
+            @click="$emit('show-advanced-search')"
+          >
+            <div style="justify-content: flex-start;  display: flex; align-items: center">
+              <div style="font-size:12pt; font-weight: 400">
+                Advanced Search
+              </div>
+              <div class=" ml-1 triangle" />
             </div>
-         </div>
-
-
+          </v-btn>
+        </div>
       </div>
+    </div>
 
 
-      <div style="padding-top: 40px;  width: 100%; ">
-         <v-btn  class="" to="/signup" width="100%" height="40px" color="#39b54a" >
-            Join for Free
-         </v-btn>
-      </div>
-
-
-   </div>
+    <div style="padding-top: 40px;  width: 100%; ">
+      <v-btn
+        class=""
+        to="/signup"
+        width="100%"
+        height="40px"
+        color="#39b54a"
+      >
+        Join for Free
+      </v-btn>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -62,7 +75,7 @@
 import validation from "@/mixins/validation";
 
 export default {
-   name: "fold2-mobile",
+   name: "Fold2Mobile",
    mixins: [validation],
    props:{
       searchNum: String,

@@ -1,215 +1,262 @@
 <template>
+  <div>
+    <div
+      class="pa-2"
+      style="display: flex; flex-wrap: wrap"
+    />
 
-   <div>
+    <div
+      v-if="showBatch"
+      class="mb-1"
+    >
+      <v-btn
+        small
+        @click="$emit('buy-checked-labels')"
+      >
+        Buy Labels for Checked
+      </v-btn>
+    </div>
+
+    <table>
+      <tr class="col-headers">
+        <th>
+          <v-checkbox
+            v-model="check_all"
+            hide-details
+            dense
+          />
+        </th>
+        <!--            <th>Order ID</th>-->
+        <th>
+          Date Ordered
+          <sort-icon
+            :sort-dir.sync="sortCols.date"
+            @click="sort_handler('date', $event)"
+          />
+        </th>
+        <th>
+          Status
+          <sort-icon
+            :sort-dir.sync="sortCols.status"
+            @click="sort_handler('status', $event)"
+          />
+        </th>
+        <th>
+          Customer
+          <sort-icon
+            :sort-dir.sync="sortCols.cust"
+            @click="sort_handler('cust', $event)"
+          />
+        </th>
+        <th>
+          Order Total
+          <sort-icon
+            :sort-dir.sync="sortCols.total"
+            @click="sort_handler('total', $event)"
+          />
+        </th>
+        <th>
+          Items
+          <sort-icon
+            :sort-dir.sync="sortCols.items"
+            @click="sort_handler('items', $event)"
+          />
+        </th>
+        <th>Processing</th>
+        <th>Shipping</th>
+        <th>Tracking</th>
+        <th>
+          <v-btn
+            icon
+            @click="toggle_expand_all"
+          >
+            <v-icon>{{ all_expanded? 'unfold_less': 'unfold_more' }}</v-icon>
+          </v-btn>
+        </th>
+      </tr>
+
+      <template v-for="(order, ix) in orders">
+        <!-----------------------main row-------------------------------------------------------->
+        <tr
+          :key="order._id"
+          :class="get_row_bg_class(ix)"
+        >
+          <td>
+            <v-checkbox
+              v-model="order.loc_checked"
+              hide-details
+              dense
+            />
+          </td>
+
+          <td>
+            {{ fmt_datetime(order.date_ordered ) }}
+          </td>
+
+          <td style="text-transform: capitalize">
+            <!--            {{order.status}}-->
+            <StatusDropDown
+              v-model="order.status"
+              :list="status_list"
+              :color-map="status_colors"
+              :compact="true"
+              :disabled="false"
+              :loading="order.loc_loading"
+              @input="update_order(order)"
+            />
+          </td>
+
+          <!-- :loading="order.loc_loading" -->
+
+          <td>
+            <!--{{get_name_user(order.user_id_FR)}}-->
+            {{ order.customer_info.name }}
+          </td>
+
+          <td>
+            {{ fmt_number(order.order_total, {places: 2, prefix: '$'}) }}
+          </td>
+          <td>
+            {{ order.items.length }}
+          </td>
+
+          <td>
+            <v-btn
+              small
+              color="var(--color-btn)"
+              class="white--text"
+              disabled
+            >
+              Print Kit(s)
+            </v-btn>
+          </td>
+
+
+          <td>
+            <v-btn
+              v-if="order.easypost.shipment.postage_label == null"
+              small
+              color="var(--color-btn)"
+              class="white--text"
+              :loading="order.loc_loading_label"
+              @click="$emit('buy-label', order._id, ix)"
+            >
+              Buy Label
+            </v-btn>
+
+            <div v-else>
+              <a
+                v-if="order.easypost.shipment.postage_label.label_url"
+                :href="order.easypost.shipment.postage_label.label_url"
+                target="_blank"
+              >png</a> /
+
+              <a
+                v-if="order.easypost.shipment.postage_label.label_pdf_url"
+                :href="order.easypost.shipment.postage_label.label_pdf_url"
+                target="_blank"
+              >pdf</a>
+            </div>
+          </td>
+
+
+          <td>
+            <a
+              v-if="has_tracking(order)"
+              :href="order.easypost.tracker.public_url"
+              target="_blank"
+            >Track</a>
+          </td>
+
+          <td>
+            <v-btn
+              icon
+              @click="order.loc_expanded = !order.loc_expanded"
+            >
+              <v-icon>{{ order.loc_expanded? 'expand_less': 'expand_more' }}</v-icon>
+            </v-btn>
+          </td>
+        </tr>
+
+        <!-----------------------second row with item details------------------------------------------------>
+
+        <tr
+          v-if="order.loc_expanded"
+          :key="order._id+'hidden'"
+        >
+          <td
+            colspan="10"
+            style="padding: 0px"
+          >
+            <div style="display: flex; margin-bottom: 10px; width: 100%;">
+              <div style="background-color: white; width: 55px;" />
+
+              <div
+                class="pa-2"
+                :class="get_row_bg_class(ix)"
+                style="width: 100%;"
+              >
+                <div
+                  v-for="(item, ix) in order.items"
+                  :key="order._id+'hidden'+ix"
+                  class=""
+                  style="display: flex"
+                >
+                  <div>
+                    <div>
+                      Item {{ ix+1 }}:
+
+                      <span
+                        class="item-label"
+                        style="font-weight: 500;  padding-right: 5px"
+                      >
+                        {{ item.name }} ({{ fmt_number(item.price, {places:2, prefix: '$'}) }} x {{ item.number }})
+                      </span>
+                    </div>
+                    <div
+                      v-if="show_details(item.item_key)"
+                      style="font-size:11pt; padding-left: 50px; padding-bottom: 6px"
+                    >
+                      SDS-{{ item.details.dog_num }};
+                      <span class="item-label">Handler</span>: {{ item.details.handler_name }};
+                      <span class="item-label">Dog</span>: {{ item.details.dog_name }};
+                      <span
+                        v-if="item.details.trainer_name"
+                        class="pl-1"
+                      >
+                        Trainer: {{ item.details.trainer_name }};
+                      </span>
+
+                      <span
+                        v-if="item.details.aide_name"
+                        class="pl-1"
+                      >
+                        Aide: {{ item.details.aide_name }};
+                      </span>
 
 
 
-
-      <div class="pa-2" style="display: flex; flex-wrap: wrap">
-
-      </div>
-
-      <div v-if="showBatch" class="mb-1">
-         <v-btn small @click="$emit('buy-checked-labels')"
-         >Buy Labels for Checked</v-btn>
-      </div>
-
-      <table>
-         <tr class="col-headers">
-            <th>
-               <v-checkbox
-                   hide-details
-                   dense
-                   v-model="check_all"
-               ></v-checkbox>
-            </th>
-<!--            <th>Order ID</th>-->
-            <th>
-               Date Ordered
-               <sort-icon :sort-dir.sync="sortCols.date" @click="sort_handler('date', $event)"/>
-            </th>
-            <th>
-               Status
-               <sort-icon :sort-dir.sync="sortCols.status" @click="sort_handler('status', $event)" />
-            </th>
-            <th>
-               Customer
-               <sort-icon :sort-dir.sync="sortCols.cust" @click="sort_handler('cust', $event)" />
-            </th>
-            <th>
-               Order Total
-               <sort-icon :sort-dir.sync="sortCols.total" @click="sort_handler('total', $event)" />
-            </th>
-            <th>
-               Items
-               <sort-icon :sort-dir.sync="sortCols.items" @click="sort_handler('items', $event)" />
-            </th>
-            <th>Processing</th>
-            <th>Shipping</th>
-            <th>Tracking</th>
-            <th>
-               <v-btn icon @click="toggle_expand_all">
-                  <v-icon>{{all_expanded? 'unfold_less': 'unfold_more'}}</v-icon>
-               </v-btn>
-            </th>
-         </tr>
-
-         <template v-for="(order, ix) in orders" >
-            <!-----------------------main row-------------------------------------------------------->
-            <tr :key="order._id" :class="get_row_bg_class(ix)">
-               <td>
-                  <v-checkbox
-                      hide-details
-                      dense
-                      v-model="order.loc_checked"
-                  ></v-checkbox>
-               </td>
-
-               <td>
-                  {{fmt_datetime(order.date_ordered )}}
-               </td>
-
-               <td style="text-transform: capitalize">
-                  <!--            {{order.status}}-->
-                  <StatusDropDown
-                      v-model="order.status"
-                      :list="status_list"
-                      :color-map="status_colors"
-                      :compact="true"
-                      :disabled="false"
-                      @input="update_order(order)"
-                      :loading="order.loc_loading"
-
-                  />
-               </td>
-
-               <!-- :loading="order.loc_loading" -->
-
-               <td>
-                  <!--{{get_name_user(order.user_id_FR)}}-->
-                  {{order.customer_info.name}}
-               </td>
-
-               <td>
-                  {{fmt_number(order.order_total, {places: 2, prefix: '$'})  }}
-               </td>
-               <td>
-                  {{order.items.length}}
-               </td>
-
-               <td>
-                  <v-btn small color="var(--color-btn)" class="white--text" disabled>
-                     Print Kit(s)
-                  </v-btn>
-               </td>
-
-
-               <td>
-                  <v-btn
-                      v-if="order.easypost.shipment.postage_label == null"
-                      small color="var(--color-btn)" class="white--text"
-                      @click="$emit('buy-label', order._id, ix)"
-                      :loading="order.loc_loading_label"
-                  >
-                     Buy Label
-                  </v-btn>
-
-                  <div v-else>
-                     <a v-if="order.easypost.shipment.postage_label.label_url"
-                        :href="order.easypost.shipment.postage_label.label_url" target="_blank">png</a> /
-
-                     <a v-if="order.easypost.shipment.postage_label.label_pdf_url"
-                        :href="order.easypost.shipment.postage_label.label_pdf_url" target="_blank">pdf</a>
-                  </div>
-               </td>
-
-
-               <td>
-                  <a v-if="has_tracking(order)"
-                     :href="order.easypost.tracker.public_url" target="_blank">Track</a>
-               </td>
-
-               <td>
-                  <v-btn icon @click="order.loc_expanded = !order.loc_expanded">
-                     <v-icon>{{order.loc_expanded? 'expand_less': 'expand_more'}}</v-icon>
-                  </v-btn>
-               </td>
-            </tr>
-
-            <!-----------------------second row with item details------------------------------------------------>
-
-            <tr :key="order._id+'hidden'" v-if="order.loc_expanded"  >
-
-               <td colspan="10" style="padding: 0px">
-
-                  <div style="display: flex; margin-bottom: 10px; width: 100%;">
-
-                     <div style="background-color: white; width: 55px;"></div>
-
-                     <div class="pa-2" :class="get_row_bg_class(ix)" style="width: 100%;">
-                        <div v-for="(item, ix) in order.items" :key="order._id+'hidden'+ix"
-                             class="" style="display: flex"
-
+                      <span v-if="item.item_key==='sds_certificate'" />
+                      <template v-else>
+                        <a
+                          v-if="item.details.kit_image !== null"
+                          :href="item.details.kit_image.Location"
+                          target="_blank"
                         >
-                           <div  >
-                              <div>
-                                 Item {{ix+1}}:
-
-                                 <span class="item-label" style="font-weight: 500;  padding-right: 5px" >
-                                    {{item.name}} ({{fmt_number(item.price, {places:2, prefix: '$'})}} x {{item.number}})
-                                 </span>
-
-                              </div>
-                              <div v-if="show_details(item.item_key)" style="font-size:11pt; padding-left: 50px; padding-bottom: 6px">
-
-                                 SDS-{{item.details.dog_num}};
-                                 <span class="item-label">Handler</span>: {{item.details.handler_name}};
-                                 <span class="item-label">Dog</span>: {{item.details.dog_name}};
-                                 <span v-if="item.details.trainer_name" class="pl-1">
-                                    Trainer: {{item.details.trainer_name}};
-                                 </span>
-
-                                 <span v-if="item.details.aide_name" class="pl-1">
-                                 Aide: {{item.details.aide_name}};
-                                 </span>
-
-
-
-                                 <span v-if="item.item_key==='sds_certificate'"></span>
-                                 <template v-else>
-                                    <a v-if="item.details.kit_image !== null"
-                                       :href="item.details.kit_image.Location" target="_blank"
-                                    >
-                                       Get Image
-                                    </a>
-                                    <span v-else>No Image</span>
-
-                                 </template>
-
-
-
-
-
-
-                              </div>
-
-
-                           </div>
-
-                        </div>
-                     </div>
+                          Get Image
+                        </a>
+                        <span v-else>No Image</span>
+                      </template>
+                    </div>
                   </div>
-
-
-
-
-               </td>
-            </tr>
-         </template>
-
-      </table>
-   </div>
-
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </template>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -221,8 +268,8 @@ import SortIcon from "@/components/icons/SortIcon";
 
 export default {
    name: "OrdersTable",
-   mixins: [data_getters, utilities],
    components: {StatusDropDown, SortIcon},
+   mixins: [data_getters, utilities],
    props: {
       orders: {type: Array, },
    },

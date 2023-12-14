@@ -1,44 +1,69 @@
 <template>
-   <div style="display: flex; flex-wrap: wrap; justify-content: center; ">
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; ">
+    <a
+      :href="url_fb"
+      target="_blank"
+    >
+      <div
+        class="social-btn"
+        style="background-color: #3352a2;"
+      >
+        <img
+          src="../../assets/images/content/social/SDSFacebookAsset20.svg"
+          height="32"
+        >
+        Share
+      </div>
+    </a>
 
-      <a :href="url_fb" target="_blank">
-         <div class="social-btn" style="background-color: #3352a2;">
-            <img src="../../assets/images/content/social/SDSFacebookAsset20.svg" height="32">
-            Share
-         </div>
-      </a>
+    <a
+      :href="url_twitter"
+      target="_blank"
+    >
+      <div
+        class="social-btn"
+        style="background-color: #55c2ee;"
+      >
+        <img
+          src="../../assets/images/content/social/SDSTwitterAsset21.svg"
+          height="32"
+        >
+        Tweet
+      </div>
 
-      <a :href="url_twitter" target="_blank">
-         <div class="social-btn" style="background-color: #55c2ee;">
-               <img src="../../assets/images/content/social/SDSTwitterAsset21.svg" height="32">
-            Tweet
-         </div>
+    </a>
 
-      </a>
+    <a :href="url_email">
+      <div
+        class="social-btn"
+        style="background-color: #55c2ee;"
+      >
+        <img
+          src="../../assets/images/content/social/SDSTwitterAsset21.svg"
+          height="32"
+        >
+        Email
+      </div>
+    </a>
 
-      <a :href="url_email">
-         <div class="social-btn" style="background-color: #55c2ee;">
-            <img src="../../assets/images/content/social/SDSTwitterAsset21.svg" height="32">
-            Email
-         </div>
-      </a>
-
-      <a href="">
-         <div class="social-btn" style="background-color: #55c2ee;">
-            <img src="../../assets/images/content/social/SDSTwitterAsset21.svg" height="32">
-            Share
-         </div>
-      </a>
-
-
-
-
-   </div>
+    <a href="">
+      <div
+        class="social-btn"
+        style="background-color: #55c2ee;"
+      >
+        <img
+          src="../../assets/images/content/social/SDSTwitterAsset21.svg"
+          height="32"
+        >
+        Share
+      </div>
+    </a>
+  </div>
 </template>
 
 <script>
 export default {
-   name: "shareSection",
+   name: "ShareSection",
    props:{
       title: {type: String, default: null}
    },

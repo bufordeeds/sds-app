@@ -140,8 +140,7 @@
     <v-app-bar v-else key="mobile-nav-bar" :app="app_val" style="background: none" elevation="0">
       <a href="/">
 
-        <img v-if="$vuetify.breakpoint.width > 360" src="../../assets/images/logo/service-dog-standards.png"
-          height="40px">
+        <img v-if="$vuetify.breakpoint.width > 360" src="../../assets/images/logo/SDS-logo-sm.svg" height="40px">
 
         <img v-else src="../../assets/images/logo/service-dog-standards.png" height="30px">
 

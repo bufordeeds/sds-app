@@ -31,7 +31,7 @@
           :style="{ 'background-image': `url(${require('./assets/images/content/header-background.jpg')})` }"
           style="background-size: cover;background-position: center;">
           <div style="background-color: #fafafc;">
-            <nav-bar style="max-width: 1280px; margin-left: auto; margin-right:auto" />
+            <nav-bar />
           </div>
         </div>
 
@@ -196,7 +196,7 @@ export default {
 
 
   async mounted() {
-    console.log('breakpoint', this.$vuetify.breakpoint);
+    // console.log('breakpoint', this.$vuetify.breakpoint);
     // this.get_cart_from_db().then(()=>{}).catch(err =>{
     //    console.log(err);
     // });

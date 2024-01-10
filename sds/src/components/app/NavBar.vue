@@ -64,7 +64,8 @@
 
       <!--</v-menu>-->
 
-      <v-btn v-if="!isAdmin" ref="btn_learn_more" text large color="white" @click="click_learn_more()">
+      <v-btn v-if="!isAdmin" ref="btn_learn_more" class="nav-bar-btn" text large color="white"
+        @click="click_learn_more()">
         Learn More
       </v-btn>
 
@@ -79,7 +80,7 @@
 
 
 
-      <v-btn v-for="(item, i) in items" :key="i" text :to="item.url" :dark="dark" :light="light">
+      <v-btn class="nav-bar-btn" v-for="(item, i) in items" :key="i" text :to="item.url" :dark="dark" :light="light">
         {{ item.name }}
       </v-btn>
 
@@ -572,6 +573,10 @@ export default {
   border-right: 15px solid transparent;
 
   border-bottom: 15px solid white;
+}
+
+.nav-bar-btn {
+  color: #1D1D1F !important;
 }
 
 .learn-more-mobile {

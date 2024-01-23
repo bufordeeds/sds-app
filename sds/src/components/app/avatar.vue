@@ -1,35 +1,49 @@
 <template>
-   <div :style="container_style" @click="$emit('click')">
-      <v-avatar :size="size2" :tile="!rounded"  :style="avatar_style">
-         <img v-if="!image2.Location" :src="no_image" >
-         <img v-else :src="image2.Location">
-      </v-avatar>
+  <div
+    :style="container_style"
+    @click="$emit('click')"
+  >
+    <v-avatar
+      :size="size2"
+      :tile="!rounded"
+      :style="avatar_style"
+    >
+      <img
+        v-if="!image2.Location"
+        :src="no_image"
+      >
+      <img
+        v-else
+        :src="image2.Location"
+      >
+    </v-avatar>
 
-      <div v-if="profile && !imageOnly"  class="ml-3">
-         <div v-if="profile.name">
-            {{profile.name}}
-         </div>
-
-         <div v-if="profile.name_first || profile.name_last">
-            {{profile.name_first}} {{profile.name_last}}
-         </div>
-
-         <div v-if="profile.email">
-            {{profile.email}}
-         </div>
-
-         <div v-if="profile.dog_num">
-            {{profile.dog_num}}
-         </div>
-
+    <div
+      v-if="profile && !imageOnly"
+      class="ml-3"
+    >
+      <div v-if="profile.name">
+        {{ profile.name }}
       </div>
-   </div>
 
+      <div v-if="profile.name_first || profile.name_last">
+        {{ profile.name_first }} {{ profile.name_last }}
+      </div>
+
+      <div v-if="profile.email">
+        {{ profile.email }}
+      </div>
+
+      <div v-if="profile.dog_num">
+        {{ profile.dog_num }}
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-   name: "avatar",
+   name: "Avatar",
    props: {
       // image: {type: Object, default: () => { return {} }}, // s3/spaces storage object
       image: {type: Object, default: null}, // s3/spaces storage object

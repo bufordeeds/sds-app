@@ -1,67 +1,72 @@
 <template>
-   <div  >
-
-      <v-menu
-          bottom
-          offsetY
-          rounded="0"
-          :disabled="disabled"
-          max-height="300px"
-          v-model="show_list2"
-
-      >
-         <template v-slot:activator="{ on, attrs }">
-            <div style=" height: 34px; display: flex; justify-content: flex-start; align-items: center; color: white"
-                 :style="btn_col"
-                 v-bind="attrs"
-                 v-on="on"
-                 tabindex="0"
+  <div>
+    <v-menu
+      v-model="show_list2"
+      bottom
+      offset-y
+      rounded="0"
+      :disabled="disabled"
+      max-height="300px"
+    >
+      <template #activator="{ on, attrs }">
+        <div
+          style=" height: 34px; display: flex; justify-content: flex-start; align-items: center; color: white"
+          :style="btn_col"
+          v-bind="attrs"
+          tabindex="0"
+          v-on="on"
+        >
+          <div
+            :style="style_btn"
+            style="width: 100%"
+          >
+            <!-- style added so won't inherit from parent element, need to make as parameter -->
+            <div
+              class="pl-2"
+              style="font-weight: normal"
+              :style="{'font-size': font_size(value_fmt)}"
             >
-
-
-               <div :style="style_btn" style="width: 100%">
-                  <!-- style added so won't inherit from parent element, need to make as parameter -->
-                  <div class="pl-2" style="font-weight: normal" :style="{'font-size': font_size(value_fmt)}">
-                     {{value_fmt}}
-                  </div>
-               </div>
-
-
-               <div v-if="clearable && value!== null" >
-                  <v-btn icon @click.stop="$emit('input', null)">
-                     <v-icon >close</v-icon>
-                  </v-btn>
-
-               </div>
-
-               <div v-if="!compact" class="arrow-button-container">
-                  <v-icon color="white">arrow_drop_down</v-icon>
-               </div>
-
-
+              {{ value_fmt }}
             </div>
+          </div>
 
 
-         </template>
-
-
-
-         <v-list class="pa-0" >
-            <v-list-item
-                v-for="item in list" :key="item[itemValue]+rnd_id"
-                @click="updateVal(item[itemValue])"
-                class="menu-item"
+          <div v-if="clearable && value!== null">
+            <v-btn
+              icon
+              @click.stop="$emit('input', null)"
             >
-               <span >
-                  {{item[itemText]}}
-               </span>
+              <v-icon>close</v-icon>
+            </v-btn>
+          </div>
 
-            </v-list-item>
-         </v-list>
-      </v-menu>
+          <div
+            v-if="!compact"
+            class="arrow-button-container"
+          >
+            <v-icon color="white">
+              arrow_drop_down
+            </v-icon>
+          </div>
+        </div>
+      </template>
 
 
-   </div>
+
+      <v-list class="pa-0">
+        <v-list-item
+          v-for="item in list"
+          :key="item[itemValue]+rnd_id"
+          class="menu-item"
+          @click="updateVal(item[itemValue])"
+        >
+          <span>
+            {{ item[itemText] }}
+          </span>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+  </div>
 </template>
 
 <script>
@@ -71,13 +76,6 @@ import helpers from "@/utilities/helpers";
 
 export default {
    name: "DropDown0",
-   data(){
-      return {
-         rnd_id: '',
-         ix: -1,
-         show_list2: false,
-      }
-   },
    props: {
       value: [String, Number, Boolean],
       list: {type: Array, default: () => {return []} },
@@ -93,37 +91,12 @@ export default {
 
       clearable: {type: Boolean, default: false},
    },
-
-   watch: {
-     show_list(newVal){
-
-        if (newVal !== this.show_list2){
-           this.show_list2 = newVal;
-        }
-     },
-
-      show_list2(newVal){
-        this.$emit('update:show_list', newVal);
+   data(){
+      return {
+         rnd_id: '',
+         ix: -1,
+         show_list2: false,
       }
-
-   },
-
-   methods:{
-      updateVal(val){
-         console.log('debug mydropdown')
-         this.$emit('input', val)
-      },
-
-      font_size(txt, sm='9pt'){
-         let ans = '12pt';
-
-         if (this.$vuetify.breakpoint.width < 400 && typeof txt === 'string' && txt.length > 30){
-            ans = sm;
-         }
-
-         return ans;
-
-      } ,
    },
 
 
@@ -184,10 +157,42 @@ export default {
       }
    },
 
+   watch: {
+     show_list(newVal){
+
+        if (newVal !== this.show_list2){
+           this.show_list2 = newVal;
+        }
+     },
+
+      show_list2(newVal){
+        this.$emit('update:show_list', newVal);
+      }
+
+   },
+
 
    created(){
       this.rnd_id = _.random(1, 10000000, false).toString();
 
+   },
+
+   methods:{
+      updateVal(val){
+         console.log('debug mydropdown')
+         this.$emit('input', val)
+      },
+
+      font_size(txt, sm='9pt'){
+         let ans = '12pt';
+
+         if (this.$vuetify.breakpoint.width < 400 && typeof txt === 'string' && txt.length > 30){
+            ans = sm;
+         }
+
+         return ans;
+
+      } ,
    }
 }
 </script>

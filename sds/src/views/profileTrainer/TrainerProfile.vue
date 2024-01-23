@@ -1,702 +1,727 @@
 <template>
-	<div>
-		<flag-user-dialog
-			v-if="show_flag_user"
-			v-model="show_flag_user"
-			:user_id="user._id"
-		/>
+  <div>
+    <flag-user-dialog
+      v-if="show_flag_user"
+      v-model="show_flag_user"
+      :user_id="user._id"
+    />
 
-		<div
-			class="content-container-bg"
-			style="min-height: calc(100vh - 284px)"
-			v-if="user._id == null"
-		>
-			No trainer profile found
-		</div>
+    <div
+      v-if="user._id == null"
+      class="content-container-bg"
+      style="min-height: calc(100vh - 284px)"
+    >
+      No trainer profile found
+    </div>
 
-		<div
-			class="content-container-bg"
-			style="min-height: calc(100vh - 284px)"
-			v-if="user._id != null"
-		>
-			<div
-				v-if="edit_mode"
-				class="mb-4 centered-flex-column"
-				style="background-color: inherit"
-			>
-				<router-link :to="'/trainer/' + trainer_url" target="_blank">
-					View as public
-				</router-link>
+    <div
+      v-if="user._id != null"
+      class="content-container-bg"
+      style="min-height: calc(100vh - 284px)"
+    >
+      <div
+        v-if="edit_mode"
+        class="mb-4 centered-flex-column"
+        style="background-color: inherit"
+      >
+        <router-link
+          :to="'/trainer/' + trainer_url"
+          target="_blank"
+        >
+          View as public
+        </router-link>
 
-				<div v-if="user.account_visibility !== 'Public'">
-					Warning Profile is private
-				</div>
-			</div>
+        <div v-if="user.account_visibility !== 'Public'">
+          Warning Profile is private
+        </div>
+      </div>
 
-			<div class="profile-container" style="background-color: white">
-				<!---------------------- top header box ------------------------------------------------------------------->
-				<div class="header-container">
-					<div class="edit-box" v-if="edit_mode">
-						<v-btn
-							v-if="edit_mode"
-							color="var(--color-headline)"
-							@click="$emit('edit-basic')"
-							text
-						>
-							<i class="material-icons">create</i>
-							Edit
-						</v-btn>
-					</div>
+      <div
+        class="profile-container"
+        style="background-color: white"
+      >
+        <!---------------------- top header box ------------------------------------------------------------------->
+        <div class="header-container">
+          <div
+            v-if="edit_mode"
+            class="edit-box"
+          >
+            <v-btn
+              v-if="edit_mode"
+              color="var(--color-headline)"
+              text
+              @click="$emit('edit-basic')"
+            >
+              <i class="material-icons">create</i>
+              Edit
+            </v-btn>
+          </div>
 
-					<div class="mr-2">
-						<v-avatar size="100">
-							<img
-								v-if="!user.profile_image"
-								src="../../assets/images/content/user-no-image.png"
-								width="75px"
-							/>
-							<img
-								v-else
-								:src="user.profile_image.Location"
-								width="75px"
-							/>
-						</v-avatar>
+          <div class="mr-2">
+            <v-avatar size="100">
+              <img
+                v-if="!user.profile_image"
+                src="../../assets/images/content/user-no-image.png"
+                width="75px"
+              >
+              <img
+                v-else
+                :src="user.profile_image.Location"
+                width="75px"
+              >
+            </v-avatar>
 
-						<div
-							v-if="edit_mode"
-							style="
+            <div
+              v-if="edit_mode"
+              style="
 								text-align: center;
 								color: var(--color-subheading);
 								font-size: 10pt;
 							"
-							class="mt-1"
-							@click="$emit('edit-profile-pic')"
-						>
-							<v-btn
-								v-if="edit_mode"
-								text
-								small
-								color="var(--color-subheading)"
-								style="margin-top: -10px"
-							>
-								<i class="material-icons section-edit-icon"
-									>create</i
-								>
-								Change
-							</v-btn>
-						</div>
-					</div>
+              class="mt-1"
+              @click="$emit('edit-profile-pic')"
+            >
+              <v-btn
+                v-if="edit_mode"
+                text
+                small
+                color="var(--color-subheading)"
+                style="margin-top: -10px"
+              >
+                <i class="material-icons section-edit-icon">create</i>
+                Change
+              </v-btn>
+            </div>
+          </div>
 
-					<div class="trainer-info">
-						<div style="margin-top: -10px; margin-bottom: -5px">
-							<img
-								src="../../assets/images/content/SDSTrainerLogo.svg"
-								height="16"
-							/>
-						</div>
+          <div class="trainer-info">
+            <div style="margin-top: -10px; margin-bottom: -5px">
+              <img
+                src="../../assets/images/content/SDSTrainerLogo.svg"
+                height="16"
+              >
+            </div>
 
-						<div>
-							<span
-								style="
+            <div>
+              <span
+                style="
 									color: var(--color-headline);
 									font-size: 14pt;
 									font-weight: 500;
 								"
-								class="mb-1"
-							>
-								{{ user.name_first }} {{ user.name_last }}
-							</span>
-							Trainer
-						</div>
-						<div
-							style="
+                class="mb-1"
+              >
+                {{ user.name_first }} {{ user.name_last }}
+              </span>
+              Trainer
+            </div>
+            <div
+              style="
 								font-size: 20pt;
 								color: var(--color-headline);
 								font-weight: 700;
 								line-height: 1.2;
 							"
-						>
-							{{ trainer_info.business_name }}
-						</div>
-						<div
-							style="
+            >
+              {{ trainer_info.business_name }}
+            </div>
+            <div
+              style="
 								font-size: 14pt;
 								color: var(--color-headline);
 								font-weight: 600;
 								line-height: 1.2;
 							"
-						>
-							{{ trainer_info.tagline }}
-						</div>
+            >
+              {{ trainer_info.tagline }}
+            </div>
 
-						<div
-							class="city-state"
-							v-if="$vuetify.breakpoint.width <= 900"
-						>
-							{{ addr_city_state }}
-						</div>
-					</div>
+            <div
+              v-if="$vuetify.breakpoint.width <= 900"
+              class="city-state"
+            >
+              {{ addr_city_state }}
+            </div>
+          </div>
 
-					<v-spacer></v-spacer>
-					<div
-						class="city-state"
-						v-if="$vuetify.breakpoint.width > 900"
-					>
-						{{ addr_city_state }}
-					</div>
-				</div>
+          <v-spacer />
+          <div
+            v-if="$vuetify.breakpoint.width > 900"
+            class="city-state"
+          >
+            {{ addr_city_state }}
+          </div>
+        </div>
 
-				<!---------------------- banner photo ------------------------------------------------------------------->
+        <!---------------------- banner photo ------------------------------------------------------------------->
 
-				<div class="banner-photo" :style="banner_style">
-					<div v-if="edit_mode" class="banner-photo-controls">
-						<v-btn
-							text
-							class="white--text mr-4"
-							@click="$emit('upload-banner')"
-						>
-							<img
-								src="../../assets/images/icons/camera-white.png"
-								height="20px"
-								class="pr-1"
-							/>
-							Customize Photo
-						</v-btn>
-					</div>
+        <div
+          class="banner-photo"
+          :style="banner_style"
+        >
+          <div
+            v-if="edit_mode"
+            class="banner-photo-controls"
+          >
+            <v-btn
+              text
+              class="white--text mr-4"
+              @click="$emit('upload-banner')"
+            >
+              <img
+                src="../../assets/images/icons/camera-white.png"
+                height="20px"
+                class="pr-1"
+              >
+              Customize Photo
+            </v-btn>
+          </div>
 
-					<img
-						v-if="banner_src"
-						:src="banner_src"
-						style="max-height: 400px; width: 100%; display: block"
-					/>
-				</div>
+          <img
+            v-if="banner_src"
+            :src="banner_src"
+            style="max-height: 400px; width: 100%; display: block"
+          >
+        </div>
 
-				<!---------------------- box containing basic contact info ------------------------------------------------>
-				<div class="contact-container">
-					<!--               <div class="edit-box" >-->
-					<!--                  <v-btn icon color="var(&#45;&#45;color-headline)" v-if="edit_mode">-->
-					<!--                     <v-icon>create</v-icon>-->
-					<!--                  </v-btn>-->
-					<!--               </div>-->
+        <!---------------------- box containing basic contact info ------------------------------------------------>
+        <div class="contact-container">
+          <!--               <div class="edit-box" >-->
+          <!--                  <v-btn icon color="var(&#45;&#45;color-headline)" v-if="edit_mode">-->
+          <!--                     <v-icon>create</v-icon>-->
+          <!--                  </v-btn>-->
+          <!--               </div>-->
 
-					<div class="contact-column">
-						<template v-if="show_biz_address">
-							<div class="contact-header">Location</div>
-							<div style="font-weight: 500">
-								<a
-									:href="google_link"
-									style="color: var(--color-headline)"
-									target="_blank"
-								>
-									{{ address.street1 }}
-									<br v-if="address.street1" />
-									<!--{{address.city}}, {{address.state}}, {{address.zip}}-->
-									{{ addr_city_state_zip }}
-								</a>
-							</div>
-						</template>
+          <div class="contact-column">
+            <template v-if="show_biz_address">
+              <div class="contact-header">
+                Location
+              </div>
+              <div style="font-weight: 500">
+                <a
+                  :href="google_link"
+                  style="color: var(--color-headline)"
+                  target="_blank"
+                >
+                  {{ address.street1 }}
+                  <br v-if="address.street1">
+                  <!--{{address.city}}, {{address.state}}, {{address.zip}}-->
+                  {{ addr_city_state_zip }}
+                </a>
+              </div>
+            </template>
 
-						<template v-if="user.trainer_info.hours_str != null">
-							<div class="contact-header mt-2">Hours</div>
-							<div class="">
-								{{ user.trainer_info.hours_str }}
-							</div>
-						</template>
+            <template v-if="user.trainer_info.hours_str != null">
+              <div class="contact-header mt-2">
+                Hours
+              </div>
+              <div class="">
+                {{ user.trainer_info.hours_str }}
+              </div>
+            </template>
 
-						<div
-							v-if="
-								user.trainer_info.will_travel ||
-								user.trainer_info.will_transport ||
-								user.trainer_info.have_facility
-							"
-							class="mt-4"
-						>
-							<div v-if="user.trainer_info.have_facility">
-								<img
-									src="../../assets/images/icons/checked_box.svg"
-									height="16"
-								/>
-								I have a training facility
-							</div>
+            <div
+              v-if="
+                user.trainer_info.will_travel ||
+                  user.trainer_info.will_transport ||
+                  user.trainer_info.have_facility
+              "
+              class="mt-4"
+            >
+              <div v-if="user.trainer_info.have_facility">
+                <img
+                  src="../../assets/images/icons/checked_box.svg"
+                  height="16"
+                >
+                I have a training facility
+              </div>
 
-							<div v-if="user.trainer_info.will_travel">
-								<img
-									src="../../assets/images/icons/checked_box.svg"
-									height="16"
-								/>
-								I'm willing to travel
-								<template
-									v-if="
-										isFinite(
-											user.trainer_info.max_travel_miles
-										)
-									"
-								>
-									up to
-									{{
-										Math.round(
-											user.trainer_info.max_travel_miles
-										)
-									}}
-									miles
-								</template>
-							</div>
+              <div v-if="user.trainer_info.will_travel">
+                <img
+                  src="../../assets/images/icons/checked_box.svg"
+                  height="16"
+                >
+                I'm willing to travel
+                <template
+                  v-if="
+                    isFinite(
+                      user.trainer_info.max_travel_miles
+                    )
+                  "
+                >
+                  up to
+                  {{
+                    Math.round(
+                      user.trainer_info.max_travel_miles
+                    )
+                  }}
+                  miles
+                </template>
+              </div>
 
-							<div v-if="user.trainer_info.will_transport">
-								<img
-									src="../../assets/images/icons/checked_box.svg"
-									height="16"
-								/>
-								I can transport dogs
-							</div>
-						</div>
-					</div>
+              <div v-if="user.trainer_info.will_transport">
+                <img
+                  src="../../assets/images/icons/checked_box.svg"
+                  height="16"
+                >
+                I can transport dogs
+              </div>
+            </div>
+          </div>
 
-					<div
-						class="contact-column"
-						:style="{
-							'margin-top': $vuetify.breakpoint.xs ? '10px' : '0'
-						}"
-					>
-						<template> </template>
+          <div
+            class="contact-column"
+            :style="{
+              'margin-top': $vuetify.breakpoint.xs ? '10px' : '0'
+            }"
+          >
+            <template />
 
-						<div
-							class="contact-header"
-							v-if="
-								user.trainer_info.phone != null ||
-								user.email != null ||
-								user.trainer_info.website != null
-							"
-						>
-							Contact
-						</div>
+            <div
+              v-if="
+                user.trainer_info.phone != null ||
+                  user.email != null ||
+                  user.trainer_info.website != null
+              "
+              class="contact-header"
+            >
+              Contact
+            </div>
 
-						<div
-							class="mt-1"
-							v-if="user.trainer_info.phone != null"
-						>
-							<a
-								:href="'tel:' + user.trainer_info.phone"
-								class="click-to-call"
-							>
-								<span style="color: var(--color-heading-grey)"
-									>Phone:
-								</span>
-								<span class="contact-value">
-									{{ user.trainer_info.phone }}
-								</span>
-							</a>
-						</div>
+            <div
+              v-if="user.trainer_info.phone != null"
+              class="mt-1"
+            >
+              <a
+                :href="'tel:' + user.trainer_info.phone"
+                class="click-to-call"
+              >
+                <span style="color: var(--color-heading-grey)">Phone:
+                </span>
+                <span class="contact-value">
+                  {{ user.trainer_info.phone }}
+                </span>
+              </a>
+            </div>
 
-						<div class="mt-2" v-if="user.email != null">
-							Email:
-							<a :href="'mailto:' + user.email">
-								<span class="contact-value">
-									{{ user.email }}</span
-								>
-							</a>
-							<br />
-						</div>
+            <div
+              v-if="user.email != null"
+              class="mt-2"
+            >
+              Email:
+              <a :href="'mailto:' + user.email">
+                <span class="contact-value">
+                  {{ user.email }}</span>
+              </a>
+              <br>
+            </div>
 
-						<div class="mt-1" v-if="user.trainer_info.website">
-							Web:
-							<a
-								:href="cleaned_url(user.trainer_info.website)"
-								target="_blank"
-							>
-								<span class="contact-value">{{
-									user.trainer_info.website
-								}}</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
+            <div
+              v-if="user.trainer_info.website"
+              class="mt-1"
+            >
+              Web:
+              <a
+                :href="cleaned_url(user.trainer_info.website)"
+                target="_blank"
+              >
+                <span class="contact-value">{{
+                  user.trainer_info.website
+                }}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
 
-			<div class="pt-3"></div>
+      <div class="pt-3" />
 
-			<!----------------------------two column layout for sub sections---------------------------------------------->
-			<div
-				class="profile-container"
-				style="display: flex"
-				v-if="show_two_col"
-			>
-				<!--  two column layout-->
+      <!----------------------------two column layout for sub sections---------------------------------------------->
+      <div
+        v-if="show_two_col"
+        class="profile-container"
+        style="display: flex"
+      >
+        <!--  two column layout-->
 
-				<!----------------------------column one------------------------------------->
-				<div class="column">
-					<template v-for="section in sections.col1">
-						<info-section
-							:key="section.label"
-							class="mt-3"
-							:user="user"
-							:color="section.color"
-							:icon-url="section.icon"
-							:label="section.label"
-							:items="section.list"
-						>
-							<template
-								v-slot:content
-								v-if="section.content || section.heading"
-							>
-								<div
-									class="section-header"
-									v-if="section.heading"
-								>
-									{{ section.heading }}
-								</div>
+        <!----------------------------column one------------------------------------->
+        <div class="column">
+          <template v-for="section in sections.col1">
+            <info-section
+              :key="section.label"
+              class="mt-3"
+              :user="user"
+              :color="section.color"
+              :icon-url="section.icon"
+              :label="section.label"
+              :items="section.list"
+            >
+              <template
+                v-if="section.content || section.heading"
+                #content
+              >
+                <div
+                  v-if="section.heading"
+                  class="section-header"
+                >
+                  {{ section.heading }}
+                </div>
 
-								<div
-									style="white-space: pre-line"
-									v-if="section.content"
-								>
-									{{ section.content }}
-								</div>
-							</template>
-						</info-section>
+                <div
+                  v-if="section.content"
+                  style="white-space: pre-line"
+                >
+                  {{ section.content }}
+                </div>
+              </template>
+            </info-section>
 
-						<div
-							v-if="edit_mode"
-							class="section-edit-container"
-							:key="section.label + 'edit'"
-						>
-							<v-spacer></v-spacer>
+            <div
+              v-if="edit_mode"
+              :key="section.label + 'edit'"
+              class="section-edit-container"
+            >
+              <v-spacer />
 
-							<div
-								style="
+              <div
+                style="
 									display: flex;
 									flex-direction: column;
 									align-items: flex-end;
 								"
-							>
-								<v-btn
-									text
-									small
-									color="blue"
-									@click="
-										$emit(
-											'edit-section',
-											section.edit_event
-										)
-									"
-								>
-									<i class="material-icons section-edit-icon"
-										>create</i
-									>
-									Edit
-								</v-btn>
+              >
+                <v-btn
+                  text
+                  small
+                  color="blue"
+                  @click="
+                    $emit(
+                      'edit-section',
+                      section.edit_event
+                    )
+                  "
+                >
+                  <i class="material-icons section-edit-icon">create</i>
+                  Edit
+                </v-btn>
 
-								<!------- skip section check -------------->
-								<div
-									style="margin-top: -10px"
-									v-if="showNA(section)"
-								>
-									<!--<label class="check-container">-->
-									<!--   <div>Section is N/A</div>-->
+                <!------- skip section check -------------->
+                <div
+                  v-if="showNA(section)"
+                  style="margin-top: -10px"
+                >
+                  <!--<label class="check-container">-->
+                  <!--   <div>Section is N/A</div>-->
 
-									<!--   <input type="checkbox" v-model="section.skip" @change="on_section_check(section.edit_event, section.skip)">-->
-									<!--   <span class="checkmark"></span>-->
-									<!--</label>-->
+                  <!--   <input type="checkbox" v-model="section.skip" @change="on_section_check(section.edit_event, section.skip)">-->
+                  <!--   <span class="checkmark"></span>-->
+                  <!--</label>-->
 
-									<v-checkbox
-										color="#ff7c1a"
-										class="reverse-label-checkbox"
-										label="Section is N/A"
-										hide-details
-										dense
-										v-model="section.skip"
-										@change="
-											on_section_check(
-												section.edit_event,
-												section.skip
-											)
-										"
-									/>
-								</div>
-							</div>
-						</div>
-					</template>
+                  <v-checkbox
+                    v-model="section.skip"
+                    color="#ff7c1a"
+                    class="reverse-label-checkbox"
+                    label="Section is N/A"
+                    hide-details
+                    dense
+                    @change="
+                      on_section_check(
+                        section.edit_event,
+                        section.skip
+                      )
+                    "
+                  />
+                </div>
+              </div>
+            </div>
+          </template>
 
-					<!--flag as inappropriate-->
-					<div class="" style="margin-top: 20px; margin-bottom: 0px">
-						<v-btn
-							text
-							@click="show_flag_user = true"
-							:disabled="edit_mode"
-							color="var(--color-btn)"
-						>
-							<v-icon>flag</v-icon>
-							Flag this listing
-						</v-btn>
-					</div>
-				</div>
+          <!--flag as inappropriate-->
+          <div
+            class=""
+            style="margin-top: 20px; margin-bottom: 0px"
+          >
+            <v-btn
+              text
+              :disabled="edit_mode"
+              color="var(--color-btn)"
+              @click="show_flag_user = true"
+            >
+              <v-icon>flag</v-icon>
+              Flag this listing
+            </v-btn>
+          </div>
+        </div>
 
-				<!-- spacer between cols-->
-				<div class="pl-5"></div>
+        <!-- spacer between cols-->
+        <div class="pl-5" />
 
-				<!----------------------------column two----------------------------------->
-				<div class="column">
-					<!------------gallery section ---------------->
-					<gallery
-						class="mt-3"
-						:user_id="user._id"
-						:edit_mode="edit_mode"
-						:caption="user.trainer_info.gallery_caption"
-					></gallery>
+        <!----------------------------column two----------------------------------->
+        <div class="column">
+          <!------------gallery section ---------------->
+          <gallery
+            class="mt-3"
+            :user_id="user._id"
+            :edit_mode="edit_mode"
+            :caption="user.trainer_info.gallery_caption"
+          />
 
-					<div v-if="edit_mode" class="section-edit-container">
-						<v-btn
-							text
-							small
-							color="blue"
-							@click="$emit('edit-section', 'caption')"
-						>
-							<i class="material-icons section-edit-icon"
-								>create</i
-							>
-							Edit Caption
-						</v-btn>
-						<v-spacer></v-spacer>
-						<v-btn
-							text
-							small
-							color="blue"
-							@click="$emit('edit-gallery')"
-						>
-							<i class="material-icons section-edit-icon"
-								>create</i
-							>
-							Add Images
-						</v-btn>
-					</div>
+          <div
+            v-if="edit_mode"
+            class="section-edit-container"
+          >
+            <v-btn
+              text
+              small
+              color="blue"
+              @click="$emit('edit-section', 'caption')"
+            >
+              <i class="material-icons section-edit-icon">create</i>
+              Edit Caption
+            </v-btn>
+            <v-spacer />
+            <v-btn
+              text
+              small
+              color="blue"
+              @click="$emit('edit-gallery')"
+            >
+              <i class="material-icons section-edit-icon">create</i>
+              Add Images
+            </v-btn>
+          </div>
 
-					<template v-for="section in sections.col2">
-						<info-section
-							:key="section.label"
-							class="mt-3"
-							:user="user"
-							:color="section.color"
-							:icon-url="section.icon"
-							:label="section.label"
-							:items="section.list"
-						>
-							<template
-								v-slot:content
-								v-if="section.content || section.heading"
-							>
-								<div
-									class="section-header"
-									v-if="section.heading"
-								>
-									{{ section.heading }}
-								</div>
+          <template v-for="section in sections.col2">
+            <info-section
+              :key="section.label"
+              class="mt-3"
+              :user="user"
+              :color="section.color"
+              :icon-url="section.icon"
+              :label="section.label"
+              :items="section.list"
+            >
+              <template
+                v-if="section.content || section.heading"
+                #content
+              >
+                <div
+                  v-if="section.heading"
+                  class="section-header"
+                >
+                  {{ section.heading }}
+                </div>
 
-								<div
-									style="white-space: pre-line"
-									v-if="section.content"
-								>
-									{{ section.content }}
-								</div>
-							</template>
-						</info-section>
+                <div
+                  v-if="section.content"
+                  style="white-space: pre-line"
+                >
+                  {{ section.content }}
+                </div>
+              </template>
+            </info-section>
 
-						<div
-							v-if="edit_mode"
-							class="section-edit-container"
-							:key="section.label + 'edit'"
-						>
-							<v-spacer></v-spacer>
-							<!--<v-btn text small color="blue" @click="$emit('edit-section', section.edit_event)">-->
-							<!--   <i class="material-icons section-edit-icon">create</i>-->
-							<!--   Edit-->
-							<!--</v-btn>-->
+            <div
+              v-if="edit_mode"
+              :key="section.label + 'edit'"
+              class="section-edit-container"
+            >
+              <v-spacer />
+              <!--<v-btn text small color="blue" @click="$emit('edit-section', section.edit_event)">-->
+              <!--   <i class="material-icons section-edit-icon">create</i>-->
+              <!--   Edit-->
+              <!--</v-btn>-->
 
-							<div style="display: flex; flex-direction: column">
-								<v-btn
-									text
-									small
-									color="blue"
-									@click="
-										$emit(
-											'edit-section',
-											section.edit_event
-										)
-									"
-								>
-									<i class="material-icons section-edit-icon"
-										>create</i
-									>
-									Edit
-								</v-btn>
+              <div style="display: flex; flex-direction: column">
+                <v-btn
+                  text
+                  small
+                  color="blue"
+                  @click="
+                    $emit(
+                      'edit-section',
+                      section.edit_event
+                    )
+                  "
+                >
+                  <i class="material-icons section-edit-icon">create</i>
+                  Edit
+                </v-btn>
 
-								<!------- skip section check -------------->
-								<!--<div style="margin-top: 10px;" v-if="showNA(section)">-->
-								<!--   <label class="check-container">N/A-->
-								<!--      <input type="checkbox" v-model="section.skip" @change="on_section_check(section.edit_event, section.skip)">-->
-								<!--      <span class="checkmark"></span>-->
-								<!--   </label>-->
-								<!--</div>-->
+                <!------- skip section check -------------->
+                <!--<div style="margin-top: 10px;" v-if="showNA(section)">-->
+                <!--   <label class="check-container">N/A-->
+                <!--      <input type="checkbox" v-model="section.skip" @change="on_section_check(section.edit_event, section.skip)">-->
+                <!--      <span class="checkmark"></span>-->
+                <!--   </label>-->
+                <!--</div>-->
 
-								<div
-									style="margin-top: -10px"
-									v-if="showNA(section)"
-								>
-									<v-checkbox
-										color="#ff7c1a"
-										class="reverse-label-checkbox"
-										label="Section is N/A"
-										hide-details
-										dense
-										v-model="section.skip"
-										@change="
-											on_section_check(
-												section.edit_event,
-												section.skip
-											)
-										"
-									/>
-								</div>
-							</div>
-						</div>
-					</template>
-				</div>
-			</div>
+                <div
+                  v-if="showNA(section)"
+                  style="margin-top: -10px"
+                >
+                  <v-checkbox
+                    v-model="section.skip"
+                    color="#ff7c1a"
+                    class="reverse-label-checkbox"
+                    label="Section is N/A"
+                    hide-details
+                    dense
+                    @change="
+                      on_section_check(
+                        section.edit_event,
+                        section.skip
+                      )
+                    "
+                  />
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
 
-			<!----------------------------One column layout for sub sections---------------------------------------------->
-			<div class="profile-container" style="display: flex" v-else>
-				<!-- if part is the two column layout-->
+      <!----------------------------One column layout for sub sections---------------------------------------------->
+      <div
+        v-else
+        class="profile-container"
+        style="display: flex"
+      >
+        <!-- if part is the two column layout-->
 
-				<!----------------------------column one------------------------------------->
-				<div class="single-column">
-					<!------------gallery section ---------------->
-					<gallery
-						class="mt-3"
-						:user_id="user._id"
-						:edit_mode="edit_mode"
-					></gallery>
+        <!----------------------------column one------------------------------------->
+        <div class="single-column">
+          <!------------gallery section ---------------->
+          <gallery
+            class="mt-3"
+            :user_id="user._id"
+            :edit_mode="edit_mode"
+          />
 
-					<div v-if="edit_mode" class="section-edit-container">
-						<v-spacer></v-spacer>
-						<v-btn
-							text
-							small
-							color="blue"
-							@click="$emit('edit-gallery')"
-						>
-							<i class="material-icons section-edit-icon"
-								>create</i
-							>
-							Add Images
-						</v-btn>
-					</div>
+          <div
+            v-if="edit_mode"
+            class="section-edit-container"
+          >
+            <v-spacer />
+            <v-btn
+              text
+              small
+              color="blue"
+              @click="$emit('edit-gallery')"
+            >
+              <i class="material-icons section-edit-icon">create</i>
+              Add Images
+            </v-btn>
+          </div>
 
-					<template v-for="section in sections.col1">
-						<info-section
-							:key="section.label"
-							class="mt-3"
-							:user="user"
-							:color="section.color"
-							:icon-url="section.icon"
-							:label="section.label"
-							:items="section.list"
-						>
-							<template
-								v-slot:content
-								v-if="section.content || section.heading"
-							>
-								<div
-									class="section-header"
-									v-if="section.heading"
-								>
-									{{ section.heading }}
-								</div>
+          <template v-for="section in sections.col1">
+            <info-section
+              :key="section.label"
+              class="mt-3"
+              :user="user"
+              :color="section.color"
+              :icon-url="section.icon"
+              :label="section.label"
+              :items="section.list"
+            >
+              <template
+                v-if="section.content || section.heading"
+                #content
+              >
+                <div
+                  v-if="section.heading"
+                  class="section-header"
+                >
+                  {{ section.heading }}
+                </div>
 
-								<div
-									style="white-space: pre-line"
-									v-if="section.content"
-								>
-									{{ section.content }}
-								</div>
-							</template>
-						</info-section>
+                <div
+                  v-if="section.content"
+                  style="white-space: pre-line"
+                >
+                  {{ section.content }}
+                </div>
+              </template>
+            </info-section>
 
-						<div
-							v-if="edit_mode"
-							class="section-edit-container"
-							:key="section.label + 'edit'"
-							style="width: 100%"
-						>
-							<v-spacer></v-spacer>
-							<!--<v-btn text small color="blue" @click="$emit('edit-section', section.edit_event)">-->
-							<!--   <i class="material-icons section-edit-icon">create</i>-->
-							<!--   Edit-->
-							<!--</v-btn>-->
+            <div
+              v-if="edit_mode"
+              :key="section.label + 'edit'"
+              class="section-edit-container"
+              style="width: 100%"
+            >
+              <v-spacer />
+              <!--<v-btn text small color="blue" @click="$emit('edit-section', section.edit_event)">-->
+              <!--   <i class="material-icons section-edit-icon">create</i>-->
+              <!--   Edit-->
+              <!--</v-btn>-->
 
-							<div style="display: flex; flex-direction: column">
-								<v-btn
-									text
-									small
-									color="blue"
-									@click="
-										$emit(
-											'edit-section',
-											section.edit_event
-										)
-									"
-								>
-									<i class="material-icons section-edit-icon"
-										>create</i
-									>
-									Edit
-								</v-btn>
+              <div style="display: flex; flex-direction: column">
+                <v-btn
+                  text
+                  small
+                  color="blue"
+                  @click="
+                    $emit(
+                      'edit-section',
+                      section.edit_event
+                    )
+                  "
+                >
+                  <i class="material-icons section-edit-icon">create</i>
+                  Edit
+                </v-btn>
 
-								<!------- skip section check -------------->
-								<!--<div style="margin-top: 10px;" >-->
-								<!--   <label class="check-container">N/A-->
-								<!--      <input type="checkbox" v-model="section.skip" @change="on_section_check(section.edit_event, section.skip)">-->
-								<!--      <span class="checkmark"></span>-->
-								<!--   </label>-->
-								<!--</div>-->
+                <!------- skip section check -------------->
+                <!--<div style="margin-top: 10px;" >-->
+                <!--   <label class="check-container">N/A-->
+                <!--      <input type="checkbox" v-model="section.skip" @change="on_section_check(section.edit_event, section.skip)">-->
+                <!--      <span class="checkmark"></span>-->
+                <!--   </label>-->
+                <!--</div>-->
 
-								<div
-									style="margin-top: -10px"
-									v-if="showNA(section)"
-								>
-									<v-checkbox
-										color="#ff7c1a"
-										class="reverse-label-checkbox"
-										label="Section is N/A"
-										hide-details
-										dense
-										v-model="section.skip"
-										@change="
-											on_section_check(
-												section.edit_event,
-												section.skip
-											)
-										"
-									/>
-								</div>
-							</div>
-						</div>
-					</template>
+                <div
+                  v-if="showNA(section)"
+                  style="margin-top: -10px"
+                >
+                  <v-checkbox
+                    v-model="section.skip"
+                    color="#ff7c1a"
+                    class="reverse-label-checkbox"
+                    label="Section is N/A"
+                    hide-details
+                    dense
+                    @change="
+                      on_section_check(
+                        section.edit_event,
+                        section.skip
+                      )
+                    "
+                  />
+                </div>
+              </div>
+            </div>
+          </template>
 
-					<!--flag as inappropriate-->
-					<div class="" style="margin-top: 20px; margin-bottom: 0px">
-						<v-btn
-							text
-							@click="show_flag_user = true"
-							:disabled="edit_mode"
-							color="var(--color-btn)"
-						>
-							<v-icon>flag</v-icon>
-							Flag this listing
-						</v-btn>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+          <!--flag as inappropriate-->
+          <div
+            class=""
+            style="margin-top: 20px; margin-bottom: 0px"
+          >
+            <v-btn
+              text
+              :disabled="edit_mode"
+              color="var(--color-btn)"
+              @click="show_flag_user = true"
+            >
+              <v-icon>flag</v-icon>
+              Flag this listing
+            </v-btn>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -708,9 +733,9 @@ import FlagUserDialog from '@/components/FlagUserDialog';
 import _ from 'lodash';
 
 export default {
-	name: 'trainerProfile',
-	mixins: [data_getters],
+	name: 'TrainerProfile',
 	components: { infoSection, Gallery, FlagUserDialog },
+	mixins: [data_getters],
 	props: {
 		user_id: String,
 		user_obj: {
@@ -726,16 +751,6 @@ export default {
 
 			show_flag_user: false
 		};
-	},
-
-	watch: {
-		user_id(newVal, oldVal) {
-			console.log('test');
-			if (newVal != null) {
-				this.user = this.user_obj;
-				this.get_profile();
-			}
-		}
 	},
 
 	computed: {
@@ -1031,6 +1046,19 @@ export default {
 		}
 	},
 
+	watch: {
+		user_id(newVal, oldVal) {
+			console.log('test');
+			if (newVal != null) {
+				this.user = this.user_obj;
+				this.get_profile();
+			}
+		}
+	},
+	created() {
+		this.get_profile();
+	},
+
 	methods: {
 		//returns a cleaned version of trainer_info.website
 		cleaned_url(url) {
@@ -1106,9 +1134,6 @@ export default {
 				throw e;
 			}
 		}
-	},
-	created() {
-		this.get_profile();
 	}
 };
 </script>

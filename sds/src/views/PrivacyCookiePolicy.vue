@@ -1,9 +1,10 @@
 <template>
   <div>
-    <div class="page-title" style="text-align: center">
-
+    <div
+      class="page-title"
+      style="text-align: center"
+    >
       Service Dog Standards Privacy and Cookie Policy
-
     </div>
 
     <div class="content-container-bg">
@@ -14,12 +15,12 @@
 
 
         <p>
-           Service Dog Standards (SDS) is built on integrity. Data that SDS may share would be on an aggregate level only, meaning only general statistical information may be made available to the others. When you enroll, you will notice that you are immediately transferred to a secure server using the latest data encryption technology. Once your information is collected, only the information you have chosen to show on your Public Profile Page can be viewed by others and only by entering your Membership Number.
+          Service Dog Standards (SDS) is built on integrity. Data that SDS may share would be on an aggregate level only, meaning only general statistical information may be made available to the others. When you enroll, you will notice that you are immediately transferred to a secure server using the latest data encryption technology. Once your information is collected, only the information you have chosen to show on your Public Profile Page can be viewed by others and only by entering your Membership Number.
         </p>
 
 
         <div class="heading">
-           Online Privacy Standards
+          Online Privacy Standards
         </div>
 
 
@@ -34,12 +35,12 @@
           <li>
             <!--When you make a purchase in our store credit card information is collected by Stripe, a third party-->
             <!--credit card processing company.-->
-             When you make a purchase in our store credit card information is hidden from us and collected securely
-             through the shopping cart software.
+            When you make a purchase in our store credit card information is hidden from us and collected securely
+            through the shopping cart software.
           </li>
           <li>
-             Our web server logs may collect additional information, such as the domain names of visitors to our web
-             site and IP addresses in order to measure the use of our web sites and to improve content.
+            Our web server logs may collect additional information, such as the domain names of visitors to our web
+            site and IP addresses in order to measure the use of our web sites and to improve content.
           </li>
           <li>We may use cookies to manage areas of our web site and to deliver a better web site experience to our users.</li>
           <li>
@@ -68,7 +69,7 @@
             us via e-mail and through the user administration module in the Control Panel portion of
             servicedogstandards.org.
           </li>
-          <li></li>
+          <li />
         </ul>
 
 
@@ -93,7 +94,7 @@
           <li>
             When you are on servicedogstandards.org and are asked for personal information, you are sharing that
             information with EBC Partners, LLC., and related companies which have been set up specifically for
-             the purpose of SDS.
+            the purpose of SDS.
           </li>
           <li>
             SDS may also contain various links to third-party web sites. These sites may provide additional information,
@@ -111,7 +112,7 @@
         </div>
         We use cookies, pixels, and other technologies (collectively, "cookies") to recognize your browser or device,
         learn more about your interests, and provide you with essential features and services and for additional
-         purposes, including:
+        purposes, including:
 
         <ul>
           <li>Recognizing you when you sign-in to use our services. This allows us to provide you with product recommendations, display personalized content, recognize you as a member and provide other customized features and services.</li>
@@ -130,21 +131,16 @@
           You can manage browser cookies through your browser settings. The 'Help' feature on most browsers will tell you how to prevent your browser from accepting new cookies, how to have the browser notify you when you receive a new cookie, how to block cookies, and when cookies will expire. If you block all cookies on your browser, neither we nor third parties nor any website on the Internet will transfer cookies to your browser. If you do this, however, you may have to manually adjust some preferences every time you visit a site and some features and services may not work.
         </p>
 
-         <p>
-            Approved third parties may also set cookies when you interact with Service Dog Standards’ services. Third parties include search engines, providers of measurement and analytics services, social media networks and more. Third parties use cookies in the process of delivering content relevant to your interests, to measure effectiveness and to perform services on behalf of Service Dog Standards.
-         </p>
+        <p>
+          Approved third parties may also set cookies when you interact with Service Dog Standards’ services. Third parties include search engines, providers of measurement and analytics services, social media networks and more. Third parties use cookies in the process of delivering content relevant to your interests, to measure effectiveness and to perform services on behalf of Service Dog Standards.
+        </p>
 
-         <p>
-            You can manage browser cookies through your browser settings. The 'Help' feature on most browsers will tell you how to prevent your browser from accepting new cookies, how to have the browser notify you when you receive a new cookie, how to block cookies, and when cookies will expire. If you block all cookies on your browser, neither we nor third parties nor any website on the Internet will transfer cookies to your browser. If you do this, however, you may have to manually adjust some preferences every time you visit a site and some features and services may not work.
-         </p>
-
+        <p>
+          You can manage browser cookies through your browser settings. The 'Help' feature on most browsers will tell you how to prevent your browser from accepting new cookies, how to have the browser notify you when you receive a new cookie, how to block cookies, and when cookies will expire. If you block all cookies on your browser, neither we nor third parties nor any website on the Internet will transfer cookies to your browser. If you do this, however, you may have to manually adjust some preferences every time you visit a site and some features and services may not work.
+        </p>
       </div>
-
-
-
     </div>
   </div>
-
 </template>
 
 <script>

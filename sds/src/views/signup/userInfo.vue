@@ -1,153 +1,150 @@
 <template>
-   <div>
-
-      <check-address
-          :address-new="user.private_info.address"
-          :address-old="private_info_address_old"
-          @checked-address="on_save({checked_addr: $event})"
-          ref="addrCheck"
-      />
-
+  <div>
+    <check-address
+      ref="addrCheck"
+      :address-new="user.private_info.address"
+      :address-old="private_info_address_old"
+      @checked-address="on_save({checked_addr: $event})"
+    />
 
 
 
 
-      <my-form ref="form">
 
-<!--         <v-row dense>-->
-<!--            <v-col cols="5">-->
+    <my-form ref="form">
+      <!--         <v-row dense>-->
+      <!--            <v-col cols="5">-->
 
-<!--               <my-drop-down-->
-<!--                   label="Account Type"-->
-<!--                   v-model="user.account_type"-->
-<!--                   :list="[{txt: 'Trainer', val: 'TRAINER'}, {txt: 'Handler', val: 'HANDLER'}, {txt: 'Aide', val: 'AIDE'}]"-->
-<!--                   item-value="val"-->
-<!--                   item-text="txt"-->
-<!--                   :rules="[isRequired]"-->
-<!--               />-->
+      <!--               <my-drop-down-->
+      <!--                   label="Account Type"-->
+      <!--                   v-model="user.account_type"-->
+      <!--                   :list="[{txt: 'Trainer', val: 'TRAINER'}, {txt: 'Handler', val: 'HANDLER'}, {txt: 'Aide', val: 'AIDE'}]"-->
+      <!--                   item-value="val"-->
+      <!--                   item-text="txt"-->
+      <!--                   :rules="[isRequired]"-->
+      <!--               />-->
 
-<!--            </v-col>-->
-<!--         </v-row>-->
-
-
-         <v-row dense>
-            <v-col >
-               <my-text-input
-                   label="First Name*"
-                   v-model="user.name_first"
-                   :rules="[isRequired]"
-               ></my-text-input>
-            </v-col>
-
-            <v-col>
-<!--               <v-text-field-->
-<!--                   label="Last Name*"-->
-<!--                   v-model="user.name_last"-->
-<!--                   outlined-->
-<!--                   dense-->
-<!--                   :hide-details="hide_details"-->
-<!--                   :rules="[isRequired]"-->
-<!--               ></v-text-field>-->
-
-               <my-text-input
-                   label="Last Name*"
-                   v-model="user.name_last"
-                   :rules="[isRequired]"
-               ></my-text-input>
-            </v-col>
-         </v-row>
-
-         <v-row dense>
-            <v-col >
-<!--               <v-text-field-->
-<!--                   label="Address*"-->
-<!--                   v-model="user.address1"-->
-<!--                   outlined-->
-<!--                   dense-->
-<!--                   :hide-details="hide_details"-->
-<!--                   :rules="[isRequired]"-->
-<!--               ></v-text-field>-->
-
-               <my-text-input
-                   label="Address*"
-                   v-model="user.private_info.address.street1"
-                   :rules="[isRequired]"
-               ></my-text-input>
-            </v-col>
-         </v-row>
+      <!--            </v-col>-->
+      <!--         </v-row>-->
 
 
-         <v-row dense>
-            <v-col cols="6">
-               <my-text-input
-                   label="City*"
-                   v-model="user.private_info.address.city"
-                   :rules="[isRequired]"
-               ></my-text-input>
-            </v-col>
+      <v-row dense>
+        <v-col>
+          <my-text-input
+            v-model="user.name_first"
+            label="First Name*"
+            :rules="[isRequired]"
+          />
+        </v-col>
 
-            <v-col cols="3">
-               <my-text-input
-                   label="State*"
-                   v-model="user.private_info.address.state"
-                   :rules="[isRequired]"
-               ></my-text-input>
+        <v-col>
+          <!--               <v-text-field-->
+          <!--                   label="Last Name*"-->
+          <!--                   v-model="user.name_last"-->
+          <!--                   outlined-->
+          <!--                   dense-->
+          <!--                   :hide-details="hide_details"-->
+          <!--                   :rules="[isRequired]"-->
+          <!--               ></v-text-field>-->
 
-               <!--<my-drop-down-->
-               <!--    label="State*"-->
-               <!--    v-model="user.address.state"-->
-               <!--    :list="states"-->
-               <!--    item-value="abbr"-->
-               <!--    item-text="txt"-->
-               <!--    show-value-->
-               <!--    :rules="[isRequired]"-->
-               <!--/>-->
-
-            </v-col>
-
-            <v-col cols="3">
-               <my-text-input
-                   label="Zip*"
-                   v-model="user.private_info.address.zip"
-                   :rules="[isRequired, isZip]"
-               ></my-text-input>
-
-            </v-col>
-         </v-row>
-
-         <v-row dense>
-            <!--<v-col >-->
-            <!--   <my-text-input-->
-            <!--       label="Email*"-->
-            <!--       v-model="email"-->
-            <!--       :rules="[isRequired]"-->
-            <!--       disabled-->
-            <!--   ></my-text-input>-->
-            <!--</v-col>-->
-
-            <v-col>
-               <my-text-input
-                   label="Phone*"
-                   v-model="user.private_info.phone"
-                   @change="user.private_info.phone = fmtPhone(user.private_info.phone)"
-                   :rules="[isRequired, isPhone]"
-               ></my-text-input>
-
-            </v-col>
-         </v-row>
-      </my-form>
-
-      <v-row>
-         <v-spacer></v-spacer>
-         <v-btn
-             color="var(--color-primary)"
-             @click="on_save"
-             :loading="loading_save"
-         >Save</v-btn>
-
-         <v-spacer></v-spacer>
+          <my-text-input
+            v-model="user.name_last"
+            label="Last Name*"
+            :rules="[isRequired]"
+          />
+        </v-col>
       </v-row>
-   </div>
+
+      <v-row dense>
+        <v-col>
+          <!--               <v-text-field-->
+          <!--                   label="Address*"-->
+          <!--                   v-model="user.address1"-->
+          <!--                   outlined-->
+          <!--                   dense-->
+          <!--                   :hide-details="hide_details"-->
+          <!--                   :rules="[isRequired]"-->
+          <!--               ></v-text-field>-->
+
+          <my-text-input
+            v-model="user.private_info.address.street1"
+            label="Address*"
+            :rules="[isRequired]"
+          />
+        </v-col>
+      </v-row>
+
+
+      <v-row dense>
+        <v-col cols="6">
+          <my-text-input
+            v-model="user.private_info.address.city"
+            label="City*"
+            :rules="[isRequired]"
+          />
+        </v-col>
+
+        <v-col cols="3">
+          <my-text-input
+            v-model="user.private_info.address.state"
+            label="State*"
+            :rules="[isRequired]"
+          />
+
+          <!--<my-drop-down-->
+          <!--    label="State*"-->
+          <!--    v-model="user.address.state"-->
+          <!--    :list="states"-->
+          <!--    item-value="abbr"-->
+          <!--    item-text="txt"-->
+          <!--    show-value-->
+          <!--    :rules="[isRequired]"-->
+          <!--/>-->
+        </v-col>
+
+        <v-col cols="3">
+          <my-text-input
+            v-model="user.private_info.address.zip"
+            label="Zip*"
+            :rules="[isRequired, isZip]"
+          />
+        </v-col>
+      </v-row>
+
+      <v-row dense>
+        <!--<v-col >-->
+        <!--   <my-text-input-->
+        <!--       label="Email*"-->
+        <!--       v-model="email"-->
+        <!--       :rules="[isRequired]"-->
+        <!--       disabled-->
+        <!--   ></my-text-input>-->
+        <!--</v-col>-->
+
+        <v-col>
+          <my-text-input
+            v-model="user.private_info.phone"
+            label="Phone*"
+            :rules="[isRequired, isPhone]"
+            @change="user.private_info.phone = fmtPhone(user.private_info.phone)"
+          />
+        </v-col>
+      </v-row>
+    </my-form>
+
+    <v-row>
+      <v-spacer />
+      <v-btn
+        color="var(--color-primary)"
+        :loading="loading_save"
+        @click="on_save"
+      >
+        Save
+      </v-btn>
+
+      <v-spacer />
+    </v-row>
+  </div>
 </template>
 
 <script>
@@ -159,7 +156,7 @@ import _ from 'lodash';
 import CheckAddress from "@/components/CheckAddress";
 
 export default {
-   name: "userInfo",
+   name: "UserInfo",
    components: {MyDropDown, CheckAddress},
    mixins: [validation, data_getters],
    data(){
@@ -194,6 +191,21 @@ export default {
 
 
          private_info_address_old: {},
+      }
+   }, //methods
+
+
+   async created(){
+      try{
+         let user = await this.make_request('/private/getMyProfile', {});
+         this.user.account_type = user.account_type;
+         this.user.name_first = user.name_first;
+         this.user.name_last = user.name_last;
+
+         console.log(user)
+
+      }catch (e) {
+         console.log(e);
       }
    },
 
@@ -291,21 +303,6 @@ export default {
             throw e;
          }
 
-      }
-   }, //methods
-
-
-   async created(){
-      try{
-         let user = await this.make_request('/private/getMyProfile', {});
-         this.user.account_type = user.account_type;
-         this.user.name_first = user.name_first;
-         this.user.name_last = user.name_last;
-
-         console.log(user)
-
-      }catch (e) {
-         console.log(e);
       }
    }
 

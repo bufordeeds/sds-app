@@ -1,102 +1,130 @@
 <template>
+  <v-dialog
+    v-model="value2"
+    max-width="400px"
+    :content-class="dialog_style"
+    persistent
+  >
+    <v-card
+      class="pa-3"
+      style=""
+    >
+      <div
+        class="dialog-heading"
+        style="display: flex"
+      >
+        Advanced search
+        <v-spacer />
+        <v-btn
+          icon
+          style="margin-top: -10px; margin-right: -5px"
+          @click="value2=false"
+        >
+          <v-icon>close</v-icon>
+        </v-btn>
+      </div>
 
-      <v-dialog v-model="value2" max-width="400px" :content-class="dialog_style"  persistent>
-         <v-card class="pa-3" style="">
+      <div>
+        <my-form ref="form">
+          <my-text-input
+            v-model="first_name"
+            label="Handler's First Name"
+            :rules="[isRequired]"
+            @keyup-enter="search"
+          />
+          <my-text-input
+            v-model="last_name"
+            label="Handler's Last Name"
+            :rules="[isRequired]"
+            @keyup-enter="search"
+          />
 
-            <div class="dialog-heading" style="display: flex">
-               Advanced search
-               <v-spacer/>
-               <v-btn icon @click="value2=false" style="margin-top: -10px; margin-right: -5px">
-                  <v-icon>close</v-icon>
-               </v-btn>
+          <my-text-input
+            v-model="dog_name"
+            label="Dog's Name"
+            :rules="[isRequired]"
+            @keyup-enter="search"
+          />
+        </my-form>
+
+
+        <div
+          v-if="err_msg"
+          style="color: var(--color-input-error); text-align: center"
+          class="mt-3"
+        >
+          {{ err_msg }}
+        </div>
+        <v-row
+          class="ma-0"
+          style="padding: 10px 0px;"
+        >
+          <v-spacer />
+
+          <v-btn @click="search">
+            Search
+          </v-btn>
+        </v-row>
+      </div>
+
+      <div
+        v-if="show_results"
+        class="dialog-heading"
+      >
+        Search Results
+      </div>
+
+
+      <div
+        v-if="show_results"
+        style="max-height: 50vh; overflow-y: auto"
+      >
+        <div
+          v-if="teams.length === 0"
+          style="text-align: center; margin-top: 10px"
+        >
+          No Teams found
+        </div>
+
+        <div
+          v-for="item in teams"
+          :key="item._id"
+          style="border: 1px solid #d7d7d7; "
+          class="pa-2 mt-2"
+        >
+          <a
+            style="display: flex;  text-decoration: none; color: inherit"
+            :href="'/team/'+item.dog_num"
+            target="_blank"
+          >
+            <div style="display: flex; flex-direction: column; align-items: center; ">
+              <avatar
+                profile-type="user"
+                :profile="item.handler_id_FR"
+                image-only
+                size="50"
+              />
+              {{ get_name_user(item.handler_id_FR) }}
             </div>
 
-            <div>
-               <my-form ref="form">
-                  <my-text-input
-                      label="Handler's First Name"
-                      v-model="first_name"
-                      @keyup-enter="search"
-                      :rules="[isRequired]"
-                  />
-                  <my-text-input
-                      label="Handler's Last Name"
-                      v-model="last_name"
-                      @keyup-enter="search"
-                      :rules="[isRequired]"
-                  />
-
-                  <my-text-input
-                      label="Dog's Name"
-                      v-model="dog_name"
-                      @keyup-enter="search"
-                      :rules="[isRequired]"
-                  />
-
-
-               </my-form>
-
-
-               <div v-if="err_msg" style="color: var(--color-input-error); text-align: center" class="mt-3">
-                  {{err_msg}}
-               </div>
-               <v-row class="ma-0" style="padding: 10px 0px;">
-                  <v-spacer/>
-
-                  <v-btn @click="search">Search</v-btn>
-               </v-row>
+            <div
+              style="display: flex; flex-direction: column; align-items: center"
+              class="ml-2"
+            >
+              <avatar
+                profile-type="dog"
+                :profile="item"
+                image-only
+                size="50"
+              />
+              {{ item.name }}
             </div>
 
-            <div class="dialog-heading"  v-if="show_results" >
-               Search Results
-            </div>
-
-
-            <div v-if="show_results" style="max-height: 50vh; overflow-y: auto" >
-
-               <div v-if="teams.length === 0" style="text-align: center; margin-top: 10px">
-                  No Teams found
-               </div>
-
-               <div
-                   v-for="item in teams" :key="item._id"
-                   style="border: 1px solid #d7d7d7; "
-                   class="pa-2 mt-2"
-               >
-                  <a style="display: flex;  text-decoration: none; color: inherit"
-                     :href="'/team/'+item.dog_num"
-                       target="_blank"
-                  >
-                     <div style="display: flex; flex-direction: column; align-items: center; ">
-                        <avatar
-                            profile-type="user"
-                            :profile="item.handler_id_FR"
-                            image-only
-                            size="50"
-                        />
-                        {{get_name_user(item.handler_id_FR)}}
-                     </div>
-
-                     <div style="display: flex; flex-direction: column; align-items: center" class="ml-2">
-                        <avatar profile-type="dog" :profile="item" image-only size="50"/>
-                        {{item.name}}
-                     </div>
-
-                  </a>
-               </div>
-
-
-            </div>
-
-         </v-card>
-      </v-dialog>
-
-
-
-
-
-
-
+          </a>
+        </div>
+      </div>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>

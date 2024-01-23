@@ -1,9 +1,9 @@
 <template>
-<v-dialog>
-   <v-card>
+  <v-dialog>
+    <v-card>
       You were logged
-   </v-card>
-</v-dialog>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>

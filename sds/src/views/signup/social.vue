@@ -1,121 +1,118 @@
 <template>
-<div>
-   <v-container>
+  <div>
+    <v-container>
       <v-row>
-         <v-col>
-            <div class="social-container">
-               <div class="icon-box">
-                  <img src="../../assets/images/icons/facebook.svg" >
-               </div>
-               <v-text-field
-                   label="Enter Facebook Link"
-                   v-model="social.facebook"
-                   dense
-                   hide-details
-                   style="align-self: center"
-               ></v-text-field>
+        <v-col>
+          <div class="social-container">
+            <div class="icon-box">
+              <img src="../../assets/images/icons/facebook.svg">
             </div>
-         </v-col>
+            <v-text-field
+              v-model="social.facebook"
+              label="Enter Facebook Link"
+              dense
+              hide-details
+              style="align-self: center"
+            />
+          </div>
+        </v-col>
 
-         <v-col>
-            <div class="social-container">
-               <div class="icon-box">
-                  <img src="../../assets/images/icons/twitter.svg" >
-               </div>
-               <v-text-field
-                   label="Enter Twitter Link"
-                   v-model="social.twitter"
-                   dense
-                   hide-details
-                   style="align-self: center"
-               ></v-text-field>
+        <v-col>
+          <div class="social-container">
+            <div class="icon-box">
+              <img src="../../assets/images/icons/twitter.svg">
             </div>
-         </v-col>
-
+            <v-text-field
+              v-model="social.twitter"
+              label="Enter Twitter Link"
+              dense
+              hide-details
+              style="align-self: center"
+            />
+          </div>
+        </v-col>
       </v-row>
 
       <v-row>
-         <v-col>
-            <div class="social-container">
-               <div class="icon-box">
-                  <img src="../../assets/images/icons/instagram.svg" >
-               </div>
-               <v-text-field
-                   label="Enter Instagram Link"
-                   v-model="social.instagram"
-                   dense
-                   hide-details
-                   style="align-self: center"
-               ></v-text-field>
+        <v-col>
+          <div class="social-container">
+            <div class="icon-box">
+              <img src="../../assets/images/icons/instagram.svg">
             </div>
-         </v-col>
+            <v-text-field
+              v-model="social.instagram"
+              label="Enter Instagram Link"
+              dense
+              hide-details
+              style="align-self: center"
+            />
+          </div>
+        </v-col>
 
-         <v-col>
-            <div class="social-container">
-               <div class="icon-box">
-                  <img src="../../assets/images/icons/snapchat.svg" >
-               </div>
-               <v-text-field
-                   label="Enter Snapchat Link"
-                   v-model="social.snapchat"
-                   dense
-                   hide-details
-                   style="align-self: center"
-               ></v-text-field>
+        <v-col>
+          <div class="social-container">
+            <div class="icon-box">
+              <img src="../../assets/images/icons/snapchat.svg">
             </div>
-         </v-col>
-
+            <v-text-field
+              v-model="social.snapchat"
+              label="Enter Snapchat Link"
+              dense
+              hide-details
+              style="align-self: center"
+            />
+          </div>
+        </v-col>
       </v-row>
 
       <v-row>
-         <v-col>
-            <div class="social-container">
-               <div class="icon-box">
-                  <img src="../../assets/images/icons/linkedin.svg" >
-               </div>
-               <v-text-field
-                   label="Enter LinkedIn Link"
-                   v-model="social.linkedin"
-                   dense
-                   hide-details
-                   style="align-self: center"
-               ></v-text-field>
+        <v-col>
+          <div class="social-container">
+            <div class="icon-box">
+              <img src="../../assets/images/icons/linkedin.svg">
             </div>
-         </v-col>
+            <v-text-field
+              v-model="social.linkedin"
+              label="Enter LinkedIn Link"
+              dense
+              hide-details
+              style="align-self: center"
+            />
+          </div>
+        </v-col>
 
-         <v-col>
-            <div class="social-container">
-               <div class="icon-box">
-                  <img src="../../assets/images/icons/youtube.svg" >
-               </div>
-               <v-text-field
-                   label="Enter YouTube Link"
-                   v-model="social.youtube"
-                   dense
-                   hide-details
-                   style="align-self: center"
-               ></v-text-field>
+        <v-col>
+          <div class="social-container">
+            <div class="icon-box">
+              <img src="../../assets/images/icons/youtube.svg">
             </div>
-         </v-col>
-
+            <v-text-field
+              v-model="social.youtube"
+              label="Enter YouTube Link"
+              dense
+              hide-details
+              style="align-self: center"
+            />
+          </div>
+        </v-col>
       </v-row>
 
       <v-row style="margin-top: 30px">
-         <v-spacer></v-spacer>
-         <v-btn
-             color="var(--color-primary)"
-             @click="save"
-         >
-            Add Social Profiles
-         </v-btn>
+        <v-spacer />
+        <v-btn
+          color="var(--color-primary)"
+          @click="save"
+        >
+          Add Social Profiles
+        </v-btn>
       </v-row>
-   </v-container>
-</div>
+    </v-container>
+  </div>
 </template>
 
 <script>
 export default {
-   name: "setup-social",
+   name: "SetupSocial",
    data(){
       return {
          social: {

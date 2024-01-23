@@ -1,369 +1,411 @@
 <template>
-   <div>
-            <!--<v-dialog v-model="show_edit_address" max-width="500px">-->
+  <div>
+    <!--<v-dialog v-model="show_edit_address" max-width="500px">-->
 
-            <!--   <v-card class="pa-4">-->
-            <!--      <div style="display:flex; ">-->
-            <!--        <span style="font-weight: 600; color: var(&#45;&#45;color-txt-grey1)">-->
-            <!--         Edit Address-->
-            <!--        </span>-->
+    <!--   <v-card class="pa-4">-->
+    <!--      <div style="display:flex; ">-->
+    <!--        <span style="font-weight: 600; color: var(&#45;&#45;color-txt-grey1)">-->
+    <!--         Edit Address-->
+    <!--        </span>-->
 
-            <!--        <v-spacer />-->
-            <!--        <v-btn icon small @click="show_edit_address=false;">-->
-            <!--          <v-icon>close</v-icon>-->
-            <!--        </v-btn>-->
-            <!--      </div>-->
-            <!--      <my-form>-->
+    <!--        <v-spacer />-->
+    <!--        <v-btn icon small @click="show_edit_address=false;">-->
+    <!--          <v-icon>close</v-icon>-->
+    <!--        </v-btn>-->
+    <!--      </div>-->
+    <!--      <my-form>-->
 
-            <!--        <v-row dense>-->
-            <!--          <v-col>-->
-            <!--            <my-text-input-->
-            <!--                label="Name"-->
-            <!--                v-model="shipping_address_edit.name"-->
-            <!--            />-->
-            <!--          </v-col>-->
-            <!--        </v-row>-->
+    <!--        <v-row dense>-->
+    <!--          <v-col>-->
+    <!--            <my-text-input-->
+    <!--                label="Name"-->
+    <!--                v-model="shipping_address_edit.name"-->
+    <!--            />-->
+    <!--          </v-col>-->
+    <!--        </v-row>-->
 
-            <!--        <v-row dense>-->
-            <!--          <v-col cols="8">-->
-            <!--            <my-text-input-->
-            <!--                label="Street"-->
-            <!--                v-model="shipping_address_edit.street1"-->
-            <!--            />-->
-            <!--          </v-col>-->
+    <!--        <v-row dense>-->
+    <!--          <v-col cols="8">-->
+    <!--            <my-text-input-->
+    <!--                label="Street"-->
+    <!--                v-model="shipping_address_edit.street1"-->
+    <!--            />-->
+    <!--          </v-col>-->
 
-            <!--          <v-col cols="4">-->
-            <!--            <my-text-input-->
-            <!--                label="Apt, Suit, etc."-->
-            <!--                v-model="shipping_address_edit.street2"-->
-            <!--            />-->
-            <!--          </v-col>-->
-            <!--        </v-row>-->
+    <!--          <v-col cols="4">-->
+    <!--            <my-text-input-->
+    <!--                label="Apt, Suit, etc."-->
+    <!--                v-model="shipping_address_edit.street2"-->
+    <!--            />-->
+    <!--          </v-col>-->
+    <!--        </v-row>-->
 
-            <!--        <v-row>-->
+    <!--        <v-row>-->
 
-            <!--          <v-col>-->
-            <!--            <my-text-input-->
-            <!--                label="City"-->
-            <!--                v-model="shipping_address_edit.city"-->
-            <!--            />-->
-            <!--          </v-col>-->
-            <!--          <v-col>-->
-            <!--            <my-text-input-->
-            <!--                label="State"-->
-            <!--                v-model="shipping_address_edit.state"-->
-            <!--            />-->
-            <!--          </v-col>-->
-            <!--          <v-col>-->
-            <!--            <my-text-input-->
-            <!--                label="Zip"-->
-            <!--                v-model="shipping_address_edit.zip"-->
-            <!--            />-->
-            <!--          </v-col>-->
-            <!--        </v-row>-->
-            <!--      </my-form>-->
+    <!--          <v-col>-->
+    <!--            <my-text-input-->
+    <!--                label="City"-->
+    <!--                v-model="shipping_address_edit.city"-->
+    <!--            />-->
+    <!--          </v-col>-->
+    <!--          <v-col>-->
+    <!--            <my-text-input-->
+    <!--                label="State"-->
+    <!--                v-model="shipping_address_edit.state"-->
+    <!--            />-->
+    <!--          </v-col>-->
+    <!--          <v-col>-->
+    <!--            <my-text-input-->
+    <!--                label="Zip"-->
+    <!--                v-model="shipping_address_edit.zip"-->
+    <!--            />-->
+    <!--          </v-col>-->
+    <!--        </v-row>-->
+    <!--      </my-form>-->
 
-            <!--     <v-row class="mt-4 pr-2">-->
-            <!--       <v-spacer />-->
+    <!--     <v-row class="mt-4 pr-2">-->
+    <!--       <v-spacer />-->
 
-            <!--       <v-btn-->
-            <!--           color="var(&#45;&#45;color-btn)" class="white&#45;&#45;text"-->
-            <!--           @click="on_save_address"-->
-            <!--       >Update</v-btn>-->
-            <!--     </v-row>-->
-            <!--   </v-card>-->
-            <!--</v-dialog>-->
-
-
-
-
-      <v-dialog v-model="show_edit_address" max-width="500px">
-
-            <v-card class="pa-4">
-               <div style="display:flex; ">
-                 <span style="font-weight: 600; color: var(--color-txt-grey1)">
-                  Edit Address
-                 </span>
-
-                 <v-spacer />
-                 <v-btn icon small @click="show_edit_address=false;">
-                   <v-icon>close</v-icon>
-                 </v-btn>
-               </div>
-
-
-               <checkout-edit-address
-                   :address.sync="shipping_address_edit"
-                   @save="on_save_address"
-               />
-
-              <v-row class="mt-4 pr-2">
-                <v-spacer />
-
-                <v-btn
-                    color="var(--color-btn)" class="white--text"
-                    @click="on_save_address"
-                >Update</v-btn>
-              </v-row>
-            </v-card>
-      </v-dialog>
+    <!--       <v-btn-->
+    <!--           color="var(&#45;&#45;color-btn)" class="white&#45;&#45;text"-->
+    <!--           @click="on_save_address"-->
+    <!--       >Update</v-btn>-->
+    <!--     </v-row>-->
+    <!--   </v-card>-->
+    <!--</v-dialog>-->
 
 
 
 
+    <v-dialog
+      v-model="show_edit_address"
+      max-width="500px"
+    >
+      <v-card class="pa-4">
+        <div style="display:flex; ">
+          <span style="font-weight: 600; color: var(--color-txt-grey1)">
+            Edit Address
+          </span>
 
-     <!---------------------------------------------------------------------------------------------------------------->
-     <!-------------------------------main content--------------------------------------------------------------------->
-     <!---------------------------------------------------------------------------------------------------------------->
-
-      <div class="page-title">
-         Checkout
-      </div>
-
-      <div class="content-container-bg" >
-         <div class="sds-content-container" style="max-width: 700px">
-
+          <v-spacer />
+          <v-btn
+            icon
+            small
+            @click="show_edit_address=false;"
+          >
+            <v-icon>close</v-icon>
+          </v-btn>
+        </div>
 
 
+        <checkout-edit-address
+          :address.sync="shipping_address_edit"
+          @save="on_save_address"
+        />
 
-           <!----------------------------------------Shipping address---------------------------->
+        <v-row class="mt-4 pr-2">
+          <v-spacer />
 
-
-            <template v-if="!isGuest">
-               <div  class="checkout-heading" style="display: flex">
-                  Shipping Address
-                  <v-spacer/>
-                  <v-btn  text color="var(--color-btn)"
-                          @click="on_change_address"
-                  >
-                     Edit
-                  </v-btn>
-               </div>
-
-               <div class="checkout-data" >
-                  <div>
-                     <div>
-                        {{email}}
-                     </div>
-                     <div>
-                        {{shipping_address.name}}
-                     </div>
-                     <div>
-                        {{shipping_address.street1}}
-                     </div>
-                     <div v-if="shipping_address.street2">
-                        {{shipping_address.street2}}
-                     </div>
-                     <div>
-
-                        {{shipping_address.city}}, {{shipping_address.state}} {{shipping_address.zip}}
-                     </div>
-                  </div>
-               </div>
-            </template>
-
-            <template v-else>
-               <div  class="checkout-heading" style="display: flex">
-                  Your Info
-               </div>
-
-               <div class="checkout-data" >
-                  <checkout-edit-address
-                      ref="address"
-                      :address.sync="shipping_address"
-                      :email.sync="email"
-                  />
-               </div>
-
-            </template>
+          <v-btn
+            color="var(--color-btn)"
+            class="white--text"
+            @click="on_save_address"
+          >
+            Update
+          </v-btn>
+        </v-row>
+      </v-card>
+    </v-dialog>
 
 
 
-            <!--v-if="shipping_rates == null"-->
-            <div style="display:flex" class="mt-4" >
-               <v-spacer />
-               <v-btn
-                   @click="get_shipping_info"
-                   color="var(--color-btn)" class="white--text"
-                   :loading="loading_confirm_address"
-               >
-                  <!--Confirm Address-->
-                  Get Shipping Rates
-               </v-btn>
 
+
+    <!---------------------------------------------------------------------------------------------------------------->
+    <!-------------------------------main content--------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------------------------------->
+
+    <div class="page-title">
+      Checkout
+    </div>
+
+    <div class="content-container-bg">
+      <div
+        class="sds-content-container"
+        style="max-width: 700px"
+      >
+        <!----------------------------------------Shipping address---------------------------->
+
+
+        <template v-if="!isGuest">
+          <div
+            class="checkout-heading"
+            style="display: flex"
+          >
+            Shipping Address
+            <v-spacer />
+            <v-btn
+              text
+              color="var(--color-btn)"
+              @click="on_change_address"
+            >
+              Edit
+            </v-btn>
+          </div>
+
+          <div class="checkout-data">
+            <div>
+              <div>
+                {{ email }}
+              </div>
+              <div>
+                {{ shipping_address.name }}
+              </div>
+              <div>
+                {{ shipping_address.street1 }}
+              </div>
+              <div v-if="shipping_address.street2">
+                {{ shipping_address.street2 }}
+              </div>
+              <div>
+                {{ shipping_address.city }}, {{ shipping_address.state }} {{ shipping_address.zip }}
+              </div>
             </div>
+          </div>
+        </template>
 
+        <template v-else>
+          <div
+            class="checkout-heading"
+            style="display: flex"
+          >
+            Your Info
+          </div>
 
-
-
-           <!----------------------------------------Shipping Rates---------------------------->
-
-            <div style="background-color: white">
-               <div class="checkout-heading mt-8" >
-                  Shipping & Handling
-               </div>
-
-               <div  class="checkout-data">
-                  <div v-if="shipping_rates == null" class="pa-2">
-                     Please confirm your shipping address to see shipping options
-                  </div>
-
-                  <v-radio-group
-                      v-else
-                      v-model="selected_rate" class="mt-1"
-                      @change="on_select_shipping"
-                  >
-                     <v-radio
-                         v-for="rate in shipping_rates"
-                         :key="'rate'+rate.id"
-                         :value="rate"
-                     >
-                        <template v-slot:label>
-                           <div style="display: flex; width: 100%">
-                              <div>
-                                 {{rate.carrier}} {{rate.service}}
-                              </div>
-                              <div v-if="rate.est_delivery_days != null" class="ml-1">
-                                 (Est. delivery : {{rate.est_delivery_days}} day<span v-if="rate.est_delivery_days > 1">s</span>*)
-                              </div>
-                              <v-spacer/>
-                              <div>
-                                 {{rate.rate}}
-                              </div>
-                           </div>
-                        </template>
-
-                     </v-radio>
-                  </v-radio-group>
-
-
-                  <div v-if="shipping_rates != null" style="font-size: 10pt">
-                     * Delivery estimates provided by USPS and are relative to the date items are shipped.
-                  </div>
-               </div>
-            </div>
-
-
-
-
-
-
-
-
-
-           <!--------------------- Order Summary ------------------------------------------->
-           <div class="checkout-heading mt-9" >
-             Order Summary
-           </div>
-
-            <div class="checkout-data">
-             <div style="display: flex; width: 100%">
-               <div>
-                 Total Items
-               </div>
-               <v-spacer></v-spacer>
-               <div class="ml-2 mr-3" style="">
-                 {{fmt_number(cart_total, {places: 2, prefix: '$'}) }}
-               </div>
-             </div>
-
-             <div style="display: flex; width: 100%">
-               <div>
-                 Shipping & Handling
-               </div>
-               <v-spacer></v-spacer>
-               <div class="ml-2 mr-3" style="" v-if="selected_rate != null">
-                 {{fmt_number(shipping, {places: 2,prefix: '$'}) }}
-               </div>
-               <div class="ml-2 mr-3" style="font-size: 10pt" v-else>
-                 -
-               </div>
-             </div>
-             <v-divider/>
-
-             <div style="display: flex; font-weight: 600" class="mt-2">
-               <div>
-                 Order Total
-               </div>
-               <v-spacer></v-spacer>
-               <div class="ml-2 mr-3" style="">
-                 {{fmt_number(shipping + cart_total, {places: 2, prefix: '$'}) }}
-               </div>
-             </div>
-
-           </div>
-
-
-           <div style="display:flex; margin-top: 20px;">
-             <v-spacer />
-             <v-btn :disabled="selected_rate == null"
-                    dark text class="ma-0 pa-0" style="height: 40px" @click="checkout_stripe">
-               <div style="background-color: var(--color-btn); height: 40px; display: flex; justify-content: center; align-items: center; width: 270px">
-                 Proceed to Payment</div>
-               <div class="btn-arrow-right"></div>
-             </v-btn>
-           </div>
-
-
-
-
-
-           <!------------------------------ Cart Items ---------------------------->
-            <div class="checkout-heading mt-6 pl-3 pt-1" style="color: var(--color-headline); background-color: white">
-            Items
-            </div>
-
-
-            <item-box
-                v-for="(item, i) in cart_items" :key="item.dog_id + i.toString()"
-                :item="item"
-                :show-actions="false"
+          <div class="checkout-data">
+            <checkout-edit-address
+              ref="address"
+              :address.sync="shipping_address"
+              :email.sync="email"
             />
+          </div>
+        </template>
 
 
-<!--            <div v-for="(item, i) in cart_items" :key="item.dog_id + i.toString()"-->
-<!--                 style="background-color: white; display: flex;" class="pa-2 mt-0">-->
 
-<!--               <div>-->
-<!--                  <img src="../../assets/images/content/Kit_Expanded_Large.png"-->
-<!--                       style="width: 200px"-->
-<!--                  >-->
-<!--               </div>-->
-
-<!--               <div class="ml-4" style="display: flex; flex-direction: column">-->
-<!--                  <div>-->
-<!--                     <div style="font-weight: 500; font-size: 14pt; color: var(&#45;&#45;color-subheading)">-->
-<!--                        {{item.description}}-->
-<!--                     </div>-->
-<!--                     Service Dog: <span class="data-label"> {{item.details.dog_name}} </span><br>-->
-<!--                     Registration: <span class="data-label">  {{item.details.dog_num}} </span>-->
-<!--                  </div>-->
-
-<!--               </div>-->
-
-<!--               <v-spacer></v-spacer>-->
-<!--               <div class="ml-2 mr-3" style="font-weight: 600">-->
-<!--                  ${{item.price}}-->
-<!--               </div>-->
-
-<!--            </div>-->
-
-
-            <div style="height: 30px"></div>
+        <!--v-if="shipping_rates == null"-->
+        <div
+          style="display:flex"
+          class="mt-4"
+        >
+          <v-spacer />
+          <v-btn
+            color="var(--color-btn)"
+            class="white--text"
+            :loading="loading_confirm_address"
+            @click="get_shipping_info"
+          >
+            <!--Confirm Address-->
+            Get Shipping Rates
+          </v-btn>
+        </div>
 
 
 
 
+        <!----------------------------------------Shipping Rates---------------------------->
+
+        <div style="background-color: white">
+          <div class="checkout-heading mt-8">
+            Shipping & Handling
+          </div>
+
+          <div class="checkout-data">
+            <div
+              v-if="shipping_rates == null"
+              class="pa-2"
+            >
+              Please confirm your shipping address to see shipping options
+            </div>
+
+            <v-radio-group
+              v-else
+              v-model="selected_rate"
+              class="mt-1"
+              @change="on_select_shipping"
+            >
+              <v-radio
+                v-for="rate in shipping_rates"
+                :key="'rate'+rate.id"
+                :value="rate"
+              >
+                <template #label>
+                  <div style="display: flex; width: 100%">
+                    <div>
+                      {{ rate.carrier }} {{ rate.service }}
+                    </div>
+                    <div
+                      v-if="rate.est_delivery_days != null"
+                      class="ml-1"
+                    >
+                      (Est. delivery : {{ rate.est_delivery_days }} day<span v-if="rate.est_delivery_days > 1">s</span>*)
+                    </div>
+                    <v-spacer />
+                    <div>
+                      {{ rate.rate }}
+                    </div>
+                  </div>
+                </template>
+              </v-radio>
+            </v-radio-group>
+
+
+            <div
+              v-if="shipping_rates != null"
+              style="font-size: 10pt"
+            >
+              * Delivery estimates provided by USPS and are relative to the date items are shipped.
+            </div>
+          </div>
+        </div>
 
 
 
 
-         </div>
+
+
+
+
+
+        <!--------------------- Order Summary ------------------------------------------->
+        <div class="checkout-heading mt-9">
+          Order Summary
+        </div>
+
+        <div class="checkout-data">
+          <div style="display: flex; width: 100%">
+            <div>
+              Total Items
+            </div>
+            <v-spacer />
+            <div
+              class="ml-2 mr-3"
+              style=""
+            >
+              {{ fmt_number(cart_total, {places: 2, prefix: '$'}) }}
+            </div>
+          </div>
+
+          <div style="display: flex; width: 100%">
+            <div>
+              Shipping & Handling
+            </div>
+            <v-spacer />
+            <div
+              v-if="selected_rate != null"
+              class="ml-2 mr-3"
+              style=""
+            >
+              {{ fmt_number(shipping, {places: 2,prefix: '$'}) }}
+            </div>
+            <div
+              v-else
+              class="ml-2 mr-3"
+              style="font-size: 10pt"
+            >
+              -
+            </div>
+          </div>
+          <v-divider />
+
+          <div
+            style="display: flex; font-weight: 600"
+            class="mt-2"
+          >
+            <div>
+              Order Total
+            </div>
+            <v-spacer />
+            <div
+              class="ml-2 mr-3"
+              style=""
+            >
+              {{ fmt_number(shipping + cart_total, {places: 2, prefix: '$'}) }}
+            </div>
+          </div>
+        </div>
+
+
+        <div style="display:flex; margin-top: 20px;">
+          <v-spacer />
+          <v-btn
+            :disabled="selected_rate == null"
+            dark
+            text
+            class="ma-0 pa-0"
+            style="height: 40px"
+            @click="checkout_stripe"
+          >
+            <div style="background-color: var(--color-btn); height: 40px; display: flex; justify-content: center; align-items: center; width: 270px">
+              Proceed to Payment
+            </div>
+            <div class="btn-arrow-right" />
+          </v-btn>
+        </div>
+
+
+
+
+
+        <!------------------------------ Cart Items ---------------------------->
+        <div
+          class="checkout-heading mt-6 pl-3 pt-1"
+          style="color: var(--color-headline); background-color: white"
+        >
+          Items
+        </div>
+
+
+        <item-box
+          v-for="(item, i) in cart_items"
+          :key="item.dog_id + i.toString()"
+          :item="item"
+          :show-actions="false"
+        />
+
+
+        <!--            <div v-for="(item, i) in cart_items" :key="item.dog_id + i.toString()"-->
+        <!--                 style="background-color: white; display: flex;" class="pa-2 mt-0">-->
+
+        <!--               <div>-->
+        <!--                  <img src="../../assets/images/content/Kit_Expanded_Large.png"-->
+        <!--                       style="width: 200px"-->
+        <!--                  >-->
+        <!--               </div>-->
+
+        <!--               <div class="ml-4" style="display: flex; flex-direction: column">-->
+        <!--                  <div>-->
+        <!--                     <div style="font-weight: 500; font-size: 14pt; color: var(&#45;&#45;color-subheading)">-->
+        <!--                        {{item.description}}-->
+        <!--                     </div>-->
+        <!--                     Service Dog: <span class="data-label"> {{item.details.dog_name}} </span><br>-->
+        <!--                     Registration: <span class="data-label">  {{item.details.dog_num}} </span>-->
+        <!--                  </div>-->
+
+        <!--               </div>-->
+
+        <!--               <v-spacer></v-spacer>-->
+        <!--               <div class="ml-2 mr-3" style="font-weight: 600">-->
+        <!--                  ${{item.price}}-->
+        <!--               </div>-->
+
+        <!--            </div>-->
+
+
+        <div style="height: 30px" />
       </div>
-
-
-
-   </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -379,7 +421,7 @@ import checkoutEditAddress from "@/views/shop/checkoutEditAddress";
 
 
 export default {
-   name: "checkout",
+   name: "Checkout",
    components: {ItemBox, checkoutEditAddress},
    mixins: [data_getters, utilities],
 
@@ -439,6 +481,22 @@ export default {
             ans += _.get(i, 'price', 0);
          }
          return ans;
+      }
+   },
+
+
+   async created(){
+
+     this.$store.commit("set_show_side_nav", false);
+      if (this.$auth.isAuthenticated()){
+        this.get_profile().then();
+         // this.sds_number = this.$auth.profile.member_num;
+         this.email = this.$auth.profile.email;
+      }
+
+     let rate = _.get(this.$store.state.cart, 'easypost.selected_rate', null);
+      if (rate !== null){
+        this.selected_rate = rate;
       }
    },
 
@@ -575,22 +633,6 @@ export default {
      }
 
 
-   },
-
-
-   async created(){
-
-     this.$store.commit("set_show_side_nav", false);
-      if (this.$auth.isAuthenticated()){
-        this.get_profile().then();
-         // this.sds_number = this.$auth.profile.member_num;
-         this.email = this.$auth.profile.email;
-      }
-
-     let rate = _.get(this.$store.state.cart, 'easypost.selected_rate', null);
-      if (rate !== null){
-        this.selected_rate = rate;
-      }
    }
 }
 </script>

@@ -1,66 +1,67 @@
 <template>
-<div>
-
-   <div class="subheading-txt pb-4" style="text-align: center;">
+  <div>
+    <div
+      class="subheading-txt pb-4"
+      style="text-align: center;"
+    >
       In order to continue, you must accept the following...
-   </div>
+    </div>
 
 
-   <div>
+    <div>
       <ul>
-         <li>I am at least 18 years of age.</li>
-         <li>I am enrolling myself. If I am enrolling for someone else I have their permission to do so.</li>
-         <li>I agree that I will not intentionally or unintentionally violate any applicable local, state, national or international law, including but not limited to the Americans with Disabilities Act and its implementing regulations.</li>
-         <li>I understand that it is against the law to intentionally misrepresent an animal as a Service or Assistance Dog.</li>
-         <li>I, or the person being enrolled, has a qualifying disability.</li>
-         <li>This dog is either a fully trained Service or Assistance Dog, or is in the process of being trained to help perform specific tasks related to the owner's disability. Please note that not all states recognize Service or Assistance Dogs in Training. I understand that it is my responsibility to understand and obey all applicable laws in my area.</li>
-         <li>I understand that membership is not a substitute for proper training.</li>
-         <li>I understand that aggressive behavior constitutes an immediate forfeiture of membership.</li>
-         <li>I understand that misrepresenting myself or my service animal, behaving in an unbecoming manner, misquoting the law or the purpose of our service can result in immediate forfeiture of membership.</li>
-         <li>I will do my very best to leave an excellent impression with others with my behavior and that of my Service Dog.</li>
-         <!--<li>I have read, understand and comply with the definition of a Service or Assistance Animal.</li>-->
-         <!--<li>I have read, understand and comply with the Minimum Training Standards for a Service or Assistance Dog which includes a Public Access Test.</li>-->
+        <li>I am at least 18 years of age.</li>
+        <li>I am enrolling myself. If I am enrolling for someone else I have their permission to do so.</li>
+        <li>I agree that I will not intentionally or unintentionally violate any applicable local, state, national or international law, including but not limited to the Americans with Disabilities Act and its implementing regulations.</li>
+        <li>I understand that it is against the law to intentionally misrepresent an animal as a Service or Assistance Dog.</li>
+        <li>I, or the person being enrolled, has a qualifying disability.</li>
+        <li>This dog is either a fully trained Service or Assistance Dog, or is in the process of being trained to help perform specific tasks related to the owner's disability. Please note that not all states recognize Service or Assistance Dogs in Training. I understand that it is my responsibility to understand and obey all applicable laws in my area.</li>
+        <li>I understand that membership is not a substitute for proper training.</li>
+        <li>I understand that aggressive behavior constitutes an immediate forfeiture of membership.</li>
+        <li>I understand that misrepresenting myself or my service animal, behaving in an unbecoming manner, misquoting the law or the purpose of our service can result in immediate forfeiture of membership.</li>
+        <li>I will do my very best to leave an excellent impression with others with my behavior and that of my Service Dog.</li>
+        <!--<li>I have read, understand and comply with the definition of a Service or Assistance Animal.</li>-->
+        <!--<li>I have read, understand and comply with the Minimum Training Standards for a Service or Assistance Dog which includes a Public Access Test.</li>-->
       </ul>
+    </div>
 
-   </div>
 
+    <!--<div class="my-checkbox">-->
+    <!--   <v-checkbox-->
+    <!--       v-model="agree1"-->
+    <!--       label="I UNDERSTAND AND AGREE TO ALL OF THE STATEMENTS LISTED ABOVE."-->
+    <!--   ></v-checkbox>-->
 
-   <!--<div class="my-checkbox">-->
-   <!--   <v-checkbox-->
-   <!--       v-model="agree1"-->
-   <!--       label="I UNDERSTAND AND AGREE TO ALL OF THE STATEMENTS LISTED ABOVE."-->
-   <!--   ></v-checkbox>-->
-
-   <!--</div>-->
-
+    <!--</div>-->
 
 
 
-   <!--<div class="my-heading" style="margin-top: 30px">-->
 
-      <div class="subheading-txt pb-4" style="text-align: center; margin-top: 30px">
+    <!--<div class="my-heading" style="margin-top: 30px">-->
+
+    <div
+      class="subheading-txt pb-4"
+      style="text-align: center; margin-top: 30px"
+    >
       Terms of Service
-   </div>
-   <div class="terms-conditions">
+    </div>
+    <div class="terms-conditions">
+      <sds-terms />
+    </div>
 
-      <sds-terms/>
-
-   </div>
-
-   <div class="my-checkbox">
+    <div class="my-checkbox">
       <v-checkbox
-          v-model="agree_terms"
-          label="I agree to the statements above and the Service Dog Standards Terms of Service"
-      ></v-checkbox>
-
-   </div>
-</div>
+        v-model="agree_terms"
+        label="I agree to the statements above and the Service Dog Standards Terms of Service"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
 import SdsTerms from "@/components/SdsTerms";
 export default {
-   name: "termsAndConditions",
+   name: "TermsAndConditions",
    components:{SdsTerms},
    props: {
       agreed: Boolean, //used to tell parent when user has agreed to all terms

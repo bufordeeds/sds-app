@@ -1,67 +1,70 @@
 <template>
   <div id="main">
-
-    <v-dialog v-model="visible" max-width="80%" persistent >
-      <v-card >
-
-         <div class="sds-title pr-3" style="color: red">
-            An Error Occurred
-         </div>
+    <v-dialog
+      v-model="visible"
+      max-width="80%"
+      persistent
+    >
+      <v-card>
+        <div
+          class="sds-title pr-3"
+          style="color: red"
+        >
+          An Error Occurred
+        </div>
         <div class="pl-5 pr-5">
-           <div v-if="error">
-              Error: {{error.msg}}
-           </div>
+          <div v-if="error">
+            Error: {{ error.msg }}
+          </div>
 
 
-           <div class="mt-4">
-              <v-btn small @click="show_details = !show_details">
-                 <template v-if="!show_details">
-                    See
-                 </template>
-                 <template v-else>
-                    Hide
-                 </template>
+          <div class="mt-4">
+            <v-btn
+              small
+              @click="show_details = !show_details"
+            >
+              <template v-if="!show_details">
+                See
+              </template>
+              <template v-else>
+                Hide
+              </template>
 
-                 Technical Details
-              </v-btn>
-
-           </div>
+              Technical Details
+            </v-btn>
+          </div>
 
           <v-textarea
-                  id="error_element"
-                  class="pt-2"
-                  v-model="disp_error"
-                  auto-grow
-                  readonly
-                  outline
-                  v-if="show_details"
-          ></v-textarea>
+            v-if="show_details"
+            id="error_element"
+            v-model="disp_error"
+            class="pt-2"
+            auto-grow
+            readonly
+            outline
+          />
 
-           <v-btn v-if="show_details" small @click="copy_error">Copy Error Message</v-btn>
+          <v-btn
+            v-if="show_details"
+            small
+            @click="copy_error"
+          >
+            Copy Error Message
+          </v-btn>
         </div>
 
 
         <v-card-actions>
-        <v-spacer></v-spacer>
+          <v-spacer />
 
-        <v-btn @click="close">Close</v-btn>
+          <v-btn @click="close">
+            Close
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-
-
-
   </div>
 </template>
-
-<style scoped>
-.txt-color{
-  color: red;
-}
-
-
-</style>
-
 
 <script>
 
@@ -81,18 +84,6 @@
          };
       },
 
-      watch:{
-         value(){
-            this.visible = this.value;
-         },
-
-         visible(){
-            this.$emit('input', this.visible);
-         },
-
-
-      },
-
       computed:{
          disp_error(){
 
@@ -105,6 +96,18 @@
                return '';
             }
          }
+
+      },
+
+      watch:{
+         value(){
+            this.visible = this.value;
+         },
+
+         visible(){
+            this.$emit('input', this.visible);
+         },
+
 
       },
 
@@ -128,3 +131,12 @@
       },
    };
 </script>
+
+
+<style scoped>
+.txt-color{
+  color: red;
+}
+
+
+</style>

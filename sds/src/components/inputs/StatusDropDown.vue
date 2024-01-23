@@ -1,72 +1,78 @@
 <template>
-   <div>
-      <v-menu
-          bottom
-          offsetY
-          rounded="0"
-          :disabled="disabled || loading"
-
-      >
-         <template v-slot:activator="{ on, attrs }">
-
-
-
-            <div style=" height: 30px; display: flex; justify-content: flex-start; align-items: center; color: white; "
-                 :style="btn_col"
-                 v-bind="attrs"
-                 v-on="on"
-                 tabindex="1"
+  <div>
+    <v-menu
+      bottom
+      offset-y
+      rounded="0"
+      :disabled="disabled || loading"
+    >
+      <template #activator="{ on, attrs }">
+        <div
+          style=" height: 30px; display: flex; justify-content: flex-start; align-items: center; color: white; "
+          :style="btn_col"
+          v-bind="attrs"
+          tabindex="1"
+          v-on="on"
+        >
+          <div
+            v-if="!compact"
+            class="arrow-button-container"
+          >
+            <v-icon color="white">
+              arrow_drop_down
+            </v-icon>
+          </div>
+          <div
+            :style="style_btn"
+            style="width: 100%; white-space: nowrap;"
+          >
+            <button
+              v-if="!disabled"
+              class="pl-2 pr-2 dropdown-button"
             >
-               <div v-if="!compact" class="arrow-button-container">
-                  <v-icon color="white">arrow_drop_down</v-icon>
-               </div>
-               <div :style="style_btn" style="width: 100%; white-space: nowrap;">
-
-                  <button class="pl-2 pr-2 dropdown-button" v-if="!disabled">
-                     {{value_fmt}}
-                  </button>
-                  <div v-else class="pl-2 pr-2">
-                     {{value_fmt}}
-                  </div>
-               </div>
+              {{ value_fmt }}
+            </button>
+            <div
+              v-else
+              class="pl-2 pr-2"
+            >
+              {{ value_fmt }}
             </div>
+          </div>
+        </div>
 
 
-            <!--"-->
+        <!--"-->
+      </template>
+
+      <v-list class="pa-0">
+        <v-list-item
+          v-for="item in list2"
+          :key="item.val+rnd_id"
+          class="menu-item"
+          @click="updateVal(item.val)"
+        >
+          <span style="color: white">
+            {{ item.txt }}
+          </span>
+        </v-list-item>
+      </v-list>
+    </v-menu>
 
 
+    <div
+      v-if="loading"
+      style="margin-top: -20px; display: flex; justify-content: center; width: 100%; height: 20px"
+    >
+      <v-progress-circular
 
-
-
-         </template>
-
-         <v-list class="pa-0">
-            <v-list-item
-                v-for="item in list2" :key="item.val+rnd_id"
-                @click="updateVal(item.val)"
-                class="menu-item"
-            >
-               <span style="color: white">
-                  {{item.txt}}
-               </span>
-
-            </v-list-item>
-         </v-list>
-      </v-menu>
-
-
-      <div v-if="loading"
-           style="margin-top: -20px; display: flex; justify-content: center; width: 100%; height: 20px">
-         <v-progress-circular
-
-             indeterminate
-             color="white"
-             width="2"
-             size="15"
-         />
-      </div>
-
-   </div>
+        indeterminate
+        color="white"
+        width="2"
+        size="15"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -76,12 +82,6 @@ import helpers from "@/utilities/helpers";
 
 export default {
    name: "DropDown",
-   data(){
-      return {
-         rnd_id: '',
-         ix: -1,
-      }
-   },
    props: {
       value: [String, Number, Boolean],
       list: {type: Array, default: null}, //[{txt, val}]
@@ -95,9 +95,10 @@ export default {
 
       loading:  {type: Boolean, default: false},
    },
-   methods:{
-      updateVal(val){
-         this.$emit('input', val)
+   data(){
+      return {
+         rnd_id: '',
+         ix: -1,
       }
    },
 
@@ -203,6 +204,11 @@ export default {
    created(){
       this.rnd_id = _.random(1, 10000000, false).toString();
 
+   },
+   methods:{
+      updateVal(val){
+         this.$emit('input', val)
+      }
    }
 }
 </script>

@@ -1,127 +1,127 @@
 <template>
-
-   <div>
-      <div class="pa-2" style="display: flex; flex-wrap: wrap">
-
-      </div>
-
-
-      <table>
-         <tr class="col-headers" >
-            <th></th>
-            <th></th>
-            <th>
-               First Name
-               <sort-icon :sort-dir.sync="sortCols.name_first" @click="sort_handler('name_first', $event)"/>
-            </th>
-            <th>
-               Last Name
-               <sort-icon :sort-dir.sync="sortCols.name_last" @click="sort_handler('name_last', $event)" />
-            </th>
-            <th>
-               User Type
-            </th>
-
-            <th>
-               Active?
-               <!--<sort-icon :sort-dir.sync="sortCols.cust" @click="sort_handler('cust', $event)" />-->
-            </th>
-            <th>
-               Email
-            </th>
-
-            <th>Admin Deactivated</th>
-
-            <th>Comments</th>
-
-         </tr>
-
-         <template v-for="(user, ix) in users" >
-            <!-----------------------main row-------------------------------------------------------->
-            <tr :key="user._id" :class="get_row_bg_class(ix)" >
-
-               <td>{{ix+1}}</td>
-               <td>
+  <div>
+    <div
+      class="pa-2"
+      style="display: flex; flex-wrap: wrap"
+    />
 
 
-                  <div @click="$emit('click-user', {user, ix})">
-                     <avatar
-                         :image="user.profile_image"
-                         size="40"
-                         style="cursor: pointer"
-                     />
-                     <div class="edit-btn">
-                        Edit
-                     </div>
-                  </div>
+    <table>
+      <tr class="col-headers">
+        <th />
+        <th />
+        <th>
+          First Name
+          <sort-icon
+            :sort-dir.sync="sortCols.name_first"
+            @click="sort_handler('name_first', $event)"
+          />
+        </th>
+        <th>
+          Last Name
+          <sort-icon
+            :sort-dir.sync="sortCols.name_last"
+            @click="sort_handler('name_last', $event)"
+          />
+        </th>
+        <th>
+          User Type
+        </th>
 
-               </td>
-               <td>
-                  <!--{{fmt_datetime(order.date_ordered )}}-->
-                  {{user.name_first}}
-               </td>
-               <td>
-                  <!--{{fmt_datetime(order.date_ordered )}}-->
-                  {{user.name_last}}
-               </td>
+        <th>
+          Active?
+          <!--<sort-icon :sort-dir.sync="sortCols.cust" @click="sort_handler('cust', $event)" />-->
+        </th>
+        <th>
+          Email
+        </th>
 
-               <td style="text-transform: capitalize">
-                              {{user.account_type}}
-                  <!--<StatusDropDown-->
-                  <!--    v-model="order.status"-->
-                  <!--    :list="status_list"-->
-                  <!--    :color-map="status_colors"-->
-                  <!--    :compact="true"-->
-                  <!--    :disabled="true"-->
-                  <!--/>-->
-               </td>
+        <th>Admin Deactivated</th>
 
+        <th>Comments</th>
+      </tr>
 
-               <td style="text-transform: capitalize">
-                  {{user.account_status.date_accepted != null? 'Yes' : 'No'}}
-               </td>
+      <template v-for="(user, ix) in users">
+        <!-----------------------main row-------------------------------------------------------->
+        <tr
+          :key="user._id"
+          :class="get_row_bg_class(ix)"
+        >
+          <td>{{ ix+1 }}</td>
+          <td>
+            <div @click="$emit('click-user', {user, ix})">
+              <avatar
+                :image="user.profile_image"
+                size="40"
+                style="cursor: pointer"
+              />
+              <div class="edit-btn">
+                Edit
+              </div>
+            </div>
+          </td>
+          <td>
+            <!--{{fmt_datetime(order.date_ordered )}}-->
+            {{ user.name_first }}
+          </td>
+          <td>
+            <!--{{fmt_datetime(order.date_ordered )}}-->
+            {{ user.name_last }}
+          </td>
 
-               <td>
-                  {{user.email}}
-               </td>
-
-               <td>
-                  <status
-                      v-if="user.deactivated != null"
-                      style="width: 180px;"
-                      v-model="user.deactivated"
-                      :list="[{txt: 'Deactivated', val: true}, {txt: 'Reactivated', val: false},]"
-                      item-text="txt"
-                      item-value="val"
-                      :color-map="{'true': '#bf1e2e', 'false': '#8dc63f' }"
-                      compact
-                      disabled
-
-                  ></status>
-               </td>
-
-               <td @click.stop="$emit('edit-comment', {user, ix})">
-                  <span v-if="user.admin">
-                     {{fmt_trim_str(user.admin.comment, 50)}}
-                  </span>
-
-                  <v-btn icon small style="border-radius: 50%">
-                     <v-icon small>
-                        edit
-                     </v-icon>
-                  </v-btn>
-               </td>
-
-            </tr>
+          <td style="text-transform: capitalize">
+            {{ user.account_type }}
+            <!--<StatusDropDown-->
+            <!--    v-model="order.status"-->
+            <!--    :list="status_list"-->
+            <!--    :color-map="status_colors"-->
+            <!--    :compact="true"-->
+            <!--    :disabled="true"-->
+            <!--/>-->
+          </td>
 
 
+          <td style="text-transform: capitalize">
+            {{ user.account_status.date_accepted != null? 'Yes' : 'No' }}
+          </td>
 
+          <td>
+            {{ user.email }}
+          </td>
 
-         </template>
+          <td>
+            <status
+              v-if="user.deactivated != null"
+              v-model="user.deactivated"
+              style="width: 180px;"
+              :list="[{txt: 'Deactivated', val: true}, {txt: 'Reactivated', val: false},]"
+              item-text="txt"
+              item-value="val"
+              :color-map="{'true': '#bf1e2e', 'false': '#8dc63f' }"
+              compact
+              disabled
+            />
+          </td>
 
-      </table>
-   </div>
+          <td @click.stop="$emit('edit-comment', {user, ix})">
+            <span v-if="user.admin">
+              {{ fmt_trim_str(user.admin.comment, 50) }}
+            </span>
 
+            <v-btn
+              icon
+              small
+              style="border-radius: 50%"
+            >
+              <v-icon small>
+                edit
+              </v-icon>
+            </v-btn>
+          </td>
+        </tr>
+      </template>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -132,9 +132,9 @@ import status from "@/components/inputs/StatusDropDown";
 import SortIcon from "@/components/icons/SortIcon";
 
 export default {
-   name: "tableUsers",
-   mixins: [data_getters, utilities],
+   name: "TableUsers",
    components: {status, SortIcon},
+   mixins: [data_getters, utilities],
    props: {
       users: {type: Array, },
    },

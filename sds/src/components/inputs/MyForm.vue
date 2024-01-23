@@ -1,7 +1,7 @@
 <template>
-<div class="my-form">
-   <slot></slot>
-</div>
+  <div class="my-form">
+    <slot />
+  </div>
 </template>
 
 <script>
@@ -12,19 +12,19 @@
  * registered input's validation() method.
  */
 export default {
-   name: "myForm",
-   data(){
-      return {
-         fields: {},
-         num_fields: 0,
-      }
-
-   },
+   name: "MyForm",
 
    provide() {
       return {
          registerThisField: this.registerSelf,
          unRegisterField: this.unRegisterField,
+      }
+
+   },
+   data(){
+      return {
+         fields: {},
+         num_fields: 0,
       }
 
    },

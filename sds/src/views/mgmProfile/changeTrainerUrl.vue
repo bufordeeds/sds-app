@@ -1,52 +1,63 @@
 <template>
-   <v-dialog v-model="show_dialog" max-width="400px" persistent>
-      <v-card>
-         <div class="dialog-heading pa-2" style="display: flex">
-            Change Custom Trainer URL
-            <v-spacer/>
-            <v-btn icon @click="show_dialog=false">
-               <v-icon>close</v-icon>
+  <v-dialog
+    v-model="show_dialog"
+    max-width="400px"
+    persistent
+  >
+    <v-card>
+      <div
+        class="dialog-heading pa-2"
+        style="display: flex"
+      >
+        Change Custom Trainer URL
+        <v-spacer />
+        <v-btn
+          icon
+          @click="show_dialog=false"
+        >
+          <v-icon>close</v-icon>
+        </v-btn>
+      </div>
+
+      <my-form
+        v-if="!changed"
+        ref="form"
+        class="pl-5 pr-5 pb-6"
+      >
+        <v-row dense>
+          <v-col />
+        </v-row>
+
+
+        <my-text-input
+          v-model="trainer_url2"
+          label="Your custom trainer URL"
+          :rules="[isTrainerURL, isRequired]"
+        />
+        <div style="font-size: 10pt">
+          Note: Only letters, numbers, and "_" are allowed.  All letters will be converted to lowercase.
+        </div>
+
+
+
+        <div class="pt-4">
+          <div
+            v-if="err_msg"
+            class="pb-2"
+            style="color: var(--color-input-error); text-align: center"
+          >
+            {{ err_msg }}
+          </div>
+          <v-row class="ma-0">
+            <v-spacer />
+            <v-btn @click="save_changes">
+              Update
             </v-btn>
-
-         </div>
-
-         <my-form ref="form" class="pl-5 pr-5 pb-6" v-if="!changed">
-            <v-row dense>
-               <v-col>
-
-               </v-col>
-            </v-row>
-
-
-            <my-text-input
-                label="Your custom trainer URL"
-                v-model="trainer_url2"
-                :rules="[isTrainerURL, isRequired]"
-            />
-            <div style="font-size: 10pt">
-               Note: Only letters, numbers, and "_" are allowed.  All letters will be converted to lowercase.
-            </div>
-
-
-
-            <div class="pt-4">
-               <div v-if="err_msg" class="pb-2" style="color: var(--color-input-error); text-align: center">
-                  {{err_msg}}
-               </div>
-               <v-row class="ma-0">
-                  <v-spacer/>
-                  <v-btn @click="save_changes">Update
-                  </v-btn>
-               </v-row>
-            </div>
-
-         </my-form>
-
-
-
-      </v-card>
-
-   </v-dialog>
+          </v-row>
+        </div>
+      </my-form>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>

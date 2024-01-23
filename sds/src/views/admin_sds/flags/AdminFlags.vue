@@ -1,273 +1,300 @@
 <template>
-   <div>
+  <div>
+    <v-dialog
+      v-model="show_edit_flag"
+      persistent
+      max-width="700px"
+    >
+      <v-card
+        v-if="selected_flag != null"
+        class="pa-3"
+      >
+        <div
+          class="dialog-heading pb-4"
+          style="display: flex"
+        >
+          Flag Details
+          <v-spacer />
+          <v-btn
+            icon
+            style="margin-top: -8px"
+            @click="show_edit_flag=false"
+          >
+            <v-icon>close</v-icon>
+          </v-btn>
+        </div>
 
-      <v-dialog v-model="show_edit_flag" persistent max-width="700px">
-         <v-card class="pa-3" v-if="selected_flag != null">
-            <div class="dialog-heading pb-4" style="display: flex">
 
-               Flag Details
-               <v-spacer/>
-               <v-btn icon @click="show_edit_flag=false" style="margin-top: -8px">
-                  <v-icon>close</v-icon>
-               </v-btn>
+
+
+
+
+
+
+
+        <my-form>
+          <div style="display: flex; justify-content: space-between; align-items: flex-end">
+            <div>
+              <div>
+                <span class="edit-flag-heading">
+                  Flag Date:
+                </span>
+
+                {{ fmt_date(selected_flag.date_created ) }}
+              </div>
+
+              <div>
+                <span class="edit-flag-heading">
+                  Flagged User:
+                </span>
+
+                <router-link
+                  v-if="selected_flag.user_id_FR.account_type === 'TRAINER'"
+                  :to="'/trainer/'+selected_flag.user_id_FR._id"
+                  target="_blank"
+                >
+                  {{ get_name_user(selected_flag.user_id_FR) }}
+                  ({{ selected_flag.user_id_FR.email }})
+                </router-link>
+
+                <router-link
+                  v-if="selected_flag.user_id_FR.account_type === 'HANDLER'"
+                  :to="'/team/'+selected_flag.dog_num"
+                  target="_blank"
+                >
+                  {{ get_name_user(selected_flag.user_id_FR) }}
+                  ({{ selected_flag.user_id_FR.email }})
+                </router-link>
+              </div>
+              <div>
+                <span class="edit-flag-heading">
+                  User Type:
+                </span>
+                <span style="text-transform: capitalize">
+                  {{ selected_flag.user_id_FR.account_type.toLowerCase() }}
+                </span>
+              </div>
+
+              <div>
+                <span class="edit-flag-heading">
+                  Flagger:
+                </span>
+
+                {{ selected_flag.flag_request.flagger_name }}
+                ({{ selected_flag.flag_request.flagger_email }})
+              </div>
             </div>
 
 
-
-
-
-
-
-
-
-            <my-form>
-
-               <div style="display: flex; justify-content: space-between; align-items: flex-end">
-                  <div>
-                     <div>
-                        <span class="edit-flag-heading">
-                           Flag Date:
-                        </span>
-
-                        {{fmt_date(selected_flag.date_created )}}
-                     </div>
-
-                     <div>
-                        <span class="edit-flag-heading">
-                           Flagged User:
-                        </span>
-
-                        <router-link v-if="selected_flag.user_id_FR.account_type === 'TRAINER'"
-                                     :to="'/trainer/'+selected_flag.user_id_FR._id" target="_blank">
-                           {{get_name_user(selected_flag.user_id_FR)}}
-                           ({{selected_flag.user_id_FR.email}})
-                        </router-link>
-
-                        <router-link v-if="selected_flag.user_id_FR.account_type === 'HANDLER'"
-                                     :to="'/team/'+selected_flag.dog_num" target="_blank">
-                           {{get_name_user(selected_flag.user_id_FR)}}
-                           ({{selected_flag.user_id_FR.email}})
-                        </router-link>
-                     </div>
-                     <div>
-
-                        <span class="edit-flag-heading">
-                           User Type:
-                        </span>
-                        <span style="text-transform: capitalize">
-                           {{selected_flag.user_id_FR.account_type.toLowerCase()}}
-                        </span>
-
-                     </div>
-
-                     <div>
-                        <span class="edit-flag-heading">
-                           Flagger:
-                        </span>
-
-                        {{selected_flag.flag_request.flagger_name}}
-                        ({{selected_flag.flag_request.flagger_email}})
-
-                     </div>
-
-                  </div>
-
-
-                  <my-drop-down
-                      style="max-width: 200px; "
-                      label="Status"
-                      :list="status_list"
-                      v-model="selected_flag.status"
-                  />
-               </div>
-
-
-
-
-               <div class="mt-3 edit-flag-heading">
-                  Reason for flag
-               </div>
-               <div style="border: 1px solid #c1c1c1" class="pa-2">
-                  {{selected_flag.flag_request.flagger_message}}
-               </div>
-
-
-
-
-
-               <my-text-area
-                   class="mt-3"
-                   label="Admin Comments"
-                   v-model="selected_flag.comments"
-               />
-            </my-form>
-
-            <v-row dense class="ma-0 mt-7">
-               <v-spacer/>
-               <v-btn @click="on_record_update" :loading="loading_flag">Update</v-btn>
-            </v-row>
-         </v-card>
-
-
-
-
-      </v-dialog>
-
-
-
-
-
-      <search-dialog
-          v-model="show_search"
-          @searched="on_search"
-      />
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-----------------------main content---------------------------------------------------------------------------->
-
-      <div class="page-title-app">
-         Flag Reports
-      </div>
-
-
-
-      <!--<my-form ref="form">-->
-      <!--   <v-row dense>-->
-
-      <!--      <v-col >-->
-      <!--         <my-drop-down-->
-      <!--             label="Search Type"-->
-      <!--             v-model="user_type"-->
-      <!--             :list="type_list"-->
-      <!--             item-text="txt"-->
-      <!--             item-value="val"-->
-
-      <!--         />-->
-      <!--      </v-col>-->
-
-      <!--      <v-col >-->
-      <!--         <my-text-input-->
-      <!--             label="First Name"-->
-      <!--             v-model="name_first"-->
-      <!--             @keyup-enter="search"-->
-      <!--             clearable-->
-      <!--         />-->
-      <!--      </v-col>-->
-
-      <!--      <v-col >-->
-      <!--         <my-text-input-->
-      <!--             label="Last Name"-->
-      <!--             v-model="name_last"@keyup-enter="search"-->
-      <!--             clearable-->
-      <!--         />-->
-      <!--      </v-col>-->
-
-      <!--      <v-col v-if="!isDog">-->
-      <!--         <my-text-input-->
-      <!--             label="Email"-->
-      <!--             v-model="email"-->
-      <!--             @keyup-enter="search"-->
-      <!--             clearable-->
-      <!--         />-->
-
-      <!--      </v-col>-->
-
-
-
-      <!--      <v-col v-if="isDog">-->
-      <!--         <my-text-input-->
-      <!--             label="Dog's Name"-->
-      <!--             v-model="dog_name"-->
-      <!--             @keyup-enter="search"-->
-      <!--             clearable-->
-      <!--         />-->
-      <!--      </v-col>-->
-
-      <!--      <v-col v-if="isDog">-->
-      <!--         <my-text-input-->
-      <!--             label="SDS Number"-->
-      <!--             v-model="sds_num"-->
-      <!--             clearable-->
-      <!--         />-->
-      <!--      </v-col>-->
-
-      <!--      <v-btn class="mt-6" @click="search">Search</v-btn>-->
-      <!--   </v-row>-->
-
-      <!--   <v-row dense>-->
-
-      <!--   </v-row>-->
-      <!--</my-form>-->
-
-
-
-
-
-
-      <div class="content-container-bg">
-
-
-
-         <div class="content-container mt-1" style="background-color: white">
-            <div style="display: flex; width: 100%" class="pl-4 pt-4">
-               <my-date-picker
-                   style="width: 150px"
-                   label="Date From"
-                   readonly
-                   v-model="date_start"
-                   :on-change="get_flags"
-               />
-
-               <my-date-picker
-                   class="ml-2"
-                   style="width: 150px"
-                   label="Date To"
-                   readonly
-                   v-model="date_end"
-                   :on-change="get_flags"
-               />
-
-               <v-btn
-                   @click="show_search=true"
-                   class="ml-3"
-               >
-                  <v-icon>search</v-icon>Search
-               </v-btn>
-
-            </div>
-
-
-            <template  v-if="search_results_msg!==null">
-               <div
-                   style="background-color: #eaeaea; " class="mt-4 ml-2 mr-2 pl-2 pr-2 pt-1 pb-1"
-               >
-                  Search Results For: {{search_results_msg}}
-                  <v-spacer/>
-                  <v-btn class="mt-2" small @click="clear_search">Clear Results</v-btn>
-               </div>
-
-            </template>
-
-
-            <table-flags
-                :flags="flags"
-                @click-flag="on_click_flag"
+            <my-drop-down
+              v-model="selected_flag.status"
+              style="max-width: 200px; "
+              label="Status"
+              :list="status_list"
             />
+          </div>
 
-         </div>
+
+
+
+          <div class="mt-3 edit-flag-heading">
+            Reason for flag
+          </div>
+          <div
+            style="border: 1px solid #c1c1c1"
+            class="pa-2"
+          >
+            {{ selected_flag.flag_request.flagger_message }}
+          </div>
+
+
+
+
+
+          <my-text-area
+            v-model="selected_flag.comments"
+            class="mt-3"
+            label="Admin Comments"
+          />
+        </my-form>
+
+        <v-row
+          dense
+          class="ma-0 mt-7"
+        >
+          <v-spacer />
+          <v-btn
+            :loading="loading_flag"
+            @click="on_record_update"
+          >
+            Update
+          </v-btn>
+        </v-row>
+      </v-card>
+    </v-dialog>
+
+
+
+
+
+    <search-dialog
+      v-model="show_search"
+      @searched="on_search"
+    />
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-----------------------main content---------------------------------------------------------------------------->
+
+    <div class="page-title-app">
+      Flag Reports
+    </div>
+
+
+
+    <!--<my-form ref="form">-->
+    <!--   <v-row dense>-->
+
+    <!--      <v-col >-->
+    <!--         <my-drop-down-->
+    <!--             label="Search Type"-->
+    <!--             v-model="user_type"-->
+    <!--             :list="type_list"-->
+    <!--             item-text="txt"-->
+    <!--             item-value="val"-->
+
+    <!--         />-->
+    <!--      </v-col>-->
+
+    <!--      <v-col >-->
+    <!--         <my-text-input-->
+    <!--             label="First Name"-->
+    <!--             v-model="name_first"-->
+    <!--             @keyup-enter="search"-->
+    <!--             clearable-->
+    <!--         />-->
+    <!--      </v-col>-->
+
+    <!--      <v-col >-->
+    <!--         <my-text-input-->
+    <!--             label="Last Name"-->
+    <!--             v-model="name_last"@keyup-enter="search"-->
+    <!--             clearable-->
+    <!--         />-->
+    <!--      </v-col>-->
+
+    <!--      <v-col v-if="!isDog">-->
+    <!--         <my-text-input-->
+    <!--             label="Email"-->
+    <!--             v-model="email"-->
+    <!--             @keyup-enter="search"-->
+    <!--             clearable-->
+    <!--         />-->
+
+    <!--      </v-col>-->
+
+
+
+    <!--      <v-col v-if="isDog">-->
+    <!--         <my-text-input-->
+    <!--             label="Dog's Name"-->
+    <!--             v-model="dog_name"-->
+    <!--             @keyup-enter="search"-->
+    <!--             clearable-->
+    <!--         />-->
+    <!--      </v-col>-->
+
+    <!--      <v-col v-if="isDog">-->
+    <!--         <my-text-input-->
+    <!--             label="SDS Number"-->
+    <!--             v-model="sds_num"-->
+    <!--             clearable-->
+    <!--         />-->
+    <!--      </v-col>-->
+
+    <!--      <v-btn class="mt-6" @click="search">Search</v-btn>-->
+    <!--   </v-row>-->
+
+    <!--   <v-row dense>-->
+
+    <!--   </v-row>-->
+    <!--</my-form>-->
+
+
+
+
+
+
+    <div class="content-container-bg">
+      <div
+        class="content-container mt-1"
+        style="background-color: white"
+      >
+        <div
+          style="display: flex; width: 100%"
+          class="pl-4 pt-4"
+        >
+          <my-date-picker
+            v-model="date_start"
+            style="width: 150px"
+            label="Date From"
+            readonly
+            :on-change="get_flags"
+          />
+
+          <my-date-picker
+            v-model="date_end"
+            class="ml-2"
+            style="width: 150px"
+            label="Date To"
+            readonly
+            :on-change="get_flags"
+          />
+
+          <v-btn
+            class="ml-3"
+            @click="show_search=true"
+          >
+            <v-icon>search</v-icon>Search
+          </v-btn>
+        </div>
+
+
+        <template v-if="search_results_msg!==null">
+          <div
+            style="background-color: #eaeaea; "
+            class="mt-4 ml-2 mr-2 pl-2 pr-2 pt-1 pb-1"
+          >
+            Search Results For: {{ search_results_msg }}
+            <v-spacer />
+            <v-btn
+              class="mt-2"
+              small
+              @click="clear_search"
+            >
+              Clear Results
+            </v-btn>
+          </div>
+        </template>
+
+
+        <table-flags
+          :flags="flags"
+          @click-flag="on_click_flag"
+        />
       </div>
-   </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -284,8 +311,8 @@ import SearchDialog from "@/views/admin_sds/flags/SearchDialog";
 
 export default {
    name: "AdminFlags",
-   mixins: [data_getters, utilities],
    components: {MyDropDown, myDatePicker, MyTextArea, tableFlags,SearchDialog},
+   mixins: [data_getters, utilities],
    data(){
       return {
 
@@ -353,6 +380,14 @@ export default {
 
          }
       }
+   },
+
+
+
+   created(){
+      this.get_flags();
+      this.$store.commit("set_show_side_nav", true);
+
    },
 
    methods: {
@@ -543,14 +578,6 @@ export default {
             }
          }
       },
-   },
-
-
-
-   created(){
-      this.get_flags();
-      this.$store.commit("set_show_side_nav", true);
-
    }
 
 }

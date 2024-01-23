@@ -1,12 +1,22 @@
 <template>
-
-    <v-btn text color="#2d76ba" @click="$emit('click')" :to="to" :style="btn_style">
-      <div style="justify-content: flex-start;  display: flex; align-items: flex-end" :style="text_size">
-        Learn More
-        <div class=" ml-1 mb-1 mb-1" :style="triangle_style"></div>
-      </div>
-    </v-btn>
-
+  <v-btn
+    text
+    color="#2d76ba"
+    :to="to"
+    :style="btn_style"
+    @click="$emit('click')"
+  >
+    <div
+      style="justify-content: flex-start;  display: flex; align-items: flex-end"
+      :style="text_size"
+    >
+      Learn More
+      <div
+        class=" ml-1 mb-1 mb-1"
+        :style="triangle_style"
+      />
+    </div>
+  </v-btn>
 </template>
 
 <script>

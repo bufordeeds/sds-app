@@ -1,20 +1,18 @@
 <template>
-   <div class="body">
-      <div class="page-title" style="text-align: center" >
+  <div class="body">
+    <div
+      class="page-title"
+      style="text-align: center"
+    >
+      Terms of Service
+    </div>
 
-         Terms of Service
-
+    <div class="content-container-bg">
+      <div class="content-container-sm">
+        <sds-terms />
       </div>
-
-      <div class="content-container-bg">
-         <div class="content-container-sm">
-
-            <sds-terms/>
-
-         </div>
-      </div>
-   </div>
-
+    </div>
+  </div>
 </template>
 
 <script>

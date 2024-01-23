@@ -1,46 +1,53 @@
 <template>
-   <div>
-
-      <div style="display: flex; justify-content: center">
-         <div ref="fileDrop" class="file-drop" :class="fileDropClass">
-            <div v-if="file === null"
-                style="text-align: center">
-               Drag Files Here To Select
-            </div>
-
-            <img
-                v-else
-                ref="file_img"
-                class="image-preview"
-            >
-         </div>
-      </div>
-
-      <div style="display: flex; justify-content: center">
-         <div class="btn-container">
-            <v-btn @click="file=null">Clear</v-btn>
-            <v-btn @click="upload_file" color="var(--color-primary)">Upload</v-btn>
-         </div>
-      </div>
-
-
-
-
-
-
-
-
-      <vue-cropper
-          ref="cropper"
-          src="imgSrc"
-          :aspect-ratio="16 / 9"
+  <div>
+    <div style="display: flex; justify-content: center">
+      <div
+        ref="fileDrop"
+        class="file-drop"
+        :class="fileDropClass"
       >
-      </vue-cropper>
+        <div
+          v-if="file === null"
+          style="text-align: center"
+        >
+          Drag Files Here To Select
+        </div>
+
+        <img
+          v-else
+          ref="file_img"
+          class="image-preview"
+        >
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: center">
+      <div class="btn-container">
+        <v-btn @click="file=null">
+          Clear
+        </v-btn>
+        <v-btn
+          color="var(--color-primary)"
+          @click="upload_file"
+        >
+          Upload
+        </v-btn>
+      </div>
+    </div>
 
 
 
 
-   </div>
+
+
+
+
+    <vue-cropper
+      ref="cropper"
+      src="imgSrc"
+      :aspect-ratio="16 / 9"
+    />
+  </div>
 </template>
 
 <script>
@@ -72,6 +79,59 @@ export default {
             return '';
          }
       }
+   },//methods
+
+
+   mounted(){
+      this.$nextTick(() => {
+
+         /*
+         ***************stuff for creating file drop**********************************
+         *
+          https://serversideup.net/drag-and-drop-file-uploads-with-vuejs-and-axios/
+          For each event add an event listener that prevents the default action
+          (opening the file in the browser) and stop the propagation of the event (so
+          no other elements open the file in the browser)
+         */
+         ['drag', 'dragover', 'dragstart', 'dragenter'].forEach( function( evt ) {
+            this.$refs.fileDrop.addEventListener(evt, function(e){
+               e.preventDefault();
+               e.stopPropagation();
+               console.log('drag event')
+               this.files_being_dragged = true;
+            }.bind(this), false);
+         }.bind(this));
+
+
+         ['dragend',  'dragleave'].forEach( function( evt ) {
+            this.$refs.fileDrop.addEventListener(evt, function(e){
+               e.preventDefault();
+               e.stopPropagation();
+               this.files_being_dragged = false;
+            }.bind(this), false);
+         }.bind(this));
+
+
+         this.$refs.fileDrop.addEventListener('drop', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            this.files_being_dragged = false;
+
+            //Capture the files from the drop event and add them to our local files array.
+
+            if (e.dataTransfer.files.length> 0){
+               this.file = e.dataTransfer.files[0]; //just get the first file
+            }
+
+            this.$nextTick(()=>{this.show_files();});
+
+         }.bind(this));
+
+
+
+
+
+      })//nextTick()
    },//computed
 
 
@@ -141,59 +201,6 @@ export default {
          this.submit_upload_files = false;
       },
 
-   },//methods
-
-
-   mounted(){
-      this.$nextTick(() => {
-
-         /*
-         ***************stuff for creating file drop**********************************
-         *
-          https://serversideup.net/drag-and-drop-file-uploads-with-vuejs-and-axios/
-          For each event add an event listener that prevents the default action
-          (opening the file in the browser) and stop the propagation of the event (so
-          no other elements open the file in the browser)
-         */
-         ['drag', 'dragover', 'dragstart', 'dragenter'].forEach( function( evt ) {
-            this.$refs.fileDrop.addEventListener(evt, function(e){
-               e.preventDefault();
-               e.stopPropagation();
-               console.log('drag event')
-               this.files_being_dragged = true;
-            }.bind(this), false);
-         }.bind(this));
-
-
-         ['dragend',  'dragleave'].forEach( function( evt ) {
-            this.$refs.fileDrop.addEventListener(evt, function(e){
-               e.preventDefault();
-               e.stopPropagation();
-               this.files_being_dragged = false;
-            }.bind(this), false);
-         }.bind(this));
-
-
-         this.$refs.fileDrop.addEventListener('drop', function(e){
-            e.preventDefault();
-            e.stopPropagation();
-            this.files_being_dragged = false;
-
-            //Capture the files from the drop event and add them to our local files array.
-
-            if (e.dataTransfer.files.length> 0){
-               this.file = e.dataTransfer.files[0]; //just get the first file
-            }
-
-            this.$nextTick(()=>{this.show_files();});
-
-         }.bind(this));
-
-
-
-
-
-      })//nextTick()
    }
 }
 </script>

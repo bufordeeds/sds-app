@@ -1,73 +1,78 @@
 <template>
-   <div style="max-width:400px"  >
-
-      <v-card-title v-if="isModal">Sign in</v-card-title>
-      <my-form ref="form">
-         <v-container>
-            <v-row dense v-if="error_msg" class="ma-0 pl-2" style="color: var(--color-input-error); ">
-               {{error_msg}}
-            </v-row>
-            <v-row>
-               <v-col>
-
-
-
-                  <my-text-input
-                      label="Email Address"
-                      v-model="email"
-                      :rules="[isRequired, checkEmail]"
-                  />
-
-
-               </v-col>
-            </v-row>
-
-
-            <v-row dense>
-               <v-col>
-
-                  <my-text-input
-                      label="Password"
-                      v-model="password"
-                      hint="Enter your password"
-                      :rules="[isRequired]"
-                      :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
-                      @click:append="showPass = !showPass"
-                      :is-password="!showPass"
-                      @keyup-enter="login"
-                  />
-
-               </v-col>
-            </v-row>
-
-            <div>
-               <router-link to="/requestResetPassword" style="font-size: 10pt">
-                  Reset Password
-               </router-link>
-
-            </div>
-
-            <v-row class="pt-4 pl-3 pr-3">
-
-               <v-btn color="var(--color-primary)" dark @click="login" width="100%"
-               >Sign in</v-btn>
-            </v-row>
-
-            <v-row style="justify-content: center" class="mt-1">
-               <router-link to="/signup" style="font-size: 10pt">
-                  Create an account
-               </router-link>
-            </v-row>
-         </v-container>
-
-      </my-form>
+  <div style="max-width:400px">
+    <v-card-title v-if="isModal">
+      Sign in
+    </v-card-title>
+    <my-form ref="form">
+      <v-container>
+        <v-row
+          v-if="error_msg"
+          dense
+          class="ma-0 pl-2"
+          style="color: var(--color-input-error); "
+        >
+          {{ error_msg }}
+        </v-row>
+        <v-row>
+          <v-col>
+            <my-text-input
+              v-model="email"
+              label="Email Address"
+              :rules="[isRequired, checkEmail]"
+            />
+          </v-col>
+        </v-row>
 
 
+        <v-row dense>
+          <v-col>
+            <my-text-input
+              v-model="password"
+              label="Password"
+              hint="Enter your password"
+              :rules="[isRequired]"
+              :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
+              :is-password="!showPass"
+              @click:append="showPass = !showPass"
+              @keyup-enter="login"
+            />
+          </v-col>
+        </v-row>
 
+        <div>
+          <router-link
+            to="/requestResetPassword"
+            style="font-size: 10pt"
+          >
+            Reset Password
+          </router-link>
+        </div>
 
+        <v-row class="pt-4 pl-3 pr-3">
+          <v-btn
+            color="var(--color-primary)"
+            dark
+            width="100%"
+            @click="login"
+          >
+            Sign in
+          </v-btn>
+        </v-row>
 
-
-   </div>
+        <v-row
+          style="justify-content: center"
+          class="mt-1"
+        >
+          <router-link
+            to="/signup"
+            style="font-size: 10pt"
+          >
+            Create an account
+          </router-link>
+        </v-row>
+      </v-container>
+    </my-form>
+  </div>
 </template>
 
 <script>

@@ -1,86 +1,87 @@
 <template>
-   <div>
+  <div>
+    <search-dialog
+      v-model="show_search"
+      @searched="on_search"
+    />
 
-      <search-dialog
-          v-model="show_search"
-          @searched="on_search"
-      />
+
+    <div class="page-title-app">
+      Manage Users
+    </div>
+
+    <div class="content-container-bg">
+      <div class="admin-content-container">
+        <div style="display: flex">
+          <my-date-picker
+            v-model="date_start"
+            style="width: 150px"
+            label="Date From"
+            readonly
+            :on-change="get_orders"
+          />
+
+          <my-date-picker
+            v-model="date_end"
+            class="ml-2"
+            style="width: 150px"
+            label="Date To"
+            readonly
+            :on-change="get_orders"
+          />
 
 
-      <div class="page-title-app">
-         Manage Users
+
+
+          <v-btn
+            :loading="loading_download"
+            class="ml-3"
+            @click="download_data"
+          >
+            Download
+          </v-btn>
+
+          <v-btn
+            class="ml-3"
+            @click="show_search=true"
+          >
+            <v-icon>search</v-icon>Search
+          </v-btn>
+        </div>
+
+
+
+
+        <template v-if="search_results_msg!==null">
+          <div
+            style="background-color: #eaeaea; "
+            class="mt-4 pl-2 pr-2 pt-1 pb-1"
+          >
+            Search Results For: {{ search_results_msg }}
+            <v-spacer />
+            <v-btn
+              class="mt-2"
+              small
+              @click="clear_search"
+            >
+              Clear Results
+            </v-btn>
+          </div>
+        </template>
+
+
+
+
+
+
+        <orders-table
+          :orders="orders"
+          @buy-label="on_buy_label"
+          @buy-checked-labels="buy_labels_bulk"
+        />
       </div>
-
-      <div class="content-container-bg">
-         <div class="admin-content-container">
-
-
-            <div style="display: flex">
-               <my-date-picker
-                   style="width: 150px"
-                   label="Date From"
-                   readonly
-                   v-model="date_start"
-                   :on-change="get_orders"
-               />
-
-               <my-date-picker
-                   class="ml-2"
-                   style="width: 150px"
-                   label="Date To"
-                   readonly
-                   v-model="date_end"
-                   :on-change="get_orders"
-               />
-
-
-
-
-               <v-btn  @click="download_data" :loading="loading_download" class="ml-3"
-               >
-                  Download
-               </v-btn>
-
-               <v-btn
-                   @click="show_search=true"
-                   class="ml-3"
-               >
-                  <v-icon>search</v-icon>Search
-               </v-btn>
-
-
-
-            </div>
-
-
-
-
-            <template  v-if="search_results_msg!==null">
-               <div
-                   style="background-color: #eaeaea; " class="mt-4 pl-2 pr-2 pt-1 pb-1"
-               >
-                  Search Results For: {{search_results_msg}}
-                  <v-spacer/>
-                  <v-btn class="mt-2" small @click="clear_search">Clear Results</v-btn>
-               </div>
-
-            </template>
-
-
-
-
-
-
-            <orders-table
-                :orders="orders"
-                @buy-label="on_buy_label"
-                @buy-checked-labels="buy_labels_bulk"
-            />
-
-         </div>
-      </div>
-
-   </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -97,8 +98,8 @@ import myDatePicker from "@/components/inputs/myDatePicker";
 
 export default {
    name: "AdminOrders",
-   mixins: [data_getters, utilities],
    components: {OrdersTable, myDatePicker, SearchDialog},
+   mixins: [data_getters, utilities],
    data(){
       return {
          orders: [],
@@ -116,6 +117,11 @@ export default {
 
          search_results_msg: null,
       }
+   },
+
+   created(){
+      this.$store.commit("set_show_side_nav", true);
+      this.get_orders();
    },
 
 
@@ -323,11 +329,6 @@ export default {
       },
 
 
-   },
-
-   created(){
-      this.$store.commit("set_show_side_nav", true);
-      this.get_orders();
    }
 }
 </script>

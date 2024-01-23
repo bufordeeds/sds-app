@@ -1,86 +1,95 @@
 <template>
-   <div>
+  <div>
+    <div class="sds-content-container-bg">
+      <div
+        class="sds-content-container"
+        style="display: flex; flex-direction: column; align-items: center"
+      >
+        <div
+          class="sds-subtitle"
+          :style="$vuetify.breakpoint.smAndDown? 'font-size: 15pt' : ''"
+          style="text-align: center"
+        >
+          Please verify you have accepted the SDS Behavioral Standards by entering a valid SDS Number
+        </div>
+        <img
+          src="../../assets/images/products/SDSPatch.png"
+          style="max-width: 300px; width: 90%; margin-top: 20px"
+        >
+        <div style="font-size: 10pt; padding-left: 20px; margin-top: -20px">
+          <!--               Click on any item to enlarge.  Items not to scale.-->
+        </div>
 
 
 
-      <div class="sds-content-container-bg">
-         <div class="sds-content-container" style="display: flex; flex-direction: column; align-items: center">
-            <div class="sds-subtitle" :style="$vuetify.breakpoint.smAndDown? 'font-size: 15pt' : ''" style="text-align: center">
-               Please verify you have accepted the SDS Behavioral Standards by entering a valid SDS Number
-            </div>
-            <img src="../../assets/images/products/SDSPatch.png"
-                 style="max-width: 300px; width: 90%; margin-top: 20px"
+
+        <!---------------------- container for the "continue" buttons --------------------------------------------->
+        <div
+          v-if="!show_dogs"
+          style="display: flex; flex-direction: column; align-items: center"
+        >
+          <div style="color: var(--color-subheading); margin-top: 30px; font-weight: 600">
+            Enter 10 Digit Team SDS Number
+          </div>
+
+          <my-form ref="form">
+            <text-input
+              v-model="sds_number"
+              style="max-width: 250px; margin-top: 10px"
+              label="SDS Number"
+              hide-label-on-input
+              border-color="var(--color-primary)"
+              :rules="[isRequired]"
+            />
+          </my-form>
+
+
+          <div style="color: var(--color-subheading); margin-top: 5px; font-weight: 600; font-size: 8pt; display: flex; justify-content: space-between; max-width: 250px">
+            <router-link
+              to="/?advanced_search=true"
+              target="_blank"
             >
-            <div style="font-size: 10pt; padding-left: 20px; margin-top: -20px">
-<!--               Click on any item to enlarge.  Items not to scale.-->
-            </div>
+              Find SDS number
+            </router-link>
 
 
-
-
-            <!---------------------- container for the "continue" buttons --------------------------------------------->
-            <div v-if="!show_dogs"
-                 style="display: flex; flex-direction: column; align-items: center"
+            <router-link
+              v-if="$auth.authenticated "
+              to="/manageServiceDogs"
             >
-               <div style="color: var(--color-subheading); margin-top: 30px; font-weight: 600">
-                  Enter 10 Digit Team SDS Number
-               </div>
-
-               <my-form ref="form">
-                  <text-input
-                      style="max-width: 250px; margin-top: 10px"
-                      label="SDS Number"
-                      hide-label-on-input
-                      border-color="var(--color-primary)"
-                      v-model="sds_number"
-                      :rules="[isRequired]"
-                  ></text-input>
-               </my-form>
-
-
-               <div style="color: var(--color-subheading); margin-top: 5px; font-weight: 600; font-size: 8pt; display: flex; justify-content: space-between; max-width: 250px">
-                  <router-link to="/?advanced_search=true" target="_blank">
-                     Find SDS number
-                  </router-link>
-
-
-                  <router-link to="/manageServiceDogs" v-if="$auth.authenticated " >
-                     My Service Dogs
-                  </router-link>
-
-               </div>
+              My Service Dogs
+            </router-link>
+          </div>
 
 
 
-               <div v-if="err_msg" style="color: var(--color-input-error)">
-                  {{err_msg}}
-               </div>
-               <div style="height: 30px">
+          <div
+            v-if="err_msg"
+            style="color: var(--color-input-error)"
+          >
+            {{ err_msg }}
+          </div>
+          <div style="height: 30px" />
 
-               </div>
 
 
-
-               <!--            arrow button 2-->
-               <v-btn dark text class="ma-0 pa-0" style="height: 40px" @click="add_to_cart">
-                  <div style="background-color: var(--color-btn); height: 40px; display: flex; justify-content: center; align-items: center; width: 170px">
-                     Verify and add to cart</div>
-                  <div class="btn-arrow-right"></div>
-               </v-btn>
+          <!--            arrow button 2-->
+          <v-btn
+            dark
+            text
+            class="ma-0 pa-0"
+            style="height: 40px"
+            @click="add_to_cart"
+          >
+            <div style="background-color: var(--color-btn); height: 40px; display: flex; justify-content: center; align-items: center; width: 170px">
+              Verify and add to cart
             </div>
-
-
-
-
-
-
-
-
-
-         </div>
+            <div class="btn-arrow-right" />
+          </v-btn>
+        </div>
       </div>
-
-   </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -93,8 +102,8 @@ import store from "@/mixins/store";
 
 export default {
    name: "StorePage1",
-   mixins: [data_getters,validation, store],
    components: {MyForm, TextInput},
+   mixins: [data_getters,validation, store],
    data() {
       return {
 
@@ -113,6 +122,38 @@ export default {
          err_msg: null,
 
       }
+   },
+
+
+   async created(){
+
+      this.make_request('/store/getItem', {item_key: 'sds_accepted_patch'})
+          .then(data => {this.item_sds_patch = data});
+
+      // if (this.$auth.isAuthenticated()){
+      //
+      //    // this.sds_number = this.$auth.profile.member_num;
+      //
+      //   let cart = await this.make_request('/store/getActiveCart');
+      //
+      //   if (cart != null){
+      //     this.$store.commit('set_cart_items', cart.items);
+      //     console.log('i ran')
+      //     // await this.continue_forward();
+      //
+      //     for (let i in this.dogs){
+      //
+      //       let ix = helpers.findWithAttr(cart.items, 'details.dog_num', this.dogs[i].dog_num)
+      //       if (ix > -1){
+      //         this.dogs[i].loc_selected = true;
+      //       }
+      //     }
+      //
+      //
+      //   }
+      //
+      //
+      // }
    },
 
    methods:{
@@ -183,38 +224,6 @@ export default {
      //   }
      // }
 
-   },
-
-
-   async created(){
-
-      this.make_request('/store/getItem', {item_key: 'sds_accepted_patch'})
-          .then(data => {this.item_sds_patch = data});
-
-      // if (this.$auth.isAuthenticated()){
-      //
-      //    // this.sds_number = this.$auth.profile.member_num;
-      //
-      //   let cart = await this.make_request('/store/getActiveCart');
-      //
-      //   if (cart != null){
-      //     this.$store.commit('set_cart_items', cart.items);
-      //     console.log('i ran')
-      //     // await this.continue_forward();
-      //
-      //     for (let i in this.dogs){
-      //
-      //       let ix = helpers.findWithAttr(cart.items, 'details.dog_num', this.dogs[i].dog_num)
-      //       if (ix > -1){
-      //         this.dogs[i].loc_selected = true;
-      //       }
-      //     }
-      //
-      //
-      //   }
-      //
-      //
-      // }
    }
 }
 </script>

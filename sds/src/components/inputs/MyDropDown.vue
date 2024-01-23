@@ -1,52 +1,64 @@
 <template>
-   <div class="input-container" :style="input_container_style">
-      <div
-           class="label"
-           :style="label_style"
-           @click="show_list=true"
+  <div
+    class="input-container"
+    :style="input_container_style"
+  >
+    <div
+      class="label"
+      :style="label_style"
+      @click="show_list=true"
+    >
+      {{ label }}
+    </div>
+
+
+    <!--      <input :type="input_type" v-model="local_val" @input="$emit('input', local_val)"-->
+    <!--             :class="border_class" :disabled="disabled"-->
+    <!--             :style="input_style"-->
+    <!--             ref="input"-->
+    <!--             @blur="$emit('blur')"-->
+    <!--             @keyup.enter="$emit('keyup-enter')"-->
+    <!--      >-->
+
+
+    <!--      @input="$emit('input', $event)"-->
+    <my-drop-down0
+
+      ref="input"
+      v-model="local_val"
+      :class="border_class"
+      :style="input_style"
+      :list="list"
+      :item-text="itemText"
+      :item-value="itemValue"
+      :show-value="showValue"
+      :show_list.sync="show_list"
+
+      :clearable="clearable"
+      @blur="$emit('blur')"
+      @keyup.enter="$emit('keyup-enter')"
+    />
+
+    <div
+      v-if="error_msg !== null"
+      class="error-msg-container"
+    >
+      <svg
+        width="20"
+        height="10"
+        style="margin-left: 20px;"
       >
-         {{label}}
-      </div>
+        <polygon
+          points="10,0 0,10 20, 10"
+          style="fill:var(--color-input-error);"
+        />
+      </svg>
 
-
-<!--      <input :type="input_type" v-model="local_val" @input="$emit('input', local_val)"-->
-<!--             :class="border_class" :disabled="disabled"-->
-<!--             :style="input_style"-->
-<!--             ref="input"-->
-<!--             @blur="$emit('blur')"-->
-<!--             @keyup.enter="$emit('keyup-enter')"-->
-<!--      >-->
-
-
-<!--      @input="$emit('input', $event)"-->
-      <my-drop-down0
-
-          v-model="local_val"
-          :class="border_class"
-          :style="input_style"
-          :list="list"
-          :item-text="itemText"
-          :item-value="itemValue"
-          ref="input"
-          @blur="$emit('blur')"
-          @keyup.enter="$emit('keyup-enter')"
-
-          :show-value="showValue"
-          :show_list.sync="show_list"
-          :clearable="clearable"
-      ></my-drop-down0>
-
-      <div class="error-msg-container" v-if="error_msg !== null">
-         <svg width="20" height="10" style="margin-left: 20px;">
-            <polygon points="10,0 0,10 20, 10" style="fill:var(--color-input-error);" />
-         </svg>
-
-         <span class="error-msg" >
-         {{error_msg}}
-         </span>
-
-      </div>
-   </div>
+      <span class="error-msg">
+        {{ error_msg }}
+      </span>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -57,6 +69,7 @@
    export default {
       name: "MyDropDown",
       components: {MyDropDown0},
+      inject: ['registerThisField', 'unRegisterField'],
       props:{
          value: {type: [String, Boolean, Number], default: null},
          list: {type: Array, default: null},
@@ -77,7 +90,6 @@
          clearable:  {type: Boolean, default: false},
 
       },
-      inject: ['registerThisField', 'unRegisterField'],
 
       data(){
          return {
@@ -87,26 +99,6 @@
 
             show_list: false,
          }
-      },
-
-      watch:{
-         value(newVal){
-
-            if (newVal !== this.local_val){
-               this.local_val = newVal;
-            }
-         },
-        local_val(newVal){
-
-           if (this.error_msg !== null){
-              this.validate();
-           }
-
-           if (newVal !== this.value){
-              this.$emit('input', newVal);
-           }
-
-        }
       },
 
       computed: {
@@ -175,6 +167,39 @@
 
       },
 
+      watch:{
+         value(newVal){
+
+            if (newVal !== this.local_val){
+               this.local_val = newVal;
+            }
+         },
+        local_val(newVal){
+
+           if (this.error_msg !== null){
+              this.validate();
+           }
+
+           if (newVal !== this.value){
+              this.$emit('input', newVal);
+           }
+
+        }
+      },
+
+      created(){
+         // console.log('debug', this)
+
+         if (this.registerThisField !=  null){
+            this.field_id = this.registerThisField(this);
+         }
+
+      },
+
+      beforeDestroy() {
+         this.unRegisterField(this.field_id);
+      },
+
       methods:{
 
 
@@ -199,19 +224,6 @@
             // console.log( this.$refs)
             this.$refs.input.$el.focus();
          }
-      },
-
-      created(){
-         // console.log('debug', this)
-
-         if (this.registerThisField !=  null){
-            this.field_id = this.registerThisField(this);
-         }
-
-      },
-
-      beforeDestroy() {
-         this.unRegisterField(this.field_id);
       }
 
    }

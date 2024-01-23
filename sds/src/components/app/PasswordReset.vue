@@ -1,98 +1,102 @@
 <template>
-   <div max-width="400" min-width="350px" >
+  <div
+    max-width="400"
+    min-width="350px"
+  >
+    <div
+      class=""
+      style="color: var(--color-headline); text-align: center; font-weight: 500; font-size: 14pt"
+    >
+      <slot name="heading">
+        <span v-if="heading != null">
+          {{ heading }}
+        </span>
+      </slot>
 
 
 
-      <div class="" style="color: var(--color-headline); text-align: center; font-weight: 500; font-size: 14pt">
 
-         <slot name="heading">
-         <span v-if="heading != null">
-               {{ heading }}
-            </span>
-         </slot>
+      <!--<slot>-->
 
 
+      <!--      <span v-else>-->
+      <!--   {{type}} Password-->
+      <!--   </span>-->
+      <!--</slot>-->
+    </div>
 
 
-         <!--<slot>-->
+    <my-form
+      ref="form"
+      class="flex-centered-content-col"
+    >
+      <v-row
+        v-if="error_msg"
+        dense
+        class="ma-0 pl-2"
+        style="color: var(--color-input-error); "
+      >
+        {{ error_msg }}
+      </v-row>
+
+      <v-row dense>
+        <v-col>
+          <my-text-input
+            v-model="password"
+            label="Password"
+            hint="Enter your password"
+            :rules="[isRequired, x =>checkLength(x, 8)]"
+            :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
+            :is-password="!showPass"
+            @click:append="showPass = !showPass"
+          />
 
 
-         <!--      <span v-else>-->
-         <!--   {{type}} Password-->
-         <!--   </span>-->
-         <!--</slot>-->
+          <div class="mt-3">
+            <slot name="pass-two-txt">
+              <div style="color: var(--color-headline); text-align: center; font-weight: 500; font-size: 14pt">
+                Please re-enter password
+              </div>
+            </slot>
+          </div>
 
+
+          <my-text-input
+            v-model="password2"
+            label="Password 2nd"
+            hint="Enter your password"
+            :rules="[isRequired, ]"
+            :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
+            :is-password="!showPass"
+            @click:append="showPass = !showPass"
+          />
+        </v-col>
+      </v-row>
+
+
+      <div style="color:var(--color-input-error)">
+        {{ pass_msg }}
       </div>
 
 
-      <my-form ref="form" class="flex-centered-content-col">
-
-         <v-row dense v-if="error_msg" class="ma-0 pl-2" style="color: var(--color-input-error); ">
-            {{error_msg}}
-         </v-row>
-
-         <v-row dense>
-            <v-col>
-
-               <my-text-input
-                   label="Password"
-                   v-model="password"
-                   hint="Enter your password"
-                   :rules="[isRequired, x =>checkLength(x, 8)]"
-                   :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
-                   @click:append="showPass = !showPass"
-                   :is-password="!showPass"
-               />
-
-
-               <div class="mt-3">
-                  <slot name="pass-two-txt">
-                     <div style="color: var(--color-headline); text-align: center; font-weight: 500; font-size: 14pt">
-                        Please re-enter password
-                     </div>
-
-                  </slot>
-               </div>
-
-
-               <my-text-input
-                   label="Password 2nd"
-                   v-model="password2"
-                   hint="Enter your password"
-                   :rules="[isRequired, ]"
-                   :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
-                   @click:append="showPass = !showPass"
-                   :is-password="!showPass"
-               />
-            </v-col>
-         </v-row>
-
-
-         <div style="color:var(--color-input-error)">
-            {{pass_msg}}
-         </div>
-
-
-         <div class="pa-3 mt-5" style="width: 100%">
-            <v-btn color="var(--color-primary)"  @click="reset_pw" width="100%" :disabled="btn_disabled" :loading="loading">
-               <slot name="button-text">
-                  {{type}} Password
-               </slot>
-
-            </v-btn>
-         </div>
-
-
-
-
-      </my-form>
-
-
-
-
-
-
-   </div>
+      <div
+        class="pa-3 mt-5"
+        style="width: 100%"
+      >
+        <v-btn
+          color="var(--color-primary)"
+          width="100%"
+          :disabled="btn_disabled"
+          :loading="loading"
+          @click="reset_pw"
+        >
+          <slot name="button-text">
+            {{ type }} Password
+          </slot>
+        </v-btn>
+      </div>
+    </my-form>
+  </div>
 </template>
 
 <script>

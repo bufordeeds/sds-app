@@ -16,6 +16,16 @@ function gen_LocalCache(){
             db: null,
 
          }
+      },//methods
+
+
+
+
+      created(){
+         this.db = new Dexie('car-app');
+         this.db.version(1).stores({
+            savedVehicles: '++id, [year+make+model], dateAdded',
+         });
       },
 
       methods:{
@@ -101,16 +111,6 @@ function gen_LocalCache(){
 
 
 
-      },//methods
-
-
-
-
-      created(){
-         this.db = new Dexie('car-app');
-         this.db.version(1).stores({
-            savedVehicles: '++id, [year+make+model], dateAdded',
-         });
       }
    });
 }

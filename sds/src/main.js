@@ -9,10 +9,11 @@ import MyForm from '@/components/inputs/MyForm';
 import TextInput from '@/components/inputs/TextInput';
 
 import ShowError from './components/showError';
-Vue.component('my-show-error', ShowError);
-Vue.component('avatar', avatar);
-Vue.component('my-form', MyForm);
-Vue.component('my-text-input', TextInput);
+Vue.component('MyShowError', ShowError);
+Vue.component('MyAvatar', avatar);
+Vue.component('MyForm', MyForm);
+Vue.component('MyForm', MyForm);
+Vue.component('MyTextInput', TextInput);
 
 Vue.config.productionTip = false;
 

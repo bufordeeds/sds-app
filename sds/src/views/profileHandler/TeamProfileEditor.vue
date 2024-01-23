@@ -1,61 +1,53 @@
 <template>
-   <div>
+  <div>
+    <div class="page-title-app">
+      Edit Profile Page
+    </div>
 
-      <div class="page-title-app">
-         Edit Profile Page
+    <!--<v-row dense class="page-title-app" style="display: flex; height: 100%; align-items: flex-end">-->
+    <!--   <v-col cols="12" sm="8">-->
+    <!--      Public Team Profiles-->
+    <!--   </v-col>-->
+
+    <!--   <v-spacer/>-->
+    <!--   <v-col cols="12" sm="4" style="display: flex; justify-content: center">-->
+    <!--      <my-form style="max-width: 500px">-->
+    <!--         <my-drop-down-->
+    <!--             label="Select Service Dog"-->
+    <!--             :list="my_dogs"-->
+    <!--             item-text="name"-->
+    <!--             item-value="dog_num"-->
+    <!--             v-model="selected_dog_num"-->
+    <!--         />-->
+    <!--      </my-form>-->
+    <!--   </v-col>-->
+    <!--</v-row>-->
+
+
+
+    <div class="content-container-bg">
+      <div class="content-container-centered">
+        <my-form style="display: flex; justify-content: center">
+          <my-drop-down
+            v-model="selected_dog_num"
+            style="max-width: 250px"
+            label="Select Service Dog"
+            :list="my_dogs"
+            item-text="name"
+            item-value="dog_num"
+          />
+        </my-form>
+
+        <team-profile
+          v-if="selected_dog_num !== null"
+          :dog_num="selected_dog_num"
+
+          :edit_mode="true"
+          @check-event="handler_check_event"
+        />
       </div>
-
-         <!--<v-row dense class="page-title-app" style="display: flex; height: 100%; align-items: flex-end">-->
-         <!--   <v-col cols="12" sm="8">-->
-         <!--      Public Team Profiles-->
-         <!--   </v-col>-->
-
-         <!--   <v-spacer/>-->
-         <!--   <v-col cols="12" sm="4" style="display: flex; justify-content: center">-->
-         <!--      <my-form style="max-width: 500px">-->
-         <!--         <my-drop-down-->
-         <!--             label="Select Service Dog"-->
-         <!--             :list="my_dogs"-->
-         <!--             item-text="name"-->
-         <!--             item-value="dog_num"-->
-         <!--             v-model="selected_dog_num"-->
-         <!--         />-->
-         <!--      </my-form>-->
-         <!--   </v-col>-->
-         <!--</v-row>-->
-
-
-
-      <div class="content-container-bg">
-
-         <div class="content-container-centered" >
-
-
-            <my-form style="display: flex; justify-content: center">
-               <my-drop-down
-                   style="max-width: 250px"
-                   label="Select Service Dog"
-                   :list="my_dogs"
-                   item-text="name"
-                   item-value="dog_num"
-                   v-model="selected_dog_num"
-               />
-            </my-form>
-
-            <team-profile
-                v-if="selected_dog_num !== null"
-                :dog_num="selected_dog_num"
-
-                :edit_mode="true"
-                @check-event="handler_check_event"
-            />
-         </div>
-
-      </div>
-
-   </div>
-
-
+    </div>
+  </div>
 </template>
 
 <script>
@@ -64,14 +56,18 @@ import TeamProfile from "@/views/profileHandler/TeamProfile";
 import data_getters from "@/mixins/data_getters";
 import MyDropDown from "@/components/inputs/MyDropDown";
 export default {
-   name: "profileEditor",
-   mixins: [data_getters],
+   name: "ProfileEditor",
    components: {MyDropDown, TeamProfile, },
+   mixins: [data_getters],
    data(){
       return{
          my_dogs: [],
          selected_dog_num: null,
       }
+   },
+   created(){
+      this.$store.commit("set_show_side_nav", true);
+      this.get_my_dogs();
    },
 
    methods: {
@@ -98,10 +94,6 @@ export default {
 
       }
 
-   },
-   created(){
-      this.$store.commit("set_show_side_nav", true);
-      this.get_my_dogs();
    }
 }
 </script>

@@ -1,51 +1,62 @@
 <template>
-<div class="content-container-bg" style="min-height: auto;">
+  <div
+    class="content-container-bg"
+    style="min-height: auto;"
+  >
+    <!--<v-dialog v-model="show_kit_detail" width="unset">-->
+    <!--   <div>-->
+    <!--      &lt;!&ndash;<img src="../../assets/images/products/features_card.png" style="height: 90vh; min-height: 1000px; display: block; max-width: 100vw">&ndash;&gt;-->
+    <!--      <v-img-->
+    <!--          src="../../assets/images/products/features_card.png"-->
+    <!--          max-width="100vw"-->
+    <!--          min-height="1000px"-->
+    <!--          height="100vh"-->
+    <!--          contain-->
+    <!--      ></v-img>-->
+    <!--   </div>-->
 
-   <!--<v-dialog v-model="show_kit_detail" width="unset">-->
-   <!--   <div>-->
-   <!--      &lt;!&ndash;<img src="../../assets/images/products/features_card.png" style="height: 90vh; min-height: 1000px; display: block; max-width: 100vw">&ndash;&gt;-->
-   <!--      <v-img-->
-   <!--          src="../../assets/images/products/features_card.png"-->
-   <!--          max-width="100vw"-->
-   <!--          min-height="1000px"-->
-   <!--          height="100vh"-->
-   <!--          contain-->
-   <!--      ></v-img>-->
-   <!--   </div>-->
-
-   <!--</v-dialog>-->
-
-
-
-   <dialog-features-cert v-model="show_detail_cert" />
-   <dialog-features-card v-model="show_detail_card" />
-   <dialog-features-patch v-model="show_detail_patch" />
-   <dialog-features-tag v-model="show_detail_tag" />
-   <dialog-features-patch-three v-model="show_detail_3_patch_set" />
+    <!--</v-dialog>-->
 
 
 
-
+    <dialog-features-cert v-model="show_detail_cert" />
+    <dialog-features-card v-model="show_detail_card" />
+    <dialog-features-patch v-model="show_detail_patch" />
+    <dialog-features-tag v-model="show_detail_tag" />
+    <dialog-features-patch-three v-model="show_detail_3_patch_set" />
 
 
 
 
 
-   <!-----------------SDS kit ----------------------------------------------------------------------------------------->
 
 
 
-   <div class="centered-flex-column pa-5 white-bg" style="width: 100%; max-width: 900px; ">
 
-      <div class="headline-txt" style=" text-align: center;">
-         Support Standards
+    <!-----------------SDS kit ----------------------------------------------------------------------------------------->
+
+
+
+    <div
+      class="centered-flex-column pa-5 white-bg"
+      style="width: 100%; max-width: 900px; "
+    >
+      <div
+        class="headline-txt"
+        style=" text-align: center;"
+      >
+        Support Standards
       </div>
-      <img src="../../assets/images/products/SDSProductPackage.png"
-           style="max-width: 750px; width: 90%"
+      <img
+        src="../../assets/images/products/SDSProductPackage.png"
+        style="max-width: 750px; width: 90%"
       >
 
-      <div class="subheading-txt mb-8" style="margin-top: 0px; text-align: center;">
-         Complete Service Dog Standards Kit
+      <div
+        class="subheading-txt mb-8"
+        style="margin-top: 0px; text-align: center;"
+      >
+        Complete Service Dog Standards Kit
       </div>
 
       <!--<v-row dense style="max-width: 450px">-->
@@ -86,30 +97,45 @@
 
 
       <div style="display: flex; justify-content: center">
-         <img src="../../assets/images/products/SDSMainPageFeatureShields.png" width="90%" style="max-width: 500px; align-self: flex-start;">
-
-
+        <img
+          src="../../assets/images/products/SDSMainPageFeatureShields.png"
+          width="90%"
+          style="max-width: 500px; align-self: flex-start;"
+        >
       </div>
 
 
       <div class="kit-details-container mt-6">
-         <div class="kit-detail" style="text-align: center">
-            Service Dog Standards Certificate
-         </div>
+        <div
+          class="kit-detail"
+          style="text-align: center"
+        >
+          Service Dog Standards Certificate
+        </div>
 
-         <v-btn x-small  text class="view-btn" @click="show_detail_cert=true">
-            View Details <div class="triangle ml-2"></div>
-         </v-btn>
+        <v-btn
+          x-small
+          text
+          class="view-btn"
+          @click="show_detail_cert=true"
+        >
+          View Details <div class="triangle ml-2" />
+        </v-btn>
       </div>
 
       <div class="kit-details-container mt-4">
-         <div class="kit-detail">
-            SDS Membership Cards
-         </div>
+        <div class="kit-detail">
+          SDS Membership Cards
+        </div>
 
-         <v-btn x-small  text class="view-btn" @click="show_detail_card=true">
-            View Details <div class="triangle ml-2"></div>
-         </v-btn>
+        <v-btn
+          x-small
+          text
+          class="view-btn"
+          @click="show_detail_card=true"
+        >
+          View Details <div class="triangle ml-2" />
+        </v-btn>
       </div>
 
       <!--<div class="kit-details-container mt-4" >-->
@@ -124,191 +150,285 @@
 
 
 
-      <div class="kit-details-container mt-4" >
-         <div class="kit-detail">
-            SDS Accepted Patch
-         </div>
+      <div class="kit-details-container mt-4">
+        <div class="kit-detail">
+          SDS Accepted Patch
+        </div>
 
-         <v-btn x-small  text class="view-btn" @click="show_detail_patch=true">
-            View Details <div class="triangle ml-2"></div>
-         </v-btn>
+        <v-btn
+          x-small
+          text
+          class="view-btn"
+          @click="show_detail_patch=true"
+        >
+          View Details <div class="triangle ml-2" />
+        </v-btn>
       </div>
 
 
 
 
       <div class="kit-details-container mt-4">
-         <div class="kit-detail">
-            SDS Stainless Steel Tag
-         </div>
+        <div class="kit-detail">
+          SDS Stainless Steel Tag
+        </div>
 
-         <v-btn x-small  text class="view-btn" @click="show_detail_tag=true">
-            View Details <div class="triangle ml-2"></div>
-         </v-btn>
+        <v-btn
+          x-small
+          text
+          class="view-btn"
+          @click="show_detail_tag=true"
+        >
+          View Details <div class="triangle ml-2" />
+        </v-btn>
       </div>
 
 
-      <div style="font-size: 20pt; font-weight: 500; text-align: center" class="mt-8">
-         ${{fmt_number(item_kit.price, {places:2})}}
+      <div
+        style="font-size: 20pt; font-weight: 500; text-align: center"
+        class="mt-8"
+      >
+        ${{ fmt_number(item_kit.price, {places:2}) }}
       </div>
       <div style="color: #31b741; font-size: 12pt; font-weight: 500; text-align: center">
-         Orders ship within 5-7 business days
+        Orders ship within 5-7 business days
       </div>
 
-      <v-btn width="70%" height="40px" class="mt-5" @click="$emit('order-kit')">
-         Order Now
+      <v-btn
+        width="70%"
+        height="40px"
+        class="mt-5"
+        @click="$emit('order-kit')"
+      >
+        Order Now
       </v-btn>
 
-      <div style="height: 40px"></div>
-   </div>
+      <div style="height: 40px" />
+    </div>
 
 
 
-   <!-----------------patches kit ------------------------------------------------------------------------------------->
+    <!-----------------patches kit ------------------------------------------------------------------------------------->
 
-   <!--<template v-if="$auth.profile.user_id != undefined && $auth.profile.acct_active">-->
-      <div style="height: 40px"></div>
-
-
-      <div class="centered-flex-column pa-5 white-bg" style="width: 100%; max-width: 900px;" >
-         <v-row dense>
-            <v-col cols="12" sm="4">
-               <img src="../../assets/images/products/SDSPatch.png"
-                    style="max-width: 400px; width: 90%"
-               >
-            </v-col>
-
-            <v-col cols="12" sm="8">
-               <div style="color: var(--color-headline); font-size: 14pt; font-weight: 600">
-                  <!--Service Dog Standards Rugged 3 Patch Set-->
-                  {{item_sds_patch.name}}
-               </div>
-
-               <div>
-                  <!--Configure them as you need on any size vest.  Our rugged military-spec, micro injected soft PVC Patches-->
-                  <!--with 3D effect feature a simple and clear message.-->
-                  {{item_sds_patch.description_full}}
-               </div>
-               <v-btn x-small  text class="view-btn" @click="show_detail_patch=true">
-                  View Details <div class="triangle ml-2"></div>
-               </v-btn>
-
-               <div style="display: flex;">
-                  <div style="font-size: 20pt; font-weight: 600" class="pt-4">
-                     ${{fmt_number(item_sds_patch.price, {places:2})}}
-                  </div>
-                  <v-spacer/>
-
-                  <my-form style="max-width: 100px" class="ml-3">
-                     <my-text-input
-                         label="Quantity"
-                         :rules="[isNumber]"
-                         v-model="quantity_patch"
-                     />
-                  </my-form>
+    <!--<template v-if="$auth.profile.user_id != undefined && $auth.profile.acct_active">-->
+    <div style="height: 40px" />
 
 
-               </div>
-
-
-               <template v-if="$vuetify.breakpoint.mdAndUp">
-
-                  <v-btn  v-if="$auth.profile.user_id == undefined || $auth.profile.acct_active !== true"
-                      width="50%" min-width="150px" height="40px" class="mt-5 " @click="$emit('order-sds-patch')"  >
-                     Order Now
-                  </v-btn>
-
-                  <v-btn v-else
-                      width="50%" min-width="150px" height="40px" class="mt-5 " @click="add_patches_cart(item_sds_patch, quantity_patch)" >
-                     Order Now
-                  </v-btn>
-               </template>
-
-            </v-col>
-
-
-
-            <div  v-if="$vuetify.breakpoint.smAndDown" style="display: flex; justify-content: center; width: 100%">
-               <v-btn v-if="$auth.profile.user_id == undefined || $auth.profile.acct_active !== true"
-                      width="50%" min-width="150px" height="40px" class="mt-5 " @click="$emit('order-sds-patch')" >
-                  Order Now
-               </v-btn>
-               <v-btn v-else
-                   width="50%" min-width="150px" height="40px" class="mt-5 " @click="add_patches_cart(item_sds_patch, quantity_patch)" >
-                  Order Now
-               </v-btn>
-
-            </div>
-         </v-row>
-      </div>
-   <!--</template>-->
-
-
-
-
-
-   <div style="height: 40px"></div>
-   <div class="centered-flex-column pa-5 white-bg" style="width: 100%; max-width: 900px;">
+    <div
+      class="centered-flex-column pa-5 white-bg"
+      style="width: 100%; max-width: 900px;"
+    >
       <v-row dense>
-         <v-col cols="12" sm="4">
-            <img src="../../assets/images/products/SDSPatchTilted.png"
-                 style="max-width: 400px; width: 90%"
+        <v-col
+          cols="12"
+          sm="4"
+        >
+          <img
+            src="../../assets/images/products/SDSPatch.png"
+            style="max-width: 400px; width: 90%"
+          >
+        </v-col>
+
+        <v-col
+          cols="12"
+          sm="8"
+        >
+          <div style="color: var(--color-headline); font-size: 14pt; font-weight: 600">
+            <!--Service Dog Standards Rugged 3 Patch Set-->
+            {{ item_sds_patch.name }}
+          </div>
+
+          <div>
+            <!--Configure them as you need on any size vest.  Our rugged military-spec, micro injected soft PVC Patches-->
+            <!--with 3D effect feature a simple and clear message.-->
+            {{ item_sds_patch.description_full }}
+          </div>
+          <v-btn
+            x-small
+            text
+            class="view-btn"
+            @click="show_detail_patch=true"
+          >
+            View Details <div class="triangle ml-2" />
+          </v-btn>
+
+          <div style="display: flex;">
+            <div
+              style="font-size: 20pt; font-weight: 600"
+              class="pt-4"
             >
-         </v-col>
-
-         <v-col cols="12" sm="8">
-            <div style="color: var(--color-headline); font-size: 14pt; font-weight: 600">
-               <!--Service Dog Standards Rugged 3 Patch Set-->
-               {{item_3_patches.name}}
+              ${{ fmt_number(item_sds_patch.price, {places:2}) }}
             </div>
+            <v-spacer />
 
-            <div>
-               <!--Configure them as you need on any size vest.  Our rugged military-spec, micro injected soft PVC Patches-->
-               <!--with 3D effect feature a simple and clear message.-->
-               {{item_3_patches.description_full}}
-            </div>
-            <v-btn x-small  text class="view-btn" @click="show_detail_3_patch_set=true">
-               View Details <div class="triangle ml-2"></div>
-            </v-btn>
-
-
-
-
-            <div style="display: flex;">
-               <div style="font-size: 20pt; font-weight: 600" class="pt-4">
-                  ${{fmt_number(item_3_patches.price, {places:2})}}
-               </div>
-
-               <v-spacer/>
-
-               <my-form style="max-width: 100px" class="ml-3">
-                  <my-text-input
-                      label="Quantity"
-                      :rules="[isNumber]"
-                      v-model="quantity_3_patches"
-                  />
-               </my-form>
+            <my-form
+              style="max-width: 100px"
+              class="ml-3"
+            >
+              <my-text-input
+                v-model="quantity_patch"
+                label="Quantity"
+                :rules="[isNumber]"
+              />
+            </my-form>
+          </div>
 
 
-            </div>
-
-
-
-
-            <v-btn v-if="$vuetify.breakpoint.mdAndUp"
-                width="50%" min-width="150px" height="40px" class="mt-5 " @click="add_patches_cart(item_3_patches, quantity_3_patches)" >
-               Order Now
-            </v-btn>
-         </v-col>
-
-         <div  v-if="$vuetify.breakpoint.smAndDown" style="display: flex; justify-content: center; width: 100%">
+          <template v-if="$vuetify.breakpoint.mdAndUp">
             <v-btn
-                   width="50%" min-width="150px" height="40px" class="mt-5 " @click="add_patches_cart(item_3_patches, quantity_3_patches)" >
-               Order Now
+              v-if="$auth.profile.user_id == undefined || $auth.profile.acct_active !== true"
+              width="50%"
+              min-width="150px"
+              height="40px"
+              class="mt-5 "
+              @click="$emit('order-sds-patch')"
+            >
+              Order Now
             </v-btn>
-         </div>
+
+            <v-btn
+              v-else
+              width="50%"
+              min-width="150px"
+              height="40px"
+              class="mt-5 "
+              @click="add_patches_cart(item_sds_patch, quantity_patch)"
+            >
+              Order Now
+            </v-btn>
+          </template>
+        </v-col>
+
+
+
+        <div
+          v-if="$vuetify.breakpoint.smAndDown"
+          style="display: flex; justify-content: center; width: 100%"
+        >
+          <v-btn
+            v-if="$auth.profile.user_id == undefined || $auth.profile.acct_active !== true"
+            width="50%"
+            min-width="150px"
+            height="40px"
+            class="mt-5 "
+            @click="$emit('order-sds-patch')"
+          >
+            Order Now
+          </v-btn>
+          <v-btn
+            v-else
+            width="50%"
+            min-width="150px"
+            height="40px"
+            class="mt-5 "
+            @click="add_patches_cart(item_sds_patch, quantity_patch)"
+          >
+            Order Now
+          </v-btn>
+        </div>
       </v-row>
-   </div>
+    </div>
+    <!--</template>-->
+
+
+
+
+
+    <div style="height: 40px" />
+    <div
+      class="centered-flex-column pa-5 white-bg"
+      style="width: 100%; max-width: 900px;"
+    >
+      <v-row dense>
+        <v-col
+          cols="12"
+          sm="4"
+        >
+          <img
+            src="../../assets/images/products/SDSPatchTilted.png"
+            style="max-width: 400px; width: 90%"
+          >
+        </v-col>
+
+        <v-col
+          cols="12"
+          sm="8"
+        >
+          <div style="color: var(--color-headline); font-size: 14pt; font-weight: 600">
+            <!--Service Dog Standards Rugged 3 Patch Set-->
+            {{ item_3_patches.name }}
+          </div>
+
+          <div>
+            <!--Configure them as you need on any size vest.  Our rugged military-spec, micro injected soft PVC Patches-->
+            <!--with 3D effect feature a simple and clear message.-->
+            {{ item_3_patches.description_full }}
+          </div>
+          <v-btn
+            x-small
+            text
+            class="view-btn"
+            @click="show_detail_3_patch_set=true"
+          >
+            View Details <div class="triangle ml-2" />
+          </v-btn>
+
+
+
+
+          <div style="display: flex;">
+            <div
+              style="font-size: 20pt; font-weight: 600"
+              class="pt-4"
+            >
+              ${{ fmt_number(item_3_patches.price, {places:2}) }}
+            </div>
+
+            <v-spacer />
+
+            <my-form
+              style="max-width: 100px"
+              class="ml-3"
+            >
+              <my-text-input
+                v-model="quantity_3_patches"
+                label="Quantity"
+                :rules="[isNumber]"
+              />
+            </my-form>
+          </div>
+
+
+
+
+          <v-btn
+            v-if="$vuetify.breakpoint.mdAndUp"
+            width="50%"
+            min-width="150px"
+            height="40px"
+            class="mt-5 "
+            @click="add_patches_cart(item_3_patches, quantity_3_patches)"
+          >
+            Order Now
+          </v-btn>
+        </v-col>
+
+        <div
+          v-if="$vuetify.breakpoint.smAndDown"
+          style="display: flex; justify-content: center; width: 100%"
+        >
+          <v-btn
+            width="50%"
+            min-width="150px"
+            height="40px"
+            class="mt-5 "
+            @click="add_patches_cart(item_3_patches, quantity_3_patches)"
+          >
+            Order Now
+          </v-btn>
+        </div>
+      </v-row>
+    </div>
 
 
 
@@ -317,15 +437,11 @@
 
 
 
-   <!-----------------Donations ------------------------------------------------------------------------------------>
-   <div style="height: 40px"></div>
+    <!-----------------Donations ------------------------------------------------------------------------------------>
+    <div style="height: 40px" />
 
-   <donate-page horizontal></donate-page>
-
-
-
-
-</div>
+    <donate-page horizontal />
+  </div>
 </template>
 
 <script>
@@ -343,10 +459,10 @@ import validation from "@/mixins/validation";
 
 
 export default {
-  name: "storeFront",
-   mixins: [data_getters, utilities, store, validation],
+  name: "StoreFront",
    components: {dialogFeaturesCert, dialogFeaturesCard,dialogFeaturesPatch, dialogFeaturesTag, dialogFeaturesPatchThree,
       DonatePage},
+   mixins: [data_getters, utilities, store, validation],
    data(){
      return{
         show_detail_cert: false,
@@ -363,6 +479,17 @@ export default {
         quantity_3_patches: "1",
 
      }
+   },
+
+   created(){
+       this.make_request('/store/getItem', {item_key: 'sds_accepted_patch'})
+          .then(data => {this.item_sds_patch = data});
+
+      this.make_request('/store/getItem', {item_key: 'sds_3_patch_set'})
+          .then(data => {this.item_3_patches = data});
+
+      this.make_request('/store/getItem', {item_key: 'sds_full_kit'})
+          .then(data => {this.item_kit = data});
    },
 
    methods:{
@@ -445,17 +572,6 @@ export default {
       //    }
       //
       // },
-   },
-
-   created(){
-       this.make_request('/store/getItem', {item_key: 'sds_accepted_patch'})
-          .then(data => {this.item_sds_patch = data});
-
-      this.make_request('/store/getItem', {item_key: 'sds_3_patch_set'})
-          .then(data => {this.item_3_patches = data});
-
-      this.make_request('/store/getItem', {item_key: 'sds_full_kit'})
-          .then(data => {this.item_kit = data});
    }
 }
 </script>

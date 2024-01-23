@@ -1,129 +1,127 @@
 <template>
-   <div style="max-width:800px"  >
+  <div style="max-width:800px">
+    <template v-if="!showConfirmed2">
+      <div
+        class="subheading-txt"
+        style=""
+      >
+        <span v-if="err_msg == null">
+          Before we begin, let's verify your email
+        </span>
 
+        <div v-else>
+          Oops, it looks like you already have an account. <br>
 
-      <template v-if="!showConfirmed2">
-
-         <div class="subheading-txt" style="">
-
-            <span v-if="err_msg == null">
-            Before we begin, let's verify your email
-            </span>
-
-            <div v-else>
-               Oops, it looks like you already have an account. <br>
-
-               <router-link to="/login">Log In</router-link>
-            </div>
-         </div>
-
-
-
-
-         <my-form ref="form"  class="flex-centered-content-col" >
-
-            <v-row dense style="max-width: 300px; width: 100%">
-               <v-col cols="12">
-                  <!--<v-text-field-->
-                  <!--    label="Email Address"-->
-                  <!--    v-model="email"-->
-                  <!--    hint="Email you want your account confirmation sent to"-->
-                  <!--    :rules="[x => isRequired(x, 'Email'), checkEmail]"-->
-                  <!--    outlined-->
-                  <!--    dense-->
-                  <!--&gt;</v-text-field>-->
-
-                  <my-text-input
-                      label="Email Address"
-                      v-model="email"
-                      :rules="[isRequired, checkEmail]"
-                  />
-
-               </v-col>
-
-               <!--<v-col cols="12">-->
-               <!--   <my-text-input-->
-               <!--       label="Password"-->
-               <!--       v-model="password"-->
-               <!--       hint="Enter your password"-->
-               <!--       :rules="[isRequired, x => checkLength(x, 8)]"-->
-               <!--       :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"-->
-               <!--       @click:append="showPass = !showPass"-->
-               <!--       :is-password="!showPass"-->
-               <!--   />-->
-               <!--   -->
-               <!--</v-col>-->
-            </v-row>
-
-            <v-row>
-
-            </v-row>
-
-            <v-row>
-               <!--               <v-checkbox-->
-               <!--                   label="I Accept"-->
-               <!--               ></v-checkbox>-->
-
-
-            </v-row>
-
-
-
-
-
-            <div class="flex-centered-content-col mt-6"  style="width: 100%; max-width: 280px;">
-
-               <v-btn color="var(--color-primary)" dark @click="signup" :loading="loading_signup" width="100%"
-                      style="text-transform: none !important;"
-               >Verify Email</v-btn>
-
-               <div>
-                  Already have an <router-link to="/login">account</router-link>?
-               </div>
-
-            </div>
-
-         </my-form>
-
-
-
-      </template>
-
-
-      <!----------------------------show after successful account creation--------------------------------------->
-      <div v-else>
-         <div style="padding: 60px 20px 60px 20px; text-align: left; ">
-
-            <div class="subheading-txt" style="text-align: center; ">
-               Please check your email
-            </div>
-
-            <p class="pt-6" style="text-align: center">
-               A verification email has been sent to {{email}}.
-            </p>
-
-            <p>
-               If you did not receive an email, please check your mail filter or use a
-               <a @click="showConfirm=false; email=null">different email</a>.
-               <!--(Link “different email” goes back to the first screen where they enter their address)-->
-            </p>
-
-
-
-
-
-
-
-         </div>
-
+          <router-link to="/login">
+            Log In
+          </router-link>
+        </div>
       </div>
 
 
 
 
+      <my-form
+        ref="form"
+        class="flex-centered-content-col"
+      >
+        <v-row
+          dense
+          style="max-width: 300px; width: 100%"
+        >
+          <v-col cols="12">
+            <!--<v-text-field-->
+            <!--    label="Email Address"-->
+            <!--    v-model="email"-->
+            <!--    hint="Email you want your account confirmation sent to"-->
+            <!--    :rules="[x => isRequired(x, 'Email'), checkEmail]"-->
+            <!--    outlined-->
+            <!--    dense-->
+            <!--&gt;</v-text-field>-->
+
+            <my-text-input
+              v-model="email"
+              label="Email Address"
+              :rules="[isRequired, checkEmail]"
+            />
+          </v-col>
+
+          <!--<v-col cols="12">-->
+          <!--   <my-text-input-->
+          <!--       label="Password"-->
+          <!--       v-model="password"-->
+          <!--       hint="Enter your password"-->
+          <!--       :rules="[isRequired, x => checkLength(x, 8)]"-->
+          <!--       :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"-->
+          <!--       @click:append="showPass = !showPass"-->
+          <!--       :is-password="!showPass"-->
+          <!--   />-->
+          <!--   -->
+          <!--</v-col>-->
+        </v-row>
+
+        <v-row />
+
+        <v-row>
+          <!--               <v-checkbox-->
+          <!--                   label="I Accept"-->
+          <!--               ></v-checkbox>-->
+        </v-row>
 
 
-   </div>
+
+
+
+        <div
+          class="flex-centered-content-col mt-6"
+          style="width: 100%; max-width: 280px;"
+        >
+          <v-btn
+            color="var(--color-primary)"
+            dark
+            :loading="loading_signup"
+            width="100%"
+            style="text-transform: none !important;"
+            @click="signup"
+          >
+            Verify Email
+          </v-btn>
+
+          <div>
+            Already have an <router-link to="/login">
+              account
+            </router-link>?
+          </div>
+        </div>
+      </my-form>
+    </template>
+
+
+    <!----------------------------show after successful account creation--------------------------------------->
+    <div v-else>
+      <div style="padding: 60px 20px 60px 20px; text-align: left; ">
+        <div
+          class="subheading-txt"
+          style="text-align: center; "
+        >
+          Please check your email
+        </div>
+
+        <p
+          class="pt-6"
+          style="text-align: center"
+        >
+          A verification email has been sent to {{ email }}.
+        </p>
+
+        <p>
+          If you did not receive an email, please check your mail filter or use a
+          <a @click="showConfirm=false; email=null">different email</a>.
+          <!--(Link “different email” goes back to the first screen where they enter their address)-->
+        </p>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

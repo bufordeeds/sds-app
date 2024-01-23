@@ -1,141 +1,148 @@
 <template>
-
-   <div>
-      <div class="pa-2" style="display: flex; flex-wrap: wrap">
-
-      </div>
-
-
-
-      <table>
-
-         <tr  >
-            <th></th>
-            <th colspan="4" style="text-align: center; padding: 2px; background-color: #b7dbf1 ">
-               Handler Info
-            </th>
-
-
-            <th></th>
-            <th></th>
-            <th></th>
-         </tr>
-         <tr class="col-headers">
-            <th></th>
-            <th>
-               First Name
-               <sort-icon :sort-dir.sync="sortCols.name_first" @click="sort_handler('name_first', $event)"/>
-            </th>
-            <th>
-               Last Name
-               <sort-icon :sort-dir.sync="sortCols.name_last" @click="sort_handler('name_last', $event)" />
-            </th>
-            <th>
-               Email
-            </th>
-            <th>Acct Type</th>
-            <th>
-               Dog Name
-               <sort-icon :sort-dir.sync="sortCols.dog_name" @click="sort_handler('dog_name', $event)" />
-            </th>
-
-
-            <th>
-               Number
-            </th>
-            <th>
-               Comment
-            </th>
-
-         </tr>
-
-         <template v-for="(dog, ix) in dogs" >
-            <!-----------------------main row-------------------------------------------------------->
-            <tr :key="dog._id" :class="get_row_bg_class(ix)">
-
-               <td>
-                  <div style="display: flex">
-
-                     <div @click="click_user(dog, ix)">
-                        <avatar
-                            :image="dog.handler_id_FR.profile_image"
-                            size="40"
-                            style="cursor: pointer"
-                        />
-                        <div class="edit-btn">
-                           Edit
-                        </div>
-                     </div>
-
-
-                     <div @click="click_dog(dog, ix)">
-                        <avatar
-                            class="ml-1"
-                            :image="dog.profile_image"
-                            size="40"
-                            profile-type="dog"
-                            style="cursor: pointer"
-                        />
-                        <div class="edit-btn">
-                           Edit
-                        </div>
-                     </div>
-
-                  </div>
-
-               </td>
-               <td >
-                  <!--{{fmt_datetime(order.date_ordered )}}-->
-                  {{dog.handler_id_FR.name_first}}
-               </td>
-               <td >
-                  {{dog.handler_id_FR.name_last}}
-               </td>
-               <td >
-                  {{dog.handler_id_FR.email}}
-               </td>
-
-               <td >
-                  {{dog.handler_id_FR.account_type}}
-               </td>
-               <td >
-                  {{dog.name}}
-               </td>
+  <div>
+    <div
+      class="pa-2"
+      style="display: flex; flex-wrap: wrap"
+    />
 
 
 
+    <table>
+      <tr>
+        <th />
+        <th
+          colspan="4"
+          style="text-align: center; padding: 2px; background-color: #b7dbf1 "
+        >
+          Handler Info
+        </th>
 
-               <td style="white-space: nowrap">
-                  <router-link :to="'/team/'+dog.dog_num" target="_blank">
-                     SDS-{{dog.dog_num}}
-                  </router-link>
 
-               </td>
+        <th />
+        <th />
+        <th />
+      </tr>
+      <tr class="col-headers">
+        <th />
+        <th>
+          First Name
+          <sort-icon
+            :sort-dir.sync="sortCols.name_first"
+            @click="sort_handler('name_first', $event)"
+          />
+        </th>
+        <th>
+          Last Name
+          <sort-icon
+            :sort-dir.sync="sortCols.name_last"
+            @click="sort_handler('name_last', $event)"
+          />
+        </th>
+        <th>
+          Email
+        </th>
+        <th>Acct Type</th>
+        <th>
+          Dog Name
+          <sort-icon
+            :sort-dir.sync="sortCols.dog_name"
+            @click="sort_handler('dog_name', $event)"
+          />
+        </th>
 
 
-               <td @click.stop="$emit('edit-comment', {dog, ix})">
-                  <span v-if="dog.admin">
-                     {{fmt_trim_str(dog.admin.comment, 50)}}
-                  </span>
+        <th>
+          Number
+        </th>
+        <th>
+          Comment
+        </th>
+      </tr>
 
-                  <v-btn icon small style="border-radius: 50%">
-                     <v-icon small>
-                        edit
-                     </v-icon>
-                  </v-btn>
+      <template v-for="(dog, ix) in dogs">
+        <!-----------------------main row-------------------------------------------------------->
+        <tr
+          :key="dog._id"
+          :class="get_row_bg_class(ix)"
+        >
+          <td>
+            <div style="display: flex">
+              <div @click="click_user(dog, ix)">
+                <avatar
+                  :image="dog.handler_id_FR.profile_image"
+                  size="40"
+                  style="cursor: pointer"
+                />
+                <div class="edit-btn">
+                  Edit
+                </div>
+              </div>
 
-               </td>
 
-            </tr>
+              <div @click="click_dog(dog, ix)">
+                <avatar
+                  class="ml-1"
+                  :image="dog.profile_image"
+                  size="40"
+                  profile-type="dog"
+                  style="cursor: pointer"
+                />
+                <div class="edit-btn">
+                  Edit
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <!--{{fmt_datetime(order.date_ordered )}}-->
+            {{ dog.handler_id_FR.name_first }}
+          </td>
+          <td>
+            {{ dog.handler_id_FR.name_last }}
+          </td>
+          <td>
+            {{ dog.handler_id_FR.email }}
+          </td>
+
+          <td>
+            {{ dog.handler_id_FR.account_type }}
+          </td>
+          <td>
+            {{ dog.name }}
+          </td>
 
 
 
 
-         </template>
+          <td style="white-space: nowrap">
+            <router-link
+              :to="'/team/'+dog.dog_num"
+              target="_blank"
+            >
+              SDS-{{ dog.dog_num }}
+            </router-link>
+          </td>
 
-      </table>
-   </div>
 
+          <td @click.stop="$emit('edit-comment', {dog, ix})">
+            <span v-if="dog.admin">
+              {{ fmt_trim_str(dog.admin.comment, 50) }}
+            </span>
+
+            <v-btn
+              icon
+              small
+              style="border-radius: 50%"
+            >
+              <v-icon small>
+                edit
+              </v-icon>
+            </v-btn>
+          </td>
+        </tr>
+      </template>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -147,8 +154,8 @@ import SortIcon from "@/components/icons/SortIcon";
 
 export default {
    name: "DogTable",
-   mixins: [data_getters, utilities],
    components: {StatusDropDown, SortIcon},
+   mixins: [data_getters, utilities],
    props: {
       dogs: {type: Array, },
    },

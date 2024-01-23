@@ -1,26 +1,31 @@
 <template>
-<v-card>
-   <v-card-title>
+  <v-card>
+    <v-card-title>
       My Dogs
-   </v-card-title>
-   <div v-for="item in dogs" :key="item._id" class="pl-4 dog-container" @click="$emit('click', item.dog_num)">
-      <div style="display: flex" class="pt-2">
-         <avatar
-             :image="item.profile_image"
-             size="40"
-             profile-type="dog"
-             :rounded="true"
-         />
-         <div class="pl-2">
-            {{item.name}}<br>
-            SDS-{{item.dog_num}}
-         </div>
-
+    </v-card-title>
+    <div
+      v-for="item in dogs"
+      :key="item._id"
+      class="pl-4 dog-container"
+      @click="$emit('click', item.dog_num)"
+    >
+      <div
+        style="display: flex"
+        class="pt-2"
+      >
+        <avatar
+          :image="item.profile_image"
+          size="40"
+          profile-type="dog"
+          :rounded="true"
+        />
+        <div class="pl-2">
+          {{ item.name }}<br>
+          SDS-{{ item.dog_num }}
+        </div>
       </div>
-
-
-   </div>
-</v-card>
+    </div>
+  </v-card>
 </template>
 
 <script>
@@ -29,8 +34,8 @@ import avatar from "@/components/app/avatar";
 
 export default {
    name: "DogList",
-   mixins: [data_getters],
    components: {avatar},
+   mixins: [data_getters],
    props:{
       dogs: Array,
    },
@@ -40,6 +45,10 @@ export default {
          //
          // ]
       }
+   },
+
+   created(){
+      // this.get_dogs();
    },
 
    methods:{
@@ -56,10 +65,6 @@ export default {
       row_class(){
 
       }
-   },
-
-   created(){
-      // this.get_dogs();
    }
 }
 </script>

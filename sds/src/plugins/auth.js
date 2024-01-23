@@ -67,6 +67,21 @@ export const createInstance = ({onRedirectCallback = DEFAULT_REDIRECT_CALLBACK, 
 
          };
       },
+      /** Use this lifecycle method to instantiate the SDK client */
+      async created() {
+
+         try {
+
+            await this.set_anonymous_id();
+            console.log('auth ran');
+
+         } catch (e) {
+            this.error = e;
+
+         } finally {
+            this.loading = false;
+         }
+      },
 
 
 
@@ -276,21 +291,6 @@ export const createInstance = ({onRedirectCallback = DEFAULT_REDIRECT_CALLBACK, 
 
 
 
-      },
-      /** Use this lifecycle method to instantiate the SDK client */
-      async created() {
-
-         try {
-
-            await this.set_anonymous_id();
-            console.log('auth ran');
-
-         } catch (e) {
-            this.error = e;
-
-         } finally {
-            this.loading = false;
-         }
       }
    });
 

@@ -1,15 +1,14 @@
 <template>
-   <div>
-      <donate-modal
-          v-if="!horizontal"
-          @donated="checkout_stripe"
-      />
-      <donate-modal-horizontal
-          v-else
-          @donated="checkout_stripe"
-      ></donate-modal-horizontal>
-   </div>
-
+  <div>
+    <donate-modal
+      v-if="!horizontal"
+      @donated="checkout_stripe"
+    />
+    <donate-modal-horizontal
+      v-else
+      @donated="checkout_stripe"
+    />
+  </div>
 </template>
 
 <script>
@@ -22,8 +21,8 @@ const stripePromise = loadStripe(process.env.VUE_APP_STRIPE_KEY);
 
 export default {
    name: "DonatePage",
-   mixins: [data_getters],
    components: {DonateModal, DonateModalHorizontal},
+   mixins: [data_getters],
    props: {
       horizontal: {type: Boolean, default: false},
    },
@@ -32,6 +31,12 @@ export default {
       return {
          amount: 0,
       }
+   },
+   created(){
+
+      this.$store.commit("set_show_side_nav", false);
+
+
    },
 
 
@@ -72,12 +77,6 @@ export default {
 
 
       },
-   },
-   created(){
-
-      this.$store.commit("set_show_side_nav", false);
-
-
    },
 }
 </script>

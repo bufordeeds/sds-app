@@ -1,17 +1,15 @@
 <template>
-   <div style="width: 100%; display: flex; justify-content: center" class="pb-4">
-      <div id="my-inline-buttons" ></div>
-   </div>
-
+  <div
+    style="width: 100%; display: flex; justify-content: center"
+    class="pb-4"
+  >
+    <div id="my-inline-buttons" />
+  </div>
 </template>
 
 <script>
 export default {
    name: "Sharethis",
-   data(){
-      return{
-      }
-   },
    props: {
       shareThisElementId: {
          type: String,
@@ -24,6 +22,10 @@ export default {
       url: {
          type: String,
          default: window.location.href
+      }
+   },
+   data(){
+      return{
       }
    },
    beforeDestroy() {

@@ -1,8 +1,9 @@
 <template>
-
-   <canvas ref="animation" style="width: 100%; height: 100%"></canvas>
-   <!--<canvas ref="animation" width="100%" height="100%"></canvas>-->
-
+  <canvas
+    ref="animation"
+    style="width: 100%; height: 100%"
+  />
+  <!--<canvas ref="animation" width="100%" height="100%"></canvas>-->
 </template>
 
 <script>
@@ -11,6 +12,10 @@ export default {
    name: "LineAnimation2",
    props:{
       speed:{type: Number, default: ()=> 5}
+   },
+
+   mounted(){
+      this.gen();
    },
    methods:{
       gen(){
@@ -82,10 +87,6 @@ export default {
             }
          });
       }
-   },
-
-   mounted(){
-      this.gen();
    }
 }
 </script>

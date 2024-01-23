@@ -1,71 +1,85 @@
 <template>
-   <div class="registration-container">
-
-      <!-------- edit user dialog -------------------------------------------------------->
-      <v-dialog v-model="show_edit_user" persistent>
-         <v-row dense style="margin-bottom: -40px">
-            <v-spacer/>
-            <v-btn icon @click="show_edit_user=false">
-               <v-icon>close</v-icon>
-            </v-btn>
-         </v-row>
-         <!--<edit-profile-->
-         <!--    v-if="selected_user"-->
-         <!--    :user_id="selected_user._id"-->
-         <!--    @update="on_record_update"-->
-         <!--    @update-image="on_record_update_image"-->
-         <!--&gt;</edit-profile>-->
-
-
-         <div class="content-container-bg" style="background-color: var(--color-bg)">
-            <!--<edit-trainer-info-->
-            <!--    v-if="selected_user  && selected_user.account_type === 'TRAINER'"-->
-            <!--    :user_id="selected_user._id"-->
-            <!--    @user_updated="on_record_update"-->
-            <!--    @photo_updated="on_record_update({close:false})"-->
-            <!--/>-->
-
+  <div class="registration-container">
+    <!-------- edit user dialog -------------------------------------------------------->
+    <v-dialog
+      v-model="show_edit_user"
+      persistent
+    >
+      <v-row
+        dense
+        style="margin-bottom: -40px"
+      >
+        <v-spacer />
+        <v-btn
+          icon
+          @click="show_edit_user=false"
+        >
+          <v-icon>close</v-icon>
+        </v-btn>
+      </v-row>
+      <!--<edit-profile-->
+      <!--    v-if="selected_user"-->
+      <!--    :user_id="selected_user._id"-->
+      <!--    @update="on_record_update"-->
+      <!--    @update-image="on_record_update_image"-->
+      <!--&gt;</edit-profile>-->
 
 
-
-            <div class="content-container-sm">
-               <edit-handler-info
-                   v-if="selected_user && selected_user.account_type === 'HANDLER'"
-                   :user_id="selected_user._id"
-                   @user_updated="on_record_update"
-                   @update-image="on_record_update({close:false})"
-
-               />
-            </div>
-         </div>
-
-      </v-dialog>
-
-
-
-      <!-------- edit dog dialog -------------------------------------------------------->
-      <v-dialog v-model="show_edit_dog" persistent max-width="400px">
-         <v-row dense style="margin-bottom: -40px">
-            <v-spacer/>
-            <v-btn icon @click="show_edit_dog=false">
-               <v-icon>close</v-icon>
-            </v-btn>
-         </v-row>
-
-
-         <edit-dog-dialog
-             v-if="show_edit_dog"
-             :dog="selected_dog"
-             @update="on_record_update"
-             @update-image="on_record_update({close:false})"
-             @close="show_edit_dog=false;"
-         />
-
-      </v-dialog>
+      <div
+        class="content-container-bg"
+        style="background-color: var(--color-bg)"
+      >
+        <!--<edit-trainer-info-->
+        <!--    v-if="selected_user  && selected_user.account_type === 'TRAINER'"-->
+        <!--    :user_id="selected_user._id"-->
+        <!--    @user_updated="on_record_update"-->
+        <!--    @photo_updated="on_record_update({close:false})"-->
+        <!--/>-->
 
 
 
 
+        <div class="content-container-sm">
+          <edit-handler-info
+            v-if="selected_user && selected_user.account_type === 'HANDLER'"
+            :user_id="selected_user._id"
+            @user_updated="on_record_update"
+            @update-image="on_record_update({close:false})"
+          />
+        </div>
+      </div>
+    </v-dialog>
+
+
+
+    <!-------- edit dog dialog -------------------------------------------------------->
+    <v-dialog
+      v-model="show_edit_dog"
+      persistent
+      max-width="400px"
+    >
+      <v-row
+        dense
+        style="margin-bottom: -40px"
+      >
+        <v-spacer />
+        <v-btn
+          icon
+          @click="show_edit_dog=false"
+        >
+          <v-icon>close</v-icon>
+        </v-btn>
+      </v-row>
+
+
+      <edit-dog-dialog
+        v-if="show_edit_dog"
+        :dog="selected_dog"
+        @update="on_record_update"
+        @update-image="on_record_update({close:false})"
+        @close="show_edit_dog=false;"
+      />
+    </v-dialog>
 
 
 
@@ -79,95 +93,117 @@
 
 
 
-      <div class="reg-body" v-if="expanded_loc">
 
-         <table style="width: 100%">
-            <colgroup>
-               <col span="1" style="width: 50%;">
-               <col span="1" style="width: 25%;">
-               <col span="1" style="width: 25%;">
 
-            </colgroup>
-            <tbody>
-            <tr style="background-color: #b7dbf1" >
-               <th>User</th>
-               <th>Access Level</th>
-               <th>Access Status</th>
+
+
+    <div
+      v-if="expanded_loc"
+      class="reg-body"
+    >
+      <table style="width: 100%">
+        <colgroup>
+          <col
+            span="1"
+            style="width: 50%;"
+          >
+          <col
+            span="1"
+            style="width: 25%;"
+          >
+          <col
+            span="1"
+            style="width: 25%;"
+          >
+        </colgroup>
+        <tbody>
+          <tr style="background-color: #b7dbf1">
+            <th>User</th>
+            <th>Access Level</th>
+            <th>Access Status</th>
+          </tr>
+
+          <template v-for="(item, ix) in users">
+            <tr
+              :key="item.user._id"
+              style="cursor: pointer"
+              @click="on_click_user(item.user, ix)"
+            >
+              <td class="col-service-dog">
+                <div class="sd-name-container">
+                  <img
+                    v-if="!item.user.profile_image"
+                    src="../../assets/images/content/user-no-image.png"
+                    width="75px"
+                  >
+
+                  <img
+                    v-else
+                    :src="item.user.profile_image.Location"
+                    width="75px"
+                  >
+
+                  <div class="pl-2">
+                    <div>
+                      {{ item.user.name_first }}
+                      {{ item.user.name_last }}
+                    </div>
+                    <div>
+                      {{ item.user.email }}
+                    </div>
+                  </div>
+                </div>
+              </td>
+
+              <td class="col-service-do-reg">
+                {{ item.access_level }}
+              </td>
+
+              <td
+                class="col-service-dog-status"
+                style="max-width: 200px"
+              >
+                <div style="max-width: 150px; margin-left: 10px">
+                  {{ item.access_status }}
+                </div>
+              </td>
             </tr>
 
-            <template v-for="(item, ix) in users">
-               <tr  :key="item.user._id" @click="on_click_user(item.user, ix)" style="cursor: pointer">
-
-                  <td class="col-service-dog">
-
-                     <div class="sd-name-container">
-                        <img v-if="!item.user.profile_image"
-                             src="../../assets/images/content/user-no-image.png" width="75px"
-                        >
-
-                        <img v-else :src="item.user.profile_image.Location" width="75px">
-
-                        <div class="pl-2">
-                           <div>
-                              {{item.user.name_first}}
-                              {{item.user.name_last}}
-                           </div>
-                           <div>
-                              {{item.user.email}}
-                           </div>
-                        </div>
-
-                     </div>
-
-                  </td>
-
-                  <td class="col-service-do-reg">
-                     {{item.access_level}}</td>
-
-                  <td class="col-service-dog-status" style="max-width: 200px">
-                     <div style="max-width: 150px; margin-left: 10px">
-                        {{item.access_status}}
-                     </div>
-                  </td>
-
-               </tr>
-
-               <tr  :key="item.user._id+'dog'" >
-
-                  <td colspan="4">
-
-                     <table style="width: 100%; margin-left: 20px">
-                        <tr v-for="dog in item.user.dogs" :key="dog._id" @click="on_click_dog(dog)" style="cursor: pointer">
-                           <td>
-                              <avatar profile-type="dog" :profile="dog" image-only size="50"/>
-                           </td>
-                           <td>
-                              {{dog.name}}
-                           </td>
-                           <td>
-                              SDS-{{dog.dog_num}}
-                           </td>
-                           <td>
-                              {{dog.status}}
-                           </td>
-
-                        </tr>
-                     </table>
-
-                  </td>
-
-               </tr>
-            </template>
-
-
-
-            </tbody>
-
-         </table>
-
-      </div>
-
-   </div>
+            <tr :key="item.user._id+'dog'">
+              <td colspan="4">
+                <table style="width: 100%; margin-left: 20px">
+                  <tr
+                    v-for="dog in item.user.dogs"
+                    :key="dog._id"
+                    style="cursor: pointer"
+                    @click="on_click_dog(dog)"
+                  >
+                    <td>
+                      <avatar
+                        profile-type="dog"
+                        :profile="dog"
+                        image-only
+                        size="50"
+                      />
+                    </td>
+                    <td>
+                      {{ dog.name }}
+                    </td>
+                    <td>
+                      SDS-{{ dog.dog_num }}
+                    </td>
+                    <td>
+                      {{ dog.status }}
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </template>
 
 <script>

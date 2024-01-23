@@ -1,5 +1,10 @@
 <template>
-  <v-navigation-drawer permanent class="nav-drawer" absolute width="300px" >
+  <v-navigation-drawer
+    permanent
+    class="nav-drawer"
+    absolute
+    width="300px"
+  >
     <v-list-item>
       <v-list-item-content>
         <v-list-item-title class="title">
@@ -11,27 +16,36 @@
       </v-list-item-content>
     </v-list-item>
 
-    <v-divider></v-divider>
+    <v-divider />
 
     <v-list
-        dense
-        nav
+      dense
+      nav
     >
       <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          link
-          :to="item.path"
-          class="menu-item"
-          active-class="active-link"
+        v-for="item in items"
+        :key="item.title"
+        link
+        :to="item.path"
+        class="menu-item"
+        active-class="active-link"
       >
         <v-list-item-icon>
-          <v-icon v-if="item.icon">{{ item.icon }}</v-icon>
-           <template v-if="item.image">
-              <img v-if="$route.path === item.path" :src="item.image_active" width="24px">
-              <img v-else :src="item.image" width="24px">
-           </template>
-
+          <v-icon v-if="item.icon">
+            {{ item.icon }}
+          </v-icon>
+          <template v-if="item.image">
+            <img
+              v-if="$route.path === item.path"
+              :src="item.image_active"
+              width="24px"
+            >
+            <img
+              v-else
+              :src="item.image"
+              width="24px"
+            >
+          </template>
         </v-list-item-icon>
 
         <v-list-item-content>

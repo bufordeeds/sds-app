@@ -1,139 +1,150 @@
 <template>
-   <div >
+  <div>
+    <upload-user-image
+      v-if="show_upload_image"
+      file-type="profile"
+      :show.sync="show_upload_image"
+      :user_id="user._id"
+      @uploaded="updated_image"
+    />
 
-      <upload-user-image
-          file-type="profile"
-          :show.sync="show_upload_image"
-          v-if="show_upload_image"
-          @uploaded="updated_image"
-          :user_id="user._id"
-      ></upload-user-image>
-
-      <change-email v-model="show_change_email"></change-email>
-
+    <change-email v-model="show_change_email" />
 
 
-      <div class="content-container-bg">
 
-         <!-- row for profile image-->
-         <div style="display:flex; padding-bottom: 25px;">
-            <div class="profile-image-container" @click="show_upload_image=true;">
-               <img :src="user_image" style="max-height: 200px; max-width: 200px">
-               <div style="font-size: 11pt; color: blue; padding-top: 5px; ">
-                  Change Profile Image
-               </div>
+    <div class="content-container-bg">
+      <!-- row for profile image-->
+      <div style="display:flex; padding-bottom: 25px;">
+        <div
+          class="profile-image-container"
+          @click="show_upload_image=true;"
+        >
+          <img
+            :src="user_image"
+            style="max-height: 200px; max-width: 200px"
+          >
+          <div style="font-size: 11pt; color: blue; padding-top: 5px; ">
+            Change Profile Image
+          </div>
+        </div>
+
+
+        <div class="account-settings-container">
+          <div
+            v-if="isAdmin"
+            style=" margin-top:15px"
+          >
+            <div style="color: var(--color-subheading); font-size: medium">
+              (Admin) Deactivation
+            </div>
+
+            <status
+              v-model="user.deactivated"
+              style="width: 150px;"
+              :list="[{txt: 'Deactivate', val: true}, {txt: 'Reactivate', val: false},]"
+              item-text="txt"
+              item-value="val"
+              :color-map="{'true': '#bf1e2e', 'false': '#8dc63f' }"
+            />
+
+            <!--<v-btn v-if="user.deactivated == null"-->
+            <!--    -->
+            <!--    color="red" @click="$emit('deactivate-account')">-->
+            <!--   Deactivate Account-->
+            <!--</v-btn>-->
+          </div>
+
+
+          <div style="width: 150px; margin-top:10px">
+            <div style="color: var(--color-subheading); font-size: medium">
+              Account Type
+            </div>
+
+            <div>
+              {{ user.account_type }}
+            </div>
+          </div>
+
+
+          <div style="width: 150px; margin-top:15px">
+            <div style="color: var(--color-subheading); font-size: medium">
+              Profile Status
+            </div>
+
+            <status
+              v-model="user.account_visibility"
+              list-type="user"
+            />
+          </div>
+
+
+          <div style="width: 150px; margin-top:15px">
+            <div style="color: var(--color-subheading); font-size: medium; display: flex">
+              Email
+              <v-btn
+                v-if="!isAdmin"
+                small
+                text
+                style="padding: 0px; margin-left: 5px; margin-top: -2px;"
+                @click="show_change_email=true"
+              >
+                (Change)
+              </v-btn>
             </div>
 
 
-            <div class="account-settings-container">
-
-               <div v-if="isAdmin"
-                    style=" margin-top:15px" >
-                  <div style="color: var(--color-subheading); font-size: medium">
-                     (Admin) Deactivation
-                  </div>
-
-                  <status
-                      style="width: 150px;"
-                      v-model="user.deactivated"
-                      :list="[{txt: 'Deactivate', val: true}, {txt: 'Reactivate', val: false},]"
-                      item-text="txt"
-                      item-value="val"
-                      :color-map="{'true': '#bf1e2e', 'false': '#8dc63f' }"
-                  ></status>
-
-                  <!--<v-btn v-if="user.deactivated == null"-->
-                  <!--    -->
-                  <!--    color="red" @click="$emit('deactivate-account')">-->
-                  <!--   Deactivate Account-->
-                  <!--</v-btn>-->
-
-               </div>
-
-
-               <div style="width: 150px; margin-top:10px" >
-                  <div style="color: var(--color-subheading); font-size: medium">
-                     Account Type
-                  </div>
-
-                  <div>
-                     {{user.account_type}}
-                  </div>
-               </div>
-
-
-               <div style="width: 150px; margin-top:15px" >
-                  <div style="color: var(--color-subheading); font-size: medium">
-                     Profile Status
-                  </div>
-
-                  <status
-                      v-model="user.account_visibility"
-                      list-type="user"
-                  ></status>
-               </div>
-
-
-               <div style="width: 150px; margin-top:15px" >
-                  <div style="color: var(--color-subheading); font-size: medium; display: flex">
-                     Email
-                     <v-btn
-                         v-if="!isAdmin" small text style="padding: 0px; margin-left: 5px; margin-top: -2px;"
-                         @click="show_change_email=true"
-                     >
-                        (Change)
-                     </v-btn>
-                  </div>
-
-
-                  <div v-if="user.email_change" style="color: red; font-size: 10pt; text-align: center" class="pt-1">
-                     Waiting on confirmation for {{user.email_change.new_email}}
-                  </div>
-
-
-                  <div style="display: flex">
-                     {{user.email}}
-                  </div>
-               </div>
+            <div
+              v-if="user.email_change"
+              style="color: red; font-size: 10pt; text-align: center"
+              class="pt-1"
+            >
+              Waiting on confirmation for {{ user.email_change.new_email }}
             </div>
-         </div>
 
 
-
-
-
-
-         <!------------------- main form to edit user's info ---------------------------------------------------------->
-
-         <trainer-info v-if="isTrainer" @update="$emit('update', $event)"/>
-
-         <div class="content-container-sm" v-if="isHandler">
-            <handler-info />
-         </div>
-
-
-
-
-
-         <!--<v-row class="ma-0 pt-4" style="width: 100%">-->
-         <!--   <v-spacer></v-spacer>-->
-         <!--   <v-btn-->
-         <!--       @click="save_profile"-->
-         <!--       color="var(&#45;&#45;color-primary)"-->
-         <!--       :loading="saving_data"-->
-         <!--   >-->
-
-         <!--      Save-->
-         <!--   </v-btn>-->
-         <!--</v-row>-->
-
-
+            <div style="display: flex">
+              {{ user.email }}
+            </div>
+          </div>
+        </div>
       </div>
 
 
 
 
-   </div>
+
+
+      <!------------------- main form to edit user's info ---------------------------------------------------------->
+
+      <trainer-info
+        v-if="isTrainer"
+        @update="$emit('update', $event)"
+      />
+
+      <div
+        v-if="isHandler"
+        class="content-container-sm"
+      >
+        <handler-info />
+      </div>
+
+
+
+
+
+      <!--<v-row class="ma-0 pt-4" style="width: 100%">-->
+      <!--   <v-spacer></v-spacer>-->
+      <!--   <v-btn-->
+      <!--       @click="save_profile"-->
+      <!--       color="var(&#45;&#45;color-primary)"-->
+      <!--       :loading="saving_data"-->
+      <!--   >-->
+
+      <!--      Save-->
+      <!--   </v-btn>-->
+      <!--</v-row>-->
+    </div>
+  </div>
 </template>
 
 <script>
@@ -262,6 +273,18 @@ export default {
       }
    },
 
+
+   mounted(){
+      console.log('debug')
+      this.$store.commit("set_show_side_nav", true);
+
+      this.get_profile();
+   },
+
+   beforeDestroy() {
+      // this.$store.commit("set_show_side_nav", false);
+   },
+
    methods:{
 
       // add_dog(user, dog){
@@ -376,18 +399,6 @@ export default {
 
       },
 
-   },
-
-
-   mounted(){
-      console.log('debug')
-      this.$store.commit("set_show_side_nav", true);
-
-      this.get_profile();
-   },
-
-   beforeDestroy() {
-      // this.$store.commit("set_show_side_nav", false);
    }
 }
 </script>

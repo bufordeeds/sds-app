@@ -1,73 +1,89 @@
 <template>
-   <v-dialog v-model="show_dialog" max-width="400px" persistent>
-      <v-card>
-         <div class="dialog-heading pa-2" style="display: flex">
-            Change Email
-            <v-spacer/>
-            <v-btn icon @click="show_dialog=false">
-               <v-icon>close</v-icon>
+  <v-dialog
+    v-model="show_dialog"
+    max-width="400px"
+    persistent
+  >
+    <v-card>
+      <div
+        class="dialog-heading pa-2"
+        style="display: flex"
+      >
+        Change Email
+        <v-spacer />
+        <v-btn
+          icon
+          @click="show_dialog=false"
+        >
+          <v-icon>close</v-icon>
+        </v-btn>
+      </div>
+
+      <my-form
+        v-if="!changed"
+        ref="form"
+        class="pl-5 pr-5 pb-6"
+      >
+        <v-row dense>
+          <v-col />
+        </v-row>
+
+
+        <my-text-input
+          v-model="new_email"
+          label="New Email"
+          :rules="[x=>isRequired(x, 'Email'), checkEmail]"
+        />
+
+        <my-text-input
+          v-model="pass"
+          label="Enter Password"
+          :rules="[x=>isRequired(x, 'Password')]"
+          :is-password="isPassword"
+          :append-icon="pass_icon"
+          @click:append="isPassword = !isPassword"
+        />
+
+        <div class="pt-4">
+          <div
+            v-if="err_msg"
+            class="pb-2"
+            style="color: var(--color-input-error); text-align: center"
+          >
+            {{ err_msg }}
+          </div>
+          <v-row class="ma-0">
+            <v-spacer />
+            <v-btn
+              :loading="loading"
+              @click="save_changes"
+            >
+              Change Email
             </v-btn>
+          </v-row>
+        </div>
+      </my-form>
 
-         </div>
+      <div
+        v-else
+        class="pa-2"
+      >
+        <p>
+          Email updated.
+        </p>
+        Please check your inbox at <span style="font-weight: 500">{{ current_email }}</span>
+        for a confirmation email.  Your new email address will not be
+        active till you confirm this change.
 
-         <my-form ref="form" class="pl-5 pr-5 pb-6" v-if="!changed">
-            <v-row dense>
-               <v-col>
-
-               </v-col>
-            </v-row>
-
-
-            <my-text-input
-                label="New Email"
-                :rules="[x=>isRequired(x, 'Email'), checkEmail]"
-                v-model="new_email"
-
-            />
-
-            <my-text-input
-                label="Enter Password"
-                v-model="pass"
-                :rules="[x=>isRequired(x, 'Password')]"
-                :is-password="isPassword"
-                :append-icon="pass_icon"
-                @click:append="isPassword = !isPassword"
-
-            />
-
-            <div class="pt-4">
-               <div v-if="err_msg" class="pb-2" style="color: var(--color-input-error); text-align: center">
-                  {{err_msg}}
-               </div>
-               <v-row class="ma-0">
-                  <v-spacer/>
-                  <v-btn @click="save_changes" :loading="loading">
-                     Change Email
-                  </v-btn>
-               </v-row>
-            </div>
-
-         </my-form>
-
-         <div v-else class="pa-2">
-            <p>
-               Email updated.
-            </p>
-            Please check your inbox at <span style="font-weight: 500">{{current_email}}</span>
-            for a confirmation email.  Your new email address will not be
-            active till you confirm this change.
-
-            <v-row class="ma-0 pt-2">
-               <v-spacer/>
-               <v-btn @click="show_dialog=false">
-                  Close
-               </v-btn>
-            </v-row>
-         </div>
-
-      </v-card>
-
-   </v-dialog>
+        <v-row class="ma-0 pt-2">
+          <v-spacer />
+          <v-btn @click="show_dialog=false">
+            Close
+          </v-btn>
+        </v-row>
+      </div>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>

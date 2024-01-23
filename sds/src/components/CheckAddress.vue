@@ -1,75 +1,107 @@
 <template>
-   <v-dialog v-model="show_address_confirm" max-width="600px" persistent>
-      <v-card class="pa-3 pl-5 pr-5">
-         <div class="dialog-heading mb-3" style="color: var(--color-headline); font-weight: 600;">
-            Address Verification
-            <v-divider/>
-         </div>
+  <v-dialog
+    v-model="show_address_confirm"
+    max-width="600px"
+    persistent
+  >
+    <v-card class="pa-3 pl-5 pr-5">
+      <div
+        class="dialog-heading mb-3"
+        style="color: var(--color-headline); font-weight: 600;"
+      >
+        Address Verification
+        <v-divider />
+      </div>
 
 
 
-         <template v-if="address_suggestion!== null">
-            <div style="display: flex; justify-content: space-between"
-                 :style="{'flex-direction': isMobile? 'column': 'row'}"
+      <template v-if="address_suggestion!== null">
+        <div
+          style="display: flex; justify-content: space-between"
+          :style="{'flex-direction': isMobile? 'column': 'row'}"
+        >
+          <div>
+            <div style="font-weight: 600; color: grey">
+              Entered Address
+            </div>
+            {{ addressNew.street1 }} <br>
+            {{ addressNew.street2 }} <br v-if="address_suggestion.street2 != null">
+            {{ addressNew.city }}, {{ addressNew.state }} {{ addressNew.zip }}
+          </div>
+
+          <div>
+            <div
+              style="font-weight: 600; color: grey"
+              :style="{'margin-top': isMobile? '15px': '0'}"
             >
-
-               <div>
-                  <div style="font-weight: 600; color: grey">
-                     Entered Address
-                  </div>
-                  {{addressNew.street1}} <br>
-                  {{addressNew.street2}} <br v-if="address_suggestion.street2 != null">
-                  {{addressNew.city}}, {{addressNew.state}} {{addressNew.zip}}
-
-
-               </div>
-
-               <div>
-                  <div style="font-weight: 600; color: grey" :style="{'margin-top': isMobile? '15px': '0'}">
-                     Suggestion
-                  </div>
-                  {{address_suggestion.street1}} <br>
-                  {{address_suggestion.street2}} <br v-if="address_suggestion.street2 != null">
-                  {{address_suggestion.city}}, {{address_suggestion.state}} {{address_suggestion.zip}}
-               </div>
+              Suggestion
             </div>
+            {{ address_suggestion.street1 }} <br>
+            {{ address_suggestion.street2 }} <br v-if="address_suggestion.street2 != null">
+            {{ address_suggestion.city }}, {{ address_suggestion.state }} {{ address_suggestion.zip }}
+          </div>
+        </div>
 
 
-            <div style="display: flex; justify-content: space-between" class="mt-4 mb-3"
-                 :style="{'flex-direction': isMobile? 'column': 'row'}"
+        <div
+          style="display: flex; justify-content: space-between"
+          class="mt-4 mb-3"
+          :style="{'flex-direction': isMobile? 'column': 'row'}"
+        >
+          <div
+            style="display: flex; justify-content: center"
+            class="mt-3"
+          >
+            <v-btn
+              small
+              @click="return_address('USE_ENTERED')"
             >
-               <div style="display: flex; justify-content: center" class="mt-3">
-                  <v-btn small
-                         @click="return_address('USE_ENTERED')"
-                  >Use Entered</v-btn>
-               </div>
+              Use Entered
+            </v-btn>
+          </div>
 
 
-               <div style="display: flex; justify-content: center" class="mt-3">
-                  <v-btn  small @click="show_address_confirm=false; $emit('close')">Edit Address</v-btn>
-               </div>
+          <div
+            style="display: flex; justify-content: center"
+            class="mt-3"
+          >
+            <v-btn
+              small
+              @click="show_address_confirm=false; $emit('close')"
+            >
+              Edit Address
+            </v-btn>
+          </div>
 
-               <div style="display: flex; justify-content: center" class="mt-3">
-                  <v-btn  small @click="return_address('USE_SUGGESTION')"
-                  >Use Suggestion</v-btn>
-               </div>
-            </div>
-         </template>
+          <div
+            style="display: flex; justify-content: center"
+            class="mt-3"
+          >
+            <v-btn
+              small
+              @click="return_address('USE_SUGGESTION')"
+            >
+              Use Suggestion
+            </v-btn>
+          </div>
+        </div>
+      </template>
 
 
-         <div v-else>
-            <div style="color: var(--color-input-error)">
-               {{address_err}}
-            </div>
+      <div v-else>
+        <div style="color: var(--color-input-error)">
+          {{ address_err }}
+        </div>
 
 
-            <div style="display: flex; justify-content: flex-end;">
-               <v-btn @click="show_address_confirm=false">Close</v-btn>
-            </div>
-         </div>
-
-      </v-card>
-   </v-dialog>
+        <div style="display: flex; justify-content: flex-end;">
+          <v-btn @click="show_address_confirm=false">
+            Close
+          </v-btn>
+        </div>
+      </div>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>/**

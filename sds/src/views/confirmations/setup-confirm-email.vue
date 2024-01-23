@@ -1,34 +1,34 @@
 <template>
-   <div class="content-container-bg" style="min-height: calc(100vh - 284px)">
+  <div
+    class="content-container-bg"
+    style="min-height: calc(100vh - 284px)"
+  >
+    <div v-if="error">
+      There was an issue confirming your email.
 
-      <div v-if="error">
-         There was an issue confirming your email.
+      <!--         Please generate a new confirmation code for {{$route.query.email}} by click here.-->
+    </div>
 
-         <!--         Please generate a new confirmation code for {{$route.query.email}} by click here.-->
-
+    <div
+      v-else
+      style="display: flex; justify-content: center; align-items: center; flex-direction: column;"
+    >
+      <div style="font-size: 18pt; padding: 30px 0 20px 0;">
+        {{ confirmed_msg }}
       </div>
 
-      <div v-else
-           style="display: flex; justify-content: center; align-items: center; flex-direction: column;"
-      >
+      <login-modal
+        v-if="!reset_email"
+        :email-fill="email"
+      />
 
-         <div style="font-size: 18pt; padding: 30px 0 20px 0;" >
-            {{confirmed_msg }}
-         </div>
-
-         <login-modal
-             v-if="!reset_email"
-             :email-fill="email"
-         />
-
-         <password-reset
-             v-else
-             :email-fill="email"
-             pw-reset
-         />
-      </div>
-
-   </div>
+      <password-reset
+        v-else
+        :email-fill="email"
+        pw-reset
+      />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -39,8 +39,8 @@ import PasswordReset from "@/components/app/PasswordReset";
 
 export default {
    name: "ConfirmEmail",
-   mixins: [data_getters],
    components: {PasswordReset, LoginModal },
+   mixins: [data_getters],
    data(){
       return {
          confirmed: null,

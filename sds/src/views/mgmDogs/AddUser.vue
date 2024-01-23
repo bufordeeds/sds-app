@@ -1,158 +1,169 @@
 <template>
-
-   <div>
-      <v-card>
-
-         <v-card-title>
-            <span v-if="areEditing">
-            Edit Access Level
-            </span>
-            <span v-else>
-                  Invite {{header_text}}
-            </span>
-
-         </v-card-title>
+  <div>
+    <v-card>
+      <v-card-title>
+        <span v-if="areEditing">
+          Edit Access Level
+        </span>
+        <span v-else>
+          Invite {{ header_text }}
+        </span>
+      </v-card-title>
 
 
 
 
 
-         <v-container class="pa-6 pt-0">
-            <div v-if="!areEditing">Enter email address of the user you want to invite.</div>
+      <v-container class="pa-6 pt-0">
+        <div v-if="!areEditing">
+          Enter email address of the user you want to invite.
+        </div>
 
 
-            <div  style="display: flex; ">
-               <my-form ref="form">
+        <div style="display: flex; ">
+          <my-form ref="form">
+            <text-input
+              v-model="email"
+              :label="label_text"
+              :rules="[isRequired, checkEmail]"
+              @keyup-enter="click_search"
+            />
+          </my-form>
 
+
+
+          <v-btn
+            ref="searchbtn"
+            color="var(--color-primary)"
+            class="ml-2 mt-5"
+            @click="find_user"
+          >
+            Search
+          </v-btn>
+        </div>
+
+
+
+        <!-- area to show response about searched user -->
+        <div
+          v-if="searched"
+          class="mt-5 pa-2"
+          style="background-color: var(--color-bg)"
+        >
+          <div v-if="searched_user !== null">
+            User Found.
+            <div style="display: flex; margin-top: 10px; align-items: flex-start; margin-left: 0px">
+              <avatar
+                :image="searched_user.profile_image"
+                size="70"
+                :rounded="false"
+              />
+              <div class="ml-2">
+                Name:
+                <span class="radio-name">
+                  {{ searched_user.name_first }} {{ searched_user.name_last }}
+                </span> <br>
+                Email:
+                <span class="radio-name">
+                  {{ searched_user.email }}
+                </span>
+              </div>
+            </div>
+
+
+            <div
+              class="mt-5"
+              style="text-align: center"
+            >
+              <span class="radio-name">
+                {{ searched_user.name_first }} {{ searched_user.name_last }}
+              </span>
+              will be invited to be
+              <span class="radio-name">
+                {{ dog.name }}'s
+              </span> {{ header_text }}
+            </div>
+          </div> <!--end of if searched_user-->
+
+
+
+
+          <div v-else>
+            <p>
+              No user with email <span style="font-style: italic;">{{ email }}</span> was found.
+            </p>
+
+
+            <p>
+              Please type in their name and and invite them to join  Service Dog Standards.
+              Once they create their account they'll have
+              have access to Service Dog <span style="font-weight: 600; font-style: italic;">{{ dog.name }}</span>.
+            </p>
+
+            <my-form ref="form2">
+              <v-row
+                dense
+                style="margin-top: -15px"
+              >
+                <v-col>
                   <text-input
-                      :label="label_text"
-                      v-model="email"
-                      @keyup-enter="click_search"
-                      :rules="[isRequired, checkEmail]"
+                    v-model="name_first"
+                    label="First Name"
+                    :rules="[isRequired]"
                   />
-               </my-form>
+                </v-col>
+
+                <v-col>
+                  <text-input
+                    v-model="name_last"
+                    label="Last Name"
+                    :rules="[isRequired]"
+                  />
+                </v-col>
+              </v-row>
+            </my-form>
+          </div>
+        </div>
 
 
-
-               <v-btn
-                   @click="find_user"
-                   color="var(--color-primary)"
-                   class="ml-2 mt-5"
-                   ref="searchbtn"
-               >
-                  Search
-               </v-btn>
-            </div>
-
-
-
-            <!-- area to show response about searched user -->
-            <div v-if="searched" class="mt-5 pa-2" style="background-color: var(--color-bg)">
-               <div v-if="searched_user !== null" >
-
-
-                  User Found.
-                  <div style="display: flex; margin-top: 10px; align-items: flex-start; margin-left: 0px">
-                     <avatar :image="searched_user.profile_image" size="70" :rounded="false"></avatar>
-                     <div class="ml-2">
-                        Name:
-                        <span class="radio-name">
-                           {{searched_user.name_first}} {{searched_user.name_last}}
-                        </span> <br>
-                        Email:
-                        <span class="radio-name">
-                       {{searched_user.email}}
-                    </span>
-                     </div>
-                  </div>
-
-
-                  <div class="mt-5" style="text-align: center">
-
-                     <span class="radio-name">
-                       {{searched_user.name_first}} {{searched_user.name_last}}
-                    </span>
-                     will be invited to be
-                     <span class="radio-name">
-                       {{dog.name}}'s
-                    </span> {{header_text}}
-                  </div>
-               </div> <!--end of if searched_user-->
+        <!--               <div v-else>-->
+        <!--                  We'll email  <span class="radio-name">-->
+        <!--                       {{email}}-->
+        <!--                    </span>-->
+        <!--                  and invite them to join.  Once they do, they'll have access to your account.-->
+        <!--               </div>-->
 
 
 
 
-               <div v-else>
-                  <p>
-                     No user with email <span style="font-style: italic;">{{email}}</span> was found.
-                  </p>
-
-
-                  <p>
-                     Please type in their name and and invite them to join  Service Dog Standards.
-                     Once they create their account they'll have
-                     have access to Service Dog <span style="font-weight: 600; font-style: italic;">{{dog.name}}</span>.
-                  </p>
-
-                  <my-form ref="form2">
-                     <v-row dense style="margin-top: -15px">
-                        <v-col>
-                           <text-input
-                               label="First Name"
-                               v-model="name_first"
-                               :rules="[isRequired]"
-                           />
-                        </v-col>
-
-                        <v-col>
-                           <text-input
-                               label="Last Name"
-                               v-model="name_last"
-                               :rules="[isRequired]"
-                           />
-                        </v-col>
-
-                     </v-row>
-                  </my-form>
-
-
-               </div>
-            </div>
-
-
-            <!--               <div v-else>-->
-            <!--                  We'll email  <span class="radio-name">-->
-            <!--                       {{email}}-->
-            <!--                    </span>-->
-            <!--                  and invite them to join.  Once they do, they'll have access to your account.-->
-            <!--               </div>-->
-
-
-
-
-            <v-row justify="end" class="ma-0 pt-9">
-               <v-btn @click="$emit('close')">Cancel</v-btn>
-               <v-spacer></v-spacer>
-               <v-btn @click="invite_user" color="var(--color-primary)" v-if="areEditing">Update</v-btn>
-               <v-btn @click="invite_user" color="var(--color-primary)" v-else :disabled="!searched" :loading="loading_invite"
-               >
-                  Invite
-               </v-btn>
-
-            </v-row>
-
-
-         </v-container>
-
-
-
-
-
-
-
-      </v-card>
-   </div>
-
+        <v-row
+          justify="end"
+          class="ma-0 pt-9"
+        >
+          <v-btn @click="$emit('close')">
+            Cancel
+          </v-btn>
+          <v-spacer />
+          <v-btn
+            v-if="areEditing"
+            color="var(--color-primary)"
+            @click="invite_user"
+          >
+            Update
+          </v-btn>
+          <v-btn
+            v-else
+            color="var(--color-primary)"
+            :disabled="!searched"
+            :loading="loading_invite"
+            @click="invite_user"
+          >
+            Invite
+          </v-btn>
+        </v-row>
+      </v-container>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -169,8 +180,8 @@ import _ from 'lodash';
 
 export default {
    name: "AddUser",
-   mixins: [data_getters, validation],
    components: {MyForm, TextInput, avatar,},
+   mixins: [data_getters, validation],
    props: {
       // user_id: {type: String, default: null},
       // delegate: {type: Object, default: null},
@@ -206,17 +217,6 @@ export default {
          //    {txt: 'Hidden/Private', val: 'Private'},
          // ]
 
-      }
-   },
-   watch:{
-
-      delegate(newVal){
-         if (newVal != null){
-            this.access_level = this.delegate.access_level;
-            this.name = this.delegate.user.name_first;
-            this.email = this.delegate.user.email;
-
-         }
       }
    },
 
@@ -256,6 +256,31 @@ export default {
          }
          return "Handler";
       },
+   },
+   watch:{
+
+      delegate(newVal){
+         if (newVal != null){
+            this.access_level = this.delegate.access_level;
+            this.name = this.delegate.user.name_first;
+            this.email = this.delegate.user.email;
+
+         }
+      }
+   },
+
+   created(){
+      if (this.dog === null){
+         this.value = {}
+      }
+
+
+      if (this.delegate != null){
+         this.access_level = this.delegate.access_level;
+         this.name = this.delegate.user.name_first;
+         this.email = this.delegate.user.email;
+
+      }
    },
 
    methods:{
@@ -339,20 +364,6 @@ export default {
       },
 
 
-   },
-
-   created(){
-      if (this.dog === null){
-         this.value = {}
-      }
-
-
-      if (this.delegate != null){
-         this.access_level = this.delegate.access_level;
-         this.name = this.delegate.user.name_first;
-         this.email = this.delegate.user.email;
-
-      }
    }
 }
 </script>

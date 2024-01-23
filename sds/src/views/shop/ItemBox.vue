@@ -1,69 +1,73 @@
 <template>
-   <div>
-
-
-
-
-
-
-
-
-      <div style="background-color: white; display: flex;" class="pa-2 ">
-         <div>
-            <img :src="item_image"
-                 :style="{width: $vuetify.breakpoint.xs? '50px' : '200px',}"
-            >
-
-         </div>
-
-         <div class="ml-4 " style="display: flex; flex-direction: column">
-            <div>
-               <div style="font-weight: 500;  color: var(--color-subheading)"
-                    :style="{'font-size':$vuetify.breakpoint.width<600? '12pt' : '14pt' }">
-                  {{item.description}}
-               </div>
-               <div v-html="item_subtext">
-
-               </div>
-
-            </div>
-
-
-            <div v-if="showActions" style="color: var(--color-subheading); margin-top: 5px; font-weight: 600; font-size: 8pt">
-               <!--<v-btn-->
-               <!--    v-if="showEditItem"-->
-               <!--    text x-small-->
-               <!--    @click="$emit('edit-item')"-->
-               <!--&gt;-->
-               <!--<span style="color: var(&#45;&#45;color-subheading); font-weight: 600; font-size: 8pt">-->
-               <!--   View/Edit-->
-               <!--</span>-->
-               <!--</v-btn>-->
-
-               <v-btn text x-small @click="$emit('remove-item')">
-               <span style="color: red; font-weight: 600; font-size: 8pt">
-                  Remove
-               </span>
-               </v-btn>
-
-
-            </div>
-         </div>
-
-         <v-spacer></v-spacer>
-         <div class="ml-5 mr-3 " style="font-weight: 600; text-align: center">
-            ${{item.price}}
-            <div class="mt-2" style="font-weight: 400" v-if="item.item_key !== 'sds_donation'">
-               Qty {{item.number}}
-            </div>
-
-         </div>
-
+  <div>
+    <div
+      style="background-color: white; display: flex;"
+      class="pa-2 "
+    >
+      <div>
+        <img
+          :src="item_image"
+          :style="{width: $vuetify.breakpoint.xs? '50px' : '200px',}"
+        >
       </div>
 
+      <div
+        class="ml-4 "
+        style="display: flex; flex-direction: column"
+      >
+        <div>
+          <div
+            style="font-weight: 500;  color: var(--color-subheading)"
+            :style="{'font-size':$vuetify.breakpoint.width<600? '12pt' : '14pt' }"
+          >
+            {{ item.description }}
+          </div>
+          <div v-html="item_subtext" />
+        </div>
 
 
-   </div>
+        <div
+          v-if="showActions"
+          style="color: var(--color-subheading); margin-top: 5px; font-weight: 600; font-size: 8pt"
+        >
+          <!--<v-btn-->
+          <!--    v-if="showEditItem"-->
+          <!--    text x-small-->
+          <!--    @click="$emit('edit-item')"-->
+          <!--&gt;-->
+          <!--<span style="color: var(&#45;&#45;color-subheading); font-weight: 600; font-size: 8pt">-->
+          <!--   View/Edit-->
+          <!--</span>-->
+          <!--</v-btn>-->
+
+          <v-btn
+            text
+            x-small
+            @click="$emit('remove-item')"
+          >
+            <span style="color: red; font-weight: 600; font-size: 8pt">
+              Remove
+            </span>
+          </v-btn>
+        </div>
+      </div>
+
+      <v-spacer />
+      <div
+        class="ml-5 mr-3 "
+        style="font-weight: 600; text-align: center"
+      >
+        ${{ item.price }}
+        <div
+          v-if="item.item_key !== 'sds_donation'"
+          class="mt-2"
+          style="font-weight: 400"
+        >
+          Qty {{ item.number }}
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

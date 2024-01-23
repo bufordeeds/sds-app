@@ -1,27 +1,31 @@
 <template>
-<!--   <div>-->
-<!--      <div class="my-container" v-if="value">-->
-<!--      </div>-->
+  <!--   <div>-->
+  <!--      <div class="my-container" v-if="value">-->
+  <!--      </div>-->
 
 
-<!--      <div class="content-container">-->
-<!--         <div ref="dialog_content" :style="container_style" >-->
-<!--            <slot style="z-index: 200"></slot>-->
-<!--         </div>-->
+  <!--      <div class="content-container">-->
+  <!--         <div ref="dialog_content" :style="container_style" >-->
+  <!--            <slot style="z-index: 200"></slot>-->
+  <!--         </div>-->
 
-<!--      </div>-->
-<!--   </div>-->
+  <!--      </div>-->
+  <!--   </div>-->
 
 
-<div class="my-container" v-if="value">
-   <div class="my-content-container">
-      <div ref="dialog_content" :style="container_style" >
-         <slot style="z-index: 200; "></slot>
+  <div
+    v-if="value"
+    class="my-container"
+  >
+    <div class="my-content-container">
+      <div
+        ref="dialog_content"
+        :style="container_style"
+      >
+        <slot style="z-index: 200; " />
       </div>
-
-   </div>
-
-</div>
+    </div>
+  </div>
 </template>
 
 <script>

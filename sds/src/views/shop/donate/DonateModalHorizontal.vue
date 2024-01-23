@@ -1,65 +1,105 @@
 <template>
-   <div class="centered-flex-column pa-5 white-bg" style="width: 100%; max-width: 900px;">
+  <div
+    class="centered-flex-column pa-5 white-bg"
+    style="width: 100%; max-width: 900px;"
+  >
+    <v-row dense>
+      <v-col
+        cols="12"
+        sm="4"
+        style="display: flex; justify-content: center"
+      >
+        <img
+          src="../../../assets/images/icons/donate_heart.png"
+          style="max-width: 400px; width: 90%; align-self: flex-start"
+        >
+      </v-col>
 
-      <v-row dense>
-         <v-col cols="12" sm="4" style="display: flex; justify-content: center">
-            <img src="../../../assets/images/icons/donate_heart.png"
-                 style="max-width: 400px; width: 90%; align-self: flex-start"
+      <v-col
+        cols="12"
+        sm="8"
+      >
+        <div style="color: var(--color-headline); font-size: 14pt; font-weight: 600">
+          Please Help Support Voluntary Service Dog Standards
+        </div>
+
+        <div>
+          Help us improve and provide more free tools for Service Dog Standards for trainers and handlers.
+
+          <!--Programming and maintaining free Service Dog Standards is not a small task.-->
+
+          <!--Please help offset our substantial programming, maintenance, education, and outreach expenses, keep our-->
+          <!--coffee maker and servers running — and help support free Service Dog Standards for trainers and handlers.-->
+        </div>
+
+        <v-row
+          dense
+          style="width:100%; margin-top: 20px"
+        >
+          <v-col
+            v-for="(amount, ix) in amounts"
+            :key="'amount'+amount"
+            class="dollar-container"
+            cols="3"
+          >
+            <div
+              class="dollar-amount"
+              :class="selected(ix)"
+              @click="selected_ix=ix"
             >
-         </v-col>
-
-         <v-col cols="12" sm="8">
-            <div style="color: var(--color-headline); font-size: 14pt; font-weight: 600">
-               Please Help Support Voluntary Service Dog Standards
+              ${{ amount }}
             </div>
+          </v-col>
 
-            <div>
-               Help us improve and provide more free tools for Service Dog Standards for trainers and handlers.
-
-               <!--Programming and maintaining free Service Dog Standards is not a small task.-->
-
-               <!--Please help offset our substantial programming, maintenance, education, and outreach expenses, keep our-->
-               <!--coffee maker and servers running — and help support free Service Dog Standards for trainers and handlers.-->
+          <v-col
+            class="dollar-container"
+            cols="3"
+          >
+            <div
+              class="dollar-amount"
+              :class="selected(7)"
+              @click="selected_ix=7"
+            >
+              $ <input
+                v-model="custom_amount"
+                type="text"
+                class="custom-amount"
+                :style="cust_style"
+              >
             </div>
+          </v-col>
+        </v-row>
 
-            <v-row dense style="width:100%; margin-top: 20px">
+        <v-btn
+          v-if="$vuetify.breakpoint.mdAndUp"
+          width="50%"
+          min-width="150px"
+          height="40px"
+          class="mt-5 "
+          :disabled="disabled_contribute"
+          @click="$emit('donated', amount)"
+        >
+          Contribute
+        </v-btn>
+      </v-col>
 
-               <v-col v-for="(amount, ix) in amounts" :key="'amount'+amount"
-                      class="dollar-container" cols="3"
-               >
-                  <div class="dollar-amount" @click="selected_ix=ix" :class="selected(ix)">
-                     ${{amount}}
-                  </div>
-               </v-col>
-
-               <v-col class="dollar-container" cols="3">
-                  <div class="dollar-amount" @click="selected_ix=7" :class="selected(7)">
-                     $ <input type="text" v-model="custom_amount" class="custom-amount" :style="cust_style">
-                  </div>
-               </v-col>
-
-            </v-row>
-
-            <v-btn  width="50%" min-width="150px" height="40px" class="mt-5 "
-                    :disabled="disabled_contribute"
-                    @click="$emit('donated', amount)"
-                    v-if="$vuetify.breakpoint.mdAndUp"
-            >
-               Contribute
-            </v-btn>
-
-         </v-col>
-
-         <div  v-if="$vuetify.breakpoint.smAndDown" style="display: flex; justify-content: center; width: 100%">
-            <v-btn  width="50%" min-width="150px" height="40px" class="mt-5 "
-                    :disabled="disabled_contribute"
-                    @click="$emit('donated', amount)"
-            >
-               Contribute
-            </v-btn>
-         </div>
-      </v-row>
-   </div>
+      <div
+        v-if="$vuetify.breakpoint.smAndDown"
+        style="display: flex; justify-content: center; width: 100%"
+      >
+        <v-btn
+          width="50%"
+          min-width="150px"
+          height="40px"
+          class="mt-5 "
+          :disabled="disabled_contribute"
+          @click="$emit('donated', amount)"
+        >
+          Contribute
+        </v-btn>
+      </div>
+    </v-row>
+  </div>
 </template>
 
 <script>

@@ -1,9 +1,9 @@
 <template>
-<div>
-   <behavior-standards
-       @join="on_join"
-   />
-</div>
+  <div>
+    <behavior-standards
+      @join="on_join"
+    />
+  </div>
 </template>
 
 <script>
@@ -18,9 +18,9 @@ https://github.com/vuetifyjs/vuetify/issues/3875
 
 
 export default {
-   name: "behaviorStandardsViewer",
-   mixins: [data_getters],
+   name: "BehaviorStandardsViewer",
    components:{behaviorStandards},
+   mixins: [data_getters],
    methods:{
       async on_join(){
 

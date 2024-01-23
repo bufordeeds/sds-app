@@ -1,13 +1,13 @@
 <template>
-<div>
-  <div class="page-title" >
-    Your Shopping Cart
-  </div>
-  <shopping-cart
+  <div>
+    <div class="page-title">
+      Your Shopping Cart
+    </div>
+    <shopping-cart
       show-keep-shopping
       @keep-shopping="on_shopping"
-  />
-</div>
+    />
+  </div>
 </template>
 
 <script>
@@ -16,17 +16,17 @@ export default {
   name: "ShoppingCartContainer",
   components: {ShoppingCart},
 
-   methods:{
-     on_shopping(){
-        this.$router.push('/store')
-     }
-   },
-
   async created(){
 
     this.$store.commit("set_show_side_nav", false);
 
-  }
+  },
+
+   methods:{
+     on_shopping(){
+        this.$router.push('/store')
+     }
+   }
 }
 </script>
 

@@ -1,120 +1,145 @@
 <template>
+  <div class="registration-container">
+    <v-dialog
+      v-model="show_delegate"
+      max-width="500px"
+      persistent
+    >
+      <edit-access
+        v-if="show_delegate"
+        :delegate="edit_delegate"
+        @close="show_delegate=false; edit_delegate=null;"
+        @added="get_my_delegated_users"
+      />
+    </v-dialog>
 
-   <div class="registration-container">
+
+    <confirm-dialog
+      v-model="show_revoke_confirm"
+      header="Confirm Revoke Access"
+      max-width="400px"
+      :fn-confirm="ACTUALLY_revoke_access"
+      :fn-cancel="close_revoke_confirm"
+    >
+      Are you sure you wish to remove access for
+      <span style="font-weight: bold">
+        {{ revoke_user_name }}
+      </span>
+      from your account?
+    </confirm-dialog>
 
 
-      <v-dialog v-model="show_delegate" max-width="500px" persistent>
-         <edit-access
-             v-if="show_delegate"
-             :delegate="edit_delegate"
-             @close="show_delegate=false; edit_delegate=null;"
-             @added="get_my_delegated_users"
-         ></edit-access>
-      </v-dialog>
 
-
-      <confirm-dialog
-          header="Confirm Revoke Access"
-          v-model="show_revoke_confirm"
-          max-width="400px"
-          :fn-confirm="ACTUALLY_revoke_access"
-          :fn-cancel="close_revoke_confirm"
+    <div class="pa-2 delegate-access-container">
+      <span class="pr-2 pt-1">
+        Delegate Access
+      </span>
+      <v-btn
+        rounded
+        small
+        color="var(--color-primary)"
+        @click="show_delegate=true"
       >
-         Are you sure you wish to remove access for
-         <span style="font-weight: bold">
-            {{revoke_user_name}}
-         </span>
-         from your account?
+        <v-icon color="white">
+          add
+        </v-icon>
+      </v-btn>
+    </div>
 
-      </confirm-dialog>
+    <div class="reg-body">
+      <table style="width: 100%">
+        <colgroup>
+          <col
+            span="1"
+            style="width: 40%;"
+          >
+          <col
+            span="1"
+            style="width: 25%;"
+          >
+          <col
+            span="1"
+            style="width: 25%;"
+          >
+          <col
+            span="1"
+            style="width: 10%;"
+          >
+        </colgroup>
+        <tbody>
+          <tr style="background-color: #b7dbf1">
+            <th>User</th>
+            <th>Access Level</th>
+            <th>Access Status</th>
+            <th>Remove</th>
+          </tr>
 
+          <tr
+            v-for="(item, ix) in users"
+            :key="item._id"
+          >
+            <td class="col-service-dog">
+              <div class="sd-name-container">
+                <img
+                  v-if="!item.user.profile_image"
+                  src="../../assets/images/content/user-no-image.png"
+                  width="75px"
+                >
+                <img
+                  v-else
+                  :src="item.user.profile_image.Location"
+                  width="75px"
+                >
 
-
-      <div class="pa-2 delegate-access-container">
-
-                  <span class="pr-2 pt-1">
-                     Delegate Access
-                  </span>
-         <v-btn rounded small color="var(--color-primary)" @click="show_delegate=true">
-            <v-icon color="white">add</v-icon>
-         </v-btn>
-      </div>
-
-      <div class="reg-body" >
-
-         <table style="width: 100%">
-            <colgroup>
-               <col span="1" style="width: 40%;">
-               <col span="1" style="width: 25%;">
-               <col span="1" style="width: 25%;">
-               <col span="1" style="width: 10%;">
-            </colgroup>
-            <tbody>
-            <tr style="background-color: #b7dbf1">
-               <th>User</th>
-               <th>Access Level</th>
-               <th>Access Status</th>
-               <th>Remove</th>
-            </tr>
-
-            <tr v-for="(item, ix) in users" :key="item._id">
-
-               <td class="col-service-dog">
-
-                  <div class="sd-name-container">
-                     <img v-if="!item.user.profile_image"
-                         src="../../assets/images/content/user-no-image.png" width="75px">
-                     <img v-else
-                          :src="item.user.profile_image.Location" width="75px">
-
-                     <div class="pl-2">
-                        <div>
-                           <div>
-                              {{item.user.name_first}}
-                              {{item.user.name_last}}
-                           </div>
-                           <div>
-                              {{item.user.email}}
-                           </div>
-
-                        </div>
-                     </div>
-
+                <div class="pl-2">
+                  <div>
+                    <div>
+                      {{ item.user.name_first }}
+                      {{ item.user.name_last }}
+                    </div>
+                    <div>
+                      {{ item.user.email }}
+                    </div>
                   </div>
+                </div>
+              </div>
+            </td>
 
-               </td>
+            <td class="col-service-do-reg">
+              {{ item.access_level }}
 
-               <td class="col-service-do-reg">
-                  {{item.access_level}}
+              <div
+                style="font-size: 10pt; cursor: pointer;"
+                @click="show_edit_delegate(item)"
+              >
+                Edit
+              </div>
+            </td>
 
-                  <div style="font-size: 10pt; cursor: pointer;" @click="show_edit_delegate(item)">
-                     Edit
-                  </div>
-               </td>
+            <td
+              class="col-service-dog-status"
+              style="max-width: 200px"
+            >
+              <div style="max-width: 150px; margin-left: 10px">
+                {{ item.access_status }}
+              </div>
+            </td>
 
-               <td class="col-service-dog-status" style="max-width: 200px">
-                  <div style="max-width: 150px; margin-left: 10px">
-                     {{item.access_status}}
-                  </div>
-               </td>
-
-               <td>
-                  <v-btn icon>
-                     <v-icon color="red"
-                             @click="confirm_revoke(item)"
-                     >delete</v-icon>
-                  </v-btn>
-               </td>
-            </tr>
-
-
-            </tbody>
-
-         </table>
-
-      </div>
-
-   </div>
+            <td>
+              <v-btn icon>
+                <v-icon
+                  color="red"
+                  @click="confirm_revoke(item)"
+                >
+                  delete
+                </v-icon>
+              </v-btn>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -157,6 +182,10 @@ export default {
 
          revoke_user_name: '',
       }
+   },
+
+   created(){
+      this.get_my_delegated_users();
    },
 
    methods:{
@@ -216,10 +245,6 @@ export default {
          }
       },
 
-   },
-
-   created(){
-      this.get_my_delegated_users();
    }
 
 

@@ -1,30 +1,37 @@
 <template>
-
-      <v-dialog v-model="loc_value" :max-width="maxWidth" persistent
-      >
-         <v-card>
-            <v-card-title>
-               {{header}}
-            </v-card-title>
-
-
-            <div class="pl-6 pr-6 pb-6">
-               <slot></slot>
-            </div>
+  <v-dialog
+    v-model="loc_value"
+    :max-width="maxWidth"
+    persistent
+  >
+    <v-card>
+      <v-card-title>
+        {{ header }}
+      </v-card-title>
 
 
-            <v-card-actions>
-               <v-btn :style="btn_confirm_style"
-                      @click="confirm">Confirm</v-btn>
-               <v-spacer></v-spacer>
-               <v-btn color="var(--color-primary)"
-                   @click="cancel">Cancel</v-btn>
-            </v-card-actions>
-         </v-card>
-
-      </v-dialog>
+      <div class="pl-6 pr-6 pb-6">
+        <slot />
+      </div>
 
 
+      <v-card-actions>
+        <v-btn
+          :style="btn_confirm_style"
+          @click="confirm"
+        >
+          Confirm
+        </v-btn>
+        <v-spacer />
+        <v-btn
+          color="var(--color-primary)"
+          @click="cancel"
+        >
+          Cancel
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>

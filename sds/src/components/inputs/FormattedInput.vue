@@ -1,10 +1,15 @@
 <template>
-   <div class="input-container">
-      <input type="text" v-model="val_fmt"  @blur="format()" @keyup.enter="format()">
-      <div class="error-msg">
-         {{error_msg}}
-      </div>
-   </div>
+  <div class="input-container">
+    <input
+      v-model="val_fmt"
+      type="text"
+      @blur="format()"
+      @keyup.enter="format()"
+    >
+    <div class="error-msg">
+      {{ error_msg }}
+    </div>
+  </div>
 </template>
 
 <script>
@@ -52,6 +57,10 @@
 
       },
 
+      created(){
+         this.format();
+      },
+
       methods:{
 
 
@@ -96,10 +105,6 @@
 
          },
 
-      },
-
-      created(){
-         this.format();
       }
 
    }

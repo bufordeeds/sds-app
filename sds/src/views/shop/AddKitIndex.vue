@@ -1,41 +1,44 @@
 <template>
-<div>
-   <div style="display: flex; justify-content: flex-end">
-
-      <v-btn icon @click="$emit('close')" style="border-radius: 50%">
-         <v-icon>close</v-icon>
+  <div>
+    <div style="display: flex; justify-content: flex-end">
+      <v-btn
+        icon
+        style="border-radius: 50%"
+        @click="$emit('close')"
+      >
+        <v-icon>close</v-icon>
       </v-btn>
-   </div>
+    </div>
 
 
 
-   <reorder-kit
-       v-if="reorder"
-       :dog="dog"
-       @item-added="add_item"
-   />
+    <reorder-kit
+      v-if="reorder"
+      :dog="dog"
+      @item-added="add_item"
+    />
 
-   <template v-else>
+    <template v-else>
       <add-kit-to-cart-simple
-          v-if="simple"
-          :dog="dog"
-          @item-added="add_item"
+        v-if="simple"
+        :dog="dog"
+        @item-added="add_item"
       />
 
       <add-kit-to-cart
-          v-else
-          :dog="dog"
-          @item-added="add_item"
+        v-else
+        :dog="dog"
+        @item-added="add_item"
       />
-   </template>
+    </template>
 
 
 
 
-<!--   <div v-if="page===2">-->
-<!--      <shopping-cart />-->
-<!--   </div>-->
-</div>
+    <!--   <div v-if="page===2">-->
+    <!--      <shopping-cart />-->
+    <!--   </div>-->
+  </div>
 </template>
 
 <script>

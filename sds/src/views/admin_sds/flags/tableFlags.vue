@@ -1,95 +1,89 @@
 <template>
-
-   <div>
-      <div class="pa-2" style="display: flex; flex-wrap: wrap">
-
-      </div>
-
-
-      <table>
-         <tr class="col-headers" >
-            <th></th>
-            <th>
-               Flag Date
-               <sort-icon :sort-dir.sync="sortCols.date" @click="sort_handler('date', $event)"/>
-            </th>
-            <th>
-               Flagged User
-               <!--<sort-icon :sort-dir.sync="sortCols.name_first" @click="sort_handler('name_first', $event)"/>-->
-            </th>
-            <th>
-               Flagger
-               <!--<sort-icon :sort-dir.sync="sortCols.name_last" @click="sort_handler('name_last', $event)" />-->
-            </th>
-            <th>
-               Flag Message
-            </th>
-
-            <th>
-               Comment
-               <!--<sort-icon :sort-dir.sync="sortCols.cust" @click="sort_handler('cust', $event)" />-->
-            </th>
-
-            <th>
-               Status
-            </th>
+  <div>
+    <div
+      class="pa-2"
+      style="display: flex; flex-wrap: wrap"
+    />
 
 
-         </tr>
+    <table>
+      <tr class="col-headers">
+        <th />
+        <th>
+          Flag Date
+          <sort-icon
+            :sort-dir.sync="sortCols.date"
+            @click="sort_handler('date', $event)"
+          />
+        </th>
+        <th>
+          Flagged User
+          <!--<sort-icon :sort-dir.sync="sortCols.name_first" @click="sort_handler('name_first', $event)"/>-->
+        </th>
+        <th>
+          Flagger
+          <!--<sort-icon :sort-dir.sync="sortCols.name_last" @click="sort_handler('name_last', $event)" />-->
+        </th>
+        <th>
+          Flag Message
+        </th>
 
-         <template v-for="(flag, ix) in flags" >
-            <!-----------------------main row-------------------------------------------------------->
-            <tr :key="flag._id" :class="get_row_bg_class(ix)" @click="$emit('click-flag', {flag, ix})">
+        <th>
+          Comment
+          <!--<sort-icon :sort-dir.sync="sortCols.cust" @click="sort_handler('cust', $event)" />-->
+        </th>
 
-               <td>{{ix+1}}</td>
+        <th>
+          Status
+        </th>
+      </tr>
 
-               <td>
-                  {{fmt_date(flag.date_created ,{fmt: 'MM/dd/yyyy'})}}
-               </td>
-               <td>
-                  <!--{{flag.loc_name}}-->
-                  {{flag.user_id_FR.account_type}}
-                  <avatar
-                      :profile="flag.user_id_FR"
-                      size="40"
-                  />
+      <template v-for="(flag, ix) in flags">
+        <!-----------------------main row-------------------------------------------------------->
+        <tr
+          :key="flag._id"
+          :class="get_row_bg_class(ix)"
+          @click="$emit('click-flag', {flag, ix})"
+        >
+          <td>{{ ix+1 }}</td>
 
-               </td>
-
-
-               <td>
-                  <div>
-                     {{flag.flag_request.flagger_name}}
-                  </div>
-                  <div>
-                     {{flag.flag_request.flagger_email}}
-                  </div>
-               </td>
-
-               <td style="max-width: 300px; font-size: 10pt">
-                  {{fmt_trim_str(flag.flag_request.flagger_message, 100)}}
-               </td>
-
-               <td style="max-width: 300px; font-size: 10pt">
-                  {{fmt_trim_str(flag.comments, 100)}}
-               </td>
-
-               <td>
-                  {{flag.status}}
-               </td>
+          <td>
+            {{ fmt_date(flag.date_created ,{fmt: 'MM/dd/yyyy'}) }}
+          </td>
+          <td>
+            <!--{{flag.loc_name}}-->
+            {{ flag.user_id_FR.account_type }}
+            <avatar
+              :profile="flag.user_id_FR"
+              size="40"
+            />
+          </td>
 
 
+          <td>
+            <div>
+              {{ flag.flag_request.flagger_name }}
+            </div>
+            <div>
+              {{ flag.flag_request.flagger_email }}
+            </div>
+          </td>
 
-            </tr>
+          <td style="max-width: 300px; font-size: 10pt">
+            {{ fmt_trim_str(flag.flag_request.flagger_message, 100) }}
+          </td>
 
+          <td style="max-width: 300px; font-size: 10pt">
+            {{ fmt_trim_str(flag.comments, 100) }}
+          </td>
 
-
-
-         </template>
-
-      </table>
-   </div>
-
+          <td>
+            {{ flag.status }}
+          </td>
+        </tr>
+      </template>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -100,9 +94,9 @@ import StatusDropDown from "@/components/inputs/StatusDropDown";
 import SortIcon from "@/components/icons/SortIcon";
 
 export default {
-   name: "tableFlags",
-   mixins: [data_getters, utilities],
+   name: "TableFlags",
    components: {StatusDropDown, SortIcon},
+   mixins: [data_getters, utilities],
    props: {
       flags: {type: Array, },
    },

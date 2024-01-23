@@ -1,32 +1,80 @@
 <template>
-   <div>
+  <div>
+    <!--style="border: grey solid 1px"-->
+    <div class="svg-container ma-3">
+      <svg
+        :width="width"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 270 40"
+        preserveAspectRatio="xMidYMid slice"
+      >
 
-      <!--style="border: grey solid 1px"-->
-      <div class="svg-container ma-3" >
-         <svg  :width="width"
-               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 40" preserveAspectRatio="xMidYMid slice"
+        <!--line1-->
+        <line
+          :x1="p1.x"
+          :y1="p1.y"
+          :x2="p2.x"
+          :y2="p2.y"
+          class="svg-lines"
+          :style="style_line(2)"
+        />
 
-         >
+        <circle
+          :cx="p1.x"
+          :cy="p1.y"
+          :r="r"
+          class="svg-dots"
+          :style="{fill:col_cur}"
+        />
+        <text
+          :x="p1.x"
+          :y="y_txt"
+          class="svg-status-txt"
+          :style="style_txt(1)"
+        >In Process</text>
 
-            <!--line1-->
-            <line :x1="p1.x" :y1="p1.y" :x2="p2.x" :y2="p2.y" class="svg-lines" :style="style_line(2)" />
 
-            <circle :cx="p1.x" :cy="p1.y" :r="r" class="svg-dots" :style="{fill:col_cur}"/>
-            <text :x="p1.x" :y="y_txt" class="svg-status-txt" :style="style_txt(1)">In Process</text>
+        <!--line2-->
+        <line
+          :x1="p2.x"
+          :y1="p2.y"
+          :x2="p3.x"
+          :y2="p3.y"
+          class="svg-lines"
+          :style="style_line(3)"
+        />
+
+        <circle
+          :cx="p2.x"
+          :cy="p2.y"
+          :r="r"
+          class="svg-dots"
+          :style="style_point(2)"
+        />
+        <text
+          :x="p2.x"
+          :y="y_txt"
+          class="svg-status-txt"
+          :style="style_txt(2)"
+        >In Transit</text>
 
 
-            <!--line2-->
-            <line :x1="p2.x" :y1="p2.y" :x2="p3.x" :y2="p3.y" class="svg-lines" :style="style_line(3)" />
-
-            <circle :cx="p2.x" :cy="p2.y" :r="r" class="svg-dots" :style="style_point(2)"/>
-            <text :x="p2.x" :y="y_txt"  class="svg-status-txt" :style="style_txt(2)">In Transit</text>
-
-
-            <circle :cx="p3.x" :cy="p3.y" :r="r" class="svg-dots" :style="style_point(3)"/>
-            <text :x="p3.x" :y="y_txt"  class="svg-status-txt" :style="style_txt(3)">Delivered</text>
-         </svg>
-      </div>
-   </div>
+        <circle
+          :cx="p3.x"
+          :cy="p3.y"
+          :r="r"
+          class="svg-dots"
+          :style="style_point(3)"
+        />
+        <text
+          :x="p3.x"
+          :y="y_txt"
+          class="svg-status-txt"
+          :style="style_txt(3)"
+        >Delivered</text>
+      </svg>
+    </div>
+  </div>
 </template>
 
 <script>

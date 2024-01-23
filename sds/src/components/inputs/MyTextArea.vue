@@ -1,39 +1,53 @@
 <template>
-   <div class="input-container" :style="input_container_style">
-      <div
-           class="label"
-           :style="label_style"
-           @click="set_focus"
+  <div
+    class="input-container"
+    :style="input_container_style"
+  >
+    <div
+      class="label"
+      :style="label_style"
+      @click="set_focus"
+    >
+      {{ label }}
+    </div>
+
+
+    <textarea
+      ref="input"
+      v-model="local_val"
+      :class="border_class"
+      :disabled="disabled"
+      :style="input_style"
+      :rows="rows"
+      @input="$emit('input', local_val)"
+      @blur="$emit('blur')"
+      @keyup.enter="$emit('keyup-enter')"
+    />
+
+
+
+
+
+    <div
+      v-if="error_msg !== null"
+      class="error-msg-container"
+    >
+      <svg
+        width="20"
+        height="10"
+        style="margin-left: 20px;"
       >
-         {{label}}
-      </div>
+        <polygon
+          points="10,0 0,10 20, 10"
+          style="fill:var(--color-input-error);"
+        />
+      </svg>
 
-
-      <textarea
-          v-model="local_val" @input="$emit('input', local_val)"
-          :class="border_class" :disabled="disabled"
-          :style="input_style"
-          ref="input"
-          @blur="$emit('blur')"
-          @keyup.enter="$emit('keyup-enter')"
-          :rows="rows"
-      ></textarea>
-
-
-
-
-
-      <div class="error-msg-container" v-if="error_msg !== null">
-         <svg width="20" height="10" style="margin-left: 20px;">
-            <polygon points="10,0 0,10 20, 10" style="fill:var(--color-input-error);" />
-         </svg>
-
-         <span class="error-msg" >
-         {{error_msg}}
-         </span>
-
-      </div>
-   </div>
+      <span class="error-msg">
+        {{ error_msg }}
+      </span>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -43,6 +57,7 @@
 
    export default {
       name: "MyTextField",
+      inject: ['registerThisField', 'unRegisterField'],
 
       props:{
          value: {type: String, default: null},
@@ -59,7 +74,6 @@
          isPassword:  {type: Boolean, default: false},
 
       },
-      inject: ['registerThisField', 'unRegisterField'],
 
       data(){
          return {
@@ -67,21 +81,6 @@
             val_fmt: '',
             error_msg: null,
          }
-      },
-
-      watch:{
-         value(newVal){
-
-            if (newVal !== this.local_val){
-               this.local_val = newVal;
-            }
-         },
-        local_val(){
-
-           if (this.error_msg !== null){
-              this.validate();
-           }
-        }
       },
 
       computed: {
@@ -148,6 +147,34 @@
 
       },
 
+      watch:{
+         value(newVal){
+
+            if (newVal !== this.local_val){
+               this.local_val = newVal;
+            }
+         },
+        local_val(){
+
+           if (this.error_msg !== null){
+              this.validate();
+           }
+        }
+      },
+
+      created(){
+         // console.log('debug', this)
+
+         if (this.registerThisField !=  null){
+            this.field_id = this.registerThisField(this);
+         }
+
+      },
+
+      beforeDestroy() {
+         this.unRegisterField(this.field_id);
+      },
+
       methods:{
 
 
@@ -172,19 +199,6 @@
             console.log( this.$refs)
             this.$refs.input.focus();
          }
-      },
-
-      created(){
-         // console.log('debug', this)
-
-         if (this.registerThisField !=  null){
-            this.field_id = this.registerThisField(this);
-         }
-
-      },
-
-      beforeDestroy() {
-         this.unRegisterField(this.field_id);
       }
 
 

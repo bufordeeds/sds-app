@@ -1,23 +1,20 @@
 <template>
-   <div >
-
-
-      <v-dialog :value="show2"  persistent :fullscreen="$vuetify.breakpoint.width<500" width="unset">
-         <v-card class="pa-3">
-            <cropper
-                :crop-ratio="ratio"
-                @close="show2=false"
-                @cropped="upload_file"
-            ></cropper>
-         </v-card>
-      </v-dialog>
-
-
-
-
-
-
-   </div>
+  <div>
+    <v-dialog
+      :value="show2"
+      persistent
+      :fullscreen="$vuetify.breakpoint.width<500"
+      width="unset"
+    >
+      <v-card class="pa-3">
+        <cropper
+          :crop-ratio="ratio"
+          @close="show2=false"
+          @cropped="upload_file"
+        />
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -48,21 +45,6 @@ export default {
       }
    },
 
-   watch:{
-      show(newVal){
-         if (newVal !== this.show2){
-            this.show2 = newVal;
-         }
-
-      },
-
-      show2(newVal){
-         this.$emit('update:show', newVal);
-
-
-      }
-   },
-
    computed:{
 
       ratio(){
@@ -80,6 +62,21 @@ export default {
          }
       }
 
+   },
+
+   watch:{
+      show(newVal){
+         if (newVal !== this.show2){
+            this.show2 = newVal;
+         }
+
+      },
+
+      show2(newVal){
+         this.$emit('update:show', newVal);
+
+
+      }
    },//computed
 
 

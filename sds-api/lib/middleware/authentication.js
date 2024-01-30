@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const publicKey = fs.readFileSync('./keys/rsa_public.key');
 
-let turn_off = true;
+let turn_off = false;
 // turn_off = true;
 
 if (process.env.NODE_ENV === 'production') {

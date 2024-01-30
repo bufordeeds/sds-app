@@ -1,7 +1,8 @@
 {
   "extends": [
     "eslint:recommended",
-    "plugin:vue/recommended"
+    "plugin:vue/recommended",
+    "plugin:storybook/recommended"
   ],
   "env": {
     "node": true

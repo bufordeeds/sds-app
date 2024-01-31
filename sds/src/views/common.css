@@ -168,11 +168,10 @@ html {
 }
 
 .v-application {
-	font-family: Montserrat !important;
+	font-family: -apple-system, system-ui, BlinkMacSystemFont !important;
 }
 
 .v-btn {
-	font-family: Montserrat !important;
 	letter-spacing: 0px;
 	font-size: 12pt;
 	border-radius: 20px;
@@ -259,44 +258,3 @@ a {
 		margin: 0;
 	}
 }
-
-/* v-dialog overflow fix */
-/*https://github.com/vuetifyjs/vuetify/issues/3875*/
-.v-dialog {
-	/*overflow: hidden;*/
-}
-
-.v-dialog .v-card {
-	/*overflow: scroll;*/
-	/*height: 100%;*/
-}
-
-/*@font-face {*/
-/*   font-family: 'Montserrat';*/
-/*   font-weight: 300;*/
-/*   src: URL('./assets/styles/Montserrat/Montserrat-Light.ttf') format('truetype');*/
-/*}*/
-
-/*@font-face {*/
-/*   font-family: 'Montserrat';*/
-/*   font-weight: 400;*/
-/*   src: URL('./assets/styles/Montserrat/Montserrat-Regular.ttf') format('truetype');*/
-/*}*/
-
-/*@font-face {*/
-/*   font-family: 'Montserrat';*/
-/*   font-weight: 500;*/
-/*   src: URL('./assets/styles/Montserrat/Montserrat-Medium.ttf') format('truetype');*/
-/*}*/
-
-/*@font-face {*/
-/*   font-family: 'Montserrat';*/
-/*   font-weight: 600;*/
-/*   src: URL('./assets/styles/Montserrat/Montserrat-SemiBold.ttf') format('truetype');*/
-/*}*/
-
-/*@font-face {*/
-/*   font-family: 'Montserrat';*/
-/*   font-weight: 800;*/
-/*   src: URL('./assets/styles/Montserrat/Montserrat-ExtraBold.ttf') format('truetype');*/
-/*}*/

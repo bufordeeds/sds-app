@@ -1,87 +1,122 @@
 <template>
-   <div>
-      <search-dialog v-model="show_search" @searched="on_search" />
-      <my-show-error v-model="dialog_show_error" :error="show_error_obj" />
+  <div>
+    <search-dialog
+      v-model="show_search"
+      @searched="on_search"
+    />
+    <my-show-error
+      v-model="dialog_show_error"
+      :error="show_error_obj"
+    />
+
+    <div class="page-title-app">
+      Manage Orders
+    </div>
+
+    <div class="content-container-bg">
+      <div class="admin-content-container">
+        <div style="display: flex">
+          <my-date-picker
+            v-model="date_start"
+            style="width: 150px"
+            label="Date From"
+            readonly
+            :on-change="get_orders"
+          />
+
+          <my-date-picker
+            v-model="date_end"
+            class="ml-2"
+            style="width: 150px"
+            label="Date To"
+            readonly
+            :on-change="get_orders"
+          />
+
+          <!--               <div style="width: 250px">-->
+          <!--                  <v-text-field-->
+          <!--                      v-model="search_txt"-->
+          <!--                      class="ml-2"-->
+          <!--                      label="search"-->
+          <!--                      outlined-->
+          <!--                      dense-->
+          <!--                      hide-details-->
+          <!--                      append-icon="search"-->
+          <!--                      clearable-->
+          <!--                  ></v-text-field>-->
+          <!--               </div>-->
+
+          <!--               <div style="width: 200px">-->
+          <!--                  <v-select-->
+          <!--                      class="ml-2"-->
+          <!--                      label="Field"-->
+          <!--                      outlined-->
+          <!--                      dense-->
+          <!--                      hide-details-->
+          <!--                      v-model="search_field"-->
+          <!--                      :items="['Customer', 'Dog Name', ]"-->
+          <!--                  ></v-select>-->
+          <!--               </div>-->
 
 
 
-      <div class="page-title-app">
-         Manage Orders
+          <v-btn
+            :loading="loading_download"
+            plain
+            class="ml-3 v-btn--outlined admin-button"
+            @click="download_data"
+          >
+            Download
+          </v-btn>
+
+          <v-btn
+            plain
+            class="ml-3 v-btn--outlined admin-button"
+            @click="show_search = true"
+          >
+            <v-icon>search</v-icon>Advanced Search
+          </v-btn>
+        </div>
+
+
+
+        <!--            <div style="display: flex" class="mt-3">-->
+        <!--               <v-btn small @click="download_data" :loading="loading_download"-->
+        <!--               >Download CSV</v-btn>-->
+        <!--            </div>-->
+
+
+
+        <template v-if="search_results_msg !== null">
+          <div
+            style="background-color: #eaeaea; "
+            class="mt-4 pl-2 pr-2 pt-1 pb-1"
+          >
+            Search Results For: {{ search_results_msg }}
+            <v-spacer />
+            <v-btn
+              class="mt-2"
+              small
+              @click="clear_search"
+            >
+              Clear Results
+            </v-btn>
+          </div>
+        </template>
+
+
+
+
+
+
+        <orders-table
+          :orders="orders"
+          @buy-label="on_buy_label"
+          @buy-checked-labels="buy_labels_bulk"
+        />
       </div>
-
-      <div class="content-container-bg">
-         <div class="admin-content-container">
-            <div style="display: flex">
-               <my-date-picker v-model="date_start" style="width: 150px" label="Date From" readonly
-                  :on-change="get_orders" />
-
-               <my-date-picker v-model="date_end" class="ml-2" style="width: 150px" label="Date To" readonly
-                  :on-change="get_orders" />
-
-               <!--               <div style="width: 250px">-->
-               <!--                  <v-text-field-->
-               <!--                      v-model="search_txt"-->
-               <!--                      class="ml-2"-->
-               <!--                      label="search"-->
-               <!--                      outlined-->
-               <!--                      dense-->
-               <!--                      hide-details-->
-               <!--                      append-icon="search"-->
-               <!--                      clearable-->
-               <!--                  ></v-text-field>-->
-               <!--               </div>-->
-
-               <!--               <div style="width: 200px">-->
-               <!--                  <v-select-->
-               <!--                      class="ml-2"-->
-               <!--                      label="Field"-->
-               <!--                      outlined-->
-               <!--                      dense-->
-               <!--                      hide-details-->
-               <!--                      v-model="search_field"-->
-               <!--                      :items="['Customer', 'Dog Name', ]"-->
-               <!--                  ></v-select>-->
-               <!--               </div>-->
-
-
-
-               <v-btn :loading="loading_download" plain class="ml-3 v-btn--outlined admin-button" @click="download_data">
-                  Download
-               </v-btn>
-
-               <v-btn plain class="ml-3 v-btn--outlined admin-button" @click="show_search = true">
-                  <v-icon>search</v-icon>Search
-               </v-btn>
-            </div>
-
-
-
-            <!--            <div style="display: flex" class="mt-3">-->
-            <!--               <v-btn small @click="download_data" :loading="loading_download"-->
-            <!--               >Download CSV</v-btn>-->
-            <!--            </div>-->
-
-
-
-            <template v-if="search_results_msg !== null">
-               <div style="background-color: #eaeaea; " class="mt-4 pl-2 pr-2 pt-1 pb-1">
-                  Search Results For: {{ search_results_msg }}
-                  <v-spacer />
-                  <v-btn class="mt-2" small @click="clear_search">
-                     Clear Results
-                  </v-btn>
-               </div>
-            </template>
-
-
-
-
-
-
-            <orders-table :orders="orders" @buy-label="on_buy_label" @buy-checked-labels="buy_labels_bulk" />
-         </div>
-      </div>
-   </div>
+    </div>
+  </div>
 </template>
 
 <script>

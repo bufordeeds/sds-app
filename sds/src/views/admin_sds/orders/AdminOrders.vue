@@ -104,11 +104,6 @@
           </div>
         </template>
 
-
-
-
-
-
         <orders-table
           :orders="orders"
           @buy-label="on_buy_label"

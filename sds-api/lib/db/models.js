@@ -771,8 +771,7 @@ module.exports.cart = function (){
 module.exports.order = function (){
 
    let order_status = [
-      'Received', 'Purchased', 'Printed', 'ReadyToShip', 'Shipped', 'InTransit',
-      'OutForDelivery', 'Delivered'
+      'Open', 'LabelCreated', 'Processing', 'Shipped', 'Delivered'
    ];
 
    let schema = {

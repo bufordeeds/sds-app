@@ -1,4 +1,6 @@
 :root {
+
+	--color-brand-accent-400: #7FD6FF;
 	--color-primary: #519dd9;
 	--color-primary-accent: #52bfff;
 	/*--color-primary-text: #00a3fc;*/
@@ -11,6 +13,7 @@
 	--color-txt-blue-dark: #064d83;
 
 	--color-txt-grey1: #696969;
+	--color-text-dark: #1D1D1F;
 
 	--color-button-active: #7ed7f6;
 	--color-button-inactive: #61b0e2;
@@ -36,7 +39,7 @@
 
 	--color-heading-grey: grey;
 
-	--color-bg: #f3f3f4;
+	--color-bg: ##FFFFFF;
 	--max-width: 1280px;
 
 	--height-fixed: 350px; /* height of header + footer */
@@ -114,13 +117,14 @@ hr {
 /* todo: track down other definitions of this class */
 .content-container-bg {
 	background-color: var(--color-bg);
-	padding: 20px 20px 100px 20px;
+	padding: 16px;
 	width: 100%;
 	/*margin: 10px;*/
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	min-height: calc(100vh - 344px);
+	overflow: auto;
 }
 
 .content-container-centered {

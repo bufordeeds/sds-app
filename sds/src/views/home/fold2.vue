@@ -10,7 +10,7 @@
           <my-text-input
             v-model="search_num"
             label="Enter 10 digit SDS number"
-            :rules="[isRequired, ]"
+            :rules="[isRequired,]"
           />
         </my-form>
         <v-btn
@@ -87,7 +87,9 @@
                   href="/learn-more/mission"
                   class="learn-more-txt"
                 >
-                  <div style="justify-content: flex-start; font-size:12pt; display: flex; align-items: center">
+                  <div
+                    style="justify-content: flex-start; color:#054e85; font-size:12pt; display: flex; align-items: center"
+                  >
                     Learn More
                     <div class="triangle-blue ml-1 " />
                   </div>
@@ -107,40 +109,40 @@
 import validation from "@/mixins/validation";
 
 export default {
-   name: "Fold2",
-   mixins: [validation],
-   props:{
-      searchNum: String,
-   },
+  name: "FoldTwo",
+  mixins: [validation],
+  props: {
+    searchNum: String,
+  },
 
-   data(){
-      return {
-         search_num: this.searchNum,
+  data() {
+    return {
+      search_num: this.searchNum,
+    }
+  },
+
+  watch: {
+    search_num(newVal) {
+      this.$emit('update:searchNum', newVal);
+    },
+
+    searchNum(newVal) {
+      if (newVal !== this.search_num) {
+        this.search_num = newVal;
       }
-   },
+    }
+  },
 
-   watch: {
-      search_num(newVal){
-         this.$emit('update:searchNum', newVal);
-      },
+  methods: {
+    search_user() {
 
-      searchNum(newVal){
-         if (newVal !== this.search_num){
-            this.search_num = newVal;
-         }
+      if (!this.$refs.form1.validate()) {
+        return;
       }
-   },
 
-   methods: {
-      search_user(){
-
-         if (!this.$refs.form1.validate()) {
-            return;
-         }
-
-         this.$emit('search-user', );
-      }
-   }
+      this.$emit('search-user',);
+    }
+  }
 
 
 }
@@ -148,88 +150,87 @@ export default {
 
 <style scoped>
 .fold2-container {
-   display: flex;
-   /*position: absolute;*/
-   width: 100%;
-   justify-content: center;
-   margin-top: -50px;
-   padding-bottom: 50px;
-   padding-left: 20px;
-   padding-right: 20px;
+  display: flex;
+  /*position: absolute;*/
+  width: 100%;
+  justify-content: center;
+  margin-top: -50px;
+  padding-bottom: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
 
 
 
 }
 
 .fold2 {
-   /*max-width: var(--max-width);*/
-   max-width: 1000px;
-   background-color: white;
-   width: 100%;
-   min-height: 200px;
-   display: flex;
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /*max-width: var(--max-width);*/
+  max-width: 1000px;
+  background-color: white;
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-   z-index: 1;
+  z-index: 1;
 
 }
 
 
 .member-lookup-box {
-   height: 100%;
-   width: 500px;
-   padding: 15px;
-   background-image: linear-gradient(to bottom, #60aee0, #2567b0);
+  height: 100%;
+  width: 500px;
+  padding: 15px;
+  background-image: linear-gradient(to bottom, #60aee0, #2567b0);
 }
 
 .fold2-label {
-   color: white;
-   /*font-size: 14pt;*/
+  color: white;
+  /*font-size: 14pt;*/
 
-   font-size: 16pt;
-   font-weight: 600;
-   /*padding-left: 20px;*/
-   /*padding-right: 10px;*/
+  font-size: 16pt;
+  font-weight: 600;
+  /*padding-left: 20px;*/
+  /*padding-right: 10px;*/
 }
 
 
 .learn-more-btn {
-   font-size: 16pt;
-   font-weight: 600;
-   color: var(--color-headline);
-   padding-left: 20px;
-   padding-right: 10px;
-   letter-spacing: -0.1px;
+  font-size: 16pt;
+  font-weight: 600;
+  color: var(--color-headline);
+  padding-left: 20px;
+  padding-right: 10px;
+  letter-spacing: -0.1px;
 
 
 }
 
 
-div >>> .v-btn {
-   border-radius: 0px;
+div>>>.v-btn {
+  border-radius: 0px;
 
 }
 
 
 .triangle {
-   --width: 5px;
-   width: 0;
-   height: 0;
-   border-top: var(--width) solid transparent;
-   border-bottom: var(--width) solid transparent;
-   border-left: 7px solid #ffffff;
-   margin-top: 2px;
+  --width: 5px;
+  width: 0;
+  height: 0;
+  border-top: var(--width) solid transparent;
+  border-bottom: var(--width) solid transparent;
+  border-left: 7px solid #ffffff;
+  margin-top: 2px;
 }
 
 
 .triangle-blue {
-   --width: 5px;
-   width: 0;
-   height: 0;
-   border-top: var(--width) solid transparent;
-   border-bottom: var(--width) solid transparent;
-   border-left: 7px solid #2d76ba;
-   margin-top: 2px;
+  --width: 5px;
+  width: 0;
+  height: 0;
+  border-top: var(--width) solid transparent;
+  border-bottom: var(--width) solid transparent;
+  border-left: 7px solid #2d76ba;
+  margin-top: 2px;
 }
-
 </style>

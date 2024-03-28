@@ -67,6 +67,7 @@
         <th>Tracking</th>
         <th>
           <v-btn
+            class="expand-colapse"
             icon
             @click="toggle_expand_all"
           >
@@ -79,7 +80,7 @@
         <!-----------------------main row-------------------------------------------------------->
         <tr
           :key="order._id"
-          :class="get_row_bg_class(ix)"
+          :class="[!order.loc_expanded && bottomBorder]"
         >
           <td>
             <v-checkbox
@@ -135,16 +136,19 @@
           <td>
             <v-btn
               v-if="order.easypost.shipment.postage_label == null"
+              class="buy-label"
               small
-              color="var(--color-btn)"
-              class="white--text"
+              color="var(--color-brand-accent-400)"
               :loading="order.loc_loading_label"
               @click="$emit('buy-label', order._id, ix)"
             >
               Buy Label
             </v-btn>
 
-            <div v-else>
+            <div
+              v-else
+              class="shippingCol"
+            >
               <a
                 v-if="order.easypost.shipment.postage_label.label_url"
                 :href="order.easypost.shipment.postage_label.label_url"
@@ -170,6 +174,7 @@
 
           <td>
             <v-btn
+            class="expand-colapse"
               icon
               @click="order.loc_expanded = !order.loc_expanded"
             >
@@ -183,6 +188,7 @@
         <tr
           v-if="order.loc_expanded"
           :key="order._id+'hidden'"
+          :class="[order.loc_expanded && bottomBorder ]"
         >
           <td
             colspan="10"
@@ -193,7 +199,6 @@
 
               <div
                 class="pa-2"
-                :class="get_row_bg_class(ix)"
                 style="width: 100%;"
               >
                 <div
@@ -276,29 +281,24 @@ export default {
    data(){
       return {
          check_all: false, //used to control if all rows should be checked
-
-
+        bottomBorder: 'bottomBorder',
 
 
          status_list: [
-            {txt: 'Received', val: 'Received'},
-            {txt: 'Printed', val: 'Printed'},
-            {txt: 'Ready To Ship', val: 'ReadyToShip'},
+            {txt: 'Open', val: 'Open'},
+            {txt: 'Label Created', val: 'LabelCreated'},
+            {txt: 'Processing', val: 'Processing'},
             {txt: 'Shipped', val: 'Shipped'},
-            {txt: 'In Transit', val: 'InTransit'},
-            {txt: 'Out For Delivery', val: 'OutForDelivery'},
             {txt: 'Delivered', val: 'Delivered'},
          ],
 
-         status_colors: {
-            Received: '#c86464',
-            Printed: '#cba638',
-            ReadyToShip: '#9ec437',
-            Shipped: '#9ec437',
-            InTransit: '#9ec437',
-            OutForDelivery: '#9ec437',
-            Delivered: '#32c318',
-         },
+        status_colors: {
+          Open: '#D2D2D7',
+          LabelCreated: '#D2D2D7',
+          Processing: '#82B6FA',
+          Shipped: '#7FCC62',
+          Delivered: '#7FCC62',
+        },
 
          sortCols:{
             date: 'descending',
@@ -408,11 +408,8 @@ export default {
          for (let k of keys){
             if (k !== col){
                this.sortCols[k] = 'none';
-               console.log('debug', k)
             }
          }
-
-
 
          //if sort set to none, sort by date
          if (dir === 'none'){
@@ -421,20 +418,12 @@ export default {
             return;
          }
 
-
-
-
          //sort rows by col
 
          let sortDir = 1;
          if (dir === 'descending'){
             sortDir = -1;
          }
-
-
-
-         console.log({col, sortDir})
-
 
          switch (col){
             case 'date':
@@ -490,34 +479,45 @@ export default {
 <style scoped>
 tr.col-headers {
 
-   background-color: #b7dbf1 !important;
-   /*background-color: #e0b7f1 !important;*/
+  background-color: #fff !important;
+  box-shadow: 0px -1px 0px 0px #151B25 inset;
 }
 
 th, td {
-   text-align: left;
-   padding: 10px;
+  text-align: left;
+  padding: 10px;
 }
+tr{
 
-
-
-.row-1{
-   background-color: #f7fbfd;
 }
-.row-2{
-   background-color: #e7f3fb;
-}
-
-
 
 .item-label{
-   color: dimgrey;
+  color: dimgrey;
+}
+
+.bottomBorder{
+  box-shadow: 0px -1px 0px 0px #A1A3A7 inset;
+}
+
+.shippingCol{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.buy-label{
+  color: #1D1D1F !important;
+}
+
+.expand-colapse{
+  background-color: #ffffff !important;
+  color: #616165 !important;
 }
 
 
 /*tr:nth-child(odd) {*/
-/*   background-color: #e7f3fb;*/
-/*}*/
+  /*   background-color: #e7f3fb;*/
+  /*}*/
 
 /*tr:nth-child(even) {*/
 /*   background-color: #f7fbfd;*/

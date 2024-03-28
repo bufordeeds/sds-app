@@ -266,25 +266,21 @@ export default {
       return {
          check_all: false, //used to control if all rows should be checked
 
-         status_list: [
-            {txt: 'Received', val: 'Received'},
-            {txt: 'Printed', val: 'Printed'},
-            {txt: 'Ready To Ship', val: 'ReadyToShip'},
-            {txt: 'Shipped', val: 'Shipped'},
-            {txt: 'In Transit', val: 'InTransit'},
-            {txt: 'Out For Delivery', val: 'OutForDelivery'},
-            {txt: 'Delivered', val: 'Delivered'},
-         ],
+        status_list: [
+          { txt: 'Open', val: 'Open' },
+          { txt: 'Label Created', val: 'LabelCreated' },
+          { txt: 'Processing', val: 'Processing' },
+          { txt: 'Shipped', val: 'Shipped' },
+          { txt: 'Delivered', val: 'Delivered' },
+        ],
 
-         status_colors: {
-            Received: '#c86464',
-            Printed: '#cba638',
-            ReadyToShip: '#9ec437',
-            Shipped: '#9ec437',
-            InTransit: '#9ec437',
-            OutForDelivery: '#9ec437',
-            Delivered: '#32c318',
-         },
+        status_colors: {
+          Open: '#D2D2D7',
+          LabelCreated: '#cba638',
+          Processing: '#82B6FA',
+          Shipped: '#7FCC62',
+          Delivered: '#7FCC62',
+        },
 
          sortCols:{
             date: 'descending',

@@ -3,14 +3,15 @@ FROM node:14
 # Create app directory
 WORKDIR /usr/src/app
 
-# Install app dependencies by copying
-# package.json AND package-lock.json
+# Install app dependencies
 COPY package*.json ./
-
 RUN npm install
 
 # Bundle app source
 COPY . .
+
+# Copy keys directory into the Docker image
+COPY keys/ keys/
 
 EXPOSE 8080
 CMD ["node", "lib/index.js"]

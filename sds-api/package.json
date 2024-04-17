@@ -6,7 +6,7 @@
 	"scripts": {
 		"db": "mongod --dbpath=./lib/db",
 		"server": "cross-env NODE_ENV=development nodemon lib/index.js",
-		"start": "concurrently \"npm run db\" \"npm run server\""
+		"start": "node lib/index.js"
 	},
 	"author": "",
 	"license": "ISC",

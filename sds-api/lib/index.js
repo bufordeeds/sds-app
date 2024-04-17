@@ -26,11 +26,13 @@ console.log('EASYPOST_API_KEY:', process.env.EASYPOST_API_KEY);
 // CORS Configuration
 const corsOptions = {
 	origin: [
-		'http://localhost:5300',
+		'http://localhost:5300', // Local frontend URL
+		'https://sds-app.vercel.app', // Production frontend URL
 		'https://servicedogstandards.org',
 		'https://testing.servicedogstandards.org',
 		'https://espy-test-app.ngrok.io'
-	]
+	],
+	optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
 // Logger Configuration
@@ -58,7 +60,7 @@ async function initializeApp() {
 function configureMiddlewares(app, dbc) {
 	app.disable('x-powered-by');
 	app.use(cors(corsOptions));
-	app.options('*', cors(corsOptions));
+	app.options('*', cors(corsOptions)); // Enable pre-flight across-the-board
 	app.use(logger);
 	app.use((req, res, next) => {
 		req.my_db = dbc.get_db();
@@ -68,7 +70,7 @@ function configureMiddlewares(app, dbc) {
 	app.use(bodyParser.urlencoded({ extended: false }));
 	app.use(bodyParser.json());
 	app.use((req, res, next) => {
-		req.body = sanitize(req.body);
+		req.body = sanitize(req.body); // Sanitize to avoid injection attacks
 		next();
 	});
 }
@@ -83,11 +85,11 @@ function configureRoutes(app) {
 }
 
 function startServer(app) {
-	const port = process.env.PORT;
+	const port = process.env.PORT || 5301; // Default to 5301 if PORT not set
 	const server = app.listen(port, () => {
 		logger.logger.info(`Server Started on port ${port}!`);
 	});
-	server.timeout = 240000;
+	server.timeout = 240000; // Server timeout set for long operations
 }
 
 process.on('unhandledRejection', (err) => {

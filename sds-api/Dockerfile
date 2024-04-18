@@ -10,8 +10,5 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-# Copy keys directory into the Docker image
-COPY keys/ keys/
-
 EXPOSE 8080
 CMD ["node", "lib/index.js"]

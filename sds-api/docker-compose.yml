@@ -6,7 +6,7 @@ services:
       - "8080:8080"
     environment:
       - MONGODB_URI=mongodb+srv://sds.swlir1l.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority&appName=sds
-      - MONGODB_TLS_CERTIFICATE_KEY_FILE=/secrets/X509-cert-1802861768711310914.pem  # Adjusted path for inside the container
+      - MONGODB_TLS_CERTIFICATE_KEY_FILE=/secrets/X509-cert-1802861768711310914.pem
       - NODE_ENV=production
     volumes:
-      - /Users/buford/dev/secrets:/secrets  # Maps the local secrets directory to /secrets inside the container
+      - /Users/buford/dev/secrets:/secrets

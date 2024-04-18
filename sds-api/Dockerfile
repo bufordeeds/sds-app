@@ -10,5 +10,7 @@ RUN npm install
 # Bundle app source
 COPY . .
 
+COPY ./keys /usr/src/app/keys
+
 EXPOSE 8080
 CMD ["node", "lib/index.js"]

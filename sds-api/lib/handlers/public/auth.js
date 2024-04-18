@@ -6,7 +6,7 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 // Import keys from the centralized key management module
-const { privateKey, publicKey } = require('../../../keys/keys.js');
+const { privateKey, publicKey } = require('../../keys/keys');
 
 const { ObjectId } = require('mongodb');
 const { DateTime } = require('luxon');

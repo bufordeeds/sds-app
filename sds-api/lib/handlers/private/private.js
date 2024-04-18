@@ -51,7 +51,7 @@ const s3 = new AWS.S3(s3_settings);
 
 //require authentication for these routes
 const auth_middleware = require('../../middleware/authentication');
-router.use(auth_middleware.auth);
+router.use(auth_middleware.authenticate);
 
 
 

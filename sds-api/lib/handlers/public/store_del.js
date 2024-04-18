@@ -37,7 +37,7 @@ const easypost = new EasyPost(process.env.EASYPOST_API_KEY);
 
 //decode token if it exists
 const auth_middleware = require('../../middleware/authentication');
-router.use(auth_middleware.DECODE_TOKEN_ONLY);
+router.use(auth_middleware.decodeTokenOnly);
 
 
 

@@ -1,98 +1,72 @@
 'use strict';
 
-// const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-const fs = require('fs');
-const publicKey = fs.readFileSync('./keys/rsa_public.key');
+const { publicKey } = require('../../keys/keys'); // Adjust the path as necessary
 
-let turn_off = false;
-// turn_off = true;
-
-if (process.env.NODE_ENV === 'production') {
-	turn_off = false;
+function logWarning() {
+	console.log(
+		'******************************************************************************************'
+	);
+	console.log(
+		'*                                                                                        *'
+	);
+	console.log(
+		'*                                         WARNING                                        *'
+	);
+	console.log(
+		'*                              Authentication is TURNED OFF!!                            *'
+	);
+	console.log(
+		'*                            Turn it back on before you forget                           *'
+	);
+	console.log(
+		'******************************************************************************************'
+	);
 }
 
-/**
- * Simple function to check that a request is from an authenticated user.  Basically just tries to decode the session
- * token with the public key.  If the decode is successful then considers the request to be authenticated.  Also this
- * middleware adds the property 'decoded_token' to the req object.
- *
- * @param req
- * @param res
- * @param next
- * @returns {Promise<void>}
- */
-async function authenticate(req, res, next) {
+async function baseAuthenticate(req, res, next, adminCheck = false) {
 	try {
-		//todo: figure out how to check for secure connection when proxing through nginx
-		//TODO: Add check to see if the ip address of the request is the same as the ip used to create the session
-
-		if (turn_off) {
-			console.log('');
-			console.log(
-				'******************************************************************************************'
-			);
-			console.log(
-				'*                                                                                        *'
-			);
-			console.log(
-				'*                                         WARNING                                        *'
-			);
-			console.log(
-				'*                              Authentication is TURNED OFF!!                            *'
-			);
-			console.log(
-				'*                                                                                        *'
-			);
-			console.log(
-				'*                      Turn it the F back on before you forget                           *'
-			);
-			console.log(
-				'*                                                                                        *'
-			);
-			console.log(
-				'******************************************************************************************'
-			);
-			console.log('');
+		if (process.env.TURN_OFF_AUTH === 'true') {
+			// Use an explicit environment variable check
+			logWarning();
 			req.decoded_token = {};
 			next();
 			return;
 		}
 
-		if (req.headers.authorization == undefined) {
-			res.status(403);
-			res.send('Authentication failed - missing auth header');
-			res.end();
+		if (!req.headers.authorization) {
+			res.status(403).send('Authentication failed - missing auth header');
 			return;
 		}
 
-		let token = req.headers.authorization.split(' ');
-		token = token[1];
-		let decoded = jwt.verify(token, publicKey, { algorithm: 'RS256' });
+		const token = req.headers.authorization.split(' ')[1];
+		const decoded = jwt.verify(token, publicKey, { algorithm: 'RS256' });
 		req.decoded_token = decoded;
+
+		if (adminCheck && decoded.acct_type !== 'SDS-ADMIN') {
+			res.status(403).send('Authentication failed - must be an admin');
+			return;
+		}
 
 		next();
 	} catch (e) {
-		res.status(403);
-		res.send('Authentication failed - token validation failed');
-		res.end();
+		res.status(403).send('Authentication failed - token validation failed');
 	}
 }
 
-/**
- * used when we want to decode the auth token, but don't require that the user be authenticated.
- * Example use case: routes related to shopping
- *
- */
-async function DECODE_TOKEN_ONLY(req, res, next) {
+const authenticate = (req, res, next) => baseAuthenticate(req, res, next);
+const admin_authenticate = (req, res, next) =>
+	baseAuthenticate(req, res, next, true);
+
+async function decodeTokenOnly(req, res, next) {
 	try {
 		if (req.headers.authorization) {
-			let token = req.headers.authorization.split(' ');
-			token = token[1];
-			let decoded = jwt.verify(token, publicKey, { algorithm: 'RS256' });
+			const token = req.headers.authorization.split(' ')[1];
+			const decoded = jwt.verify(token, publicKey, {
+				algorithm: 'RS256'
+			});
 			req.decoded_token = decoded;
 		}
-
 		next();
 	} catch (e) {
 		req.log.error(e);
@@ -100,77 +74,8 @@ async function DECODE_TOKEN_ONLY(req, res, next) {
 	}
 }
 
-/**
- * same as authenticate() but in addition checks if the session is for SDS-ADMIN user.
- * @param req
- * @param res
- * @param next
- * @returns {Promise<void>}
- */
-async function admin_authenticate(req, res, next) {
-	try {
-		//todo: figure out how to check for secure connection when proxing through nginx
-		//TODO: Add check to see if the ip address of the request is the same as the ip used to create the session
-
-		if (turn_off) {
-			console.log('');
-			console.log(
-				'******************************************************************************************'
-			);
-			console.log(
-				'*                                                                                        *'
-			);
-			console.log(
-				'*                                         WARNING                                        *'
-			);
-			console.log(
-				'*                              Authentication is TURNED OFF!!                            *'
-			);
-			console.log(
-				'*                                                                                        *'
-			);
-			console.log(
-				'*                      Turn it the F back on before you forget                           *'
-			);
-			console.log(
-				'*                                                                                        *'
-			);
-			console.log(
-				'******************************************************************************************'
-			);
-			console.log('');
-			req.decoded_token = {};
-			next();
-			return;
-		}
-
-		if (req.headers.authorization == undefined) {
-			res.status(403);
-			res.send('Authentication failed - missing auth header');
-			res.end();
-			return;
-		}
-
-		let token = req.headers.authorization.split(' ');
-		token = token[1];
-		let decoded = jwt.verify(token, publicKey, { algorithm: 'RS256' });
-		req.decoded_token = decoded;
-
-		if (decoded.acct_type !== 'SDS-ADMIN') {
-			res.status(403);
-			res.send('Authentication failed - must be an admin');
-			res.end();
-			return;
-		}
-
-		next();
-	} catch (e) {
-		res.status(403);
-		res.send('Authentication failed - token validation failed');
-		res.end();
-	}
-}
-
-module.exports.auth = authenticate;
-module.exports.admin_auth = admin_authenticate;
-module.exports.DECODE_TOKEN_ONLY = DECODE_TOKEN_ONLY;
+module.exports = {
+	authenticate,
+	admin_authenticate,
+	decodeTokenOnly // Renamed for consistency with JavaScript naming conventions
+};

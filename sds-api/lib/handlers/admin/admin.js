@@ -21,7 +21,7 @@ const easypost = new EasyPost(process.env.EASYPOST_API_KEY);
 
 //require authentication for these routes
 const auth_middleware = require('../../middleware/authentication');
-router.use(auth_middleware.admin_auth);
+router.use(auth_middleware.admin_authenticate);
 
 
 

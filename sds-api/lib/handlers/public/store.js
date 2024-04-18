@@ -19,7 +19,7 @@ const auth_middleware = require('../../middleware/authentication');
 const router = express.Router();
 
 // Middleware
-router.use(auth_middleware.DECODE_TOKEN_ONLY);
+router.use(auth_middleware.decodeTokenOnly);
 
 // Configurations
 initializeConfigurations();
@@ -36,7 +36,7 @@ function initializeConfigurations() {
 }
 
 // Middleware
-router.use(auth_middleware.DECODE_TOKEN_ONLY);
+router.use(auth_middleware.decodeTokenOnly);
 
 // Configurations
 initializeConfigurations();

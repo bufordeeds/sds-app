@@ -11,7 +11,7 @@ sds-api/lib/db/*
 .env.*.local
 .env-dev
 .env-prod
-/keys/*
+/keys/*.key
 auth0_settings.json
 DO_spaces_config.json
 

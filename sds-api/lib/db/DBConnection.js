@@ -33,9 +33,9 @@ class DBConnection {
 			this._connection_options = {
 				useNewUrlParser: true,
 				useUnifiedTopology: true,
-				tls: true, // Enable TLS for secure connection, adjust as needed
-				tlsCertificateKeyFile:
-					process.env.MONGODB_TLS_CERTIFICATE_KEY_FILE // Specify the TLS certificate file if needed
+				tls: false, // Enable TLS for secure connection, adjust as needed
+				// tlsCertificateKeyFile:
+				// 	process.env.MONGODB_TLS_CERTIFICATE_KEY_FILE // Specify the TLS certificate file if needed
 			};
 		} else {
 			// Local development or non-production uses a simpler connection string

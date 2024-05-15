@@ -628,8 +628,8 @@ async function create_user(req, res) {
 	} catch (err) {
 		res.log.error(err);
 		res.status(500);
-		res.send(err.message)
-		// res.send('There was an internal server error');
+		// res.send(err.message)
+		res.send('There was an internal server error');
 	}
 }
 

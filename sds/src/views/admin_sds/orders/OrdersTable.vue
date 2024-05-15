@@ -189,7 +189,7 @@ export default {
           Open: '#D2D2D7',
           LabelCreated: '#D2D2D7',
           Processing: '#82B6FA',
-          Shipped: '#7FCC62',
+          Shipped: '#D5EDCB',
           Delivered: '#7FCC62',
         },
 

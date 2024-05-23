@@ -31,7 +31,7 @@
         style="display: flex; justify-content: center; font-size: 18pt"
       >
         {{ user.account_type === 'TRAINER' ? "Pro ": '' }}
-        Solutions for Service Dog{{ heading_txt_completed }}s
+        Solutions for Service Dog {{ heading_txt_completed }}s
       </div>
 
       <v-row>
@@ -647,10 +647,9 @@ import behaviorStandards from "@/views/signup/behaviorStandards";
 
 import {DateTime} from 'luxon';
 import _ from 'lodash';
-import StatusLabel from "@/components/StatusLabel";
 export default {
    name: "AccountHome",
-   components: {StatusLabel, behaviorStandards},
+   components: {behaviorStandards},
    mixins: [data_getters, utilities],
    data () {
       return {
@@ -690,7 +689,6 @@ export default {
       },
 
       done_biz_info(){
-         let ans = false;
          let b = _.get(this.user, 'trainer_info.business_name', null) !== null;
          // let b = _.get(this.user, 'trainer_info.business_name', null) !== null;
          return b;
@@ -780,7 +778,7 @@ export default {
       percent_time_left(){
          if (this.$auth.profile.acct_active && this.user.account_status != undefined){
             console.log('debug')
-            let start = DateTime.fromISO(this.user.account_status.date_accepted);
+
             let end = DateTime.fromISO(this.user.account_status.date_expiry);
             let now = DateTime.local();
             // return end.diff(now).as('days')/end.diff(start).as('days') *100;

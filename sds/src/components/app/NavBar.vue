@@ -64,8 +64,7 @@
 
       <!--</v-menu>-->
 
-      <v-btn v-if="!isAdmin" ref="btn_learn_more" class="nav-bar-btn" text large color="white"
-        @click="click_learn_more()">
+      <v-btn v-if="!isAdmin" ref="btn_learn_more" class="v-btn theme--light site-header-nav-item--link" @click="click_learn_more()">
         Learn More
       </v-btn>
 
@@ -566,6 +565,22 @@ export default {
 
 
 <style scoped>
+:root {
+  --font-family: "Inter", "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+  --font-size-base: 18px;
+
+  /* Text colors */
+  --text-white: #FFFFFFFF;
+  --text-default: #425466;
+  --text-light: #a4a4a9;
+  --text-medium: #616165;
+  --text-dark: #0a2540;
+  --text-light-on-dark: var(--text-white);
+  --text-link: #0066cc;
+  --text-highlight: var(--text-link);
+  --text-error: #e22718;
+}
+
 .arrow-up {
   width: 0;
   height: 0;
@@ -573,10 +588,6 @@ export default {
   border-right: 15px solid transparent;
 
   border-bottom: 15px solid white;
-}
-
-.nav-bar-btn {
-  color: #1D1D1F !important;
 }
 
 .learn-more-mobile {

@@ -59,7 +59,7 @@
               <div style="display: flex; flex-wrap: wrap;">
                 <div style="width: 100%; margin-top: -10px; margin-bottom: 10px;">
                   <!--<img src="./assets/images/logo/SDSLogoforFooter.svg" style="max-width: 350px">-->
-                  <img src="./assets/images/content/ServiceDogStandardsFooterAsset25.svg" style="max-width: 350px">
+                  <img src="./assets/images/content/logo-white.svg" style="max-width: 350px">
                 </div>
 
 

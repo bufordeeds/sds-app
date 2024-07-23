@@ -5,7 +5,7 @@
   <div class="section-container pt-1">
     <div data-v-3dd2e005="" class="section-layout">
       <div class="angled-ribbon">
-        <canvas id="gradient-canvas" data-js-darken-top data-transition-in>
+        <canvas id="gradient-canvas-basic" data-js-darken-top data-transition-in>
         </canvas>
       </div>
       <div data-v-3dd2e005="" class="section-inner-container pt-15">
@@ -130,6 +130,7 @@
   </div>
 
 </div> <!-- END Content wrapper -->
+
 </template>
 
 <script>

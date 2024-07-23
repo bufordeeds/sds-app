@@ -1,318 +1,135 @@
 <template>
+
   <div>
-    <div class="page-title">
-      About Us
-    </div>
-
-    <div
-      class="content-container-bg pl-0 pr-0"
-      style="min-height: inherit; padding-bottom: 10px; "
-    >
-      <!--<div class="content-container lm-title">-->
-      <!--   How Do I Get A Service Dog?-->
-      <!--</div>-->
-      <!--<img src="./images/iStock-953742852.jpg" width="100%">-->
-
-      <div class="content-container-sm">
-        <div class="bread-crumb-title">
-          Getting started
+    <!-- START Content wrapper -->
+    <div class="section-container pt-1">
+      <div data-v-3dd2e005="" class="section-layout">
+        <div class="angled-ribbon">
+          <canvas id="gradient-canvas-sds1" data-js-darken-top data-transition-in>
+          </canvas>
         </div>
-        <div class="lm-title">
-          How Do I Get A Service Dog?
+        <div data-v-3dd2e005="" class="section-inner-container pt-15">
+          <div data-v-3dd2e005="" class="row">
+            <div data-v-3dd2e005="" class="col-md-6 col-12">
+              <div data-v-3dd2e005="" class="small-header-line">About Us</div>
+              <h1 data-v-3dd2e005="" class="mt-4 pb-8">How Do I Get a Service Dog?</h1>
+              <h3 class="pb-6">Empowering Independence: Your Guide to Obtaining a Service Dog</h3>
+              <div data-v-3dd2e005="" class="txt-box">Owning a service dog can be life-changing for individuals with disabilities. These specially trained canine partners provide invaluable assistance, fostering greater independence and confidence in daily life. The good news is that you have options! You can choose to train your own dog to become a service animal, or partner with a professional program that provides fully trained service dogs. This guide will equip you with the knowledge to make informed decisions, exploring the pros and cons of both approaches, and ensuring a successful journey towards a fulfilling partnership with a service dog.</div>
+            </div>
+            <div data-v-3dd2e005="" class="col-md-6 col-12">
+              <div style="width:100%;" class="mt-12 bg-none">
+                <img src="../learnMore/images/iStock-953742852.jpg" alt="" class="bg-none Card--shadowLarge"
+                  style="width:100%;height:auto;border-radius:24px">
+              </div>
+            </div>
+          </div>
         </div>
-        <share-section />
       </div>
     </div>
-
-
-
-
-
-
-
-
-    <div class="content-container-bg pt-0">
-      <div class="content-container-sm">
-        <div class="section">
-          <div class="lm-heading">
-            Service Dogs do not always make life easier
+  
+    <div class="section-container pt-16">
+      <div data-v-3dd2e005="" class="section-inner-container pt-0">
+        <div data-v-3dd2e005="" class="row pb-8">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h2 data-v-3dd2e005="" class="pb-8">Considering Self-Training vs. Professional Programs</h2>
+              <p>The path to acquiring a service dog hinges on your individual circumstances and experience. Here's a breakdown of the two main options:</p>
+            </section>
           </div>
-
-
-          Before you begin to explore partnering with a Service Dog, you should know that they do not always make life easier and you should fully consider it.
-          <span class="br" />
-          Please read <a href="https://anythingpawsable.com/before-partnering-with-a-service-dog/">5 Questions to Ask Before Partnering With a Service Dog</a>
-
-
-          <div class="lm-heading">
-            Understand your disability and how a service dog can help
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+              <h3 data-v-3dd2e005="">Self-Training</h3>
           </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12">
+            <div data-v-3dd2e005="" class="column-layout3">
+              <section class="txt-box-side">
+                <h4 class="copy-title pb-3">The Choice</h4>
+                <p class="small-content">You can train your own dog to become a service animal, provided it possesses the temperament and aptitude for the required tasks.</p>
+              </section>
+              <section class="txt-box-side">
+                <h4 class="copy-title pb-3">Benefits</h4>
+                <ul>
+                <li><b>Stronger Bond: </b>Training your dog fosters a unique and powerful connection between you and your service partner.</li>
+                <li><b>Tailored Tasks: </b>You can customize the training program to address your specific needs and disability.</li>
+                <li><b>Cost-Effective: </b>Self-training can be a significant cost savings compared to professional programs. While there will still be expenses for food, veterinary care, and basic supplies, you won't have the training program fees.</li>
 
-          The first step is to know what you want. You should be able to clearly explain the limitations of you disability and what problems you encounter that can be assisted with a Service Dog. Do you need mobility assistance? Auditory alerts for doorbells? Sit down and make a simple list of the tasks you need performed.
-
-
-          <div class="lm-heading">
-            Simply being disabled and having a dog isn't enough
+                </ul>
+              </section>
+              <section class="txt-box-side">
+                <h4 class="copy-title pb-3">Challenges</h4>
+                <ul>
+                  <li><b>Time Commitment: </b>Training a service dog requires hundreds of hours of dedicated work and consistent effort.</li>
+                  <li><b>Expertise Required: </b>Understanding dog behavior, training techniques, and disability-specific tasks necessitates significant research and learning.</li>
+                  <li><b>Success Rate: </b>Self-training doesn't guarantee success. Some dogs may not possess the temperament or aptitude for service dog work.</li>
+                </ul>
+              </section>
+            </div>
           </div>
-
-          Many disabled people have pets. Service Dogs must be trained to perform specific physical tasks or work that you would otherwise have difficulty completing on your own due to your disability.
-
-          <div class="lm-heading">
-            Finding the right dog
+        </div>
+        <div data-v-3dd2e005="" class="row pt-15">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+              <h3 data-v-3dd2e005="">Professional Programs</h3>
           </div>
-
-          Although Service Dogs come in all breeds and sizes, not all dogs are cut out to become Service Dogs. Your pet may be lovely — in fact we are sure your pet is wonderful! However a good pet does not necessarily make a good service animal.
-          <span class="br" />
-          It’s important to consider demeanor, size, trainability and energy level to fid the right match. A large german shepherd can be excellent for visual impairment and mobility guidance but a smaller animal might be a better fit if you have limited physical space or need medicine retrieved from small spaces.
-
-
-
-          <div class="lm-heading">
-            Training your Service Dog
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12">
+            <div data-v-3dd2e005="" class="column-layout3">
+              <section class="txt-box-side">
+                <h4 class="copy-title pb-3">The Choice</h4>
+                <p class="small-content">Partnering with a qualified service dog trainer or organization specializing in disabilities similar to yours can offer valuable guidance and support.</p>
+              </section>
+              <section class="txt-box-side">
+                <h4 class="copy-title pb-3">Benefits</h4>
+                <ul>
+                  <li><b>Expert Guidance: </b>Experienced trainers can assess your needs, match you with a suitable dog, and provide comprehensive training guidance.</li>
+                  <li><b>Increased Success Rate: </b>Professional programs have a higher success rate in producing qualified service dogs.</li>
+                  <li><b>Reduced Time Commitment:</b> Programs handle a significant portion of the training, reducing your time investment.</li>
+                </ul>
+              </section>
+              <section class="txt-box-side">
+                <h4 class="copy-title pb-3">Considerations</h4>
+                <ul>
+                  <li><b>Trainer Qualifications: </b>Look for trainers certified by reputable organizations and experienced in training dogs for disabilities similar to yours.</li>
+                  <li><b>Program Reputation: </b>Research the program's reputation, success rates, and training methods.</li>
+                  <li><b>Cost and Waiting Lists: </b>Professional programs typically range in cost from $10,000 to $50,000, depending on the level of training, the organization, and the dog's breed. Some programs may offer financial aid or fundraising options. Be prepared for potential waiting lists, as the demand for qualified service dogs often exceeds supply.</li>
+                </ul>
+              </section>
+            </div>
           </div>
-
-
-          Some people choose to receive their dog fully trained, others choose to work with a private trainer or train their dog themselves.
-          <span class="br" />
-          If you don’t have experience training animals, we recommend you work with a trainer or get a dog from an organization that provides fully trained service dogs.
-          <span class="br" />
-          There is no “formal” test for Service Dogs because the tasks Service Dogs can be trained to perform vary too widely. Furthermore, under the law it is illegal for anyone to ask for proof of training or certification. The ADA is written this way because it is a civil rights law designed level the playing field for disabled people — not add challenges for them. If any form of "paperwork," "certification" or "licensing" were required Service Dog handlers could and would be stopped and forced to show proof to whomever asks, or, if police are only allowed to ask, police would be routinely called on Service Dog owners who are just trying to go about their day.
-
-
-          <div class="lm-heading">
-            How do I find a trainer?
-          </div>
-
-
-          Some people are surprised to learn that there are no legally-mandated training standards for Service Dogs — or even for dog trainers. Interview trainers and find someone you feel is a good fit for you and your dog.
-          <span class="br" />
-          Depending on your disability, you may wish to search for trainers or organizations that specialize in training animals for tasks related to the type of disability you have. Organizations often have waiting lists, some may charge nothing, others may charge $20,000 or more depending on a variety of factors.
-          <span class="br" />
-          You may also develop a list of tasks on your own and then contact a local dog trainer. Tasks or work are things your dog is trained to perform to help mitigate your disability.
-
-          <span class="br" />
-          <a href="https://servicedogstandards.org/findTrainers">Service Dog Standards Trainer Search</a><br>
-          <a href="https://nadoi.org/">The National Association of Obedience Dog Instructors</a><br>
-          <a href="http://www.ccpdt.org/"> Certification Council for Professional Dog Trainers</a><br>
-
-
-
-          <div class="lm-heading">
-            Work or tasks must be trained until reliable
-          </div>
-
-
-          For your own safety, Service Dogs should be able to perform their trained work or tasks on cue, every time they’re needed — even if there are distractions.
-          <span class="br" />
-          Some people are surprised to learn that there are no legally-mandated training standards for Service Dogs — or even for Service Dog trainers.
-          <span class="br" />
-          There is no “formal” test for Service Dogs because the tasks Service Dogs can be trained to perform vary too widely. Furthermore, under the law it is illegal for anyone to ask for proof of training or certification. The ADA is written this way because it is a civil rights law designed level the playing field for disabled people — not add challenges for them. If any form of "paperwork," "certification" or "licensing" were required Service Dog handlers could and would be stopped and forced to show proof to whomever asks, or, if police are only allowed to ask, police would be routinely called on Service Dog owners who are just trying to go about their day.
-
-          <div class="lm-heading">
-            How do I know what tasks qualify?
-          </div>
-          There’s no list of “qualifying” mental, physical or sensory disabilities because it would be nearly impossible to create. The only factor is that your dog is trained to perform work or tasks you would otherwise have difficulty completing due to your disability.
-          <span class="br" />
-          Under the law, people are allowed to ask you what specific physical tasks your dog performs and you should be prepared to explain. Providing comfort or emotional support are not qualifying tasks.
-
-          <div class="lm-heading">
-            Be prepared to Answer Questions
-          </div>
-
-          Under the law, people are prohibited from asking you about your disability. However, you may be asked to describe the work or tasks your dog is trained to perform. This could reveal the nature of your disability. This may be unavoidable, however you are allowed to choose to share trained work or tasks that are less revealing.
-          <span class="br" />
-          Saying “I am blind” or “I have multiple sclerosis” or “I have PTSD” do not describe tasks or work.  Under federal law, people may ask you two questions:
-          <ol>
-            <li>
-              Is this a service dog?
-            </li>
-            <li>
-              What work or tasks has this dog been trained to perform?
-            </li>
-          </ol>
-
-          Anything your dog does naturally or has taught itself to do does not qualify as a task or work. As well, any behavior that most dogs do naturally does not qualify as a task or work.
-          <span class="br" />
-          Please read <a href="https://anythingpawsable.com/service-dog-tasks-must-be-trained/">Why Natural Behaviors Aren’t Trained Service Dog Tasks</a>
-
-
-          <ul>
-            <li>
-              “Emotional support” is not a qualifying task.
-            </li>
-            <li>
-              The word "tasks" in the legal definition above is plural, meaning more than one. We encourage our members to have dogs which are trained in more than one task.
-            </li>
-            <li>
-              Providing comfort or companionship is not a qualifying task.
-            </li>
-            <li>
-              All tasks or work must be things someone has trouble completing due to their disability.
-            </li>
-            <li>
-              Guard dog duty tasks are prohibited.
-            </li>
-          </ul>
         </div>
       </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--<div class="content-container-bg pt-0" >-->
-    <!--   <div class="content-container-sm">-->
-
-    <!--      <div class="section">-->
-
-    <!--         Before we begin, please note that our focus is on Service Dogs, not Emotional Support Dogs, Therapy Dogs or other types of working dogs or other species of animals. Emotional Support Animals (ESAs) and Therapy Dogs are important types of working dogs, but they are not Service Dogs. It is very important to <a href="https://anythingpawsable.com/the-difference-between-service-dogs-therapy-dogs-emotional-support-animals-and-more/">understand the difference</a>.-->
-
-
-    <!--         <div class=" lm-heading">Simply being disabled and having a dog isn't enough</div>-->
-    <!--         <span class="">Simply being being disabled or having a disease and having a dog isn't enough to make a dog a Service Dog. Many disabled people have pets. Service Dogs must be trained to perform specific physical tasks or work that you would otherwise have difficulty completing on your own due to your disability. Tasks or work should be things that are physically necessary. Under the law, people are allowed to ask you what specific physical tasks your dog performs to help with your disability and you should be prepared to explain. Providing comfort or emotional support are not qualifying tasks.</span>-->
-
-    <!--         Some people are surprised to learn that there are no legally-mandated training standards for Service Dogs — or even for Service Dog trainers. There is no “formal” test for Service Dogs because the tasks Service Dogs can be trained to perform vary too widely. Furthermore, under the law it is illegal for anyone to ask for proof of training or certification. The ADA is written this way because it is a civil rights law designed level the playing field for disabled people — not add challenges for them. If any form of "paperwork," "certification" or "licensing" were required Service Dog handlers could and would be stopped and forced to show proof to whomever asks, or, if police are only allowed to ask, police would be routinely called on Service Dog owners who are just trying to go about their day.-->
-
-
-    <!--         <div class=" lm-heading">Service Dogs do not always make life easier</div>-->
-    <!--         <p>-->
-    <!--            Before you begin to explore partnering with a Service Dog, you should know that they do not always make life easier and you should fully consider it.-->
-    <!--         </p>-->
-
-
-
-    <!--         <div class="box-txt-container">-->
-    <!--            <hr />-->
-    <!--            <div class="box-txt">-->
-    <!--               Please read <a href="https://www.anythingpawsable.com/before-partnering-with-a-service-dog/">5 Questions to Ask Before Partnering With a Service Dog</a>-->
-    <!--            </div>-->
-
-    <!--            <hr />-->
-    <!--         </div>-->
-
-
-
-    <!--         <div class=" lm-heading">Fully training a Service Dog requires hundreds of hours of hard work</div>-->
-    <!--         If you don't already have a list of specific trained tasks, the first thing you should do is sit down and write out a list of specific things you would like your dog to perform.-->
-
-    <!--         Tasks or work should be things that are physically necessary. Under the law, people are allowed to ask you what specific physical tasks your dog performs and you should be prepared to explain. Providing comfort, emotional support, guarding or protection duties are not qualifying tasks.-->
-
-
-    <!--         <div class=" lm-heading">Not all dogs are suitable for Service Dog work</div>-->
-    <!--         <span class="">Not all dogs are cut out to function as Service Dogs and many washout, so you should be emotionally prepared should your dog not work out. Under the law it is permissible for individuals to train their own Service Dog, however, we recommend you still work with a private trainer or get a dog from an organization that provides fully trained service dogs if you don't have experience training animals. </span>-->
-
-
-    <!--         <div class=" lm-heading">Your behavior and that of your Service Dog matters</div>-->
-    <!--         <strong>Behavior is the best indication of whether or not a Service Dog team — meaning the dog <em>and</em> human — is well trained.</strong> If a Service Dog or their human handler is interrupting a business’ daily operation with their behavior, causing problems in a housing situation or behaves in a way that is dangerous a manager or business owner has every right to ask the person to remove the dog from the premises, “Service Dog” or not.-->
-
-    <!--         <span style="color: #808080;"><strong>Every Service Dog handler is solely responsible for their actions. You may not blame any group of people as a whole for the actions of a few, whether by race, nationality, religion, ability or disability.</strong></span>-->
-
-    <!--         In other words, if a customer or tenant causes damage or is disruptive, the same logic and laws apply as if they had a wheelchair or no disability at all. Damage or disruptive behavior should be dealt with as if it was done by any adult or child.-->
-
-    <!--         Examples of inappropriate behavior includes barking not related to signaling on cue related to a person's disability, growling, stealing food, knocking people over, jumping, or<a title="Things Service Dogs in Public Should and Should Not Do" href="https://www.anythingpawsable.com/things-service-dogs-public/"> other behaviors</a>.-->
-
-
-
-    <!--         <div class="box-txt-container">-->
-    <!--            <hr />-->
-    <!--            <div class="box-txt">-->
-    <!--               Please read <a href="https://www.anythingpawsable.com/things-service-dogs-public/">Things Service Dogs in Public Should and Should Not Do</a>-->
-    <!--            </div>-->
-    <!--            <hr />-->
-    <!--         </div>-->
-
-
-    <!--         <div class=" lm-heading">Work or tasks must be trained until reliable</div>-->
-    <!--         Many disabled people have pets, and some of those pet dogs display natural behaviors that are useful, but they are different from Service Dog tasks which are trained until they are reliable. Tasks which aren’t extremely reliable and performed on cue every single time, even with distractions, can be very dangerous.-->
-
-
-    <!--         <div class=" lm-heading">Under federal law, members of the public are allowed to ask you two questions:</div>-->
-    <!--         <ol>-->
-    <!--            <li>Is this a service dog?</li>-->
-    <!--            <li>What work or tasks has this dog been trained to perform?</li>-->
-    <!--         </ol>-->
-
-    <!--         <p>-->
-    <!--            Anything your dog does naturally or has taught itself to do does not qualify as a task or work. As well, any behavior that most dogs do naturally does not qualify as a task or work.-->
-    <!--         </p>-->
-
-
-    <!--         &lt;!&ndash;<hr />&ndash;&gt;-->
-    <!--         &lt;!&ndash;<p style="text-align: center;">Please read <a href="https://anythingpawsable.com/service-dog-tasks-must-be-trained/">Why Natural Behaviors Aren’t Trained Service Dog Tasks</a></p>&ndash;&gt;-->
-    <!--         &lt;!&ndash;<hr />&ndash;&gt;-->
-
-    <!--         <div class="box-txt-container">-->
-    <!--            <hr />-->
-    <!--            <div class="box-txt">-->
-    <!--               Please read <a href="https://anythingpawsable.com/service-dog-tasks-must-be-trained/">Why Natural Behaviors Aren’t Trained Service Dog Tasks</a>-->
-    <!--            </div>-->
-    <!--            <hr />-->
-    <!--         </div>-->
-
-
-    <!--         <ul>-->
-    <!--            <li>“Emotional support” is not a qualifying task.</li>-->
-    <!--            <li>The word "tasks" in the legal definition above is plural, meaning more than one. We encourage our members to have dogs which are trained in more than one task.</li>-->
-    <!--            <li>Providing comfort or companionship is not a qualifying task.</li>-->
-    <!--            <li>All tasks or work must be things someone has trouble completing due to their disability.</li>-->
-    <!--            <li>Guard dog duty tasks are prohibited.</li>-->
-    <!--         </ul>-->
-    <!--         <p>-->
-    <!--            This means under federal law you must be prepared to describe some of the necessary tasks or work your dog is trained to perform, even if describing those tasks reveals the nature of your disability.-->
-    <!--         </p>-->
-
-
-    <!--         <p>-->
-    <!--            While under the law members of the public are prohibited from asking you about your disability, describing the tasks or work your dog performs sometimes ends up revealing the nature of your disability. This may be unavoidable, however you are not required to discuss your disability beyond describing the tasks or work your dog performs.-->
-    <!--         </p>-->
-
-
-    <!--         <p>-->
-    <!--            Saying “I am blind” or “I have multiple sclerosis” or “I have PTSD” do not describe tasks or work.-->
-    <!--         </p>-->
-
-
-
-    <!--         <div class=" lm-heading">How do I know what tasks qualify?</div>-->
-    <!--         <p>-->
-    <!--            There’s no list of “accepted” mental, physical or sensory disabilities because it would be nearly impossible to create. The only factor is that your dog is trained to perform work or tasks you would otherwise have difficulty completing due to your disability.-->
-    <!--         </p>-->
-
-
-    <!--         <p>-->
-    <!--            Under the law, people are allowed to ask you what specific physical tasks your dog performs and you should be prepared to explain. Providing comfort or emotional support are not qualifying tasks.-->
-    <!--         </p>-->
-
-
-
-    <!--         <div class=" lm-heading">How do I find a trainer?</div>-->
-    <!--         <span class="">Depending on your disability, you may wish to search for trainers or organizations that specialize in training animals for tasks related to the type of disability you have. Organizations often have waiting lists, some may charge nothing, others may charge $20,000 or more depending on a variety of factors.</span><br class="" /><br class="" />-->
-    <!--         <div class=" lm-heading">Service Dog Standards Agreement</div>-->
-    <!--         The purpose of <a href="https://servicedogstandards.org/">Service Dog Standards</a> is to add clarity to the process and responsibilities of being partnered with a Service Dog. At our heart, we hope to encourage adherence to the ADA by requiring our Registrants to understand that intentionally misrepresenting an animal as Service Animal for any reason is not only unethical, it is also in violation of federal and local laws.-->
-
-
-
-
-
-
-    <!--      </div>-->
-
-
-    <!--   </div>-->
-    <!--</div>-->
-  </div>
-</template>
+    <div class="section-container bg-dark" style="margin-top:0px;display:flex;justify-content:center">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row pb-16">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <h2 data-v-3dd2e005="" class="text-white pb-12">Additional Considerations</h2>
+            <section class="theme-dark pb-4">
+              <div class="dot full-width mb-8"></div>
+              <p class="text-white">Regardless of the path you choose, remember that owning a service dog is a significant commitment. Beyond the initial training, ongoing care and maintenance are essential. Carefully evaluate your lifestyle to ensure you can accommodate the responsibilities involved, including food, veterinary care, and regular training reinforcement.</p>
+              <div class="dot full-width mt-8"></div>
+            </section>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12">
+            <a data-v-3dd2e005="" href="/signup"
+              class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--router theme--dark v-size--default"
+              style="padding:0 16px">
+              <span class="standard-button-label text-dark">Join today</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div> <!-- END Content wrapper -->
+  
+  </template>
 
 <script>
 import shareSection from "@/views/learnMore/shareSection2";
@@ -323,15 +140,4 @@ name: "HowDoIGetServiceDog",
 }
 </script>
 
-<style scoped src="./common.css">
-
-</style>
-
-<style scoped>
-/*.heading2{*/
-/*    font-size: 18pt;*/
-/*    font-weight: 500;*/
-/*    margin-bottom: 5px;*/
-/*    padding-top: 20px;*/
-/*}*/
-</style>
+<style scoped src="../common.css"></style>

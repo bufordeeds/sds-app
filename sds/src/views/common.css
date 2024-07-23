@@ -161,7 +161,7 @@
   --secondary-hot-pink-500: #ed008c;
   --secondary-orange-200: #f4ceb3;
   --secondary-orange-400: #f39a5b;
-  --secondary-orange-500: #f17218;
+--secondary-orange-500: #f17218;
   --secondary-mustard-200: #fcf3d1;
   --secondary-mustard-400: #f8e08c;
   --secondary-mustard-500: #f1c118;
@@ -317,6 +317,10 @@ p, span, .body-standard-regular {
   text-transform: none;
 }
 
+.text-bold {
+  font-weight: bold;
+}
+
 .body-standard-bold {
   font-size: 1rem;
   font-family: var(--font-family);
@@ -434,11 +438,24 @@ p, span, .body-standard-regular {
   text-transform: uppercase;
 }
 
-.v-btn__content {
+button.site-header-nav-item--link {
+  background: none;
+}
+button.site-header-nav-item--link.v-btn:before {
+  background: none;
+}
+button > .v-btn__content {
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
   color: var(--text-white);
 }
+button.site-header-nav-item--link > .v-btn__content {
+  color: var(--text-dark);
 
-/* Page title (use only once) */
+}
+
 .standard-button-label {
   font-size: 0.833rem;
   font-family: var(--font-family);
@@ -842,6 +859,7 @@ a {
   width: 100%;
   height: 1px;
 }
+
 
 
 /* Find out why "ismobile" isn't working on ourMission.vue */
@@ -1257,14 +1275,29 @@ ul li, .small-content {
   overflow-y: hidden;
 }
 
-#gradient-canvas {
+#gradient-canvas-sds1 {
   width:100%;
   height:100%;
   --gradient-color-1: #00ad8f; 
   --gradient-color-2: #00ace1; 
   --gradient-color-3: #08e2ff;  
   --gradient-color-4: #2c3795;
+  background-image: var(--gradients-sds-1);
+}
+#gradient-canvas-sds2 {
+  width:100%;
+  height:100%;
+  background-image: var(--gradients-sds-2);
+}
+#gradient-canvas-sds3 {
+  width:100%;
+  height:100%;
   background-image: var(--gradients-sds-3);
+}
+#gradient-canvas-basic {
+  width:100%;
+  height:100%;
+  background-image: var(--gradients-basic);
 }
 
 /*

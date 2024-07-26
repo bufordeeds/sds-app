@@ -1299,6 +1299,13 @@ ul li, .small-content {
   height:100%;
   background-image: var(--gradients-basic);
 }
+.section-container.product-hero-section > img {
+  background: none;
+  box-shadow: var(--card-shadow-large);
+  width:100%;
+  height:auto;
+  border-radius:24px;
+}
 
 /*
 .gradient {

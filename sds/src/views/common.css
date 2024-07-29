@@ -94,16 +94,14 @@
 
   /* Overlay/Scrim */
   --surface-light-overlay: #c1c9d2;
+
   --surface-light-link-bg-10: var(--text-link);
 
-  /* Cards on cards */
   --surface-light-white-50: var(--text-white);
 
-  /* Panels on Cards */
   --surface-light-pale-on-light-bg: #1d1d1d;
   --surface-light-light-bg-on-dark: #1d1d1d;
 
-  /* Ghost buttons, No-fill backgrounds */
   --surface-light-transparent: var(--text-white);
   --surface-light-white: var(--text-white);
   --surface-light-pale: #f6f9fc;
@@ -161,18 +159,18 @@
   --secondary-hot-pink-500: #ed008c;
   --secondary-orange-200: #f4ceb3;
   --secondary-orange-400: #f39a5b;
---secondary-orange-500: #f17218;
+  --secondary-orange-500: #f17218;
   --secondary-mustard-200: #fcf3d1;
   --secondary-mustard-400: #f8e08c;
   --secondary-mustard-500: #f1c118;
 
   /* Gradients */
-  --gradients-sds-1: linear-gradient(to bottom, #00ad8f 0%, #00ace1 33.33%, #008fcc 66.67%, #2c3795 100%);
-  --gradients-sds-2: linear-gradient(to bottom, #2c3795 0%, #ed008c 100%);
-  --gradients-sds-3: linear-gradient(to bottom, #ed008c 10%, #2e368f 90%);
-  --gradients-sds-4: linear-gradient(to bottom, #2b3894 10%, #008fcc 40%, #00abe0 60%, #00ad8f 90%);
-  --gradients-basic: linear-gradient(to bottom, #054896 0%, #0db2fa 100%);
-  --gradients-brand: linear-gradient(to bottom, #00ac8f 0%, #7be7f9 23.55%, #004eff 37.92%, #07338e 51.97%, #0c1f3c 100%);
+  --gradient-sds-1: linear-gradient(to bottom, #00ad8f 0%, #00ace1 33.33%, #008fcc 66.67%, #2c3795 100%);
+  --gradient-sds-2: linear-gradient(to bottom, #2c3795 0%, #ed008c 100%);
+  --gradient-sds-3: linear-gradient(to bottom, #ed008c 10%, #2e368f 90%);
+  --gradient-sds-4: linear-gradient(to bottom, #2b3894 10%, #008fcc 40%, #00abe0 60%, #00ad8f 90%);
+  --gradient-basic: linear-gradient(to bottom, #054896 0%, #0db2fa 100%);
+  --gradient-brand: linear-gradient(to bottom, #00ac8f 0%, #7be7f9 23.55%, #004eff 37.92%, #07338e 51.97%, #0c1f3c 100%);
 
   /* angled-ribbon */
   --gradientAngle: -12deg;
@@ -204,28 +202,20 @@ html, body {
   font-size: var(--font-size-base);
 }
 
-.bg-white {
-  background-color: var(--surface-light-white);
-}
-
-.bg-pale {
-  background-color: var(--surface-light-pale);
-}
-
-.bg-light {
-  background-color: var(--surface-light-light);
-}
-
-.bg-dark {
-  background-image: var(--surface-gradient-dark);
-}
-
 .text-white {
   color: var(--text-white);
 }
-
+.text-secondary {
+  color: var(--brand-accent-200);
+}
+.text-highlight {
+  color: var(--brand-accent-500);
+}
 .txt-box-side.theme-dark {
   border-color: var(--border-white);
+}
+.text-accent-200 {
+  color: var(--brand-accent-200) !important;
 }
 
 /* Page title (use only once) */
@@ -303,7 +293,10 @@ h5 {
   line-height: 24px;
   letter-spacing: 0.2px;
 }
-
+.heading-color-default {
+  font-weight: 500;
+  color: var(--text-default);
+}
 /* Body text */
 p, span, .body-standard-regular {
   font-size: 1rem;
@@ -596,23 +589,68 @@ button.site-header-nav-item--link > .v-btn__content {
   box-shadow: 0px 50px 100px -20px #32325d, 0px 30px 60px -30px #000000;
 }
 
-/* Fancy Drop Shadows */
-.Card--shadowXSmall {
+.content-card-xsmall {
   box-shadow: var(--card-shadow-xsmall);
 }
-.Card--shadowSmall {
+.content-card-small {
   box-shadow: var(--card-shadow-small);
 }
-.Card--shadowMedium {
+.content-card-medium {
   box-shadow: var(--card-shadow-medium);
 }
-.Card--shadowLarge {
+.content-card-large {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  padding: 32px 48px;
+  background-color: #fff;
+  border-top: inset var(--text-link) 8px;
+  border-radius: 12px;
   box-shadow: var(--card-shadow-large);
 }
-.Card--shadowXLarge {
+.content-card-xlarge {
   box-shadow: var(--card-shadow-xlarge);
 }
-.Card--shadowLargeInset {
+
+.bg-white {
+  background-color: var(--surface-light-white);
+}
+.bg-pale {
+  background-color: var(--surface-light-pale);
+}
+.bg-light {
+  background-color: var(--surface-light-light);
+}
+.bg-primary-200 {
+  background-color: var(--surface-dark-primary-200);
+}
+.bg-primary-400 {
+  background-color: var(--surface-dark-primary-400);
+}
+.bg-primary-500 {
+  background-color: var(--surface-dark-primary-500);
+}
+.bg-dark {
+  background-image: var(--surface-gradient-dark);
+}
+
+.card--shadowXSmall {
+  box-shadow: var(--card-shadow-xsmall);
+}
+.card--shadowSmall {
+  box-shadow: var(--card-shadow-small);
+}
+.card--shadowMedium {
+  box-shadow: var(--card-shadow-medium);
+}
+.card--shadowLarge {
+  box-shadow: var(--card-shadow-large);
+}
+.card--shadowXLarge {
+  box-shadow: var(--card-shadow-xlarge);
+}
+.card--shadowLargeInset {
   box-shadow: var(--card-shadow-large-inset);
 }
 /* END Fancy Drop Shadows */
@@ -624,13 +662,9 @@ button.site-header-nav-item--link > .v-btn__content {
   background-color: var(--bg);
 }
 
-/*------- END ROB styles -------*/
-
 .sds-max-width {
   max-width: 1280px;
 }
-
-
 
 hr {
   /*get rid of side wierdness */
@@ -732,6 +766,13 @@ hr {
   background-color: white;
 }
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+
+}
 .flex-centered-content {
   display: flex;
   justify-content: center;
@@ -850,14 +891,14 @@ a {
   width: 24px;
   height: 24px;
   border-radius: 24px;
-  background-color: var(--surface-light-white);
+  background-color: var(--brand-accent-500);
   text-align: center;
   line-height: 24px;
   color: var(--text-white);
 }
 .dot.full-width {
   width: 100%;
-  height: 1px;
+  height: 2px;
 }
 
 
@@ -1030,35 +1071,6 @@ ol, ul {
 
 /*----------Styles by Rob 07-16-2024----------------*/
 
-/* Elevations */
-.content-card-xsmall {
-  box-shadow: var(--card-shadow-xsmall);
-}
-
-.content-card-small {
-  box-shadow: var(--card-shadow-small);
-}
-
-.content-card-medium {
-  box-shadow: var(--card-shadow-medium);
-}
-
-.content-card-large {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  align-self: stretch;
-  padding: 32px 48px;
-  background-color: #fff;
-  border-top: inset var(--text-link) 8px;
-  border-radius: 12px;
-  box-shadow: var(--card-shadow-large);
-}
-
-.content-card-xlarge {
-  box-shadow: var(--card-shadow-xlarge);
-}
-
 .home {
   background-color: var(--color-bg);
   /*background-color: #853bcd;*/
@@ -1146,7 +1158,7 @@ ol, ul {
   border-left: 2px solid var(--text-highlight);
   padding-right: 10px;
   padding-left: 20px;
-  max-width: 500px;
+  /*max-width: 500px;*/
 }
 
 
@@ -1244,6 +1256,9 @@ ul li, .small-content {
   background-size: 250%;
   padding-bottom: 164px;
 }
+.angled-section-bottom-push {
+  margin-bottom: 192px;
+}
 
 .angled-section-bottom.light {
   background-image: linear-gradient(169deg, var(--surface-pale) 25%, var(--surface-pale) 75%, #ffffff 0);
@@ -1282,22 +1297,31 @@ ul li, .small-content {
   --gradient-color-2: #00ace1; 
   --gradient-color-3: #08e2ff;  
   --gradient-color-4: #2c3795;
-  background-image: var(--gradients-sds-1);
+  background-image: var(--gradient-sds-1);
 }
 #gradient-canvas-sds2 {
   width:100%;
   height:100%;
-  background-image: var(--gradients-sds-2);
+  background-image: var(--gradient-sds-2);
 }
 #gradient-canvas-sds3 {
   width:100%;
   height:100%;
-  background-image: var(--gradients-sds-3);
+  background-image: var(--gradient-sds-3);
+}
+#gradient-canvas-sds4 {
+  width:100%;
+  height:100%;
+  --gradient-color-1: #2c3795;
+  --gradient-color-2: #08e2ff;  
+  --gradient-color-3: #00ace1; 
+  --gradient-color-4: #00ad8f; 
+  background-image: var(--gradient-sds-4);
 }
 #gradient-canvas-basic {
   width:100%;
   height:100%;
-  background-image: var(--gradients-basic);
+  background-image: var(--gradient-basic);
 }
 .section-container.product-hero-section > img {
   background: none;
@@ -1442,16 +1466,16 @@ ul li, .small-content {
   position: relative;
   max-width: var(--max-width);
   width: 100%;
-  padding: 128px 50px; /*80px 50px 30px 50px;*/
+  padding: 128px 48px; /*80px 50px 30px 50px;*/
 }
 
 .section-inner-container.ismobile {
-  padding: 75px 10px 75px 10px; /*50px 10px 30px 10px;*/
+  padding: 72px 10px 72px 10px; /*50px 10px 30px 10px;*/
 }
 
 @media (max-width: 700px) {
   .section-inner-container {
-    padding: 75px 10px 75px 10px; /*50px 10px 30px 10px;*/
+    padding: 72px 10px 72px 10px; /*50px 10px 30px 10px;*/
   }  
 }
 
@@ -1465,10 +1489,8 @@ ul li, .small-content {
 /*FAQ*/
 
 .faq-header {
-  font-weight: bold;
-  font-size: 16pt;
-  /*background: #dfeef3;*/
-
+  font-weight: 500;
+  font-size: inherit;
 }
 
 .faq-body {
@@ -1521,10 +1543,7 @@ a.learn-more-txt:focus {
   justify-content: center;
   align-items: center;
   height: 100%;
-
   padding: 40px 20px 40px 20px;
-
-
 }
 
 .box-header {

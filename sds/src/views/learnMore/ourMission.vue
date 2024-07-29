@@ -20,7 +20,7 @@
             <div data-v-3dd2e005="" class="col-md-6 col-12">
               <div style="width:100%;" class="mt-12 bg-none">
                 <!-- <img :src="header_image" alt=""> -->
-                 <img src="../learnMore/images/iStock-953742852.jpg" alt="" class="bg-none Card--shadowLarge"
+                 <img src="../learnMore/images/iStock-953742852.jpg" alt="" class="bg-none card--shadowLarge"
                   style="width:100%;height:auto;border-radius:24px">
                </div>
             </div>
@@ -51,8 +51,8 @@
     </div>
 
     <!-- 1-column layout Bottom Angle BG Light:: -->
-    <div class="section-container angled-section-bottom light">
-      <div data-v-3dd2e005="" class="section-inner-container">
+    <div class="section-container angled-section-bottom light pb-16">
+      <div data-v-3dd2e005="" class="section-inner-container mb-16">
         <div data-v-3dd2e005="" class="row">
           <div data-v-3dd2e005="" class="col-md-8 col-12">
             <section>
@@ -77,10 +77,17 @@
         </div>
         <div data-v-3dd2e005="" class="row">
           <div data-v-3dd2e005="" class="col-12">
-            <div data-v-3dd2e005="" class="column-layout3">
-              <div v-html="section_03_body_col1"></div>
-              <div v-html="section_03_body_col2"></div>
-              <div v-html="section_03_body_col3"></div>
+            <div data-v-3dd2e005="" class="column-layout2">
+              <section>
+                <div v-html="section_03_body_col1" class="pb-4"></div>
+                <div v-html="section_03_body_col2" class="pb-4"></div>
+                <div v-html="section_03_body_col3"></div>
+              </section>
+              <section>
+                <div class="content-card-large">
+                  <h2 class="copy-title" style="font-weight:300">Together, we can create a more welcoming environment for service dog teams everywhere.</h2>
+                </div>
+              </section>
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@
     <div class="section-container pt-1">
       <div data-v-3dd2e005="" class="section-layout">
         <div class="angled-ribbon">
-          <canvas id="gradient-canvas-sds2" data-js-darken-top data-transition-in>
+          <canvas id="gradient-canvas-sds1" data-js-darken-top data-transition-in>
           </canvas>
         </div>
         <div data-v-3dd2e005="" class="section-inner-container pt-15">

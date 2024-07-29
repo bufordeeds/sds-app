@@ -5,7 +5,7 @@
   <div class="section-container pt-1">
     <div data-v-3dd2e005="" class="section-layout">
       <div class="angled-ribbon">
-        <canvas id="gradient-canvas-sds2" data-js-darken-top data-transition-in>
+        <canvas id="gradient-canvas-sds4" data-js-darken-top data-transition-in>
         </canvas>
       </div>
       <div data-v-3dd2e005="" class="section-inner-container pt-15">
@@ -13,7 +13,7 @@
           <div data-v-3dd2e005="" class="col-md-6 col-12">
             <div data-v-3dd2e005="" class="small-header-line">{{ overline }}</div>
             <h1 data-v-3dd2e005="" class="mt-4 pb-8">{{ page_title }}</h1>
-            <div data-v-3dd2e005="">{{ page_description }}</div>
+            <div data-v-3dd2e005="" v-html="page_description"></div>
           </div>
           <div data-v-3dd2e005="" class="col-md-6 col-12">
             <div style="width:100%;" class="mt-12 bg-none">
@@ -150,11 +150,11 @@ export default {
     return {
       overline: 'About us',
       page_title: 'What should a service dog act like?',
-      page_description: 'Service dogs are more than just pets. They are highly trained partners that empower individuals with disabilities to navigate daily life with greater independence and confidence. The key difference between a well-trained service dog and a pet lies in their behavior. While there\'s no federally mandated certification for service dogs in the US, their public behavior speaks volumes.',
+      page_description: "Service dogs are more than just pets. They are highly trained partners that empower individuals with disabilities to navigate daily life with greater independence and confidence. <b>The key difference between a well-trained service dog and a pet lies in their behavior.</b> While there's no federally mandated certification for service dogs in the US, their public behavior speaks volumes.",
       header_image: '../learnMore/images/iStock-953742852.jpg',
 
       section_01_title: 'Every Service Dog Team is Unique',
-      section_01_body: "<p>Service dog teams come in all shapes and sizes. Each partnership is built on the specific needs of the handler and the unique skillset of the dog. The tasks a service dog performs will vary depending on the disability it's trained to assist with. However, one common thread unites all legitimate service dog teams: individually tailored training to meet the handler's disability-related needs.</p><p>This customized training equips the dog to perform specific tasks that directly address the handler's limitations. These tasks go beyond what a well-trained pet can offer and are performed on cue, reliably and precisely. A service dog's response to commands should be predictable, a testament to the extensive training behind it.</p>",
+      section_01_body: "<p>Service dog teams come in all shapes and sizes. Each partnership is built on the specific needs of the handler and the unique skillset of the dog. The tasks a service dog performs will vary depending on the disability it's trained to assist with. However, one common thread unites all legitimate service dog teams: <b>individually tailored training to meet the handler's disability-related needs.</b></p><p>This customized training equips the dog to perform specific tasks that directly address the handler's limitations. These tasks go beyond what a well-trained pet can offer and are performed on cue, reliably and precisely. A service dog's response to commands should be predictable, a testament to the extensive training behind it.</p>",
 
       section_02_title: "Emotional Support vs. Trained Tasks",
       section_02_body_col1: "<section><p>Emotional support, while valuable, is not a recognized service dog task. All dogs can provide companionship and emotional comfort. However, emotional support cannot be trained. In contrast, a service dog can be trained for deep pressure stimulation to calm a handler during a panic attack, or to alert them to an approaching person.</p></section>",

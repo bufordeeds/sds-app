@@ -20,7 +20,7 @@
             </div>
             <div data-v-3dd2e005="" class="col-md-6 col-12">
               <div style="width:100%;" class="mt-12 bg-none">
-                <!--<img :src="header_image" alt="" class="bg-none Card--shadowLarge" style="width:100%;height:auto;border-radius:24px">-->
+                <!--<img :src="header_image" alt="" class="bg-none card-shadowLarge" style="width:100%;height:auto;border-radius:24px">-->
                 <img src="../learnMore/images/iStock-953742852.jpg" alt="" class="bg-none Card--shadowLarge"
                   style="width:100%;height:auto;border-radius:24px">
               </div>

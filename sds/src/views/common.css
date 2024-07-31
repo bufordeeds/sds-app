@@ -311,7 +311,7 @@ p, span, .body-standard-regular {
 }
 
 .text-bold {
-  font-weight: bold;
+  font-weight: bold !important;
 }
 
 .body-standard-bold {
@@ -335,6 +335,9 @@ p, span, .body-standard-regular {
   letter-spacing: 0.2px;
   text-decoration: none;
   text-transform: none;
+}
+a.text-link {
+  text-decoration: underline;
 }
 
 /* Page title (use only once) */
@@ -1159,6 +1162,10 @@ ol, ul {
   padding-right: 10px;
   padding-left: 20px;
   /*max-width: 500px;*/
+}
+
+.text-box-indent {
+  padding-left: 1.0rem;
 }
 
 

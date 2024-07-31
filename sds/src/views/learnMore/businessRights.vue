@@ -1,273 +1,241 @@
 <template>
+
   <div>
-    <div class="page-title">
-      For The Public
-    </div>
 
-    <div
-      class="content-container-bg pl-0 pr-0"
-      style="min-height: inherit; padding-bottom: 10px; "
-    >
-      <div class="content-container-sm">
-        <div class="bread-crumb-title">
-          For Businesses
+    <!-- Product Hero section:: -->
+    <div class="section-container product-hero-section pt-1">
+      <div data-v-3dd2e005="" class="section-layout">
+        <div class="angled-ribbon">
+          <canvas id="gradient-canvas-basic" data-js-darken-top data-transition-in>
+          </canvas>
         </div>
-        <div class=" lm-title">
-          Business Rights Concerning Service Dogs
-        </div>
-      </div>
-
-      <share-section />
-      <!--<img src="./images/business-sign.jpg" width="100%">-->
-    </div>
-
-    <div class="content-container-bg pt-0">
-      <div class="content-container-sm">
-        <div class="section">
-          <p>
-            If a person verbally claims their animal is a Service Animal, you must allow them to enter — however that does not mean it is a free-for-all.
-          </p>
-
-
-          <p>
-            If a customer causes damage, you are fully permitted to charge them the cost for cleaning and or repairing the room — whether the damage was done by a Service Dog, an adult or a child. Any property damage or civil damage is the sole responsibility of the Service Dog owner. Service Dog owners are required to clean up after their animals.
-          </p>
-
-          <div class="lm-heading ">
-            What if someone is afraid or has allergies?
-          </div>
-
-          Allergies and fear of animals are generally not valid reasons for denying access or refusing service to people with Service Animals.
-          <span class="br" />
-          Violators of the ADA can be required to pay money damages and penalties. Additionally, you must modify your businesses’ policies, practices, or procedures to permit the use of a Service Animal by an individual with a disability.
-
-
-
-          <div class="lm-heading ">
-            When can you ask a Service Dog to leave?
-          </div>
-          You may ask a Service Dog to leave if (1) the animal is out of control and the animal’s owner does not take effective action to control it (for example, a dog that barks repeatedly during a movie) or (2) the animal poses a direct threat to the health or safety of others.
-
-
-          <div class="lm-heading ">
-            Service Dogs, Their Owners and You Are Not Perfect
-          </div>
-
-          While Service Animals are expected to behave appropriately at all times, please remember they are not robots. They have bad days and sometimes feel under the weather — just like you!
-
-          <div class="pt-4 pb-4">
-            <v-divider />
-            <div
-              style="display: flex; justify-content: center"
-              class="pa-4"
-            >
-              <span class="mr-2">
-                View
-              </span>
-
-              <a href="https://cdn.anythingpawsable.com/uploads/2018/05/service_animals_20102.pdf">
-                The U.S. Department of Justice Requirements for Service Animals
-              </a>
+        <div data-v-3dd2e005="" class="section-inner-container pt-15">
+          <div data-v-3dd2e005="" class="row">
+            <div data-v-3dd2e005="" class="col-md-6 col-12">
+              <div data-v-3dd2e005="" class="small-header-line">{{ overline }}</div>
+              <h1 data-v-3dd2e005="" class="mt-4 pb-8">{{ page_title }}</h1>          
+              <div data-v-3dd2e005="">{{ page_description }}</div>
+              <div class="flex-row" v-html="page_bullet_01" style="padding:8px 0;gap:16px"></div>
+              <div class="flex-row" v-html="page_bullet_02" style="padding:8px 0;gap:16px"></div>
+              <div class="flex-row" v-html="page_bullet_03" style="padding:8px 0;gap:16px"></div>
+              <div class="flex-row" v-html="page_bullet_04" style="padding:8px 0;gap:16px"></div>
+              <div class="flex-row" v-html="page_bullet_05" style="padding:8px 0;gap:16px"></div>
             </div>
-            <v-divider />
+            <div data-v-3dd2e005="" class="col-md-6 col-12">
+              <div style="width:100%;" class="mt-12 bg-none">
+                <!--<img :src="header_image" alt="" class="bg-none card-shadowLarge" style="width:100%;height:auto;border-radius:24px">-->
+                <img src="../learnMore/images/iStock-953742852.jpg" alt="" class="bg-none card--shadowLarge"
+                  style="width:100%;height:auto;border-radius:24px">
+              </div>
+            </div>
           </div>
-
-
-
-          <div class="lm-heading ">
-            Video Training Tool for Businesses and Police Departments
-          </div>
-
-          An excellent video describing access for Service and Assistance Dogs, produced by the American Hotel & Lodging Association. It was created by the AHLA’s affiliate, the California Hotel & Lodging Association. It is also a helpful training video for police departments who may be called upon to help Service and Assistance Dogs gain access and/or issue citations to violators.
-
-
-          <div
-            style="display: flex; justify-content: center"
-            class="mt-5 mb-5"
-          >
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/zIa1Vs4jf7s"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            />
-          </div>
-
-
-          “Welcome Service Animals” explains what a Service Animal is and how common types of Service Animals assist their disabled owners. This video is produced by the American Hotel & Lodging Association. It was created by the AHLA’s affiliate, the California Hotel & Lodging Association Educational Foundation with funding from American Express. It is also a helpful training video for hotels and restaurants.
-
-
-
-          <div
-            style="display: flex; justify-content: center"
-            class="mt-5 mb-5"
-          >
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/WyKld0UXjcY"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            />
-          </div>
-
-          Under the Americans with Disabilities Act (ADA), businesses and organizations that serve the public must allow people with disabilities to bring their Service Animals into all areas of the facility where customers are normally allowed to go. This federal law applies to all businesses open to the public, including restaurants, hotels, taxis and shuttles, grocery and department stores, hospitals and medical offices, theaters, health clubs, parks, and zoos.
-
-
-          <ul>
-            <li>
-              Businesses may ask if an animal is a Service Animal or ask what tasks the animal has been trained to perform, but cannot require special ID cards for the animal or ask about the person’s disability.
-            </li>
-            <li>
-              People with disabilities who use Service Animals cannot be charged extra fees, isolated from other patrons, or treated less favorably than other patrons. However, if a business such as a hotel normally charges guests for damage that they cause, a customer with a disability may be charged for damage caused by his or her Service Animal.
-            </li>
-            <li>
-              A person with a disability cannot be asked to remove his Service Animal from the premises unless: (1) the animal is out of control and the animal’s owner does not take effective action to control it (for example, a dog that barks repeatedly during a movie) or (2) the animal poses a direct threat to the health or safety of others. In these cases, the business should give the person with the disability the option to obtain goods and services without having the animal on the premises.
-            </li>
-            <li>
-              Businesses that sell or prepare food must allow service animals in public areas even if state or local health codes prohibit animals on the premises.
-            </li>
-            <li>
-              A business is not required to provide care or food for a service animal or provide a special location for it to relieve itself.
-            </li>
-            <li>
-              Allergies and fear of animals are generally not valid reasons for denying access or refusing service to people with service animals.
-            </li>
-            <li>
-              Violators of the ADA can be required to pay money damages and penalties.
-            </li>
-          </ul>
-
-          <p class="mt-4">
-            If you have additional questions concerning the ADA and service animals, please call the Department’s
-            ADA Information Line at (800) 514-0301 (voice) or (800) 514-0383 (TTY) or visit the ADA Business Connection at
-            <a href="https://www.ada.gov/">ada.gov</a>.
-          </p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          <!--<div style="height:500px"></div>-->
-
-
-
-
-          <!--<div class="pt-4 pb-4">-->
-          <!--   <v-divider/>-->
-          <!--   <div style="display: flex; justify-content: center" class="pa-4">-->
-          <!--      <span class="mr-2">-->
-          <!--      View-->
-          <!--      </span>-->
-
-          <!--      <a href="https://cdn.anythingpawsable.com/uploads/2018/05/service_animals_20102.pdf">-->
-          <!--         The U.S. Department of Justice Requirements for Service Animals-->
-          <!--      </a>-->
-          <!--   </div>-->
-          <!--   <v-divider/>-->
-
-          <!--</div>-->
-
-
-          <!--<p>-->
-          <!--   An excellent video describing access for Service and Assistance Dogs, produced by the American Hotel & Lodging Association. It was created by the AHLA’s affiliate, the California Hotel & Lodging Association. It is also a helpful training video for police departments who may be called upon to help Service and Assistance Dogs gain access and/or issue citations to violators.-->
-          <!--</p>-->
-
-          <!--&lt;!&ndash;<div style="display: flex; justify-content: center">&ndash;&gt;-->
-          <!--&lt;!&ndash;   <iframe width="560" height="315" src="https://www.youtube.com/embed/zIa1Vs4jf7s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>&ndash;&gt;-->
-          <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-
-          <!--<p class="mt-4">-->
-          <!--   “Welcome Service Animals” explains what a Service Animal is and how common types of Service Animals assist their disabled owners. This video is produced by the American Hotel & Lodging Association. It was created by the AHLA’s affiliate, the California Hotel & Lodging Association Educational Foundation with funding from American Express. It is also a helpful training video for hotels and restaurants.-->
-          <!--</p>-->
-
-
-          <!--<div style="display: flex; justify-content: center">-->
-          <!--   <iframe width="560" height="315" src="https://www.youtube.com/embed/WyKld0UXjcY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
-          <!--</div>-->
-
-          <!--<p class="mt-4">-->
-          <!--   Under the Americans with Disabilities Act (ADA), businesses and organizations that serve the public must allow people with disabilities to bring their Service Animals into all areas of the facility where customers are normally allowed to go. This federal law applies to all businesses open to the public, including restaurants, hotels, taxis and shuttles, grocery and department stores, hospitals and medical offices, theaters, health clubs, parks, and zoos.-->
-          <!--</p>-->
-
-
-          <!--<ul>-->
-          <!--   <li>-->
-          <!--      Businesses may ask if an animal is a Service Animal or ask what tasks the animal has been trained to perform, but cannot require special ID cards for the animal or ask about the person’s disability.-->
-          <!--   </li>-->
-          <!--   <li>-->
-          <!--      People with disabilities who use Service Animals cannot be charged extra fees, isolated from other patrons, or treated less favorably than other patrons. However, if a business such as a hotel normally charges guests for damage that they cause, a customer with a disability may be charged for damage caused by his or her Service Animal.-->
-          <!--   </li>-->
-          <!--   <li>-->
-          <!--      A person with a disability cannot be asked to remove his Service Animal from the premises unless: (1) the animal is out of control and the animal’s owner does not take effective action to control it (for example, a dog that barks repeatedly during a movie) or (2) the animal poses a direct threat to the health or safety of others. In these cases, the business should give the person with the disability the option to obtain goods and services without having the animal on the premises.-->
-          <!--   </li>-->
-          <!--   <li>-->
-          <!--      Businesses that sell or prepare food must allow service animals in public areas even if state or local health codes prohibit animals on the premises.-->
-          <!--   </li>-->
-          <!--   <li>-->
-          <!--      A business is not required to provide care or food for a service animal or provide a special location for it to relieve itself.-->
-          <!--   </li>-->
-          <!--   <li>-->
-          <!--      Allergies and fear of animals are generally not valid reasons for denying access or refusing service to people with service animals.-->
-          <!--   </li>-->
-          <!--   <li>-->
-          <!--      Violators of the ADA can be required to pay money damages and penalties.-->
-          <!--   </li>-->
-          <!--</ul>-->
-
-
-          <!--<p class="mt-4">-->
-          <!--   If you have additional questions concerning the ADA and service animals, please call the Department’s-->
-          <!--   ADA Information Line at (800) 514-0301 (voice) or (800) 514-0383 (TTY) or visit the ADA Business Connection at-->
-          <!--   <a href="https://www.ada.gov/">ada.gov</a>.-->
-          <!--</p>-->
         </div>
       </div>
     </div>
-  </div>
+
+    <div id="section_01" class="section-container pt-16">
+      <div data-v-3dd2e005="" class="section-inner-container pt-0">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h2 data-v-3dd2e005="" v-html="section_01_title" class="pb-8"></h2>
+              <div v-html="section_01_body"></div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section_02" class="section-container bg-pale">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row pb-4">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h3 data-v-3dd2e005="">{{ section_02_title }}</h3>
+            </section>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <div v-html="section_02_body_01"></div>
+            <div v-html="section_02_body_02"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section_03" class="section-container">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-9 col-12">
+            <section>
+              <h3 data-v-3dd2e005="" class="pb-9">{{ section_03_title }}</h3>
+            </section>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12">
+            <section>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/zIa1Vs4jf7s?si=O5HFjZ274XC4eETu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section_04" class="section-container bg-pale">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row pb-4">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h3 data-v-3dd2e005="">{{ section_04_title }}</h3>
+            </section>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <div v-html="section_04_body_01"></div>
+            <div v-html="section_04_body_02" class="pb-16"></div>
+            <div v-html="section_04_body_03"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section_05" class="section-container angled-section-bottom bg-dark">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12">
+            <section>
+              <h3 data-v-3dd2e005="" class="text-white pb-16">{{ section_05_title }}</h3>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/WyKld0UXjcY?si=qRmpL8_ZL92OJyis" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section_06" class="section-container">
+      <div data-v-3dd2e005="" class="section-inner-container pt-0">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h3 data-v-3dd2e005="" class="pb-8">{{ section_06_title }}</h3>
+              <div data-v-3dd2e005="" class="pb-8">{{ section_06_body_01 }}</div>
+              <div data-v-3dd2e005="">{{ section_06_body_02 }}</div>
+            </section>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12">
+            <div data-v-3dd2e005="" class="column-layout3">
+              <div v-html="section_06_body_col1"></div>
+              <div v-html="section_06_body_col2"></div>
+              <div v-html="section_06_body_col3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section_07" class="section-container bg-pale">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h3 data-v-3dd2e005="" class="pb-8">{{ section_07_title }}</h3>
+            </section>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12">
+            <div data-v-3dd2e005="" class="column-layout2">
+              <div v-html="section_07_body_col1"></div>
+              <div v-html="section_07_body_col2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 1-column layout Bottom section BG Dark:: -->
+    <div id="section_08" class="section-container bg-dark">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row pb-16">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <h3 data-v-3dd2e005="" class="text-white">{{ section_08_title }}</h3>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12 pt-0">
+            <div v-html="section_08_body_01"></div>
+            <div v-html="section_08_body_02"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- END Content wrapper -->
+
 </template>
 
 <script>
-import shareSection from "@/views/learnMore/shareSection2";
-
 export default {
-   name: "BusinessRights",
-   components: {shareSection}
-}
+  name: "BusinessRights",
+  data() {
+    return {
+      overline: 'For the Public',
+      page_title: 'Business Rights Concerning Service Dogs',
+      page_bullet_01: '<div>Service dogs must be allowed in most business areas.</div>',
+      page_bullet_02: '<div>Businesses can confirm legitimacy with 2 questions: disability need and trained task.</div>',
+      page_bullet_03: '<div>Not all disabilities are visible.</div>',
+      page_bullet_04: '<div>Businesses can remove disruptive animals, but must offer alternative service.</div>',
+      page_bullet_05: '<div>Train staff to recognize service animals and be friendly to all customers.</div>',
+      header_image: '[path to image]',
+
+      section_01_title: 'Know the Rules, Serve Everyone:<br/>A Guide to Service Animals for Businesses',
+      section_01_body: "<p>Service animals are vital companions for people with disabilities, providing essential assistance in navigating daily life. The Americans with Disabilities Act (ADA) ensures these dedicated partners can accompany their handlers in most public spaces, including your business. This guide outlines your rights and responsibilities regarding service animals, helping you maintain a welcoming and compliant environment for all customers.</p>",
+
+      section_02_title: "What You Need to Know About Service Animals",
+      section_02_body_01: '<section class="pb-8"><h4 class="copy-title pb-4">Definition</h4><p class="small-content">A service animal is a dog, specifically trained to do work or perform tasks for a person with a disability. These tasks are directly related to the person\'s specific disability and may include<ul><li><b>Mobility assistance:</b> Guiding someone who is visually impaired, providing balance and support for someone with mobility issues, or retrieving dropped items.</li><li><b>Alerting tasks:</b> Signaling when a diabetic\'s blood sugar drops, alerting someone with a hearing impairment to sounds like alarms or doorbells, or providing warnings for someone with seizures.</li><li><b>Mental health support:</b> Providing emotional support or mitigating the effects of anxiety or panic attacks.</li></ul></p></section>',
+      section_02_body_02: '<section><h4 class="copy-title pb-5">Distinguishing Service Animals from Pets</h4><p class="small-content">Service animals are distinct from pets. They are typically outfitted with a vest or harness indicating their working status. However, this is not a legal requirement, and some legitimate service animals may not wear any specific gear.</p></section>',
+
+      section_03_title: "Access to Public Places for Service and Assistance Dogs under the ADA",
+      section_03_body_01: '',
+
+      section_04_title: "Your Rights and Responsibilities",
+      section_04_body_01: '<section class="pb-8"><h4 class="copy-title pb-5">Granting Access</h4><p class="small-content">Under the ADA, you are legally obligated to allow service animals to accompany their handlers in all areas of your business where the public is generally allowed. This includes restaurants, retail stores, offices, and even areas with specific health code restrictions (like food preparation areas) – provided the service animal doesn\'t pose a direct threat.</p></section>',
+      section_04_body_02: '<section"><h4 class="copy-title pb-4">Verification:</h4><p class="small-content">While you cannot require proof of disability or special ID cards for service animals, you are allowed to ask two specific questions to determine legitimacy<ol><li class="small-content">Is the animal a service animal required because of a disability?</li><li class="small-content">What work or task has the animal been trained to perform?</li></ol></p></section>',
+      section_04_body_03: '<section"><div class="content-card-large"><b>Important Note: You cannot require service animals to wear a vest, harness, ID tag, or any other specific gear.</b> Some handlers choose to provide these for visibility, but it\'s not a legal mandate. You cannot ask for documentation of the animal\'s training or proof of the person\'s disability.</div></section>',
+
+      section_05_title: 'Welcome Service Animals',
+      section_05_body: "",
+
+      section_06_title: "Remember, You Can't Always See a Disability",
+      section_06_body_01: "It's important to understand that not all disabilities are readily apparent. People with invisible disabilities, such as chronic illnesses, mental health conditions, or learning disabilities, may also rely on service animals for assistance.",
+      section_06_body_02: "Here's why you can't judge disability by appearance",
+      section_06_body_col1: '<section class="txt-box-side"><h4 class="copy-title pb-3">Hidden Conditions</h4><p class="small-content">Many disabilities are unseen, such as chronic pain, fatigue, or anxiety disorders.</p></section>',
+      section_06_body_col2: '<section class="txt-box-side"><h4 class="copy-title pb-3">Varying Degrees of Impact</h4><p class="small-content">The same disability can manifest differently in each person. Someone with autism might appear "neurotypical" in some settings.</p></section>',
+      section_06_body_col3: '<section class="txt-box-side"><h4 class="copy-title pb-3">Adaptive Strategies</h4><p class="small-content">People with disabilities often develop strategies to cope and function, making their disability less visible.</p></section>',
+
+      section_07_title: "Maintaining a Safe and Inclusive Environment",
+      section_07_body_col1: '<section class="txt-box-side"><h4 class="copy-title pb-3">Out-of-Control Animals</h4><p class="small-content">If a service animal displays disruptive behavior, such as excessive barking, growling, or lunging, you may ask the handler to remove the animal from the premises. However, you must first offer alternative ways for the customer to access your goods or services without the animal present.</p></section>',
+      section_07_body_col2: '<section class="txt-box-side"><h4 class="copy-title pb-3">Hygiene and Damage</h4><p class="small-content">Service animal owners are responsible for cleaning up after their animals. You can still charge for any property damage caused by a service animal, just as you would for any customer.</p></section>',
+
+      section_08_title: "Fostering a Positive Experience",
+      section_08_body_01: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary"><b>Staff Training:</b> Educate your staff on recognizing service animals and the proper way to interact with them. This promotes a welcoming atmosphere and avoids unnecessary confrontations.</p></div></section>',
+      section_08_body_02: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary"><b>Focus on Courtesy:</b> Treat service animal handlers with the same courtesy you would extend to any other customer.</p><div class="dot full-width mt-8"></div></section>',
+
+
+      /* Bottom section Dark gradient:: */
+      section_09_title: "Title",
+      section_09_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary">Body content.</p><div class="dot full-width mt-8"></div></section>',
+
+      cta_join_today: '<a data-v-3dd2e005="" href="/signup" class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--router theme--dark v-size--default" style="padding:0 16px"><span class="standard-button-label text-dark">Join today</span></a>'
+    };
+  }
+};
 </script>
 
-<style scoped src="./common.css">
-
-</style>
+<style scoped src="../common.css"></style>

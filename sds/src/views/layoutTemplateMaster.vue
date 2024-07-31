@@ -21,7 +21,7 @@
             <div data-v-3dd2e005="" class="col-md-6 col-12">
               <div style="width:100%;" class="mt-12 bg-none">
                 <!--<img :src="header_image" alt="" class="bg-none card-shadowLarge" style="width:100%;height:auto;border-radius:24px">-->
-                <img src="../learnMore/images/iStock-953742852.jpg" alt="" class="bg-none Card--shadowLarge"
+                <img src="../learnMore/images/iStock-953742852.jpg" alt="" class="bg-none card--shadowLarge"
                   style="width:100%;height:auto;border-radius:24px">
               </div>
             </div>
@@ -131,18 +131,27 @@ export default {
       page_title: 'Title',
       page_description: 'Description.',
       header_image: '[path to image]',
+
       section_01_title: 'Section title',
       section_01_body: "<p>Body content.</p>",
+
       section_02_title: "Section title",
       section_02_body_col1: "<section><p>Body content.</p></section>",
       section_02_body_col2: "<section><p>Body content.</p></section>",
+
       section_03_title: "Section title",
-      section_03_body_col1: "<section><p>Body content.</p></section>",
-      section_03_body_col2: "<section><p>Body content.</p></section>",
-      section_03_body_col3: "<section><p>Body content.</p></section>",
+      section_03_body_col1: '<section class="txt-box-side"><h4 class="copy-title pb-3">Title</h4><p class="small-content">Body</p></section>',
+      section_03_body_col2: '<section class="txt-box-side"><h4 class="copy-title pb-3">Title</h4><p class="small-content">Body</p></section>',
+      section_03_body_col3: '<section class="txt-box-side"><h4 class="copy-title pb-3">Title</h4><p class="small-content">Body</p></section>',
+
+      section_04_body_col1: "<section><p>Body content.</p></section>",
+      section_04_body_col2: "<section><p>Body content.</p></section>",
+      section_04_body_col3: "<section><p>Body content.</p></section>",
+
       /* Bottom section Dark gradient:: */
-      section_04_title: "Title",
-      section_04_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-white">Body content.</p><div class="dot full-width mt-8"></div></section>',
+      section_05_title: "Title",
+      section_05_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary">Body content.</p><div class="dot full-width mt-8"></div></section>',
+
       cta_join_today: '<a data-v-3dd2e005="" href="/signup" class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--router theme--dark v-size--default" style="padding:0 16px"><span class="standard-button-label text-dark">Join today</span></a>'
     };
   }

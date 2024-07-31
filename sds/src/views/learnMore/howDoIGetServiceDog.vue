@@ -110,7 +110,7 @@
             <h2 data-v-3dd2e005="" class="text-white pb-12">Additional Considerations</h2>
             <section class="theme-dark pb-4">
               <div class="dot full-width mb-8"></div>
-              <p class="text-white">Regardless of the path you choose, remember that owning a service dog is a significant commitment. Beyond the initial training, ongoing care and maintenance are essential. Carefully evaluate your lifestyle to ensure you can accommodate the responsibilities involved, including food, veterinary care, and regular training reinforcement.</p>
+              <p class="text-secondary">Regardless of the path you choose, remember that owning a service dog is a significant commitment. Beyond the initial training, ongoing care and maintenance are essential. Carefully evaluate your lifestyle to ensure you can accommodate the responsibilities involved, including food, veterinary care, and regular training reinforcement.</p>
               <div class="dot full-width mt-8"></div>
             </section>
           </div>

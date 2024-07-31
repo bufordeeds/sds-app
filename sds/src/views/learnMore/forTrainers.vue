@@ -155,9 +155,9 @@ export default {
 
       /* Bottom section Dark gradient:: */
       section_05_title: "Benefits for Clients",
-      section_05_01_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-white">Responsible service dog ownership: Handlers who understand and accept their responsibilities make things safer for everyone.</p></div></section>',
-      section_05_02_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-white">Simplify Documentation: Showcase your dedication by easily documenting training details and achievements. Maintain privacy while demonstrating responsible service dog ownership.</p></section>',
-      section_05_03_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-white">Gain Confidence in Public Spaces: Feel empowered knowing you have the resources to navigate public spaces with your service dog with confidence.</p><div class="dot full-width mt-8"></div></section>',
+      section_05_01_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary">Responsible service dog ownership: Handlers who understand and accept their responsibilities make things safer for everyone.</p></div></section>',
+      section_05_02_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary">Simplify Documentation: Showcase your dedication by easily documenting training details and achievements. Maintain privacy while demonstrating responsible service dog ownership.</p></section>',
+      section_05_03_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary">Gain Confidence in Public Spaces: Feel empowered knowing you have the resources to navigate public spaces with your service dog with confidence.</p><div class="dot full-width mt-8"></div></section>',
       section_05_card: '<h3 class="mt-16 text-white">Join Service Dog Standards today and unlock a world of possibilities for both you and your clients.</h3>',
       cta_join_today: '<a data-v-3dd2e005="" href="/signup" class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--router theme--dark v-size--default" style="padding:0 16px"><span class="standard-button-label text-dark">Join today</span></a>'
     };

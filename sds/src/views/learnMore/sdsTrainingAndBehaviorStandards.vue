@@ -120,7 +120,7 @@ export default {
       section_03_body: "<section><p>This website is designed to be a valuable tool for both aspiring and experienced service dog handlers. We not only outline expectations and requirements, but also address commonly encountered challenges and solutions.</p></section",
 
       section_04_title: 'Our Commitment',
-      section_04_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-white">Service Dog Standards offers downloadable resources, including a Service Dog Standards Training and Behavior Agreement and a Public Access Test. These tools can be instrumental in ensuring a successful and compliant service dog partnership.</p><div class="dot full-width mt-8"></div></section>',
+      section_04_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary">Service Dog Standards offers downloadable resources, including a Service Dog Standards Training and Behavior Agreement and a Public Access Test. These tools can be instrumental in ensuring a successful and compliant service dog partnership.</p><div class="dot full-width mt-8"></div></section>',
 
       cta_join_today: '<a data-v-3dd2e005="" href="/signup" class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--router theme--dark v-size--default" style="padding:0 16px"><span class="standard-button-label text-dark">Join today</span></a>'
 

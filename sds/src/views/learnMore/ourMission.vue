@@ -145,7 +145,7 @@
 
         /* Bottom section Dark gradient:: */
         section_04_title: "Additional Notes",
-        section_04_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-white">We are not a certification body, and certification is not legally required.</p><div class="dot full-width mt-8 mb-8"></div><p class="text-white">Membership does not guarantee public access rights, which are determined by the ADA.</p><div class="dot full-width mt-8 mb-8"></div><p class="text-white">Unsure about your service dog qualifications? We recommend consulting a local service dog trainer.</p><div class="dot full-width mt-8"></div></section>',
+        section_04_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary">We are not a certification body, and certification is not legally required.</p><div class="dot full-width mt-8 mb-8"></div><p class="text-secondary">Membership does not guarantee public access rights, which are determined by the ADA.</p><div class="dot full-width mt-8 mb-8"></div><p class="text-secondary">Unsure about your service dog qualifications? We recommend consulting a local service dog trainer.</p><div class="dot full-width mt-8"></div></section>',
         cta_join_today: '<a data-v-3dd2e005="" href="/signup" class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--router theme--dark v-size--default"><span class="standard-button-label text-dark">Join today</span></a>'
       }
     },

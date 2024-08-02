@@ -153,7 +153,7 @@ export default {
   name: "ForColleges",
   data() {
     return {
-      overline: 'For Schools',
+      overline: 'For Professionals',
       page_title: 'Building a Safe and Inclusive Campus for Students with Service Dogs:<br/>A Collaborative Approach to Success',
       page_description: 'Colleges and universities strive to create a safe and inclusive learning environment for every student. This includes students who rely on service dogs to manage their disabilities. However, ensuring service dog safety, good behavior, and handler knowledge can be a concern.',
       header_image: '[path to image]',

@@ -14,13 +14,13 @@
             <div data-v-3dd2e005="" class="col-md-6 col-12">
               <div data-v-3dd2e005="" class="small-header-line">{{ overline }}</div>
               <h1 data-v-3dd2e005="" class="mt-4 pb-8">{{ page_title }}</h1>
-              <div data-v-3dd2e005="">{{ page_description }}</div>
+              <div data-v-3dd2e005="" class="pb-8">{{ page_description }}</div>
               <div v-html="page_list"></div>
             </div>
             <div data-v-3dd2e005="" class="col-md-6 col-12">
               <div style="width:100%;" class="mt-12 bg-none">
                 <!--<img :src="header_image" alt="" class="bg-none card-shadowLarge" style="width:100%;height:auto;border-radius:24px">-->
-                <img src="../learnMore/images/iStock-953742852.jpg" alt="" class="bg-none Card--shadowLarge"
+                <img src="../learnMore/images/iStock-953742852.jpg" alt="" class="bg-none card--shadowLarge"
                   style="width:100%;height:auto;border-radius:24px">
               </div>
             </div>
@@ -134,12 +134,12 @@ export default {
       page_list: '<ul><li>Service dogs are not pets and should never be referred to as such. They are working animals that are classified as medical equipment</li><li>Service Dogs are trained to perform tasks that help mitigate a disability.</li><li>Service dogs can go most places with their handlers (restaurants, stores, workplaces).</li><li>Emotional support animals are NOT service dogs.</li></ul>',
       header_image: '[path to image]',
 
-      section_01_body_col1: "<section><h3>How is a service dog defined?</h3><p>The Americans with Disabilities Act (ADA) defines a service animal as any dog that is individually trained to perform tasks that directly benefit a person with a disability. This encompasses a wide range of disabilities, including physical, sensory, developmental, psychiatric, intellectual, and others.</p></section>",
-      section_01_body_col2: "<section><h3>Service animals are more than just pets</h3><p>They are highly trained partners that empower individuals with disabilities to navigate daily life with greater independence and confidence. Service dogs are meticulously trained to mitigate challenges directly related to their handler's disability. These tasks directly assist the handler's limitations, and go beyond what a well-trained pet can offer.</p></section>",
+      section_01_body_col1: "<section><h3 class='pb-8'>How is a service dog defined?</h3><p>The Americans with Disabilities Act (ADA) defines a service animal as any dog that is individually trained to perform tasks that directly benefit a person with a disability. This encompasses a wide range of disabilities, including physical, sensory, developmental, psychiatric, intellectual, and others.</p></section>",
+      section_01_body_col2: "<section><h3 class='pb-8'>Service animals are more than just pets</h3><p>They are highly trained partners that empower individuals with disabilities to navigate daily life with greater independence and confidence. Service dogs are meticulously trained to mitigate challenges directly related to their handler's disability. These tasks directly assist the handler's limitations, and go beyond what a well-trained pet can offer.</p></section>",
 
       section_02_title: "Key Characteristics of a Service Animal",
       section_02_01_subtitle: "Individualized Training",
-      section_02_01_body: "<p>Each service dog undergoes specialized training tailored to the specific needs of its handler</p>",
+      section_02_01_body: "<p class='pb-8'>Each service dog undergoes specialized training tailored to the specific needs of its handler</p>",
       section_02_02_subtitle: "Task-Oriented",
       section_02_02_body: "<p>Service dogs perform specific tasks that directly address the limitations caused by the handler's disability. Examples include:</p>",
       section_02_02_body_col1: '<section class="txt-box-side"><h4 class="copy-title pb-3">Vision</h4><p class="small-content">Guiding individuals who are blind or visually impaired, retrieving dropped items.</p></section>',

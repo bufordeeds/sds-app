@@ -20,7 +20,7 @@
             <div data-v-3dd2e005="" class="col-md-5 col-12">
               <div style="width:100%;" class="mt-12 bg-none">
                 <!--<img :src="header_image" alt="" class="bg-none card-shadowLarge" style="width:100%;height:auto;border-radius:24px">-->
-                <img src="../learnMore/images/iStock-953742852.jpg" alt="" class="bg-none Card--shadowLarge"
+                <img src="../learnMore/images/iStock-953742852.jpg" alt="" class="bg-none card--shadowLarge"
                   style="width:100%;height:auto;border-radius:24px">
               </div>
             </div>
@@ -127,7 +127,7 @@
       <div data-v-3dd2e005="" class="section-inner-container">
         <div data-v-3dd2e005="" class="row pb-16">
           <div data-v-3dd2e005="" class="col-md-8 col-12">
-            <div data-v-3dd2e005="" class="small-header-line text-accent-200">{{ overline }}</div>
+            <div data-v-3dd2e005="" class="small-header-line text-accent-200">{{ section_05_overline }}</div>
             <h2 data-v-3dd2e005="" class="text-white mt-4 pb-8">{{ section_05_title }}</h2>
             <div v-html="section_05_01_body"></div>
             <div v-html="section_05_02_body"></div>
@@ -184,7 +184,7 @@ export default {
       section_04_body: "Letters from a physician, psychiatrist, social worker or other mental health professional should be printed on their letterhead and contain something similar to the following:",
 
       /* Bottom section Dark gradient:: */
-      overline: 'Digging Deeper',
+      section_05_overline: 'Digging Deeper',
       section_05_title: "Why Physician Letters Aren't Required for All Service Dogs",
       section_05_01_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary"><b>Limited Expertise:</b> Physicians can diagnose disabilities but aren\'t qualified to assess service dog training, task effectiveness, or dog behavior.</p></div></section>',
       section_05_02_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary"><b>Accessibility Issues:</b> Not everyone has a regular doctor. Urgent care or emergency room visits often involve different physicians who can\'t write such letters.</p></div></section>',

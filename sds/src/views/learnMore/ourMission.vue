@@ -84,7 +84,7 @@
                 <div v-html="section_03_body_col3"></div>
               </section>
               <section>
-                <div class="content-card-large">
+                <div class="content-card-large accented-card">
                   <h2 class="copy-title" style="font-weight:300">Together, we can create a more welcoming environment for service dog teams everywhere.</h2>
                 </div>
               </section>
@@ -159,3 +159,7 @@
 
 <style scoped src="../common.css"></style>
 
+<!--
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="../../assets/images/icons/Lordicons/wired-gradient-1020-rules-book-guideline.json" background="transparent"  speed="1"  style="width: 24px; height: 24px;" loop autoplay></lottie-player>
+-->

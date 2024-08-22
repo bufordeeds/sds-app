@@ -197,6 +197,43 @@
 
 }
 
+:root {
+  --rt-base: 18px;
+
+  --rt-xsmall: 14px;
+  --rt-small: 15px;
+  --rt-medium: var(--rt-base);
+  --rt-large: 24px;
+  --rt-xlarge: 34px;
+
+  --rt-display: 94px !important;
+  --rt-display-lineHeight: 97.76px !important;
+  --rt-display-letterSpacing: -3.76px !important;
+
+  --rt-h1: 56px !important;
+  --rt-h1-lineHeight: 68px !important;
+  --rt-h1-letterSpacing: -2.12px !important;
+
+  --rt-h2: 38px;  /*48px;*/
+  --rt-h3: 24px;  /*32px;*/
+  --rt-h4: var(--rt-medium);
+  --rt-h5: 15px;
+
+}
+
+@media (max-width: 768px) {
+  :root {
+    --rt-display: 50px !important;
+    --rt-display-lineHeight: 52px !important;
+    --rt-display-letterSpacing: -2px !important;
+    --rt-h1: 48px !important;
+    --rt-h1-lineHeight: 56px !important;
+    --rt-h1-letterSpacing: -1.96px !important;
+    --rt-h2: 34px;
+    --rt-h3: 24px;
+  }
+}
+
 html, body {
   font-family: var(--font-family);
   font-size: var(--font-size-base);
@@ -218,9 +255,8 @@ html, body {
   color: var(--brand-accent-200) !important;
 }
 
-/* Page title (use only once) */
 .headings-display {
-  font-size: 4.444rem;
+  font-size: 80px;
   font-family: var(--font-family);
   font-weight: 700;
   font-style: normal;
@@ -230,14 +266,13 @@ html, body {
   text-transform: none;
 }
 
-/* Page title (use only once) */
 .headings-headline {
-  font-size: 4rem;
+  font-size: var(--rt-display); /*4rem;*/
   font-family: var(--font-family);
   font-weight: 700;
   font-style: normal;
-  line-height: 76px;
-  letter-spacing: -1px;
+  line-height: var(--rt-display-lineHeight); /*76px;*/
+  letter-spacing: var(--rt-display-letterSpacing); /*-1px;*/
   text-decoration: none;
   text-transform: none;
 }
@@ -256,17 +291,16 @@ h4.copy-title {
   color: var(--text-highlight);
 }
 
-/* Page title (use only once) */
 h1 {
-  font-size: 3.111rem;
+  font-size: var(--rt-h1);
   font-weight: 700;
-  line-height: 68px;
-  letter-spacing: -1.12px;
+  line-height: var(--rt-h1-lineHeight);
+  letter-spacing: var(--rt-h1-letterSpacing);
 }
 
 /* Title */
 h2 {
-  font-size: 2.111rem;
+  font-size: var(--rt-h2);
   font-weight: 700;
   line-height: 48px;
   letter-spacing: -0.2px;
@@ -274,32 +308,34 @@ h2 {
 
 /* Title */
 h3 {
-  font-size: 1.444rem;
+  font-size: var(--rt-h3);
   font-weight: 700;
   line-height: 36px;
 }
 
 /* Title */
 h4 {
-  font-size: 1.0rem;
+  font-size: var(--rt-medium);
   font-weight: 700;
   line-height: 24px;
   letter-spacing: 0.2px;
 }
 
 h5 {
-  font-size: 0.833rem;
+  font-size: var(--rt-h5);
   font-weight: 700;
   line-height: 24px;
   letter-spacing: 0.2px;
 }
+
 .heading-color-default {
   font-weight: 500;
   color: var(--text-default);
 }
+
 /* Body text */
 p, span, .body-standard-regular {
-  font-size: 1rem;
+  font-size: var(--rt-medium);
   font-family: var(--font-family);
   font-weight: 400;
   font-style: normal;
@@ -315,7 +351,7 @@ p, span, .body-standard-regular {
 }
 
 .body-standard-bold {
-  font-size: 1rem;
+  font-size: var(--rt-medium);
   font-family: var(--font-family);
   font-weight: 700;
   font-style: normal;
@@ -325,9 +361,8 @@ p, span, .body-standard-regular {
   text-transform: none;
 }
 
-/* Page title (use only once) */
 .body-standard-text-link {
-  font-size: 0.833rem;
+  font-size: var(--rt-h5);
   font-family: var(--font-family);
   font-weight: 600;
   font-style: normal;
@@ -340,9 +375,8 @@ a.text-link {
   text-decoration: underline;
 }
 
-/* Page title (use only once) */
 .body-small-regular {
-  font-size: 0.833rem;
+  font-size: var(--rt-h5);
   font-family: var(--font-family);
   font-weight: 500;
   font-style: normal;
@@ -352,9 +386,8 @@ a.text-link {
   text-transform: none;
 }
 
-/* Page title (use only once) */
 .body-small-bold {
-  font-size: 0.833rem;
+  font-size: var(--rt-h5);
   font-family: var(--font-family);
   font-weight: 700;
   font-style: normal;
@@ -364,7 +397,6 @@ a.text-link {
   text-transform: none;
 }
 
-/* Page title (use only once) */
 .captions-caption-regular {
   font-size: 0.778rem;
   font-family: var(--font-family);
@@ -376,7 +408,6 @@ a.text-link {
   text-transform: none;
 }
 
-/* Page title (use only once) */
 .captions-caption-medium {
   font-size: 0.778rem;
   font-family: var(--font-family);
@@ -388,7 +419,6 @@ a.text-link {
   text-transform: none;
 }
 
-/* Page title (use only once) */
 .captions-caption-bold {
   font-size: 0.778rem;
   font-family: var(--font-family);
@@ -400,7 +430,6 @@ a.text-link {
   text-transform: none;
 }
 
-/* Page title (use only once) */
 .captions-caption-small {
   font-size: 0.667rem;
   font-family: var(--font-family);
@@ -412,7 +441,6 @@ a.text-link {
   text-transform: uppercase;
 }
 
-/* Page title (use only once) */
 .captions-hint-error-text {
   font-size: 0.667rem;
   font-family: var(--font-family);
@@ -422,7 +450,6 @@ a.text-link {
   text-transform: none;
 }
 
-/* Page title (use only once) */
 .captions-overline {
   font-size: 0.778rem;
   font-family: var(--font-family);
@@ -453,7 +480,7 @@ button.site-header-nav-item--link > .v-btn__content {
 }
 
 .standard-button-label {
-  font-size: 0.833rem;
+  font-size: var(--rt-h5);
   font-family: var(--font-family);
   font-weight: 600;
   font-style: normal;
@@ -607,9 +634,9 @@ button.site-header-nav-item--link > .v-btn__content {
   align-items: flex-start;
   align-self: stretch;
   padding: 32px 48px;
-  background-color: #fff;
-  border-top: inset var(--text-link) 8px;
-  border-radius: 12px;
+  background-color: var(--surface-light-white);
+  border-radius: 8px;
+  border-top: solid 8px var(--brand-primary-highlight);
   box-shadow: var(--card-shadow-large);
 }
 .content-card-xlarge {
@@ -904,8 +931,6 @@ a {
   height: 2px;
 }
 
-
-
 /* Find out why "ismobile" isn't working on ourMission.vue */
 /* Media query for tablets and smaller devices */
 @media (max-width: 768px) {
@@ -915,12 +940,9 @@ a {
       row-gap:  var(--row-gap-medium);
   }
   h1 {
-    font-size: 2.11rem;
-    line-height: 48px;
+    /*font-size: 2.1var(--rt-medium);*/
+    /*line-height: 48px;*/
   }
-}
-
-@media only screen and (max-width: 600px) {
   .page-title {
     /*font-size: 20pt;*/
     font-size: 26pt;
@@ -973,8 +995,6 @@ a {
   }
   
 }
-
-
 
 /*---------- New Styles 07-16-2024 ----------*/
 
@@ -1036,16 +1056,11 @@ a {
   font-weight: 700;
 }
 
-
-
-
 .box-txt-container {
   /*margin-top: 20px;*/
   /*margin-bottom: 20px;*/
   padding-top: 20px;
   padding-bottom: 10px;
-
-
 }
 
 .box-txt {
@@ -1054,7 +1069,6 @@ a {
   padding-top: 15px;
   padding-bottom: 15px;
   text-align: center;
-
 }
 
 ol, ul {
@@ -1085,7 +1099,6 @@ ol, ul {
   background-position: center;
 }
 
-
 .content-container {
   max-width: 1280px;
   margin-left: auto;
@@ -1099,7 +1112,6 @@ ol, ul {
   line-height: 36px;
   color: #0a2540;
 }
-
 
 .main-heading {
   height: 400px;
@@ -1126,8 +1138,6 @@ ol, ul {
 
   position: relative;
   z-index: 0;
-
-
 }
 
 .fold-text {
@@ -1135,9 +1145,6 @@ ol, ul {
   margin-top: 50px;
   text-align: center;
 }
-
-
-
 
 /************ section 1 box **********************************/
 
@@ -1195,10 +1202,10 @@ ol, ul {
 }
 
 .large-header-line {
-  font-size: 56px;
+  font-size: var(--rt-h1);
   font-weight: 700;
   line-height: 68px;
-  letter-spacing: -1.12;
+  letter-spacing: -2.12px;
   color: var(--color-txt-dark);
   max-width: 900px;
 }
@@ -1234,6 +1241,13 @@ ul li, .small-content {
   font-weight: 400;
   color: inherit;
   font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+}
+.xsmall-content {
+  font-weight: 400;
+  color: inherit;
+  font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.2px;
 }
@@ -1281,7 +1295,7 @@ ul li, .small-content {
 }
 
 .section-layout:has(.angled-ribbon) {
-  padding-bottom: 300px;
+  padding-bottom: 350px;
 }
 .angled-ribbon {
   position: absolute;
@@ -1477,12 +1491,12 @@ ul li, .small-content {
 }
 
 .section-inner-container.ismobile {
-  padding: 72px 10px 72px 10px; /*50px 10px 30px 10px;*/
+  padding: 72px 10px; /*50px 10px 30px 10px;*/
 }
 
 @media (max-width: 700px) {
   .section-inner-container {
-    padding: 72px 10px 72px 10px; /*50px 10px 30px 10px;*/
+    padding: 72px 10px; /*50px 10px 30px 10px;*/
   }  
 }
 
@@ -1587,3 +1601,4 @@ a.learn-more-txt:focus {
 div.social-container>a {
   text-decoration: none;
 }
+

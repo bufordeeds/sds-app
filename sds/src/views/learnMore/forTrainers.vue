@@ -109,7 +109,6 @@
             <div v-html="section_05_02_body"></div>
             <div v-html="section_05_03_body"></div>
             <div v-html="section_05_card"></div>
-            <div v-html="bullet_check"></div>
           </div>
         </div>
         <div data-v-3dd2e005="" class="row">

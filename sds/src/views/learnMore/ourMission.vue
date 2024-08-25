@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <div class="section-container">
+    <div id="section_01" class="section-container">
       <div data-v-3dd2e005="" class="section-inner-container pt-16">
         <div data-v-3dd2e005="" class="row">
           <div data-v-3dd2e005="" class="col-md-8 col-12">
@@ -51,8 +51,8 @@
     </div>
 
     <!-- 1-column layout Bottom Angle BG Light:: -->
-    <div class="section-container angled-section-bottom light pb-16">
-      <div data-v-3dd2e005="" class="section-inner-container mb-16">
+    <div id="section_02" class="section-container bg-pale">
+      <div data-v-3dd2e005="" class="section-inner-container">
         <div data-v-3dd2e005="" class="row">
           <div data-v-3dd2e005="" class="col-md-8 col-12">
             <section>
@@ -66,16 +66,16 @@
 
 
     <!-- 3-column layout BG Pale:: -->
-    <div class="section-container">
-      <div data-v-3dd2e005="" class="section-inner-container pt-4">
+    <div id="section_03" class="section-container bg-dark">
+      <div data-v-3dd2e005="" class="section-inner-container">
         <div data-v-3dd2e005="" class="row">
           <div data-v-3dd2e005="" class="col-md-8 col-12">
             <section>
-              <h2 data-v-3dd2e005="">{{ section_03_title }}</h2>
+              <h2 data-v-3dd2e005="" class="text-white pb-12">{{ section_03_title }}</h2>
             </section>
           </div>
         </div>
-        <div data-v-3dd2e005="" class="row">
+        <div data-v-3dd2e005="" class="row pb-8">
           <div data-v-3dd2e005="" class="col-12">
             <div data-v-3dd2e005="" class="column-layout2">
               <section>
@@ -91,10 +91,16 @@
             </div>
           </div>
         </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12">
+            <div v-html="cta_join_today"></div>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- 1-column layout Bottom section BG Dark:: -->
+    <!--
     <div class="section-container bg-dark">
       <div data-v-3dd2e005="" class="section-inner-container">
         <div data-v-3dd2e005="" class="row pb-16">
@@ -110,6 +116,7 @@
         </div>
       </div>
     </div>
+    -->
 
   </div> <!-- END Content wrapper -->
 
@@ -139,14 +146,17 @@
         section_02_body: "<section><p>Enrolling with Service Dog Standards is a powerful way for teams to publicly accept training and behavior standards that promote responsible behavior. We provide a voluntary form of self-identification for those who qualify under the ADA to use a service dog.</p></section>",
         
         section_03_title: "Join us if you're ready to",
-        section_03_body_col1: '<section class="txt-box-side"><p>Train your dog to the highest standards set by the service dog community.</p></section>',
-        section_03_body_col2: '<section class="txt-box-side"><p>Promote responsible service dog use and minimize discrimination.</p></section>',
-        section_03_body_col3: '<section class="txt-box-side"><p>Educate the public about service dogs, especially those used for invisible disabilities.</p></section>',
+        section_03_body_col1: '<section class="theme-dark txt-box-side"><p class="text-secondary">Train your dog to the highest standards set by the service dog community.</p></section>',
+        section_03_body_col2: '<section class="theme-dark txt-box-side"><p class="text-secondary">Promote responsible service dog use and minimize discrimination.</p></section>',
+        section_03_body_col3: '<section class="theme-dark txt-box-side"><p class="text-secondary">Educate the public about service dogs, especially those used for invisible disabilities.</p></section>',
 
         /* Bottom section Dark gradient:: */
+        /*
         section_04_title: "Additional Notes",
         section_04_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary">We are not a certification body, and certification is not legally required.</p><div class="dot full-width mt-8 mb-8"></div><p class="text-secondary">Membership does not guarantee public access rights, which are determined by the ADA.</p><div class="dot full-width mt-8 mb-8"></div><p class="text-secondary">Unsure about your service dog qualifications? We recommend consulting a local service dog trainer.</p><div class="dot full-width mt-8"></div></section>',
         cta_join_today: '<a data-v-3dd2e005="" href="/signup" class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--router theme--dark v-size--default"><span class="standard-button-label text-dark">Join today</span></a>'
+        */
+       
       }
     },
     computed: { /* This is not working!!! :( */

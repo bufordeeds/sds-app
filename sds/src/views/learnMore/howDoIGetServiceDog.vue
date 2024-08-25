@@ -114,8 +114,8 @@ export default {
 
       section_01_subtitle_02: "Professional Programs",
       section_01_body_02_col1: '<section class="txt-box-side"><h4 class="copy-title pb-3">The Choice</h4><p class="small-content">Partnering with a qualified service dog trainer or organization specializing in disabilities similar to yours can offer valuable guidance and support.</p></section>',
-      section_01_body_02_col2: '<section class="txt-box-side"><h4 class="copy-title pb-3">Benefits</h4><ul class="small-content"><li><b>Stronger Bond: </b>Training your dog fosters a unique and powerful connection between you and your service partner.</li><li><b>Tailored Tasks: </b>You can customize the training program to address your specific needs and disability.</li><li><b>Cost-Effective: </b>Self-training can be a significant cost savings compared to professional programs. While there will still be expenses for food, veterinary care, and basic supplies, you won\'t have the training program fees.</li></ul></section>',
-      section_01_body_02_col3: '<section class="txt-box-side"><h4 class="copy-title pb-3">Challenges</h4><ul class="small-content"><li><b>Expert Guidance: </b>Experienced trainers can assess your needs, match you with a suitable dog, and provide comprehensive training guidance.</li><li><b>Increased Success Rate: </b>Professional programs have a higher success rate in producing qualified service dogs.</li><li><b>Reduced Time Commitment:</b> Programs handle a significant portion of the training, reducing your time investment.</li></ul></section>',
+      section_01_body_02_col2: '<section class="txt-box-side"><h4 class="copy-title pb-3">Benefits</h4><ul class="small-content"><li><b>Expert Guidance: </b>Experienced trainers can assess your needs, match you with a suitable dog, and provide comprehensive training guidance.</li><li><b>Increased Success Rate: </b>Professional programs have a higher success rate in producing qualified service dogs.</li><li><b>Reduced Time Commitment: </b>Programs handle a significant portion of the training, reducing your time investment.</li></ul></section>',
+      section_01_body_02_col3: '<section class="txt-box-side"><h4 class="copy-title pb-3">Considerations</h4><ul class="small-content"><li><b>Trainer Qualifications: </b>Look for trainers certified by reputable organizations and experienced in training dogs for disabilities similar to yours.</li><li><b>Program Reputation: </b>Research the program\'s reputation, success rates, and training methods</li><li><b>Cost: </b>Obtaining a professionally trained service dog is a significant investment, typically ranging from $15,000 to $30,000 or more, depending on the dog\'s specific training needs and the organization providing the service. Private trainers can cost $150-250 an hour.</li></ul></section>',
 
       /* Bottom section Dark gradient:: */
       section_02_title: "Additional Considerations",
@@ -127,3 +127,4 @@ export default {
 </script>
 
 <style scoped src="../common.css"></style>
+

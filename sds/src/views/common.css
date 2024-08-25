@@ -249,7 +249,7 @@ html, body {
   color: var(--brand-accent-500);
 }
 .txt-box-side.theme-dark {
-  border-color: var(--border-white);
+  border-color: var(--brand-accent-500);
 }
 .text-accent-200 {
   color: var(--brand-accent-200) !important;

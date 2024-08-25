@@ -109,6 +109,7 @@
             <div v-html="section_05_02_body"></div>
             <div v-html="section_05_03_body"></div>
             <div v-html="section_05_card"></div>
+            <div v-html="bullet_check"></div>
           </div>
         </div>
         <div data-v-3dd2e005="" class="row">
@@ -128,11 +129,13 @@ export default {
   name: "ForTrainers",
   data() {
     return {
+      bullet_check: "<img src='/src/assets/images/icons/check-award-solid.svg'/>",
+
       overline: 'For Professionals',
       page_title: 'Unleash the Power of Exceptional Service Dog Teams:<br/>Join Service Dog Standards',
-      page_blurb_01: '<div class="dot"></div><div class="text-bold">Transform Your Practice</div>',
-      page_blurb_02: '<div class="dot"></div><div class="text-bold">Empower Your Clients</div>',
-      page_blurb_03: '<div class="dot"></div><div class="text-bold">Achieve Peace of Mind</div>',
+      page_blurb_01: '<img src="/img/icons/circle-check-solid.svg"/><div class="text-bold">Transform your Practice</div>',
+      page_blurb_02: '<img src="../../assets/images/icons/circle-check-solid.svg"/><div class="text-bold">Empower Your Clients</div>',
+      page_blurb_03: '<img src="../../assets/images/icons/circle-check-solid.svg"/><div class="text-bold">Achieve Peace of Mind</div>',
       page_description: '<div class="pt-8">Service Dog Standards goes beyond training. We help backup life-changing partnerships between service dogs and their handlers. Our free platform equips you, the trainer, with the tools to elevate your practice and empower your clients to create responsible service dog teams.</div>',
       header_image: '[path to image]',
 

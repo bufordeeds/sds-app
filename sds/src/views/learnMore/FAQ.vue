@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <div class="section-container bg-dark">
+    <div class="section-container bg-pale">
       <div data-v-3dd2e005="" class="section-inner-container">
         <div v-html="section_02_title" class="text-center"></div>
         <v-expansion-panels v-model="open_section">
@@ -385,16 +385,16 @@
       return {
         overline: 'About us',
         page_title: 'Common Questions',
-        page_description: '<h3 class="heading-color-default">Service Dogs Save Lives and Make Independent Living Possible</h3>',
+        page_description: '<h3 class="heading-color-default">Find clear answers to common questions about Service Dog Standards and what is involved with being partnered with a service dog.</h3>',
         header_image: '../learnMore/images/iStock-953742852.jpg',
         section_01_body_col1: '<section class="txt-box-side"><h4 class="copy-title pb-4">Finding Independence</h4><p>Most people who are partnered with Service Dogs have explored dozens of other paths to find independence and many have literally nowhere else to turn for help.</p></section>',
         section_01_body_col2: '<section class="txt-box-side"><h4 class="copy-title pb-4">Indepenent Living</h4><p>Service Dogs are capable of performing small and large tasks at any time day or night, making independent living possible.</p></section>',
         section_01_body_col3: '<section class="txt-box-side"><h4 class="copy-title pb-4">Simple to Complex Tasks</h4><p>Service Dogs can be trained to help people with the simplest tasks — such as picking up a medicine bottle — or the most complex — like keeping someone from spiraling out of control during an episode of PTSD in the middle of the night.</p></section>',
         
-        section_02_title: '<h2 class="text-white pb-16">Frequently Asked Questions</h2>',
-        /* Bottom section Dark gradient:: */
+        section_02_title: '<h2 class="pb-16">Frequently Asked Questions</h2>',
+
         section_04_title: "Title",
-        section_04_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-white">Body content.</p><div class="dot full-width mt-8"></div></section>',
+        section_04_body: '<section class="pb-4"><div class="dot full-width mb-8"></div><p>Body content.</p><div class="dot full-width mt-8"></div></section>',
         cta_join_today: '<a data-v-3dd2e005="" href="/signup" class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--router theme--dark v-size--default" style="padding:0 16px"><span class="standard-button-label text-dark">Join today</span></a>',
         open_section: null,
         //note need to add id to section element with key for scrolling

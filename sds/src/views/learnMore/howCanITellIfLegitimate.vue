@@ -14,6 +14,7 @@
             <div data-v-3dd2e005="" class="col-md-6 col-12">
               <div data-v-3dd2e005="" class="small-header-line">{{ overline }}</div>
               <h1 data-v-3dd2e005="" class="mt-4 pb-8">{{ page_title }}</h1>
+              <div v-html="page_description"></div>
             </div>
             <div data-v-3dd2e005="" class="col-md-6 col-12">
               <div style="width:100%;" class="mt-12 bg-none">
@@ -48,21 +49,8 @@
       </div>
     </div>
 
-    <div id="section_02" class="section-container bg-pale">
-      <div data-v-3dd2e005="" class="section-inner-container pb-16">
-        <div data-v-3dd2e005="" class="row">
-          <div data-v-3dd2e005="" class="col-md-8 col-12">
-            <section>
-              <h2 data-v-3dd2e005="" class="pb-8">{{ section_02_title }}</h2>
-              <div v-html="section_02_body"></div>
-            </section>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div id="section_03" class="section-container bg-pale">
-      <div data-v-3dd2e005="" class="section-inner-container pt-0 pb-16">
+      <div data-v-3dd2e005="" class="section-inner-container pb-16">
         <div data-v-3dd2e005="" class="row">
           <div data-v-3dd2e005="" class="col-md-8 col-12">
             <section>
@@ -184,6 +172,8 @@ export default {
     return {
       overline: 'For the Public',
       page_title: 'The challenge of testing service dogs',
+      page_blurb: 'Should service dogs and their handlers be tested?',
+      page_description: "<p>While standardized testing and certification for service dogs might seem like a straightforward path to ensuring legitimacy, the issue is far more nuanced. This topic has been meticulously examined by the Department of Justice, service dog organizations, disability advocates, experienced handlers, trainers, and a vast array of stakeholders.</p>",
       header_image: '[path to image]',
 
       section_01_title: 'Summary',
@@ -192,9 +182,6 @@ export default {
       section_01_body_03: '<section class="txt-box-side"><h4 class="copy-title pb-3">Disabilities themselves create challenges</h4><p class="small-content">An individual\’s disability itself could make completing a test challenging.</p></section>',
       section_01_body_04: '<section class="txt-box-side"><h4 class="copy-title pb-3">Testing can create burdens</h4><ul><li>Handlers would face constant questioning and ID checks.</li><li>Financial strain for disabled people.</li><li>Could invalidate well-trained dogs.</li><li>May be difficult for some disabilities.</li></ul></section>',
       section_01_body_05: '<section class="txt-box-side"><h4 class="copy-title pb-3">Paperwork over function</h4><p class="small-content">Focus should be on the dog\'s skills and teamwork, not paperwork or tests.</p></section>',
-
-      section_02_title: "Should service dogs and their handlers be tested?",
-      section_02_body: "<p>While standardized testing and certification for service dogs might seem like a straightforward path to ensuring legitimacy, the issue is far more nuanced. This topic has been meticulously examined by the Department of Justice, service dog organizations, disability advocates, experienced handlers, trainers, and a vast array of stakeholders.</p>",
 
       section_03_subtitle: "The Core Principle of the ADA: Unwavering Commitment to Equal Access",
       section_03_body: "<p>The Americans with Disabilities Act (ADA) stands firm on the principle of ensuring equal access for individuals with disabilities. Extensive collaboration during the ADA's revision ensured this critical objective was achieved within the legislation.</p>",
@@ -210,7 +197,7 @@ export default {
       section_05_body_col2: '<section class="txt-box-side"><h4 class="copy-title pb-3">Rural Challenges</h4><p class="small-content">Those living in rural areas may face significant difficulty reaching testing centers. Traveling long distances can be a physical barrier for some disabilities.</p></section>',
       section_05_body_col3: '<section class="txt-box-side"><h4 class="copy-title pb-3">Uncertain Cost Distribution</h4><p class="small-content">The additional burden of travel and testing costs could fall on taxpayers, creating a new financial strain on the system.</p></section>',
 
-      section_06_title: 'The Inapplicability of a "One-Size-Fits-All" Test',
+      section_06_title: 'There is no "One-Size-Fits-All" Test for Service Dogs',
       section_06_subtitle: "Experienced service dog professionals agree that a single, standardized test wouldn't be effective",
       section_06_body_col1: '<section class="txt-box-side"><h4 class="copy-title pb-3">Individualized Needs</h4><p class="small-content">The specific tasks a dog performs will vary depending on the handler\'s unique disability.</p></section>',
       section_06_body_col2: '<section class="txt-box-side"><h4 class="copy-title pb-3">Public Access Test (PAT) Clarification</h4><p class="small-content">The PAT, a common assessment tool, is not designed to certify animals.</p></section>',

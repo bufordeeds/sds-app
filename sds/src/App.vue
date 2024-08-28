@@ -14,7 +14,7 @@
     <template v-if="showSite">
       <v-app id="app">
         <v-dialog v-model="show_cart">
-          <div style="background-color: var(--color-bg); width: 100%; position:relative;" class="pb-1 pt-1">
+          <div style="background-color: var(--surface-pale); width: 100%; position:relative;" class="pb-1 pt-1">
             <div style="display: flex; justify-content: flex-end; position: absolute; width: 100%" class="pr-2">
               <v-spacer />
               <v-btn icon @click="show_cart = false">
@@ -30,7 +30,7 @@
         <div v-if="show_nav"
           :style="{ 'background-image': `url(${require('./assets/images/content/header-background.jpg')})` }"
           style="background-size: cover;background-position: center;">
-          <div style="background-color: #fafafc;">
+          <div style="background-color: var(--surface-pale);">
             <nav-bar />
           </div>
         </div>
@@ -269,8 +269,6 @@ export default {
 };
 </script>
 
-
-
 <style scoped lang="scss">
 @import 'assets/styles/variables';
 
@@ -302,6 +300,7 @@ export default {
   justify-content: center;
 }
 .v-sheet.v-footer, .footer {
+  width: 100%;
   background-color: var(--surface-dark);
   font-size: 14px;
   color: var(--text-light);

@@ -14,9 +14,7 @@
             <div data-v-3dd2e005="" class="col-md-7 col-12">
               <div data-v-3dd2e005="" class="small-header-line">{{ overline }}</div>
               <h1 data-v-3dd2e005="" v-html="page_title" class="mt-4 pb-8"></h1>
-              <div class="flex-row" v-html="page_blurb_01" style="padding:8px 0;gap:16px"></div>
-              <div class="flex-row" v-html="page_blurb_02" style="padding:8px 0;gap:16px"></div>
-              <div class="flex-row" v-html="page_blurb_03" style="padding:8px 0;gap:16px"></div>
+              <ul v-html="page_list" class="bullet_check"></ul>
               <div v-html="page_description"></div>
             </div>
             <div data-v-3dd2e005="" class="col-md-5 col-12">
@@ -128,11 +126,9 @@ export default {
   name: "ForTrainers",
   data() {
     return {
-      bullet_check: "<img src='/src/assets/images/icons/check-award-solid.svg'/>",
-
       overline: 'For Professionals',
       page_title: 'Unleash the Power of Exceptional Service Dog Teams:<br/>Join Service Dog Standards',
-      page_blurb_01: '<img src="/img/icons/circle-check-solid.svg"/><div class="text-bold">Transform your Practice</div>',
+      page_list: '<li class="body-standard-bold">Transform your Practice</li><li class="body-standard-bold">Empower Your Clients</li><li class="body-standard-bold">Achieve Peace of Mind</li>',
       page_blurb_02: '<img src="../../assets/images/icons/circle-check-solid.svg"/><div class="text-bold">Empower Your Clients</div>',
       page_blurb_03: '<img src="../../assets/images/icons/circle-check-solid.svg"/><div class="text-bold">Achieve Peace of Mind</div>',
       page_description: '<div class="pt-8">Service Dog Standards goes beyond training. We help backup life-changing partnerships between service dogs and their handlers. Our free platform equips you, the trainer, with the tools to elevate your practice and empower your clients to create responsible service dog teams.</div>',

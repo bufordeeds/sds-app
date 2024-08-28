@@ -16,6 +16,8 @@
               <h1 data-v-3dd2e005="" v-html="page_title" class="mt-4 pb-8"></h1>
               <div v-html="page_blurb_01"></div>
               <div v-html="page_description"></div>
+              <div v-html="page_subtitle" class="pt-8"></div>
+              <div v-html="page_actions"></div>
             </div>
             <div data-v-3dd2e005="" class="col-md-5 col-12">
               <div style="width:100%;" class="mt-12 bg-none">
@@ -108,7 +110,7 @@
           <div data-v-3dd2e005="" class="col-md-8 col-12">
             <section class="pt-8">
               <div class="content-card-large">
-                <h5 class="text-center pb-8">Physician, psychiatrist, social worker or other mental health professional’s letterhead Address / Website / Email / Phone</h5>
+                <h5 class="pb-8">Physician, Psychiatrist, Therapist<br/>Social Worker or Other Mental Health<br/>Professional Letterhead<br/>Address |  Website  |  Email  |  Phone</h5>
                 <p class="small-content">Date</p>
                 <p class="small-content">Date_______________________,</p>
                 <p class="small-content">_______________________ is my patient, and has been under my care since [DATE]. My patient meets the definition of disability under the Americans with Disabilities Act, the Fair Housing Act, and the Rehabilitation Act of 1973 and I am intimately familiar with their history and with the functional limitations imposed by their disability.</p>
@@ -162,6 +164,9 @@ export default {
       page_blurb_01: '<h3>Empowering Informed Decisions</h3>',
       page_description: '<div class="pt-8">As a physician or therapist, you play a crucial role in supporting your patients\' well-being. You may be aware of the potential benefits of service dogs for patients with disabilities, however, concerns about patient preparedness for this responsibility can make recommending them a challenge. Service Dog Standards offers a solution focused on education and empowerment.</div>',
       header_image: '[path to image]',
+
+      page_subtitle: '<h3>Share this page with your medical professional</h3>',
+      page_actions: '<a href="" class="pr-4"><img src="@/images/icons/share.png"/></a><a href="" class="pr-4"><img src="@/images/icons/print.png"/></a><a href="" class=""><img src="@/images/icons/download.png"/></a>',
 
       section_01_title: "We understand your role isn't to verify expertise in service dog training",
       section_01_description: '<div class="pt-8">As a physician or therapist, you play a crucial role in supporting your patients\' well-being. You may be aware of the potential benefits of service dogs for patients with disabilities, however, concerns about patient preparedness for this responsibility can make recommending them a challenge. Service Dog Standards offers a solution focused on education and empowerment.</div>',      section_01_body_col1: '<section class="txt-box-side"><h4 class="copy-title pb-3">Attract New Clients</h4><p class="small-content">Stand out with a comprehensive trainer listing, showcasing your expertise and attracting clients seeking service dog training.</p></section>',

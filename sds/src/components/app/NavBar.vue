@@ -20,31 +20,11 @@
 
 
     <!--------------------------full size menu----------------------------->
-    <v-app-bar v-if="!hamburger_menu" key="full-size-nav-bar" :app="app_val" style="background: none" elevation="0"
-      height="80px">
-      <!--<img src="../../assets/images/logo/service-dog-standards.png"-->
-      <!--     height="65px"-->
-      <!--     @click="$router.push('/')"-->
-      <!--     style="cursor: pointer"-->
-      <!--&gt;-->
-
-
-
-      <img src="../../assets/images/logo/SDS-logo-sm.svg" height="65px" style="cursor: pointer; margin-bottom: 10px;"
-        alt="Service Dog Standards Logo" @click="$router.push('/')">
-
-
-
-
-
-      <span class="pa-3" />
+    <v-app-bar v-if="!hamburger_menu" key="full-size-nav-bar" :app="app_val" style="display:flex;justify-content: center;align-items:center;width:100%;background:none;padding:4px 48px" elevation="0" height="68px">
+      <img src="../../assets/images/logo/SDSTrainerLogo.svg" height="48px" style="cursor: pointer;" alt="Service Dog Standards Logo" @click="$router.push('/')">
+      <span class="pa-3"></span>
 
       <v-spacer />
-
-
-
-
-
       <!---------------learn more menu--------------------->
       <!--<v-menu-->
       <!--    v-if="!isAdmin"-->
@@ -59,7 +39,6 @@
       <!--      </v-btn>-->
       <!--   </template>-->
 
-
       <!--   <learn-more/>-->
 
       <!--</v-menu>-->
@@ -68,22 +47,16 @@
         Learn More
       </v-btn>
 
-
-      <v-menu v-if="!isAdmin" v-model="show_menu" :close-on-content-click="true" bottom nudge-bottom="40px" absolute
-        :position-x="menu_pos_x" :position-y="25" rounded>
-        <div style="width: 95vw;  max-width: 1500px">
+      <v-menu v-if="!isAdmin" v-model="show_menu" :close-on-content-click="true" bottom nudge-bottom="40px" absolute :position-x="menu_pos_x" :position-y="25" rounded>
+        <div style="width:100%;max-width:1080px">
           <div class="arrow-up" :style="{ 'margin-left': menu_triangle_x }" />
           <learn-more style="border-radius: 10px; " />
         </div>
       </v-menu>
 
-
-
       <v-btn class="nav-bar-btn" v-for="(item, i) in items" :key="i" text :to="item.url" :dark="dark" :light="light">
         {{ item.name }}
       </v-btn>
-
-
 
       <v-menu v-model="show_login" :close-on-content-click="false" bottom nudge-bottom="60px">
         <template #activator="{ on }">
@@ -95,7 +68,6 @@
           </v-btn>
         </template>
 
-        <!--          "-->
         <v-card v-if="!$auth.authenticated">
           <login @logged-in="on_login" />
         </v-card>
@@ -110,15 +82,11 @@
         </v-card>
       </v-menu>
 
-
-
-
-
       <!-- menu for shopping cart -->
 
       <v-btn v-if="!isAdmin" icon large class="mr-2" @click="go_to_cart">
         <div style="display: flex; flex-direction: row; ">
-          <!--                    <v-icon color="white">shopping_cart</v-icon>-->
+          <!--<v-icon color="white">shopping_cart</v-icon>-->
 
           <img src="../../assets/images/icons/shopping-cart_open2.png" width="35px" height="30px">
           <div style="margin-top: 0px; margin-left: -28px; color:white; text-align: center; width: 25px">
@@ -128,41 +96,22 @@
       </v-btn>
     </v-app-bar>
 
-
-
-
-
-
-
-
-
     <!--------------------------hamburger menu------------------------------------------------------------------------->
     <v-app-bar v-else key="mobile-nav-bar" :app="app_val" style="background: none" elevation="0">
       <a href="/">
-
-        <img v-if="$vuetify.breakpoint.width > 360" src="../../assets/images/logo/SDS-logo-sm.svg" height="40px">
+        <img v-if="$vuetify.breakpoint.width > 360" src="../../assets/images/logo/SDSTrainerLogo.svg" height="42px">
 
         <img v-else src="../../assets/images/logo/service-dog-standards.png" height="30px">
-
       </a>
 
-
-
-      <span class="pa-3" />
-
+      <span class="pa-3"></span>
 
       <v-spacer />
-
-
-
-
-
-
 
       <!------------shopping cart-------------------------------------->
       <v-btn v-if="!isAdmin" icon large @click="go_to_cart">
         <div style="display: flex; flex-direction: row; ">
-          <!--                    <v-icon color="white">shopping_cart</v-icon>-->
+          <!--<v-icon color="white">shopping_cart</v-icon>-->
 
           <template v-if="$vuetify.breakpoint.width > 360">
             <img src="../../assets/images/icons/shopping-cart_open2.png" width="35px" height="30px">
@@ -179,8 +128,6 @@
         </div>
       </v-btn>
 
-
-
       <!------------menu for login/logout------------------------------------>
       <v-menu v-model="show_login" :close-on-content-click="false" bottom nudge-bottom="60px">
         <template #activator="{ on }">
@@ -193,8 +140,6 @@
           </v-btn>
         </template>
 
-
-
         <v-card v-if="!$auth.authenticated" style="width: 300px; max-width: 95vw">
           <login @logged-in="on_login" />
         </v-card>
@@ -204,7 +149,6 @@
             {{ account_txt }}
           </div>
 
-
           <div style="display: flex; justify-content: flex-end;">
             <v-btn text style="padding-right: 5px" @click="$auth.logout()">
               Log Out
@@ -213,7 +157,6 @@
           </div>
         </v-card>
       </v-menu>
-
 
       <!------------nav menu ------------------------------------------------>
       <v-menu bottom nudge-bottom="50">
@@ -236,10 +179,7 @@
             </div>
           </div>
 
-
-
-          <div v-for="(item, i) in items" :key="item.url" style="width: 100%; display: flex; justify-content: flex-start"
-            class="mt-2">
+          <div v-for="(item, i) in items" :key="item.url" style="width: 100%; display: flex; justify-content: flex-start" class="mt-2">
             <!--<img :src="require('../../assets/images/icons/'+item.icon)" height="30px" style="margin-top: 5px">-->
             <img :src="item.icon" height="30px" style="margin-top: 5px">
 
@@ -263,9 +203,6 @@
           </div>
         </v-card>
 
-
-
-
         <!--<v-list>-->
 
         <!--   <v-list-item key="menu-learn-more">-->
@@ -277,8 +214,6 @@
 
         <!--      </v-list-item-title>-->
         <!--   </v-list-item>-->
-
-
 
         <!--   <v-list-item-->
         <!--       v-for="(item, i) in items"-->
@@ -303,7 +238,6 @@
     </v-app-bar>
   </div>
 </template>
-
 
 <script>
 
@@ -337,16 +271,15 @@ export default {
       // menu width = min(1500, 95vw).
 
 
-      if (this.$vuetify.breakpoint.width <= 1500) {
+      if (this.$vuetify.breakpoint.width <= 1080) {
         return this.$vuetify.breakpoint.width * 0.025;
       }
       else {
         let vw = document.documentElement.clientWidth
-        return vw / 2 - Math.min(1500, vw * 0.95) / 2;
+        return vw / 2 - Math.min(1080, vw * 1.0) / 2;
       }
 
     },
-
 
     // menu_triangle_x(){
     //    let ans = 0;
@@ -427,14 +360,12 @@ export default {
         ans = [{ name: 'Admin Center', url: '/admin/orders' }];
       }
 
-
       return ans;
     },
 
     isAdmin() {
       return this.$auth.profile.acct_type === 'SDS-ADMIN'
     },
-
 
     //note this is copy/pasted from the SideNav.vue component
     sidebar_items() {
@@ -559,11 +490,6 @@ export default {
 }
 </style>
 
-
-
-
-
-
 <style scoped>
 :root {
   --font-family: "Inter", "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
@@ -586,7 +512,6 @@ export default {
   height: 0;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-
   border-bottom: 15px solid white;
 }
 
@@ -608,6 +533,24 @@ export default {
 
 }
 
+/* ROB styles */
+.v-toolbar__content {
+  width: 100% !important;
+}
+header > .v-toolbar.v-app-bar {
+  width: 100%;
+}
+.nav-bar-btn,
+.nav-bar-btn > span,
+.v-btn__content,
+a > span.v-btn__content {
+  background:none !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
+  color: var(--text-dark) !important;
+}
+
+
 /*.menu-header{*/
 /*   font-size: 16pt;*/
 /*    font-weight: 600;*/
@@ -617,4 +560,6 @@ export default {
 /*.menu-links{*/
 /*    padding-left: 2px;*/
 /*}*/
+
+
 </style>

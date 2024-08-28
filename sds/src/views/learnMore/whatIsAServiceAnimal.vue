@@ -15,7 +15,7 @@
               <div data-v-3dd2e005="" class="small-header-line">{{ overline }}</div>
               <h1 data-v-3dd2e005="" class="mt-4 pb-8">{{ page_title }}</h1>
               <div data-v-3dd2e005="" class="pb-8">{{ page_description }}</div>
-              <div v-html="page_list"></div>
+              <ul v-html="page_list" class="bullet_check"></ul>
             </div>
             <div data-v-3dd2e005="" class="col-md-6 col-12">
               <div style="width:100%;" class="mt-12 bg-none">
@@ -131,7 +131,7 @@ export default {
       overline: 'About Us',
       page_title: 'What is a service dog?',
       page_description: 'The ADA defines a service animal as any dog that is individually trained to perform tasks that directly benefit a person with a disability.',
-      page_list: '<ul><li>Service dogs are not pets and should never be referred to as such. They are working animals that are classified as medical equipment</li><li>Service Dogs are trained to perform tasks that help mitigate a disability.</li><li>Service dogs can go most places with their handlers (restaurants, stores, workplaces).</li><li>Emotional support animals are NOT service dogs.</li></ul>',
+      page_list: '<li>Service dogs are not pets and should never be referred to as such. They are working animals that are classified as medical equipment</li><li>Service Dogs are trained to perform tasks that help mitigate a disability.</li><li>Service dogs can go most places with their handlers (restaurants, stores, workplaces).</li><li>Emotional support animals are NOT service dogs.</li>',
       header_image: '[path to image]',
 
       section_01_body_col1: "<section><h3 class='pb-8'>How is a service dog defined?</h3><p>The Americans with Disabilities Act (ADA) defines a service animal as any dog that is individually trained to perform tasks that directly benefit a person with a disability. This encompasses a wide range of disabilities, including physical, sensory, developmental, psychiatric, intellectual, and others.</p></section>",

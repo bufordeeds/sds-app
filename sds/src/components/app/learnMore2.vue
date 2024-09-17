@@ -1,7 +1,7 @@
 <template>
-  <div style="background-color: white; display: flex; flex-wrap: wrap; padding: 20px 30px 20px 60px">
+  <div style="background-color:white;display:flex;flex-wrap:wrap;padding:24px;border-radius:4px;">
     <div
-      class="menu-col mr-6 mt-4"
+      class="menu-col"
       style="width: 100%"
     >
       <v-row>
@@ -43,7 +43,7 @@
                 </div>
               </div>
 
-              <div>
+              <div class="navitem-container">
                 <div class="item-header">
                   {{ item.h1 }}
                 </div>
@@ -86,7 +86,7 @@
 
               </div>
 
-              <div>
+              <div class="navitem-container">
                 <div
                   class="item-header"
                   :style="item.color_h1? 'color:'+item.color_h1 : '' "
@@ -184,7 +184,7 @@
                 </div>
               </div>
 
-              <div>
+              <div class="navitem-container">
                 <div class="item-header">
                   {{ item.h1 }}
                 </div>
@@ -233,7 +233,7 @@
                 </div>
               </div>
 
-              <div>
+              <div class="navitem-container">
                 <div class="item-header">
                   {{ item.h1 }}
                 </div>
@@ -360,38 +360,46 @@ export default {
 </script>
 
 <style>
-.menu-header{
-    font-size: 16pt;
-    font-weight: 600;
-    color: gray;
-}
+/* Mega menu Navigation */
+.navitem-container {
 
-.menu-links{
-    padding-left: 2px;
 }
-
-.link-container{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: flex;
+.menu-header {
+  font-size: var(--rt-overline);
+  font-family: var(--font-family);
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--text-default);
 }
-
+.link-container {
+  display: flex;
+  padding: 8px 0;
+}
+.menu-links, .item-header, .item-header2 {
+  font-size: var(--rt-xsmall);
+  font-family: var(--font-family);
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: var(--text-dark);
+  padding-left: 0;
+  margin: 0;
+}
+.item-header2 {
+  font-weight: 425;
+  line-height: 20px;
+  color: var(--text-light);
+}
+.navitem-container:hover > .item-header2 {
+  color: var(--text-dark) !important;
+}
 .hex-container{
-    padding-right: 10px;
-    padding-top: 6px;
+    margin-right: 16px;
+    padding-top: 1.25px;
 }
+  /* */
 
-
-.item-header{
-    font-size: 14pt;
-    font-weight: 600;
-    color: black;
-}
-.item-header2{
-    font-size: 12pt;
-    font-weight: 500;
-    color: gray;
-    margin-top: -4px;
-    padding-left: 3px;
-}
 </style>

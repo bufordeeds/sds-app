@@ -201,6 +201,7 @@
 :root {
   --rt-base: 18px;
 
+  --rt-overline: 13px;
   --rt-xsmall: 14px;
   --rt-small: 15px;
   --rt-medium: var(--rt-base);

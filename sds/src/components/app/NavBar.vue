@@ -89,7 +89,7 @@
           <!--<v-icon color="white">shopping_cart</v-icon>-->
 
           <img src="../../assets/images/icons/shopping-cart_open2.png" width="35px" height="30px">
-          <div style="margin-top: 0px; margin-left: -28px; color:white; text-align: center; width: 25px">
+          <div style="margin-top: 0px; margin-left: -28px; color:#0066cc; text-align: center; width: 25px">
             {{ num_cart_items }}
           </div>
         </div>
@@ -115,13 +115,13 @@
 
           <template v-if="$vuetify.breakpoint.width > 360">
             <img src="../../assets/images/icons/shopping-cart_open2.png" width="35px" height="30px">
-            <div style="margin-top: 0px; margin-left: -20px; color:white;">
+            <div style="margin-top: 0px; margin-left: -20px; color:#0066cc;">
               {{ num_cart_items }}
             </div>
           </template>
           <template v-else>
             <img src="../../assets/images/icons/shopping-cart_open2.png" width="30px" height="25px">
-            <div style="margin-top: -2px; margin-left: -18px; color:white;">
+            <div style="margin-top: -2px; margin-left: -18px; color:#0066cc;">
               {{ num_cart_items }}
             </div>
           </template>
@@ -539,6 +539,7 @@ export default {
 }
 header > .v-toolbar.v-app-bar {
   width: 100%;
+  max-width: 1080px;
 }
 .nav-bar-btn,
 .nav-bar-btn > span,

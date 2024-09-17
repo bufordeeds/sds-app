@@ -30,7 +30,7 @@ const corsOptions = {
 		'https://sds-app.vercel.app', // Production frontend URL
 		'https://servicedogstandards.org',
 		'https://testing.servicedogstandards.org',
-		'https://espy-test-app.ngrok.io'
+		'https://sds-app.ngrok.app'
 	],
 	optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };

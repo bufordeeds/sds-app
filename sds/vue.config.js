@@ -27,5 +27,17 @@ module.exports = {
 			}
 		}
 	},
-	devServer: {}
+	devServer: {
+		host: '0.0.0.0',
+		port: 5300,
+		allowedHosts: ['.ngrok.app'],
+		client: {
+			webSocketURL: {
+				protocol: 'wss',
+				hostname: 'sds-app.ngrok.app',
+				port: 443,
+				pathname: '/ws'
+			}
+		}
+	}
 };

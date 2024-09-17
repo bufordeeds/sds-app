@@ -31,15 +31,15 @@ async function create_app() {
 	let auth = getInstance();
 	await auth.check_is_logged_in();
 
-	// let origin = window.location.origin;
-	// let origin2 = origin.split(':')
-	//
-	// if (origin.includes('ngrok')){
-	//    Vue.prototype.$baseUrlApi =   process.env.VUE_APP_BASE_API_NGROK;
-	// }
-	// else{
-	//    Vue.prototype.$baseUrlApi = origin2.slice(0,2).join(':') + ':'+ process.env.VUE_APP_API_PORT;
-	// }
+	let origin = window.location.origin;
+	let origin2 = origin.split(':');
+
+	if (origin.includes('ngrok')) {
+		Vue.prototype.$baseUrlApi = process.env.VUE_APP_BASE_API_NGROK;
+	} else {
+		Vue.prototype.$baseUrlApi =
+			origin2.slice(0, 2).join(':') + ':' + process.env.VUE_APP_API_PORT;
+	}
 
 	window.app = new Vue({
 		router,

@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color:white;display:flex;flex-wrap:wrap;padding:24px;border-radius:4px;">
+  <div style="background-color:#f6f9fc;display:flex;flex-wrap:wrap;padding:24px;border-radius:4px;">
     <div
       class="menu-col"
       style="width: 100%"

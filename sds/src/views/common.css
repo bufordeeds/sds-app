@@ -400,7 +400,7 @@ a.text-link {
 }
 
 .captions-caption-regular {
-  font-size: 0.778rem;
+  font-size: var(--rt-xsmall);
   font-family: var(--font-family);
   font-weight: 400;
   font-style: normal;
@@ -411,7 +411,7 @@ a.text-link {
 }
 
 .captions-caption-medium {
-  font-size: 0.778rem;
+  font-size: var(--rt-xsmall);
   font-family: var(--font-family);
   font-weight: 500;
   font-style: normal;
@@ -422,7 +422,7 @@ a.text-link {
 }
 
 .captions-caption-bold {
-  font-size: 0.778rem;
+  font-size: var(--rt-xsmall);
   font-family: var(--font-family);
   font-weight: 700;
   font-style: normal;
@@ -453,7 +453,7 @@ a.text-link {
 }
 
 .captions-overline {
-  font-size: 0.778rem;
+  font-size: var(--rt-xsmall);
   font-family: var(--font-family);
   font-weight: 900;
   font-style: normal;
@@ -470,11 +470,16 @@ button.site-header-nav-item--link.v-btn:before {
   background: none;
 }
 button > .v-btn__content {
-  font-size: 15px;
+  font-size: var(--rt-small);
   font-weight: bold;
   line-height: 1.6;
   letter-spacing: 0.2px;
   color: var(--text-white);
+}
+.button_text {
+  font-size: var(--rt-small);
+  font-weight: 600;
+  color: var(--text-dark);
 }
 button.site-header-nav-item--link > .v-btn__content {
   color: var(--text-dark);
@@ -838,6 +843,15 @@ html {
   border-radius: 40px;
   box-shadow: none;
   text-transform: none;
+}
+
+.button_primary {
+  background-color: var(--brand-primary-highlight) !important;
+}
+.v-btn__content {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+
 }
 
 .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {

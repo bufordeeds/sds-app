@@ -241,7 +241,7 @@
 
 
         <div style="margin-top: 40px">
-          <v-btn style="padding-right: 30px; padding-left: 30px" to="/signup">
+          <v-btn to="/signup" class="button_primary">
             Join today
           </v-btn>
         </div>
@@ -349,7 +349,7 @@
 
         <div style="display: flex; flex-direction: column">
           <div :style="ismobile ? 'margin-top:0px; margin-bottom: 20px;' : 'margin-top:20px'">
-            <v-btn style="padding-right: 30px; padding-left: 30px" to="/signup">
+            <v-btn to="/signup" class="button_primary">
               Get Started
             </v-btn>
           </div>
@@ -420,7 +420,7 @@
             </div>
 
             <div style="margin-top: 40px">
-              <v-btn style="padding-right: 30px; padding-left: 30px" to="/signup">
+              <v-btn to="/signup" class="button_primary">
                 Join today
               </v-btn>
             </div>
@@ -587,7 +587,7 @@
 
 
             <div style="margin-top: 40px;" :style="{ 'padding-bottom': ismobile ? '0px' : '200px' }">
-              <v-btn style="padding-right: 30px; padding-left: 30px" to="/signup">
+              <v-btn to="/signup" class="button_primary">
                 Join today
               </v-btn>
             </div>
@@ -809,14 +809,14 @@
         </div>
 
         <div style="margin-top: 40px">
-          <v-btn style="padding-right: 30px; padding-left: 30px; font-size: 14pt" to="/signup">
+          <v-btn to="/signup" class="button_primary">
             Get started
           </v-btn>
 
-          <div v-if="ismobile" class="b1-heading mt-2">
+          <div v-if="ismobile" class="button_text mt-2">
             Join now. It's free.
           </div>
-          <span v-else class="b1-heading ml-4">
+          <span v-else class="button_text ml-4">
             Join now. It's free.
           </span>
         </div>

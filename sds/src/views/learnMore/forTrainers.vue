@@ -1,441 +1,166 @@
 <template>
+
   <div>
-    <div class="page-title">
-      For Professionals
-    </div>
 
-
-
-    <div
-      class="content-container-bg pl-0 pr-0"
-      style="min-height: inherit; padding-bottom: 10px; "
-    >
-      <div class="content-container-sm">
-        <div class="bread-crumb-title">
-          Powerful Solutions
+    <!-- Product Hero section:: -->
+    <div class="section-container product-hero-section pt-1">
+      <div data-v-3dd2e005="" class="section-layout">
+        <div class="angled-ribbon">
+          <canvas id="gradient-canvas-basic" data-js-darken-top data-transition-in>
+          </canvas>
         </div>
-        <div class="lm-title">
-          Professional Solutions for Service Dog Trainers
-        </div>
-        <share-section />
-      </div>
-
-
-
-
-      <!--<div class="content-container lm-title">-->
-      <!--   Pro Solutions for Service Dog Trainers-->
-      <!--</div>-->
-      <!--<img src="./images/dachshund_dog.jpg" width="100%">-->
-    </div>
-
-
-
-
-    <div
-      class="content-container-bg pt-0"
-      style="min-height: inherit; padding-bottom: 20px; "
-    >
-      <div class="content-container-sm">
-        <div class="section">
-          Service Dog Standards helps trainers educate and manage their human clients and grow their businesses with free professional listings and more.
-
-          <div class="lm-heading">
-            Service Dog Standards helps Trainers educate handlers
-          </div>
-
-
-          Dog Trainers have a tough job. Not only do they train dogs — but they also have what is often a far more difficult task: training human handlers.
-          <span class="br" />
-          Trainers and training organizations use Service Dog Standards as a method to help educate Service Dog owners about their obligations and responsibilities.
-
-
-          <div class="lm-heading">
-            Get a Free, Powerful Business Page
-          </div>
-
-
-          Whether you currently train Service Dogs or would like to begin, Service Dog Standards lets you set up a free business page with ease. It’s so powerful, you can even use it in place of a website. To get started, create an account with us today.
-        </div>
-      </div>
-    </div>
-
-
-    <div
-      class="content-container-bg"
-      style=" min-height: inherit; padding-bottom: 20px; padding-top: 0px; "
-    >
-      <div class="content-container-sm">
-        <div class="section">
-          <div style="display: flex; justify-content: center; padding-left: 10px; padding-right: 10px">
-            <img
-              src="./images/SDSTrainerProfileExample.png"
-              style="max-width: 800px; width: 100%"
-            >
-          </div>
-
-          <div
-            v-if="$vuetify.breakpoint.width<600"
-            style="height: 20px"
-          />
-          <div style="text-align: center; display: flex; flex-direction: column; align-items: center; margin-top: -40px">
-            <div class="lm-heading">
-              Create a free business listing for yourself
+        <div data-v-3dd2e005="" class="section-inner-container pt-15">
+          <div data-v-3dd2e005="" class="row">
+            <div data-v-3dd2e005="" class="col-md-7 col-12">
+              <div data-v-3dd2e005="" class="small-header-line">{{ overline }}</div>
+              <h1 data-v-3dd2e005="" v-html="page_title" class="mt-4 pb-8"></h1>
+              <ul v-html="page_list" class="bullet_check"></ul>
+              <div v-html="page_description"></div>
             </div>
-
-            <p style="max-width: 500px">
-              Service Dog trainers can create a free — and robust — page for their business with photos, links and more.
-            </p>
-          </div>
-
-
-          <!--<div style="display: flex; justify-content: center; padding-left: 10px; padding-right: 10px; padding-bottom: 10px">-->
-          <!--   <v-btn width="200px"-->
-          <!--          href="https://servicedogstandards.org/trainer/exampletrainer"-->
-          <!--   >See example</v-btn>-->
-          <!--</div>-->
-        </div>
-      </div>
-    </div>
-
-
-
-    <div class="content-container-bg">
-      <div class="content-container-sm">
-        <div class="section">
-          <div class="lm-heading">
-            Stay Organized
-          </div>
-
-          Service Dog Standards helps you manage, track, and organize your human and canine clients. But best of all we help you by putting prospective Service Dog handlers in charge of understanding their responsibilities instead of you.
-
-
-          <div class="lm-heading">
-            Invite Clients
-          </div>
-
-          Easily send email invitations to clients
-
-
-          <div class="lm-heading">
-            Track Dogs & Clients
-          </div>
-
-          Manage service dog puppy candidates, graduates, washouts and more
-
-
-          <div class="lm-heading">
-            Educate Clients
-          </div>
-
-          Service Dog Standards helps handlers understand their responsibilities
-
-
-          <div class="lm-heading">
-            Reduce Stress
-          </div>
-
-          We help you do what you do best: train dogs.
-
-
-          <div class="lm-heading">
-            Trainers and organizations of all sizes welcome
-          </div>
-
-          Whether you’re a private trainer or a training organization, Service Dog Standards can add credibility to your practice by giving you the opportunity to voluntarily accept additional, higher standards for Service Dog training and behavior.
-
-
-
-
-
-          <div class="bread-crumb-title">
-            Oath
-          </div>
-
-          <div class="lm-title">
-            Service Dog Standards Trainer Oath
-          </div>
-
-          <div class="lm-heading">
-            As a Service Dog Standards Trainer, I will do my best to:
-          </div>
-
-
-          <ul>
-            <li>
-              Do no harm to my humans or canine clients.
-            </li>
-
-            <li>
-              Train potential Service Dog owners to become the best dog handler they can be.
-            </li>
-
-            <li>
-              Pursue my work in an ethical manner and behave with integrity.
-            </li>
-
-            <li>
-              Safeguard my client’s private disability information.
-            </li>
-
-            <li>
-              Manage my Service Dog training practice in good faith.
-            </li>
-
-            <li>
-              Understand and uphold, both in letter and in spirit, Service Dog Standards and all applicable laws.
-            </li>
-
-            <li>
-              Take responsibility for my actions and represent the promises of my training practice accurately and honestly.
-            </li>
-
-            <li>
-              Develop both myself and other Service Dog trainers under my supervision to grow and contribute to the well-being of society.
-            </li>
-
-            <li>
-              This oath I make freely, and upon my honor.
-            </li>
-          </ul>
-
-
-          <div style="margin-top: 50px">
-            <v-btn
-              width="200px"
-              href="https://servicedogstandards.org/trainer/exampletrainer"
-            >
-              Get started
-            </v-btn>
+            <div data-v-3dd2e005="" class="col-md-5 col-12">
+              <div style="width:100%;" class="mt-12 bg-none">
+                <!--<img :src="header_image" alt="" class="bg-none card-shadowLarge" style="width:100%;height:auto;border-radius:24px">-->
+                <img src="../learnMore/images/iStock-953742852.jpg" alt="" class="bg-none card--shadowLarge"
+                  style="width:100%;height:auto;border-radius:24px">
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
+    <div id="section_01" class="section-container">
+      <div data-v-3dd2e005="" class="section-inner-container pt-16">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h2 data-v-3dd2e005="" class="pb-0">{{ section_01_title }}</h2>
+            </section>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12">
+            <div data-v-3dd2e005="" class="column-layout3">
+              <div v-html="section_01_body_col1"></div>
+              <div v-html="section_01_body_col2"></div>
+              <div v-html="section_01_body_col3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section_02" class="section-container angled-section-bottom light">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h2 data-v-3dd2e005="" class="pb-8">{{ section_02_title }}</h2>
+              <div v-html="section_02_body"></div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section_03" class="section-container">
+      <div data-v-3dd2e005="" class="section-inner-container pt-8">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h2 data-v-3dd2e005="" class="pb-8">{{ section_03_title }}</h2>
+              <p>{{ section_03_description }}</p>
+            </section>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12">
+            <div data-v-3dd2e005="" class="column-layout3">
+              <div v-html="section_03_body_col1"></div>
+              <div v-html="section_03_body_col2"></div>
+              <div v-html="section_03_body_col3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section_04" class="section-container bg-pale">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h2 data-v-3dd2e005="" class="pb-8">{{ section_04_title }}</h2>
+              <div v-html="section_04_body"></div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section_05" class="section-container bg-dark">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row pb-16">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <h2 data-v-3dd2e005="" class="text-white pb-12">{{ section_05_title }}</h2>
+            <div v-html="section_05_01_body"></div>
+            <div v-html="section_05_02_body"></div>
+            <div v-html="section_05_03_body"></div>
+            <div v-html="section_05_card"></div>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12">
+            <div v-html="cta_join_today"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--<div class="content-container-bg pt-0" style="min-height: inherit; padding-bottom: 20px; ">-->
-    <!--   <div class="content-container-sm">-->
-
-
-    <!--      <div class="section">-->
-    <!--         <div class="lm-heading">-->
-    <!--            Pro Solutions for Service Dog Trainers-->
-    <!--         </div>-->
-    <!--         <p>-->
-    <!--            Dog Trainers have a tough job. Not only do they train dogs — but they also have what is often a far-->
-    <!--            more difficult task: training human handlers.-->
-    <!--         </p>-->
-
-    <!--         <div class="lm-heading">-->
-    <!--            Service Dog Standards helps educate handlers-->
-    <!--         </div>-->
-
-    <!--         <p>-->
-    <!--            Service Dog trainers may use Service Dog Standards as an additional tool to help educate Service Dog-->
-    <!--            handlers about their obligations and responsibilities.-->
-    <!--         </p>-->
-
-
-    <!--         <div class="lm-heading">-->
-    <!--            How it works:-->
-    <!--         </div>-->
-
-    <!--         <p>-->
-    <!--            Once you have created an account on Service Dog Standards, you can invite clients to join and accept-->
-    <!--            community-defined Service Dog training and behavior standards and create a free Public Profile page or-->
-    <!--            themselves.-->
-    <!--         </p>-->
-
-    <!--      </div>-->
-
-
-    <!--   </div>-->
-    <!--</div>-->
-
-
-
-
-    <!--<div class="content-container-bg"-->
-    <!--     style="background-color: white; min-height: inherit; padding-bottom: 20px; padding-top: 0px; "-->
-    <!--&gt;-->
-    <!--   <div class="content-container-sm" >-->
-
-    <!--      <div class="section">-->
-
-    <!--         <div style="display: flex; justify-content: center; padding-left: 10px; padding-right: 10px">-->
-    <!--            <img src="./images/SDSTrainerProfileExample.png" style="max-width: 800px; width: 100%">-->
-    <!--         </div>-->
-
-    <!--         <div v-if="$vuetify.breakpoint.width<600" style="height: 20px"/>-->
-    <!--         <div style="text-align: center; display: flex; flex-direction: column; align-items: center; margin-top: -40px">-->
-    <!--            <div class="lm-heading">-->
-    <!--               Create a free business listing for yourself-->
-    <!--            </div>-->
-
-    <!--            <p style="max-width: 500px">-->
-    <!--               Service Dog trainers can create a free — and robust — page for their business with photos, links and more.-->
-
-    <!--            </p>-->
-    <!--         </div>-->
-
-
-    <!--         <div style="display: flex; justify-content: center; padding-left: 10px; padding-right: 10px; padding-bottom: 10px">-->
-    <!--            <v-btn width="200px"-->
-    <!--                   href="https://servicedogstandards.org/trainer/exampletrainer"-->
-    <!--            >See example</v-btn>-->
-    <!--         </div>-->
-
-
-    <!--      </div>-->
-
-    <!--   </div>-->
-    <!--</div>-->
-
-
-    <!--<div class="content-container-bg pt-0" style="min-height: inherit; padding-bottom: 20px; ">-->
-    <!--   <div class="content-container-sm">-->
-
-    <!--   <div class="section">-->
-
-    <!--      <div v-if="$vuetify.breakpoint.width<400" style="height: 10px"/>-->
-    <!--      <div style="display: flex; justify-content: center; padding-left: 10px; padding-right: 10px; margin-top: -10px">-->
-    <!--         <img src="./images/SDSHandlerProfileExample.png" style="max-width: 700px; width: 100%">-->
-    <!--      </div>-->
-
-    <!--      <div v-if="$vuetify.breakpoint.width<500" style="height: 20px"/>-->
-
-    <!--      <div style="display: flex; justify-content: center; padding-left: 10px; padding-right: 10px; margin-top: -10px">-->
-    <!--         <v-btn width="200px"-->
-    <!--                href="https://servicedogstandards.org/team/1241858"-->
-    <!--         >See example</v-btn>-->
-    <!--      </div>-->
-
-    <!--      <div class="lm-heading" style="text-align: center; ">-->
-    <!--         And invite handlers to create a page for themselves-->
-    <!--      </div>-->
-
-
-    <!--      <p>-->
-    <!--         Once a client has accepted our community-defined Service Dog training and behavior standards, they can create a free Public Profile page which functions similar to a training resume. Handlers can share important training details and documentation while still protecting their privacy and medical history.-->
-    <!--      </p>-->
-
-    <!--      <p>-->
-    <!--         There are a lot of documents, tests and tools that responsible Service Dog trainers and handlers use as part of their Service Dog training regimen. While absolutely none of these things on their own make a dog a Service Dog — and are strictly not required for Service Dog ownership under Federal law — many find them helpful as part of documenting their training. A training resume may include:-->
-    <!--      </p>-->
-
-    <!--      <ul>-->
-    <!--         <li>-->
-    <!--            Passing a Public Access Test-->
-    <!--         </li>-->
-    <!--         <li>-->
-    <!--            Trained Task List-->
-    <!--         </li>-->
-    <!--         <li>-->
-    <!--            Detailed Digital or Analog Training Logs-->
-    <!--         </li>-->
-    <!--         <li>-->
-    <!--         Doctor’s Notes-->
-    <!--         </li>-->
-    <!--         <li>-->
-    <!--            Completing an Advanced Obedience Class-->
-    <!--         </li>-->
-    <!--         <li>-->
-    <!--            Passing AKC Good Citizen Test or Similar-->
-    <!--         </li>-->
-    <!--         <li>-->
-    <!--            Having complete and up-to-date veterinary records-->
-    <!--         </li>-->
-    <!--         <li>-->
-    <!--            Having a trainer or organization sign off on your dog-->
-    <!--         </li>-->
-    <!--         <li>-->
-    <!--            and more-->
-    <!--         </li>-->
-
-    <!--      </ul>-->
-
-    <!--      <p class="mt-3">-->
-    <!--         Service Dog Standards allows clients to share the fact that they have these documents in their possession without violating their privacy.-->
-    <!--      </p>-->
-
-    <!--         &lt;!&ndash;<p>&ndash;&gt;-->
-    <!--         &lt;!&ndash;   <a href="https://servicedogstandards.org/team/1241804">See Example</a>&ndash;&gt;-->
-
-    <!--         &lt;!&ndash;</p>&ndash;&gt;-->
-
-
-
-
-
-    <!--         <div class="lm-heading">-->
-    <!--            Renew every four years-->
-    <!--         </div>-->
-
-    <!--      </div>-->
-
-
-    <!--      <p>-->
-    <!--         In order to help handlers remember their responsibilities and obligations of being partnered with a Service Dog, our training and behavior standards agreement needs to be renewed (for free) every four years. We’ll take care of sending reminder emails — and we’ve tried to make the renewing process as simple as possible.-->
-    <!--      </p>-->
-
-    <!--      <p>-->
-    <!--         Together, we can help educate Service Dog handlers about their obligations and responsibilities, all while allowing you to focus on doing what you do best.-->
-    <!--      </p>-->
-
-    <!--      <p>-->
-
-    <!--         <router-link to="/signup">-->
-    <!--            Create an account-->
-    <!--         </router-link>-->
-    <!--      </p>-->
-
-
-    <!--   </div>-->
-    <!--</div>-->
   </div>
+
 </template>
 
 <script>
-import shareSection from "@/views/learnMore/shareSection2";
-
 export default {
-name: "ForTrainers",
-   components: {shareSection}
-}
+  name: "ForTrainers",
+  data() {
+    return {
+      overline: 'For Professionals',
+      page_title: 'Unleash the Power of Exceptional Service Dog Teams:<br/>Join Service Dog Standards',
+      page_list: '<li class="body-standard-bold">Transform your Practice</li><li class="body-standard-bold">Empower Your Clients</li><li class="body-standard-bold">Achieve Peace of Mind</li>',
+      page_blurb_02: '<img src="../../assets/images/icons/circle-check-solid.svg"/><div class="text-bold">Empower Your Clients</div>',
+      page_blurb_03: '<img src="../../assets/images/icons/circle-check-solid.svg"/><div class="text-bold">Achieve Peace of Mind</div>',
+      page_description: '<div class="pt-8">Service Dog Standards goes beyond training. We help backup life-changing partnerships between service dogs and their handlers. Our free platform equips you, the trainer, with the tools to elevate your practice and empower your clients to create responsible service dog teams.</div>',
+      header_image: '[path to image]',
+
+      section_01_title: 'Benefits for Trainers',
+      section_01_body_col1: '<section class="txt-box-side"><h4 class="copy-title pb-3">Attract New Clients</h4><p class="small-content">Stand out with a comprehensive trainer listing, showcasing your expertise and attracting clients seeking service dog training.</p></section>',
+      section_01_body_col2: '<section class="txt-box-side"><h4 class="copy-title pb-3">Maintain Easy Connections</h4><p class="small-content">View all your clients\' profiles and easily track their progress updates in one place.</p></section>',
+      section_01_body_col3: '<section class="txt-box-side"><h4 class="copy-title pb-3">Effortless Client Management</h4><p class="small-content">Manage graduates, washouts, and ongoing training with ease.</p></section>',
+
+      section_02_title: "Boost Client Confidence",
+      section_02_body: "<section><p>Empower your clients with clear, community-defined standards. Foster successful partnerships built on mutual understanding and trust.</p></section>",
+
+      section_03_title: "Streamline Documentation and Showcase Progress",
+      section_03_description: "Service Dog Standards offers a central hub for handlers to document their service dog's training journey. Store details like",
+      section_03_body_col1: '<section class="txt-box-side"><h4 class="copy-title pb-3">Physician Letters</h4><p class="small-content">Share the fact that you have one while also protecting your privacy.</p></section>',
+      section_03_body_col2: '<section class="txt-box-side"><h4 class="copy-title pb-3">Certification Completion</h4><p class="small-content">Track progress on certifications like the Canine Good Citizen test.</p></section>',
+      section_03_body_col3: '<section class="txt-box-side"><h4 class="copy-title pb-3">Letters of Recommendation</h4><p class="small-content">Securely include optional letters of recommendation with privacy controls.</p></section>',
+      
+      section_04_title: "Reduce Stress, Focus on Results",
+      section_04_body: "By centralizing clear documentation, handlers can easily demonstrate their commitment to responsible ownership and their dog's qualifications. This frees you, the trainer, to focus on what truly matters – building a strong and reliable service dog team.",
+
+      /* Bottom section Dark gradient:: */
+      section_05_title: "Benefits for Clients",
+      section_05_01_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary">Responsible service dog ownership: Handlers who understand and accept their responsibilities make things safer for everyone.</p></div></section>',
+      section_05_02_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary">Simplify Documentation: Showcase your dedication by easily documenting training details and achievements. Maintain privacy while demonstrating responsible service dog ownership.</p></section>',
+      section_05_03_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary">Gain Confidence in Public Spaces: Feel empowered knowing you have the resources to navigate public spaces with your service dog with confidence.</p><div class="dot full-width mt-8"></div></section>',
+      section_05_card: '<h3 class="mt-16 text-white">Join Service Dog Standards today and unlock a world of possibilities for both you and your clients.</h3>',
+      cta_join_today: '<a data-v-3dd2e005="" href="/signup" class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--router theme--dark v-size--default" style="padding:0 16px"><span class="standard-button-label text-dark">Join today</span></a>'
+    };
+  }
+};
 </script>
 
-<style scoped src="./common.css">
-
-</style>
+<style scoped src="../common.css"></style>

@@ -1,241 +1,166 @@
 <template>
+
   <div>
-    <div class="page-title">
-      About Us
-    </div>
 
-
-    <div class="content-container-bg pl-0 pr-0" style="min-height: inherit; padding-bottom: 10px; ">
-      <!--<div class="content-container lm-title">-->
-      <!--   What Is A Service Animal?-->
-      <!--</div>-->
-      <!--<img src="./images/Dog-Guidance-Blind.jpg" width="100%">-->
-
-      <div class="content-container-sm">
-        <div class="bread-crumb-title">
-          Use Correct Words
+    <!-- Product Hero section:: -->
+    <div class="section-container product-hero-section pt-1">
+      <div data-v-3dd2e005="" class="section-layout">
+        <div class="angled-ribbon">
+          <canvas id="gradient-canvas-sds3" data-js-darken-top data-transition-in>
+          </canvas>
         </div>
-        <div class="lm-title">
-          What Is A Service Animal?
-        </div>
-        <share-section />
-      </div>
-    </div>
-
-
-    <div class="content-container-bg pt-0">
-      <div class="content-container-sm">
-        <div class="section">
-          <div class="lm-heading" />
-
-          The <a hrf="https://www.ada.gov/2010_regs.htm">Americans with Disabilities Act</a> (ADA) defines a Service
-          Animal as: any dog that is individually trained to do work or perform tasks for the benefit of an individual
-          with a disability, including a physical, sensory, developmental, psychiatric, intellectual, or other disability.
-
-          <div class="lm-heading">
-            Know Your Terminology
+        <div data-v-3dd2e005="" class="section-inner-container pt-15">
+          <div data-v-3dd2e005="" class="row">
+            <div data-v-3dd2e005="" class="col-md-6 col-12">
+              <div data-v-3dd2e005="" class="small-header-line">{{ overline }}</div>
+              <h1 data-v-3dd2e005="" class="mt-4 pb-8">{{ page_title }}</h1>
+              <div data-v-3dd2e005="" class="pb-8">{{ page_description }}</div>
+              <ul v-html="page_list" class="bullet_check"></ul>
+            </div>
+            <div data-v-3dd2e005="" class="col-md-6 col-12">
+              <div style="width:100%;" class="mt-12 bg-none">
+                <!--<img :src="header_image" alt="" class="bg-none card-shadowLarge" style="width:100%;height:auto;border-radius:24px">-->
+                <img src="../learnMore/images/iStock-953742852.jpg" alt="" class="bg-none card--shadowLarge"
+                  style="width:100%;height:auto;border-radius:24px">
+              </div>
+            </div>
           </div>
-
-          Service Animals are also known as Assistance Animals, Assistance Dogs, and Service Dogs.
-          <span class="br" />
-          Emotional Support Animals (ESAs) and Therapy Dogs are important types of working dogs, but they are not Service
-          Dogs.
-          It is very important to <a
-            href="https://anythingpawsable.com/the-difference-between-service-dogs-therapy-dogs-emotional-support-animals-and-more/">understand
-            the difference</a>.
-
-          <div class="lm-heading">
-            Specialized Training
-          </div>
-
-          These unique working dogs utilize their specialized training to mitigate their partner’s specific disability and
-          the difficulties caused by the disability. They perform some of the functions and tasks that an individual with
-          a disability cannot perform easily for themselves.
-
-
-          <div class="lm-heading">
-            The Owner Must be Disabled
-          </div>
-
-          In order to be a Service Dog, a dog must be partnered with a person with a disability that hinders their ability
-          to function independently. Furthermore, the dog must have specific task training or work that directly lessens
-          or reduces the impact of the handler’s disability. Without both of these pieces, a dog, no matter how well
-          trained, is not legally a Service Dog.
-
-          <div class="lm-heading">
-            Under the ADA, Only Dogs Can be Service Animals
-          </div>
-          Other species of animals, whether wild or domestic, trained or untrained, do not meet the ADA’s definition of a
-          Service Animal.
-
-          <div class="lm-heading">
-            Dog Must be Trained in Tasks Or Work
-          </div>
-
-          Service Dogs can be trained to assist with tasks and work related to a wide range of disabilities, including —
-          but not limited to — deafness, blindness, autism, epilepsy, severely limiting psychiatric conditions,
-          life-threatening allergies, diabetes, mobility issues, neuromuscular diseases, and many others, such as
-          endocrine system, circulatory, or pulmonary irregularities. Some disabilities, like many neurological disorders
-          or the cardiac condition POTS, are invisible and may not be apparent to others.
-
-          <span class="br" />
-          The work or tasks performed by a Service Dog must be directly related to the individual’s disability. Examples
-          of work or tasks include, but are not limited to:
-          <span class="br" />
-          <ul>
-            <li>
-              Assisting individuals who are blind or have low vision with navigation and other tasks
-            </li>
-            <li>
-              Alerting individuals who are deaf or hard of hearing to the presence of people or sounds
-            </li>
-            <li>
-              Providing non-violent protection or rescue work
-            </li>
-            <li>
-              Pulling a wheelchair
-            </li>
-            <li>
-              Assisting an individual during a seizure
-            </li>
-            <li>
-              Alerting individuals to the presence of deadly allergens
-            </li>
-
-            <li>
-              Retrieving items such as medicine or the telephone
-            </li>
-            <li>
-              Providing physical support and assistance with balance and stability to individuals with mobility
-              disabilities
-            </li>
-            <li>
-              Helping persons with psychiatric and neurological disabilities by preventing or interrupting impulsive or
-              destructive behaviors.
-            </li>
-          </ul>
-
-
-          The crime deterrent effects of an animal’s presence and the provision of emotional support, well-being, comfort,
-          or companionship do not constitute work or tasks for the purposes of this definition.
-          <span class="br" />
-          Source: Part 35 Nondiscrimination on the Basis of Disability in State and Local Government Services (as amended
-          by the final rule published on September 15, 2010) Authority: 5 U.S.C. 301; 28 U.S.C. 509, 510; 42 U.S.C. 12134.
-          Subpart A—General § 35.104 Definitions
-          <span class="br" />
-          <a href="http://www.ada.gov/regs2010/titleII_2010/titleII_2010_withbold.htm">
-            View the full ADA Legislation
-          </a>
         </div>
       </div>
     </div>
 
+    <!-- 2-column layout BG Pale:: -->
+    <div class="section-container">
+      <div data-v-3dd2e005="" class="section-inner-container pt-16">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h2 data-v-3dd2e005="" class="pb-8">{{ section_01_title }}</h2>
+            </section>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12">
+            <div data-v-3dd2e005="" class="column-layout2">
+              <div data-v-3dd2e005="" v-html="section_01_body_col1"></div>
+              <div data-v-3dd2e005="" v-html="section_01_body_col2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- 3-column layout BG Pale:: -->
+    <div class="section-container bg-pale">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h2 data-v-3dd2e005="" class="pb-8">{{ section_02_title }}</h2>
+              <h3>{{ section_02_01_subtitle }}</h3>
+              <div v-html="section_02_01_body"></div>
+            </section>
+            <section>
+              <h3>{{ section_02_02_subtitle }}</h3>
+              <div v-html="section_02_02_body"></div>
+            </section>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12">
+            <div data-v-3dd2e005="" class="column-layout3 mb-16">
+              <div v-html="section_02_02_body_col1"></div>
+              <div v-html="section_02_02_body_col2"></div>
+              <div v-html="section_02_02_body_col3"></div>
+              <div v-html="section_02_02_body_col4"></div>
+              <div v-html="section_02_02_body_col5"></div>
+            </div>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section class="pt-0">
+              <h3>{{ section_02_03_subtitle }}</h3>
+              <div v-html="section_02_03_body"></div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="section-container">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h2 data-v-3dd2e005="" class="pb-8">{{ section_03_title }}</h2>
+              <div v-html="section_03_01_body"></div>
+              <div v-html="section_03_02_body"></div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- 1-column layout Bottom section BG Dark:: -->
+    <div class="section-container bg-dark">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row pb-16">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <h2 data-v-3dd2e005="" class="text-white pb-12">{{ section_04_title }}</h2>
+            <div v-html="section_04_body"></div>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12">
+            <div v-html="cta_join_today"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+  </div> <!-- END Content wrapper -->
 
-
-
-
-
-
-
-
-
-
-    <!--<div class="content-container-bg pt-0" >-->
-    <!--   <div class="content-container-sm">-->
-
-    <!--      <div class="section">-->
-
-    <!--         <p>-->
-    <!--         The <a href="https://www.ada.gov/2010_regs.htm">Americans with Disabilities Act</a>-->
-    <!--             (ADA) defines a Service Animal as: any dog that is individually trained to do work or perform tasks for the benefit of an individual with a disability, including a physical, sensory, developmental, psychiatric, intellectual, or other disability.-->
-    <!--         </p>-->
-
-    <!--         <p>-->
-    <!--         Per <a href="https://www.anythingpawsable.com/federal-service-dog-law-in-plain-english"> U.S. federal law</a>, the Service Animal and Service Dog definition is clear cut. It includes any dog trained to assist a person with a disability overcome obstacles affecting their day to day life that directly result from their disability. As such, Service Animals are skilled and highly trained dogs who partner with people with disabilities. Service Animals are also known as Assistance Animals, Assistance Dogs, and Service Dogs.-->
-    <!--         </p>-->
-
-    <!--         <p>-->
-    <!--         These unique working dogs utilize their specialized training to mitigate their partner’s specific disability and the difficulties caused by the disability. They perform some of the functions and tasks that an individual with a disability cannot perform easily for him or herself. In order to be a Service Dog, a dog must be partnered with a person with a disability that hinders their ability to function independently. Furthermore, the dog must have specific task training or work that directly lessens or reduces the impact of the handler’s disability. Without both of these pieces, a dog, no matter how well trained, is not legally a Service Dog.-->
-    <!--         </p>-->
-
-    <!--         <p>-->
-    <!--         Service Dogs can be trained to assist with tasks and work related to a wide range of disabilities, including — but not limited to — deafness, blindness, autism, epilepsy, severely limiting psychiatric conditions, life-threatening allergies, diabetes, mobility issues, neuromuscular diseases, and many others, such as endocrine system, circulatory, or pulmonary irregularities. Some disabilities, like many neurological disorders or the cardiac condition POTS, are invisible and may not be apparent to others.-->
-    <!--         </p>-->
-
-    <!--         <p>-->
-    <!--         The Americans with Disabilities Act (ADA) defines a Service Animal as: any dog that is individually trained to do work or perform tasks for the benefit of an individual with a disability, including a physical, sensory, developmental, psychiatric, intellectual, or other disability. Other species of animals, whether wild or domestic, trained or untrained, are not service animals for the purposes of this definition. The work or tasks performed by a service animal must be directly related to the individual’s disability. Examples of work or tasks include, but are not limited to:-->
-    <!--         </p>-->
-
-    <!--         <ul>-->
-    <!--            <li>-->
-    <!--               Assisting individuals who are blind or have low vision with navigation and other tasks-->
-    <!--            </li>-->
-    <!--            <li>-->
-    <!--               Alerting individuals who are deaf or hard of hearing to the presence of people or sounds-->
-    <!--            </li>-->
-    <!--            <li>-->
-    <!--               Providing non-violent protection or rescue work-->
-    <!--            </li>-->
-    <!--            <li>-->
-    <!--               Pulling a wheelchair-->
-    <!--            </li>-->
-    <!--            <li>-->
-    <!--               Assisting an individual during a seizure-->
-    <!--            </li>-->
-    <!--            <li>-->
-    <!--               Alerting individuals to the presence of deadly allergens-->
-    <!--            </li>-->
-
-    <!--            <li>-->
-    <!--               Retrieving items such as medicine or the telephone-->
-    <!--            </li>-->
-    <!--            <li>-->
-    <!--               Providing physical support and assistance with balance and stability to individuals with mobility disabilities-->
-    <!--            </li>-->
-    <!--            <li>-->
-    <!--               Helping persons with psychiatric and neurological disabilities by preventing or interrupting impulsive or destructive behaviors.-->
-    <!--            </li>-->
-    <!--         </ul>-->
-
-
-    <!--         <p class="mt-3">-->
-    <!--            The crime deterrent effects of an animal’s presence and the provision of emotional support, well-being, comfort, or companionship do not constitute work or tasks for the purposes of this definition.-->
-    <!--         </p>-->
-
-
-    <!--         <p>-->
-    <!--            Source: Part 35 Nondiscrimination on the Basis of Disability in State and Local Government Services (as amended by the final rule published on September 15, 2010)Authority: 5 U.S.C. 301; 28 U.S.C. 509, 510; 42 U.S.C. 12134. Subpart A—General § 35.104 Definitions-->
-    <!--            <br>-->
-    <!--            <a href="http://www.ada.gov/regs2010/titleII_2010/titleII_2010_withbold.htm">-->
-    <!--               View the full ADA Legislation-->
-    <!--            </a>-->
-
-    <!--         </p>-->
-
-
-    <!--         <p style="font-style: italic">-->
-    <!--            The ADA also allows miniature horses to also be used as Service Animals, however our focus is on canines alone.-->
-    <!--         </p>-->
-
-
-    <!--      </div>-->
-
-
-    <!--   </div>-->
-  <!--</div>-->
-</div></template>
+</template>
 
 <script>
-import shareSection from "@/views/learnMore/shareSection2";
-
 export default {
   name: "WhatIsAServiceAnimial",
-  components: { shareSection }
-}
+  data() {
+    return {
+      overline: 'About Us',
+      page_title: 'What is a service dog?',
+      page_description: 'The ADA defines a service animal as any dog that is individually trained to perform tasks that directly benefit a person with a disability.',
+      page_list: '<li>Service dogs are not pets and should never be referred to as such. They are working animals that are classified as medical equipment</li><li>Service Dogs are trained to perform tasks that help mitigate a disability.</li><li>Service dogs can go most places with their handlers (restaurants, stores, workplaces).</li><li>Emotional support animals are NOT service dogs.</li>',
+      header_image: '[path to image]',
+
+      section_01_body_col1: "<section><h3 class='pb-8'>How is a service dog defined?</h3><p>The Americans with Disabilities Act (ADA) defines a service animal as any dog that is individually trained to perform tasks that directly benefit a person with a disability. This encompasses a wide range of disabilities, including physical, sensory, developmental, psychiatric, intellectual, and others.</p></section>",
+      section_01_body_col2: "<section><h3 class='pb-8'>Service animals are more than just pets</h3><p>They are highly trained partners that empower individuals with disabilities to navigate daily life with greater independence and confidence. Service dogs are meticulously trained to mitigate challenges directly related to their handler's disability. These tasks directly assist the handler's limitations, and go beyond what a well-trained pet can offer.</p></section>",
+
+      section_02_title: "Key Characteristics of a Service Animal",
+      section_02_01_subtitle: "Individualized Training",
+      section_02_01_body: "<p class='pb-8'>Each service dog undergoes specialized training tailored to the specific needs of its handler</p>",
+      section_02_02_subtitle: "Task-Oriented",
+      section_02_02_body: "<p>Service dogs perform specific tasks that directly address the limitations caused by the handler's disability. Examples include:</p>",
+      section_02_02_body_col1: '<section class="txt-box-side"><h4 class="copy-title pb-3">Vision</h4><p class="small-content">Guiding individuals who are blind or visually impaired, retrieving dropped items.</p></section>',
+      section_02_02_body_col2: '<section class="txt-box-side"><h4 class="copy-title pb-3">Hearing</h4><p class="small-content">Alerting individuals who are deaf or hard of hearing to sounds like alarms or approaching people.</p></section>',
+      section_02_02_body_col3: '<section class="txt-box-side"><h4 class="copy-title pb-3">Mobility</h4><p class="small-content">Pulling wheelchairs, providing balance and stability.</p></section>',
+      section_02_02_body_col4: '<section class="txt-box-side"><h4 class="copy-title pb-3">Medical</h4><p class="small-content">Alerting individuals to seizures or changes in blood sugar levels, retrieving medication.</p></section>',
+      section_02_02_body_col5: '<section class="txt-box-side"><h4 class="copy-title pb-3">Psychiatric</h4><p class="small-content">Providing physical support or interrupting self-harming behaviors.</p></section>',
+      section_02_03_subtitle: "Public Access Rights",
+      section_02_03_body: "<p>Under the ADA, service animals are legally permitted to accompany their handlers in most public spaces, including restaurants, stores, and workplaces.</p>",
+
+      section_03_title: 'Not All Animals Qualify as Service Animals',
+      section_03_01_body: "<h3>Emotional support animals (ESAs)</h3><p>While ESAs can provide companionship and emotional support, they are not considered service animals under the ADA and do not have the same public access rights</p>",
+      section_03_02_body: "<h3>Other Species</h3><p>Miniature horses are the only other animal recognized by the ADA as a service animal, although our focus here remains on canine partners</p>",
+
+      /* Bottom section Dark gradient:: */
+      section_04_title: "Service Dog Standards: Supporting the Community",
+      section_04_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary">At Service Dog Standards, we are dedicated to advocating for and supporting the service dog community. We provide a wealth of resources and educational materials to promote responsible ownership, high training standards, and public awareness. We believe in fostering a more inclusive world where service dogs can empower individuals with disabilities to live their lives to the fullest.</p><div class="dot full-width mt-8"></div></section>',
+      cta_join_today: '<a data-v-3dd2e005="" href="/signup" class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--router theme--dark v-size--default" style="padding:0 16px"><span class="standard-button-label text-dark">Join today</span></a>'
+    };
+  }
+};
 </script>
 
-<style scoped src="./common.css"></style>
+<style scoped src="../common.css"></style>

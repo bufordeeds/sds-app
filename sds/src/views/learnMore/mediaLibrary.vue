@@ -1,264 +1,156 @@
+<!-- Layout template:: -->
 <template>
+
+  <!-- START Page wrapper:: -->
   <div>
-    <div class="page-title">
-      About Us
-    </div>
 
-    <div class="content-container-bg">
-      <div class="content-container-sm">
-        <div class="content-container lm-title">
-          Media Library
+    <!-- Product Hero section:: -->
+    <div class="section-container product-hero-section pt-1">
+      <div data-v-3dd2e005="" class="section-layout">
+        <div class="angled-ribbon">
+          <canvas id="gradient-canvas-basic" data-js-darken-top data-transition-in>
+          </canvas>
         </div>
-
-        <p>
-          Together, we can help educate Service Dog handlers about their obligations and responsibilities. You are welcome to place these images on your blog or website.
-        </p>
-
-
-
-        <div class="lm-heading">
-          Advertisements
-        </div>
-        Please do not modify or alter these ads in any way. Ads should point to
-        <a href="https://servicedogstandards.org/">
-          https://servicedogstandards.org
-        </a>
-
-
-
-        <div class="bold-txt mt-4">
-          250x250px
-        </div>
-
-
-        <v-row>
-          <v-col>
-            <div style="display: flex; flex-direction: column; align-items: center">
-              <img
-                src="/downloads/ads/Service_Dog_Standards_Square_250x250.png"
-                width="250px"
-              >
-
-
-              <div style="text-align: center">
-                <a href="/downloads/ads/Service_Dog_Standards_Square_250x250.png">PNG</a>
+        <div data-v-3dd2e005="" class="section-inner-container pt-15">
+          <div data-v-3dd2e005="" class="row">
+            <div data-v-3dd2e005="" class="col-md-6 col-12">
+              <div data-v-3dd2e005="" class="small-header-line">{{ overline }}</div>
+              <h1 data-v-3dd2e005="" class="mt-4 pb-8">{{ page_title }}</h1>
+              <div data-v-3dd2e005="">{{ page_description }}</div>
+            </div>
+            <div data-v-3dd2e005="" class="col-md-6 col-12">
+              <div style="width:100%;" class="mt-12 bg-none">
+                <!--<img :src="header_image" alt="" class="bg-none card-shadowLarge" style="width:100%;height:auto;border-radius:24px">-->
+                <img src="../learnMore/images/iStock-953742852.jpg" alt="" class="bg-none card--shadowLarge"
+                  style="width:100%;height:auto;border-radius:24px">
               </div>
             </div>
-          </v-col>
-
-          <v-col>
-            <div style="display: flex; flex-direction: column; align-items: center">
-              <!--<img src="/downloads/Service_Dog_Standards_Square_250x250.png" width="250px">-->
-              <iframe
-                src="/downloads/ads/Service_Dog_Standards_Square_250x250-HTML5/index.html"
-                height="250"
-                width="250"
-                scrolling="no"
-              />
-
-
-              <div style="text-align: center">
-                <a href="/downloads/ads/Service_Dog_Standards_Square_250x250-HTML5.zip">HTML5</a>
-              </div>
-            </div>
-          </v-col>
-        </v-row>
-
-
-
-
-
-
-
-
-        <div class="bold-txt mt-4">
-          300x100px
-        </div>
-
-
-        <v-row>
-          <v-col>
-            <div style="display: flex; flex-direction: column; align-items: center">
-              <img
-                src="/downloads/ads/Service_Dog_Standards_Mobile_Banner_300x100.png"
-                width="300px"
-                height="100px"
-              >
-
-
-              <div style="text-align: center">
-                <a href="/downloads/ads/Service_Dog_Standards_Mobile_Banner_300x100.png">PNG</a>
-              </div>
-            </div>
-          </v-col>
-
-          <v-col>
-            <div style="display: flex; flex-direction: column; align-items: center">
-              <!--<img src="/downloads/Service_Dog_Standards_Square_250x250.png" width="250px">-->
-              <iframe
-                src="/downloads/ads/Service_Dog_Standards_Mobile_Banner_300x100-HTML5/index.html"
-                width="290px"
-                height="100px"
-                scrolling="no"
-              />
-
-
-              <div style="text-align: center">
-                <a href="/downloads/ads/Service_Dog_Standards_Mobile_Banner_300x100-HTML5.zip">HTML5</a>
-              </div>
-            </div>
-          </v-col>
-        </v-row>
-
-
-
-
-
-
-
-
-
-        <div class="lm-heading">
-          Service Dog Standards Supporter Badges
-        </div>
-        The Service Dog Standards Supporter logo requires an "exclusion zone” — or in layman’s terms, a margin where
-        no other type or images may appear, as illustrated below. Please do not modify or alter these logos in
-        any way. Logos should point to
-        <a href="https://servicedogstandards.org/">
-          https://servicedogstandards.org
-        </a>
-
-
-        <div class="bold-txt mt-4">
-          495x90px
-        </div>
-
-        <div style="display: flex; flex-direction: column; align-items: center">
-          <div
-            class="image-container-cell"
-            style="background-color: white;"
-          >
-            <a
-              href="/downloads/ads/Service_Dog_Standards_SupporterBadgeCOLOR_495px_X_90px.png"
-              style="text-align: center"
-            >
-              <img
-                src="/downloads/ads/Service_Dog_Standards_SupporterBadgeCOLOR_495px_X_90px.png"
-                width="496px"
-                height="91px"
-              ><br>
-            </a>
           </div>
-          <a
-            href="/downloads/ads/Service_Dog_Standards_SupporterBadgeCOLOR_495px_X_90px.png"
-            style="text-align: center"
-          >
-            Download
-          </a>
-
-
-
-
-
-          <div
-            class="image-container-cell"
-            style="background-color: #3f3f3f;"
-          >
-            <a
-              href="/downloads/ads/Service_Dog_Standards_SupporterBadgeWHITE_495px_X_90px.png"
-              style="text-align: center"
-            >
-              <img
-                src="/downloads/ads/Service_Dog_Standards_SupporterBadgeWHITE_495px_X_90px.png"
-                width="496px"
-                height="91px"
-              >
-            </a>
-          </div>
-          <a
-            href="/downloads/ads/Service_Dog_Standards_SupporterBadgeWHITE_495px_X_90px.png"
-            style="text-align: center"
-          >
-            Download
-          </a>
-
-
-
-          <div
-            class="image-container-cell"
-            style="background-color: white ;"
-          >
-            <a
-              href="/downloads/ads/Service_Dog_Standards_SupporterBadgeGRAY_495px_X_90px.png"
-              style="text-align: center"
-            >
-              <img
-                src="/downloads/ads/Service_Dog_Standards_SupporterBadgeGRAY_495px_X_90px.png"
-                width="496px"
-                height="91px"
-              >
-            </a>
-          </div>
-          <a
-            href="/downloads/ads/Service_Dog_Standards_SupporterBadgeGRAY_495px_X_90px.png"
-            style="text-align: center"
-          >
-            Download
-          </a>
-
-
-          <div
-            class="image-container-cell"
-            style="background-color: #3f3f3f ;"
-          >
-            <a
-              href="/downloads/ads/Service_Dog_Standards_SupporterBadgeGRAY_495px_X_90px.png"
-              style="text-align: center"
-            >
-              <img
-                src="/downloads/ads/Service_Dog_Standards_SupporterBadgeGRAY_495px_X_90px.png"
-                width="496px"
-                height="91px"
-              >
-            </a>
-          </div>
-          <a
-            href="/downloads/ads/Service_Dog_Standards_SupporterBadgeGRAY_495px_X_90px.png"
-            style="text-align: center"
-          >
-            Download
-          </a>
         </div>
       </div>
     </div>
-  </div>
+
+    <!-- 1-column layout:: -->
+    <div id="section_01" class="section-container pt-16">
+      <div data-v-3dd2e005="" class="section-inner-container pt-0">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h2 data-v-3dd2e005="" class="pb-8">{{ section_01_title }}</h2>
+              <div v-html="section_01_body"></div>
+            </section>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row pt-8 pb-16">
+          <div data-v-3dd2e005="" class="col-12">
+            <div v-html="section_01_body_01" class="text-bold"></div>
+            <div data-v-3dd2e005="" class="column-layout2">
+              <div v-html="section_01_body_01_col1" class="fpo --fpo-ad_250"></div>
+              <div v-html="section_01_body_01_col2" class="fpo --fpo-ad_250"></div>
+            </div>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row pt-16">
+          <div data-v-3dd2e005="" class="col-12">
+            <div v-html="section_01_body_02" class="text-bold"></div>
+            <div data-v-3dd2e005="" class="column-layout2">
+              <div v-html="section_01_body_02_col3" class="fpo --fpo-ad_300"></div>
+              <div v-html="section_01_body_02_col4" class="fpo --fpo-ad_300"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section_02" class="section-container bg-pale">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h2 data-v-3dd2e005="" class="pb-8">{{ section_02_title }}</h2>
+              <div v-html="section_02_body_01" class="text-bold"></div>
+            </section>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12 pt-8 pb-16">
+            <div v-html="section_02_body_02" class="text-bold"></div>
+            <section class="fpo_wrapper">
+              <div class="fpo-container"><div v-html="section_02_body_img_01" class="--fpo-badge_495"></div></div>
+              <div class="fpo-container"><div v-html="section_02_body_img_02" class="--fpo-badge_495"></div></div>
+              <div class="fpo-container"><div v-html="section_02_body_img_03" class="--fpo-badge_495"></div></div>
+              <div class="fpo-container"><div v-html="section_02_body_img_04" class="--fpo-badge_495"></div></div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- END Content wrapper -->
+
 </template>
 
 <script>
 export default {
-   name: "MediaLibrary"
-}
+  name: "MediaLibrary",
+  data() {
+    return {
+      overline: 'About us',
+      page_title: 'Media Library',
+      page_description: 'Together, we can help educate Service Dog handlers about their obligations and responsibilities. You are welcome to place these images on your blog or website.',
+      header_image: '[path to image]',
+
+      section_01_title: 'Advertisements',
+      section_01_body: "<p>Please do not modify or alter these ads in any way. Ads should point to <a href='https://servicedogstandards.org'>https://servicedogstandards.org</a></p>",
+      section_01_body_01: '<p><b>250px x 250px</b></p>',
+      section_01_body_01_col1: "",
+      section_01_body_01_col2: "",
+      section_01_body_02: '<p><b>300px x 100px</b></p>',
+      section_01_body_02_col3: "",
+      section_01_body_02_col4: "",
+
+
+      section_02_title: "Service Dog Standards Supporter Badges",
+      section_02_body_01: '<p>The Service Dog Standards Supporter logo requires an "exclusion zone” — or in layman’s terms, a margin where no other type or images may appear, as illustrated below. Please do not modify or alter these logos in any way. Logos should point to <a href="https://servicedogstandards.org">https://servicedogstandards.org</a></p>',
+      section_02_body_02: '<p><b>495px x 90px</b></p>',
+      section_02_body_img_01: "",
+      section_02_body_img_02: "",
+      section_02_body_img_03: "",
+      section_02_body_img_04: "",
+
+    };
+  }
+};
 </script>
 
-<style scoped src="./common.css">
-
-</style>
-
+<style scoped src="../common.css"></style>
 <style scoped>
-.heading-loc{
+  .fpo_wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 48px;
 
-    font-size: 16pt;
-    font-weight: 500;
-}
+  }
+  div.fpo {
+    background-color: var(--neutral-200);
+  }
+  div.fpo.--fpo-ad_250 {
+    width: 250px;
+    height: 250px;
+  }
+  div.fpo.--fpo-ad_300 {
+    width: 300px;
+    height: 100px;
+  }
+  div.fpo-container {
+    padding: 24px 24px 48px;
+    background-color: #fff;
+  }
+  div.fpo-container .--fpo-badge_495 {
+    width: 495px;
+    height: 90px;
+    background-color: var(--neutral-200);
+  }
 
-
-.image-container-cell{
-    margin-top: 20px;
-    border: 1px solid #cdcccc;
-    width: 595px;
-    height: 153px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 </style>
+

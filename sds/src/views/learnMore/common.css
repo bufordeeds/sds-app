@@ -1,4 +1,4 @@
-.bread-crumb-title{
+.bread-crumb-title {
     color: var(--color-txt-blue-light);
     font-weight: 600;
     font-size: 14pt;
@@ -19,10 +19,6 @@
 
 }
 
-
-
-
-
 .lm-heading{
     font-size: 18pt;
     font-weight: 500;
@@ -36,10 +32,8 @@
     line-height: 1.1;
 }
 
-
 .section{
     margin-top: 15px;
-
 }
 
 .centered-image{
@@ -59,7 +53,7 @@
 }
 
 .bold-txt{
-    font-weight: 600;
+    font-weight: 700;
 }
 
 
@@ -94,3 +88,468 @@ ol, ul{
 .br {
     display:block; margin-top:10px; line-height:22px;
 }
+
+/*----------Styles by Rob 07-16-2024----------------*/
+
+/* Variables ---------- THESE THROW THE ERROR: (var) is not defined */
+:root {
+    --text-default: #425466;
+    --text-light: #A4A4A9FF;
+    --text-medium: #616165FF;
+    --text-dark: #0a2540;
+    --text-link: #0066CCFF;
+    --text-error: #E22718FF;
+
+    --surface-pale: #F6F9FC;
+    --surface-gradient-basic: linear-gradient(#054896, #0DB2FA);
+    --surface-gradient-dark: linear-gradient(#0d1836, #0d1836, #044f86);
+  
+    --card-shadow-xsmall: 0 2px 5px -1px rgba(50,50,93,0.25),0 1px 3px -1px rgba(0,0,0,0.3);
+    --card-shadow-small: 0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3);
+    --card-shadow-medium: 0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3);
+    --card-shadow-large: 0 30px 60px -12px rgba(50,50,93,0.25),0 18px 36px -18px rgba(0,0,0,0.3);
+    --card-shadow-xlarge: -42 50px 100px -20px rgba(50,50,93,0.25),0 30px 60px -30px rgba(0,0,0,0.3);
+}
+/* --------------------------------------*/
+
+/* Elevations */
+.content-card-xsmall {
+  box-shadow: var(--card-shadow-xsmall);
+}
+.content-card-small {
+  box-shadow: var(--card-shadow-small);
+}
+.content-card-medium {
+  box-shadow: var(--card-shadow-medium);
+}
+.content-card-large {
+  box-shadow: var(--card-shadow-large);
+}
+.content-card-xlarge {
+  box-shadow: var(--card-shadow-xlarge);
+}
+
+.home {
+  background-color: var(--color-bg);
+  /*background-color: #853bcd;*/
+  position: relative;
+}
+
+.image-bg {
+  background-size: cover;
+  background-position: center;
+}
+
+
+.content-container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
+
+.card-title {
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 36px;
+  color: #0a2540;
+}
+
+
+.main-heading {
+  height: 400px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 40px;
+  /*background-image: url('../assets/images/content/math.png')*/
+
+  /*background-size: cover;*/
+  /*!*background-size: auto 100%;*!*/
+  /*!*background-size: 100% auto;*!*/
+  /*background-position: center;*/
+}
+
+.fold-content {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1100px;
+  /*border: 1px solid red;*/
+
+  position: relative;
+  z-index: 0;
+
+
+}
+
+.fold-text {
+  font-size: 30pt;
+  margin-top: 50px;
+  text-align: center;
+}
+
+
+
+
+/************ section 1 box **********************************/
+
+.txt-box {
+  font-size: 18px;
+  font-weight: 400;
+  color: #425466;
+  line-height: 28px;
+  letter-spacing: 0.2px;
+  padding-right: 10px;
+  /*max-width: 500px;*/
+}
+
+.txt-box-side {
+  margin-top: 30px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #425466;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  border-left: 2px solid #969696;
+  padding-right: 10px;
+  padding-left: 20px;
+  max-width: 500px;
+}
+
+
+.b1-heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-txt-blue-dark);
+}
+
+
+.small-header-line {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-txt-blue-dark)
+}
+
+.medium-header-line {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 36px;
+  color: #0a2540; /* #1D1D1FFF */
+}
+
+.large-header-line {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 68px;
+  letter-spacing: -1.12;
+  color: var(--color-txt-dark);
+  max-width: 900px;
+}
+
+
+.b1-heading.ismobile {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+
+.small-header-line.ismobile {
+  font-weight: bold;
+  color: var(--color-txt-blue-dark)
+}
+
+.large-header-line.ismobile {
+  font-weight: 600;
+  color: var(--color-txt-blue-dark);
+  font-size: 38px;
+  line-height: 48px;
+  letter-spacing: -0.2px;
+  max-width: 900px
+}
+/*
+ul {
+  list-style-type: &#x27A1;
+}
+*/
+
+ul li, .small-content {
+  font-weight: 400;
+  color: inherit;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+}
+
+.angled-section {
+  /*-webkit-clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);*/
+  /*clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);*/
+
+  -webkit-clip-path: polygon(0 78%, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 78%, 100% 0, 100% 100%, 0 100%);
+  margin-top: -180px;
+  padding-top: 200px;
+  background-image: var(--surface-gradient-dark);
+
+  background-image: var(--surface-gradient-basic);
+
+}
+.angled-section-bottom {
+  -webkit-clip-path: polygon(0 0%, 100% 0, 100% 78%, 0 100%);
+  clip-path: polygon(0 0%, 100% 0, 100% 78%, 0 100%);
+  margin-top: 0;  
+  padding-bottom: 200px;
+  background-image: var(--surface-gradient-basic);
+}
+
+.angled-section-bottom.light {
+  background: var(--surface-pale);
+}
+
+.section-container.angled-section.ismobile {
+  clip-path: polygon(0 80px, 100% 0, 100% 100%, 0 100%);
+  margin-top: -80px;
+  padding-top: 80px;
+}
+
+/*********** related to full width images**********************************************/
+.img_full_width {
+  width: 100%;
+  margin-left: -10%
+}
+
+.img_full_width.mobile_md {
+  width: 100%;
+  margin-left: -10%
+}
+
+
+
+.img_full_width_container {
+  width: 130%;
+}
+
+
+
+
+/************ fold 2 box **********************************/
+
+/*.fold2-container {*/
+/*   display: flex;*/
+/*   !*position: absolute;*!*/
+/*   width: 100%;*/
+/*   justify-content: center;*/
+/*   margin-top: -50px;*/
+/*   padding-bottom: 50px;*/
+/*   padding-left: 20px;*/
+/*   padding-right: 20px;*/
+
+
+
+/*}*/
+
+/*.fold2 {*/
+/*   !*max-width: var(--max-width);*!*/
+/*   max-width: 1000px;*/
+/*   background-color: white;*/
+/*   width: 100%;*/
+/*   min-height: 200px;*/
+/*   display: flex;*/
+/*   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+
+/*   z-index: 1;*/
+
+/*}*/
+
+
+/*.member-lookup-box {*/
+/*   height: 100%;*/
+/*   width: 500px;*/
+/*   padding: 15px;*/
+/*   background-image: linear-gradient(to bottom, #60aee0, #2567b0);*/
+/*}*/
+
+/*.fold2-label {*/
+/*   color: white;*/
+/*   !*font-size: 14pt;*!*/
+
+/*   font-size: 16pt;*/
+/*   font-weight: 600;*/
+/*   !*padding-left: 20px;*!*/
+/*   !*padding-right: 10px;*!*/
+/*}*/
+
+
+/*.learn-more-btn {*/
+/*   font-size: 16pt;*/
+/*   font-weight: 600;*/
+/*   color: var(--color-headline);*/
+/*   padding-left: 20px;*/
+/*   padding-right: 10px;*/
+/*   letter-spacing: -0.1px;*/
+
+
+/*}*/
+
+
+/*div >>> .v-btn {*/
+/*   border-radius: 0px;*/
+
+/*}*/
+
+
+/*.triangle {*/
+/*   --width: 5px;*/
+/*   width: 0;*/
+/*   height: 0;*/
+/*   border-top: var(--width) solid transparent;*/
+/*   border-bottom: var(--width) solid transparent;*/
+/*   border-left: 7px solid #ffffff;*/
+/*   margin-top: 2px;*/
+/*}*/
+
+
+/*.triangle-blue {*/
+/*   --width: 5px;*/
+/*   width: 0;*/
+/*   height: 0;*/
+/*   border-top: var(--width) solid transparent;*/
+/*   border-bottom: var(--width) solid transparent;*/
+/*   border-left: 7px solid #2d76ba;*/
+/*   margin-top: 2px;*/
+/*}*/
+
+
+/*****matrix section *********************************************/
+.section-container {
+  display: flex;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow-x: hidden;
+}
+
+.section-inner-container {
+  max-width: var(--max-width);
+  width: 100%;
+  padding: 80px 50px 30px 50px;
+}
+
+.section-inner-container.ismobile {
+  padding: 50px 10px 30px 10px;
+}
+
+.flex-centered {
+  display: flex;
+  justify-content: center;
+}
+
+.row.gap-32 {
+  gap: 32px;
+}
+
+/**************** FAQ *************************************************/
+
+
+/*FAQ*/
+
+.faq-header {
+  font-weight: bold;
+  font-size: 16pt;
+  /*background: #dfeef3;*/
+
+}
+
+.faq-body {
+  padding-top: 0px;
+  padding-bottom: 20px;
+}
+
+.learn-more-btn-container {
+  padding-top: 5px;
+}
+
+.learn-more-txt {
+  color: #2d76ba;
+  text-decoration: none;
+}
+
+a.learn-more-txt:focus {
+  outline: none;
+  background-color: #c6d8ff;
+}
+
+
+/* mission section */
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  font-size: 17pt;
+}
+
+
+.mission-collapsed {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.9s ease-out;
+}
+
+.mission-show {
+  max-height: 1000px;
+  overflow: hidden;
+  transition: max-height 0.9s ease-out;
+}
+
+
+/* for three column section*/
+
+.column-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  padding: 40px 20px 40px 20px;
+
+
+}
+
+.box-header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.box-button {
+  margin-top: 20px;
+}
+
+
+/*social*/
+.social-container {
+  max-width: 400px;
+  width: 100%
+}
+
+.social-bar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 10px 5px 10px;
+  margin-top: 5px;
+  color: white;
+  font-weight: bold;
+  font-size: 11pt;
+}
+
+/*get rid of link decoration for social lilnks*/
+div.social-container>a {
+  text-decoration: none;
+}
+

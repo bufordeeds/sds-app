@@ -1,76 +1,105 @@
 <template>
   <div>
-    <!--     <v-menu-->
-    <!--         v-model="show_login"-->
-    <!--         left-->
-    <!--         nudge-bottom="35"-->
-    <!--         :close-on-content-click="false"-->
-    <!--         :close-on-click="false"-->
-
-    <!--         id="test-test-test"-->
-    <!--     >-->
-    <!--        <login></login>-->
-    <!--     </v-menu>-->
-
-
-
-    <v-menu v-model="show_learn_more" content-class="learn-more-mobile">
+    <v-menu
+      v-model="show_learn_more"
+      content-class="learn-more-mobile"
+    >
       <learn-more />
     </v-menu>
 
-
     <!--------------------------full size menu----------------------------->
-    <v-app-bar v-if="!hamburger_menu" key="full-size-nav-bar" :app="app_val"
+    <v-app-bar
+      v-if="!hamburger_menu"
+      key="full-size-nav-bar"
+      :app="app_val"
       style="display:flex;justify-content: center;align-items:center;width:100%;background:none;padding:4px 48px"
-      elevation="0" height="68px">
-      <img src="../../assets/images/logo/SDSTrainerLogo.svg" height="48px" style="cursor: pointer;"
-        alt="Service Dog Standards Logo" @click="$router.push('/')">
-      <span class="pa-3"></span>
+      elevation="0"
+      height="68px"
+    >
+      <img
+        :src="logoPath"
+        height="48px"
+        style="cursor: pointer;"
+        alt="Service Dog Standards Logo"
+        @click="$router.push('/')"
+      >
+      <span class="pa-3" />
 
       <v-spacer />
-      <!---------------learn more menu--------------------->
-      <!--<v-menu-->
-      <!--    v-if="!isAdmin"-->
-      <!--    :close-on-content-click="true"-->
-      <!--    bottom-->
-      <!--    nudge-bottom="40px"-->
-      <!--    open-on-hover-->
-      <!--&gt;-->
-      <!--   <template v-slot:activator="{ on }">-->
-      <!--      <v-btn text  large v-on="on" color="white" to="/faq">-->
-      <!--         Learn More-->
-      <!--      </v-btn>-->
-      <!--   </template>-->
 
-      <!--   <learn-more/>-->
-
-      <!--</v-menu>-->
-
-      <v-btn v-if="!isAdmin" ref="btn_learn_more" class="nav-bar-btn" style="background-color:transparent"
-        @click="click_learn_more()" :dark="dark" :light="light">
+      <v-btn
+        v-if="!isAdmin"
+        ref="btn_learn_more"
+        class="nav-bar-btn"
+        :style="learnMoreButtonStyle"
+        :dark="navMode.dark"
+        :light="navMode.light"
+        :class="isRootUrl ? 'dark' : 'light'"
+        @click="click_learn_more()"
+      >
         Learn More
       </v-btn>
 
-      <v-menu v-if="!isAdmin" v-model="show_menu" :close-on-content-click="true" bottom nudge-bottom="40px" absolute
-        :position-x="menu_pos_x" :position-y="25" rounded>
+      <v-menu
+        v-if="!isAdmin"
+        v-model="show_menu"
+        :close-on-content-click="true"
+        bottom
+        nudge-bottom="40px"
+        absolute
+        :position-x="menu_pos_x"
+        :position-y="25"
+        rounded
+      >
         <div style="width:100%;max-width:1080px">
-          <div class="arrow-up" :style="{ 'margin-left': menu_triangle_x }" />
+          <div
+            class="arrow-up"
+            :style="{ 'margin-left': menu_triangle_x }"
+          />
           <learn-more style="border-radius: 10px; " />
         </div>
       </v-menu>
 
-      <v-btn class="nav-bar-btn v-btn__content " v-for="(item, i) in items" :key="i" text :to="item.url" :dark="dark"
-        :light="light">
+      <v-btn
+        v-for="(item, i) in items"
+        :key="i"
+        class="nav-bar-btn v-btn__content "
+        text
+        :to="item.url"
+        :dark="navMode.dark"
+        :light="navMode.light"
+      >
         {{ item.name }}
       </v-btn>
 
-      <v-menu v-model="show_login" :close-on-content-click="false" bottom nudge-bottom="60px">
+      <v-menu
+        v-model="show_login"
+        :close-on-content-click="false"
+        bottom
+        nudge-bottom="60px"
+      >
         <template #activator="{ on }">
-          <v-btn class="nav-bar-btn v-btn__content" text large v-on="on" :light="light" :dark="dark">
-            <span class="v-btn__content" style="text-align: center; text-transform: none !important; color: white;">
+          <v-btn
+            class="nav-bar-btn v-btn__content"
+            text
+            large
+            :dark="navMode.dark"
+            :light="navMode.light"
+            v-on="on"
+          >
+            <span
+              class="v-btn__content"
+              :class="isRootUrl ? 'dark-text' : 'light-text'"
+              style="text-align: center; text-transform: none !important;"
+            >
               {{ account_txt }}
             </span>
-            <avatar v-if="$auth.authenticated" :image="acct_image" size="50px" class="ml-2" />
+            <avatar
+              v-if="$auth.authenticated"
+              :image="acct_image"
+              size="50px"
+              class="ml-2"
+            />
           </v-btn>
         </template>
 
@@ -78,11 +107,22 @@
           <login @logged-in="on_login" />
         </v-card>
 
-        <v-card v-else class="pa-2">
+        <v-card
+          v-else
+          class="pa-2"
+        >
           <div style="display: flex; justify-content: flex-end;">
-            <v-btn text style="padding-right: 5px" @click="$auth.logout()">
+            <v-btn
+              text
+              style="padding-right: 5px"
+              @click="$auth.logout()"
+            >
               Log Out
-              <img src="../../assets/images/icons/logout.svg" height="20px;" style="margin-left: 5px">
+              <img
+                src="../../assets/images/icons/logout.svg"
+                height="20px;"
+                style="margin-left: 5px"
+              >
             </v-btn>
           </div>
         </v-card>
@@ -90,12 +130,25 @@
 
       <!-- menu for shopping cart -->
 
-      <v-btn v-if="!isAdmin" icon large class="mr-2" @click="go_to_cart">
+      <v-btn
+        v-if="!isAdmin"
+        icon
+        large
+        class="mr-2"
+        @click="go_to_cart"
+      >
         <div style="display: flex; flex-direction: row; ">
           <!--<v-icon color="white">shopping_cart</v-icon>-->
 
-          <img src="../../assets/images/icons/shopping-cart_open2.png" width="35px" height="30px">
-          <div style="margin-top: -4px; margin-left: -28px; color:white; text-align: center; width: 25px">
+          <img
+            src="../../assets/images/icons/shopping-cart_open-primary-highlight.svg"
+            width="35px"
+            height="30px"
+          >
+          <div
+            :class="isRootUrl ? 'dark-text' : 'light-text'"
+            style="margin-top: -4px; margin-left: -28px; text-align: center; width: 25px"
+          >
             {{ num_cart_items }}
           </div>
         </div>
@@ -103,80 +156,139 @@
     </v-app-bar>
 
     <!--------------------------hamburger menu------------------------------------------------------------------------->
-    <v-app-bar v-else key="mobile-nav-bar" :app="app_val" style="background: none" elevation="0">
+    <v-app-bar
+      v-else
+      key="mobile-nav-bar"
+      :app="app_val"
+      style="background: none"
+      elevation="0"
+    >
       <a href="/">
-        <img v-if="$vuetify.breakpoint.width > 360" src="../../assets/images/logo/SDSTrainerLogo-white.svg"
-          height="42px">
-
-        <img v-else src="../../assets/images/logo/service-dog-standards.png" height="30px">
+        <img
+          :src="logoPath"
+          height="42px"
+        >
       </a>
 
-      <span class="pa-3"></span>
+      <span class="pa-3" />
 
       <v-spacer />
 
       <!------------shopping cart-------------------------------------->
-      <v-btn v-if="!isAdmin" icon large @click="go_to_cart">
+      <v-btn
+        v-if="!isAdmin"
+        icon
+        large
+        @click="go_to_cart"
+      >
         <div style="display: flex; flex-direction: row; ">
-          <!--<v-icon color="white">shopping_cart</v-icon>-->
-
-          <template v-if="$vuetify.breakpoint.width > 360">
-            <img src="../../assets/images/icons/shopping-cart_open2.png" width="35px" height="30px">
-            <div style="margin-top: 0px; margin-left: -20px; color:#0066cc;">
-              {{ num_cart_items }}
-            </div>
-          </template>
-          <template v-else>
-            <img src="../../assets/images/icons/shopping-cart_open2.png" width="30px" height="25px">
-            <div style="margin-top: -2px; margin-left: -18px; color:#0066cc;">
-              {{ num_cart_items }}
-            </div>
-          </template>
+          <img
+            src="../../assets/images/icons/shopping-cart_open-primary-highlight.svg"
+            width="30px"
+            height="25px"
+          >
+          <div
+            :class="isRootUrl ? 'dark-text' : 'light-text'"
+            style="margin-top: -4px; margin-left: -28px; text-align: center; width: 25px"
+          >
+            {{ num_cart_items }}
+          </div>
         </div>
       </v-btn>
 
       <!------------menu for login/logout------------------------------------>
-      <v-menu v-model="show_login" :close-on-content-click="false" bottom nudge-bottom="60px">
+      <v-menu
+        v-model="show_login"
+        :close-on-content-click="false"
+        bottom
+        nudge-bottom="60px"
+      >
         <template #activator="{ on }">
-          <v-btn key="menu-learn-more" text small v-on="on">
-            <avatar v-if="$auth.authenticated" :image="acct_image" size="30px" class="ml-2" />
+          <v-btn
+            key="menu-learn-more"
+            text
+            small
+            v-on="on"
+          >
+            <avatar
+              v-if="$auth.authenticated"
+              :image="acct_image"
+              size="30px"
+              class="ml-2"
+            />
 
-            <div v-else style="text-align: center; text-transform: none !important; color: #61afe1;">
+            <div
+              v-else
+              style="text-align: center; text-transform: none !important; color: #61afe1;"
+            >
               {{ account_txt }}
             </div>
           </v-btn>
         </template>
 
-        <v-card v-if="!$auth.authenticated" style="width: 300px; max-width: 95vw">
+        <v-card
+          v-if="!$auth.authenticated"
+          style="width: 300px; max-width: 95vw"
+        >
           <login @logged-in="on_login" />
         </v-card>
 
-        <v-card v-else class="pa-2">
+        <v-card
+          v-else
+          class="pa-2"
+        >
           <div style="text-align: center; text-transform: none !important; color: #61afe1;">
             {{ account_txt }}
           </div>
 
           <div style="display: flex; justify-content: flex-end;">
-            <v-btn text style="padding-right: 5px" @click="$auth.logout()">
+            <v-btn
+              text
+              style="padding-right: 5px"
+              @click="$auth.logout()"
+            >
               Log Out
-              <img src="../../assets/images/icons/logout.svg" height="20px;" style="margin-left: 5px">
+              <img
+                src="../../assets/images/icons/logout.svg"
+                height="20px;"
+                style="margin-left: 5px"
+              >
             </v-btn>
           </div>
         </v-card>
       </v-menu>
 
       <!------------nav menu ------------------------------------------------>
-      <v-menu bottom nudge-bottom="50">
+      <v-menu
+        bottom
+        nudge-bottom="50"
+      >
         <template #activator="{ on }">
-          <v-btn icon :dark="dark" v-on="on">
+          <v-btn
+            icon
+            :dark="dark"
+            v-on="on"
+          >
             <v-icon>menu</v-icon>
           </v-btn>
         </template>
 
         <v-card class="pa-6">
-          <div style="width: 100%; display: flex; justify-content: flex-start" class="mt-2">
-            <img src="../../assets/images/icons/menu_icons_arrow.png" height="30px" style="margin-top: 5px">
-            <div :dark="dark" color="black" class="pl-2" @click="show_learn_more = true">
+          <div
+            style="width: 100%; display: flex; justify-content: flex-start"
+            class="mt-2"
+          >
+            <img
+              src="../../assets/images/icons/menu_icons_arrow.png"
+              height="30px"
+              style="margin-top: 5px"
+            >
+            <div
+              :dark="dark"
+              color="black"
+              class="pl-2"
+              @click="show_learn_more = true"
+            >
               <div class="mobile-menu-h1">
                 Learn More
               </div>
@@ -186,12 +298,26 @@
             </div>
           </div>
 
-          <div v-for="(item, i) in items" :key="item.url"
-            style="width: 100%; display: flex; justify-content: flex-start" class="mt-2">
+          <div
+            v-for="(item) in items"
+            :key="item.url"
+            style="width: 100%; display: flex; justify-content: flex-start"
+            class="mt-2"
+          >
             <!--<img :src="require('../../assets/images/icons/'+item.icon)" height="30px" style="margin-top: 5px">-->
-            <img :src="item.icon" height="30px" style="margin-top: 5px">
+            <img
+              :src="item.icon"
+              height="30px"
+              style="margin-top: 5px"
+            >
 
-            <router-link :to="item.url" :dark="dark" color="black" class="pl-2" @click="show_learn_more = true">
+            <router-link
+              :to="item.url"
+              :dark="dark"
+              color="black"
+              class="pl-2"
+              @click="show_learn_more = true"
+            >
               <div class="mobile-menu-h1">
                 {{ item.h1 }}
               </div>
@@ -201,47 +327,24 @@
             </router-link>
           </div>
 
-          <div v-for="(item, i) in sidebar_items" :key="item.url">
-            <div style="width: 100%; display: flex; justify-content: flex-start; margin-left: 40px" class="pt-3">
+          <div
+            v-for="(item) in sidebar_items"
+            :key="item.url"
+          >
+            <div
+              style="width: 100%; display: flex; justify-content: flex-start; margin-left: 40px"
+              class="pt-3"
+            >
               <!--<v-btn text :to="item.path" :dark="dark" color="black"  >{{ item.title }}</v-btn>-->
-              <router-link :to="item.path" style="color:black">
+              <router-link
+                :to="item.path"
+                style="color:black"
+              >
                 {{ item.title }}
               </router-link>
             </div>
           </div>
         </v-card>
-
-        <!--<v-list>-->
-
-        <!--   <v-list-item key="menu-learn-more">-->
-        <!--      <v-list-item-title style="width: 100%; display: flex; justify-content: flex-start">-->
-        <!--         &lt;!&ndash;<v-btn text to="/faq" :dark="dark" color="black">Learn More</v-btn>&ndash;&gt;-->
-
-        <!--         <img src="../../assets/images/icons/menu_icons_arrow.png" height="20px">-->
-        <!--         <v-btn text @click="show_learn_more=true" :dark="dark" color="black">Learn More</v-btn>-->
-
-        <!--      </v-list-item-title>-->
-        <!--   </v-list-item>-->
-
-        <!--   <v-list-item-->
-        <!--       v-for="(item, i) in items"-->
-        <!--       :key="item.url"-->
-        <!--   >-->
-        <!--      <v-list-item-title style="width: 100%; display: flex; justify-content: flex-start">-->
-        <!--         <v-btn text :to="item.url" :dark="dark" color="black">{{ item.name }}</v-btn>-->
-        <!--      </v-list-item-title>-->
-        <!--   </v-list-item>-->
-
-        <!--   <v-list-item-->
-        <!--       v-for="(item, i) in sidebar_items"-->
-        <!--       :key="item.url"-->
-        <!--   >-->
-        <!--      <v-list-item-title style="width: 100%; display: flex; justify-content: flex-start; margin-left: 30px">-->
-        <!--         <v-btn text :to="item.path" :dark="dark" color="black">{{ item.title }}</v-btn>-->
-        <!--      </v-list-item-title>-->
-        <!--   </v-list-item>-->
-
-        <!--</v-list>-->
       </v-menu>
     </v-app-bar>
   </div>
@@ -267,7 +370,6 @@ export default {
     show_menu: false,
     show_login: false,
     show_learn_more: false,
-
     menu_triangle_x: 0,
 
 
@@ -286,25 +388,7 @@ export default {
         let vw = document.documentElement.clientWidth
         return vw / 2 - Math.min(1080, vw * 1.0) / 2;
       }
-
     },
-
-    // menu_triangle_x(){
-    //    let ans = 0;
-    //
-    //    console.log({ans: this.$refs.btn_learn_more})
-    //
-    //    if (this.$refs.btn_learn_more){
-    //       let el = this.$refs.btn_learn_more.$el;
-    //       let dim = el.getBoundingClientRect();
-    //
-    //       ans = dim.x + dim.width/2 - this.menu_pos_x - 7;
-    //       // console.log({dimx: dim.x, dimwidth: dim.width, menu_pos_x: this.menu_pos_x})
-    //    }
-    //
-    //    return `${Math.round(ans)}px`;
-    //
-    // },
 
 
     cart_items() {
@@ -428,14 +512,46 @@ export default {
       }
 
       return ans;
-    }
+    },
+    isRootUrl() {
+      return this.$route.path === '/';
+    },
+
+    navMode() {
+      return this.isRootUrl ? { dark: true, light: false } : { dark: false, light: true };
+    },
+
+    logoPath() {
+      return this.isRootUrl
+        ? require('../../assets/images/logo/SDSTrainerLogo-white.svg')
+        : require('../../assets/images/logo/SDSTrainerLogo.svg');
+    },
+
+    learnMoreButtonStyle() {
+      return this.isRootUrl
+        ? { color: 'white !important', backgroundColor: 'transparent !important' }
+        : { color: 'black !important', backgroundColor: 'transparent !important' };
+    },
+
+  },
+  watch: {
+    $route() {
+      this.updateButtonStyle();
+    },
   },
 
   created() {
     console.log(this.$vuetify.breakpoint);
 
   },
+
   methods: {
+
+    updateButtonStyle() {
+      this.learnMoreButtonStyle = this.isRootUrl
+        ? { color: 'white', backgroundColor: 'transparent' }
+        : { color: 'black', backgroundColor: 'transparent' };
+    },
 
     on_login() {
       console.log('logged in')
@@ -455,12 +571,12 @@ export default {
       this.show_menu = !this.show_menu;
     },
 
-    toggle_login() {
-      let elm = document.getElementById('my-account-btn');
-      let rect = elm.getBoundingClientRect();
+    // toggle_login() {
+    //   let elm = document.getElementById('my-account-btn');
+    //   let rect = elm.getBoundingClientRect();
 
 
-    },
+    // },
 
     click_learn_more() {
 
@@ -499,6 +615,31 @@ export default {
 </style>
 
 <style scoped>
+button>.v-btn__content.dark-text,
+span>.v-btn__content.dark-text {
+  color: white !important;
+  /* Ensure white text for dark mode */
+}
+
+/* Override styles for light mode text (on other URLs) */
+button>.v-btn__content.light-text,
+span>.v-btn__content.light-text {
+  color: #000000DE !important;
+  /* Ensure black text for light mode */
+}
+
+::v-deep button>.v-btn__content,
+::v-deep span>.v-btn__content {
+  color: white !important;
+  /* Dark mode text should be white */
+}
+
+::v-deep button.light>.v-btn__content,
+::v-deep span.light>.v-btn__content {
+  color: #000000DE !important;
+  /* Light mode text should be black */
+}
+
 :root {
   --font-family: "Inter", "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
   --font-size-base: 18px;
@@ -527,8 +668,6 @@ export default {
   max-width: 100%;
 }
 
-.menu-col {}
-
 .mobile-menu-h1 {
   font-weight: 600;
   color: black;
@@ -549,15 +688,4 @@ export default {
 header>.v-toolbar.v-app-bar {
   width: 100%;
 }
-
-
-/*.menu-header{*/
-/*   font-size: 16pt;*/
-/*    font-weight: 600;*/
-/*    color: gray;*/
-/*}*/
-
-/*.menu-links{*/
-/*    padding-left: 2px;*/
-/*}*/
 </style>

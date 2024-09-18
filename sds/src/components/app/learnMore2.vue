@@ -1,7 +1,7 @@
 <template>
-  <div style="background-color: white; display: flex; flex-wrap: wrap; padding: 20px 30px 20px 60px">
+  <div style="background-color:#f6f9fc;display:flex;flex-wrap:wrap;padding:24px;border-radius:4px;">
     <div
-      class="menu-col mr-6 mt-4"
+      class="menu-col"
       style="width: 100%"
     >
       <v-row>
@@ -25,7 +25,7 @@
                   <svg
                     viewBox="0 0 760.155 703.155"
                     style="width: 100%; height: 100%;"
-                    :style="'stroke:'+item.color"
+                    :style="'stroke:' + item.color"
                     xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink"
                     width="760.155px"
@@ -43,7 +43,7 @@
                 </div>
               </div>
 
-              <div>
+              <div class="navitem-container">
                 <div class="item-header">
                   {{ item.h1 }}
                 </div>
@@ -67,7 +67,7 @@
                   <svg
                     viewBox="0 0 760.155 703.155"
                     style="width: 100%; height: 100%;"
-                    :style="'stroke:'+item.color"
+                    :style="'stroke:' + item.color"
                     xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink"
                     width="760.155px"
@@ -86,10 +86,10 @@
 
               </div>
 
-              <div>
+              <div class="navitem-container">
                 <div
                   class="item-header"
-                  :style="item.color_h1? 'color:'+item.color_h1 : '' "
+                  :style="item.color_h1 ? 'color:' + item.color_h1 : ''"
                 >
                   {{ item.h1 }}
                 </div>
@@ -166,7 +166,7 @@
                   <svg
                     viewBox="0 0 760.155 703.155"
                     style="width: 100%; height: 100%;"
-                    :style="'stroke:'+item.color"
+                    :style="'stroke:' + item.color"
                     xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink"
                     width="760.155px"
@@ -184,7 +184,7 @@
                 </div>
               </div>
 
-              <div>
+              <div class="navitem-container">
                 <div class="item-header">
                   {{ item.h1 }}
                 </div>
@@ -215,7 +215,7 @@
                   <svg
                     viewBox="0 0 760.155 703.155"
                     style="width: 100%; height: 100%;"
-                    :style="'stroke:'+item.color"
+                    :style="'stroke:' + item.color"
                     xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink"
                     width="760.155px"
@@ -233,7 +233,7 @@
                 </div>
               </div>
 
-              <div>
+              <div class="navitem-container">
                 <div class="item-header">
                   {{ item.h1 }}
                 </div>
@@ -322,76 +322,89 @@
 
 <script>
 export default {
-   name: "LearnMore",
-   data(){
-      return {
-         about_us:[
-            {url: '/learn-more/mission', color: '#17a07d',  h1: 'What is our mission?', h2: 'Learn about our purpose & focus.'},
-            {url: '/learn-more/what-is-service-animal', color: '#17a07d', h1: 'What is Service Dog?', h2: 'Learn the correct terms & Definitions.'},
-            {url: '/learn-more/how-do-i-get-service-dog', color: '#17a07d', h1: 'How do I get a Service Dog?', h2: "Learn what's involved"},
-            {url: '/learn-more/what-should-service-dog-act-like', color: '#17a07d', h1: "What Should a Service Dog Act like?", h2: "It's the training & behavior that matter."},
-            {url: '/learn-more/sds-training-and-behavior-standards', color: '#17a07d', h1: "SDS Training & Behavior Standards", h2: "View online or download."},
-            {url: '/faq', color: '#17a07d', h1: "Common Questions", h2: "FAQ: Frequently Asked Questions."},
-            {url: '/learn-more/media-library', color: '#17a07d', h1: " Media Library", h2: "Toogether, we can help educate."},
+  name: "LearnMore",
+  data() {
+    return {
+      about_us: [
+        { url: '/learn-more/mission', color: '#17a07d', h1: 'What is our mission?', h2: 'Learn about our purpose & focus.' },
+        { url: '/learn-more/what-is-service-animal', color: '#17a07d', h1: 'What is Service Dog?', h2: 'Learn the correct terms & Definitions.' },
+        { url: '/learn-more/how-do-i-get-service-dog', color: '#17a07d', h1: 'How do I get a Service Dog?', h2: "Learn what's involved" },
+        { url: '/learn-more/what-should-service-dog-act-like', color: '#17a07d', h1: "What Should a Service Dog Act like?", h2: "It's the training & behavior that matter." },
+        { url: '/learn-more/sds-training-and-behavior-standards', color: '#17a07d', h1: "SDS Training & Behavior Standards", h2: "View online or download." },
+        { url: '/faq', color: '#17a07d', h1: "Common Questions", h2: "FAQ: Frequently Asked Questions." },
+        { url: '/learn-more/media-library', color: '#17a07d', h1: " Media Library", h2: "Toogether, we can help educate." },
 
-            // {url: '', color: '#17a07d', h1: "", h2: ""},
-         ],
+        // {url: '', color: '#17a07d', h1: "", h2: ""},
+      ],
 
-         links: [
-            {href: 'https://anythingpawsable.com/', color: '#714093', h1: "Anything Pawsable", h2: "News + More for Service and Working Dogs.", color_h1: '#714093'},
-            {href: 'https://www.facebook.com/servicedog', color: '#3152a2', h1: "Join our Facebook Page", h2: "Join our community & stay up-to-date."},
-         ],
+      links: [
+        { href: 'https://anythingpawsable.com/', color: '#714093', h1: "Anything Pawsable", h2: "News + More for Service and Working Dogs.", color_h1: '#714093' },
+        { href: 'https://www.facebook.com/servicedog', color: '#3152a2', h1: "Join our Facebook Page", h2: "Join our community & stay up-to-date." },
+      ],
 
-         for_pros:[
-            {url: '/learn-more/for-trainers', color: '#0f9dde', h1: "For trainers and training orgs", h2: "We help trainers educate handlers."},
-            {url: '/learn-more/for-physicians-therapists', color: '#0f9dde', h1: "For physicians and therapists", h2: "Referring patients and clients."},
-            {url: '/learn-more/for-colleges', color: '#0f9dde', h1: "For schools and universities", h2: "Education, safety & responsibility."},
-         ],
+      for_pros: [
+        { url: '/learn-more/for-trainers', color: '#0f9dde', h1: "For trainers and training orgs", h2: "We help trainers educate handlers." },
+        { url: '/learn-more/for-physicians-therapists', color: '#0f9dde', h1: "For physicians and therapists", h2: "Referring patients and clients." },
+        { url: '/learn-more/for-colleges', color: '#0f9dde', h1: "For schools and universities", h2: "Education, safety & responsibility." },
+      ],
 
-         for_public:[
-            {url: '/learn-more/what-todo-when-see-dog', color: '#92c742', h1: "How to act around a Service Dog?", h2: "Overview of public etiquette."},
-            {url: '/learn-more/how-can-i-tell-if-legitimate', color: '#92c742', h1: "Can I tell if a Service Dog is legitimate?", h2: "Learn the two ways you can tell."},
-            {url: '/learn-more/business-rights', color: '#92c742', h1: "Business Rights and Service Dogs", h2: "Overview of public etiquette."},
-            {url: '/learn-more/landlord-hoa-rights', color: '#92c742', h1: "Landlord/HOA Rights", h2: "For housing & rental properties."},
-         ]
-      }
-   }
+      for_public: [
+        { url: '/learn-more/what-todo-when-see-dog', color: '#92c742', h1: "How to act around a Service Dog?", h2: "Overview of public etiquette." },
+        { url: '/learn-more/how-can-i-tell-if-legitimate', color: '#92c742', h1: "Can I tell if a Service Dog is legitimate?", h2: "Learn the two ways you can tell." },
+        { url: '/learn-more/business-rights', color: '#92c742', h1: "Business Rights and Service Dogs", h2: "Overview of public etiquette." },
+        { url: '/learn-more/landlord-hoa-rights', color: '#92c742', h1: "Landlord/HOA Rights", h2: "For housing & rental properties." },
+      ]
+    }
+  }
 }
 </script>
 
 <style>
-.menu-header{
-    font-size: 16pt;
-    font-weight: 600;
-    color: gray;
+/* Mega menu Navigation */
+
+.menu-header {
+  font-size: var(--rt-overline);
+  font-family: var(--font-family);
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--text-default);
 }
 
-.menu-links{
-    padding-left: 2px;
+.link-container {
+  display: flex;
+  padding: 8px 0;
 }
 
-.link-container{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: flex;
+.menu-links,
+.item-header,
+.item-header2 {
+  font-size: var(--rt-xsmall);
+  font-family: var(--font-family);
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: var(--text-dark);
+  padding-left: 0;
+  margin: 0;
 }
 
-.hex-container{
-    padding-right: 10px;
-    padding-top: 6px;
+.item-header2 {
+  font-weight: 425;
+  line-height: 20px;
+  color: var(--text-light);
 }
 
+.navitem-container:hover>.item-header2 {
+  color: var(--text-dark) !important;
+}
 
-.item-header{
-    font-size: 14pt;
-    font-weight: 600;
-    color: black;
+.hex-container {
+  margin-right: 16px;
+  padding-top: 1.25px;
 }
-.item-header2{
-    font-size: 12pt;
-    font-weight: 500;
-    color: gray;
-    margin-top: -4px;
-    padding-left: 3px;
-}
+
+/* */
 </style>

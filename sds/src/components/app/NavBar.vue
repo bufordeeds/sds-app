@@ -141,12 +141,12 @@
           <!--<v-icon color="white">shopping_cart</v-icon>-->
 
           <img
-            src="../../assets/images/icons/shopping-cart_open-primary-highlight.svg"
+            :src="cartPath"
             width="35px"
             height="30px"
           >
           <div
-            :class="isRootUrl ? 'dark-text' : 'light-text'"
+            :class="isRootUrl ? 'white-text' : 'black-text'"
             style="margin-top: -4px; margin-left: -28px; text-align: center; width: 25px"
           >
             {{ num_cart_items }}
@@ -183,12 +183,12 @@
       >
         <div style="display: flex; flex-direction: row; ">
           <img
-            src="../../assets/images/icons/shopping-cart_open-primary-highlight.svg"
+            :src="cartPath"
             width="30px"
             height="25px"
           >
           <div
-            :class="isRootUrl ? 'dark-text' : 'light-text'"
+            :class="isRootUrl ? 'white-text' : 'black-text'"
             style="margin-top: -4px; margin-left: -28px; text-align: center; width: 25px"
           >
             {{ num_cart_items }}
@@ -533,6 +533,12 @@ export default {
         : { color: 'black !important', backgroundColor: 'transparent !important' };
     },
 
+    cartPath() {
+      return this.isRootUrl
+        ? require('../../assets/images/icons/shopping-cart_open-white.svg')
+        : require('../../assets/images/icons/shopping-cart_open-primary-highlight.svg');
+    },
+
   },
   watch: {
     $route() {
@@ -615,15 +621,15 @@ export default {
 </style>
 
 <style scoped>
-button>.v-btn__content.dark-text,
-span>.v-btn__content.dark-text {
+ ::v-deep button>.v-btn__content.dark-text,
+ ::v-deep span>.v-btn__content.dark-text {
   color: white !important;
   /* Ensure white text for dark mode */
 }
 
 /* Override styles for light mode text (on other URLs) */
-button>.v-btn__content.light-text,
-span>.v-btn__content.light-text {
+::v-deep button>.v-btn__content.light-text,
+::v-deep span>.v-btn__content.light-text {
   color: #000000DE !important;
   /* Ensure black text for light mode */
 }
@@ -638,6 +644,14 @@ span>.v-btn__content.light-text {
 ::v-deep span.light>.v-btn__content {
   color: #000000DE !important;
   /* Light mode text should be black */
+}
+
+::v-deep .white-text {
+  color: white !important;
+}
+
+::v-deep .black-text {
+  color: black !important;
 }
 
 :root {

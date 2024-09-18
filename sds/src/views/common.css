@@ -223,7 +223,7 @@
 
 :root {
 	--rt-base: 18px;
-
+	--rt-overline: 13px;
 	--rt-xsmall: 14px;
 	--rt-small: 15px;
 	--rt-medium: var(--rt-base);
@@ -887,6 +887,14 @@ html {
 	border-radius: 40px;
 	box-shadow: none;
 	text-transform: none;
+}
+
+.button_primary {
+	background-color: var(--brand-primary-highlight) !important;
+}
+.v-btn__content {
+	font-size: 15px !important;
+	font-weight: 600 !important;
 }
 
 .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {

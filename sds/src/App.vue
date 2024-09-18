@@ -63,28 +63,28 @@
               <div data-v-3dd2e005="" class="row">
                 <div data-v-3dd2e005="" class="col-md-9 col-12">
                   <section class="pr-128">
-                      <div class="pt-8">
-                        Service Dog Standards, this website and our materials are provided as a benefit to the
-                        Assistance and Service Dog community as a whole. We are built on the trust and good-will of
-                        our members and the animals that serve them. We are not a certification process or substitute
-                        for training. Service Dog Standards can not and will not be held responsible or liable for the
-                        actions of individual owners or their dogs in any way, shape or form. All member data is
-                        provided at the assertion of the animal owner. We are an educational tool for the public and
-                        Service and Assistance Dog trainers and owners. Misrepresenting an animal as a Service or
-                        Assistance Animal for any reason in any way is a crime. All members are subject to our
-                        Terms and Conditions.
-                      </div>
-                    </section>
+                    <div class="pt-8">
+                      Service Dog Standards, this website and our materials are provided as a benefit to the
+                      Assistance and Service Dog community as a whole. We are built on the trust and good-will of
+                      our members and the animals that serve them. We are not a certification process or substitute
+                      for training. Service Dog Standards can not and will not be held responsible or liable for the
+                      actions of individual owners or their dogs in any way, shape or form. All member data is
+                      provided at the assertion of the animal owner. We are an educational tool for the public and
+                      Service and Assistance Dog trainers and owners. Misrepresenting an animal as a Service or
+                      Assistance Animal for any reason in any way is a crime. All members are subject to our
+                      Terms and Conditions.
+                    </div>
+                  </section>
                 </div>
                 <div data-v-3dd2e005="" class="col-md-3 col-12">
                   <section class="txt-box-side xsmall-content">
-                      <div style="display:flex;flex-direction:column;gap:16px;">
-                        <a href="/privacy" class="footer-links" style="margin-left:0">Privacy and Cookie Policy</a>
-                        <a href="/terms-and-conditions" class="footer-links">Terms of Service</a>
-                        <a href="/terms-access-use" class="footer-links">Terms of Access and Use</a>
-                        <a href="/contact-us" class="footer-links">Contact Us</a>
-                      </div>
-                    </section>
+                    <div style="display:flex;flex-direction:column;gap:16px;">
+                      <a href="/privacy" class="footer-links" style="margin-left:0">Privacy and Cookie Policy</a>
+                      <a href="/terms-and-conditions" class="footer-links">Terms of Service</a>
+                      <a href="/terms-access-use" class="footer-links">Terms of Access and Use</a>
+                      <a href="/contact-us" class="footer-links">Contact Us</a>
+                    </div>
+                  </section>
                 </div>
               </div>
               <div data-v-3dd2e005="" class="row">
@@ -111,12 +111,10 @@
 // import _ from 'lodash';
 import NavBar from '@/components/app/NavBar.vue'
 import SideNav from '@/components/app/SideNav'
-import helpers from "@/utilities/helpers";
 import data_getters from "@/mixins/data_getters";
 
 
 import ShoppingCart from "@/views/shop/ShoppingCart";
-import router from "@/router";
 
 export default {
   name: 'App',
@@ -276,12 +274,14 @@ export default {
   /*background: none;*/
   //background: linear-gradient(180deg, rgb(6, 6, 6) 0%, rgb(28, 28, 28) 40%, rgb(6, 6, 6) 100%);
 }
+
 #main-container {
   /*background: none;*/
   margin: 10px;
   max-width: 1200px;
   /*background-color: rgba(255, 60, 63, 0.35);*/
 }
+
 #main-background-gradient {
   position: fixed;
   height: 100%;
@@ -299,21 +299,26 @@ export default {
 .vfooter {
   justify-content: center;
 }
-.v-sheet.v-footer, .footer {
+
+.v-sheet.v-footer,
+.footer {
   width: 100%;
   background-color: var(--surface-dark);
   font-size: 14px;
   color: var(--text-light);
 }
-.footer section > img {
+
+.footer section>img {
   max-width: 300px;
   opacity: .62;
 }
+
 a.footer-links {
   text-decoration: none;
   color: var(--text-light);
   transition: all 150ms ease-in-out;
 }
+
 a.footer-links:hover {
   color: var(--text-white);
 }
@@ -322,9 +327,11 @@ a.footer-links:hover {
   padding-left: 5px;
   padding-right: 5px;
 }
+
 section.pr-128 {
   padding-right: 128px;
 }
+
 .copyright {
   font-size: 13px;
   font-weight: 700;
@@ -334,27 +341,28 @@ section.pr-128 {
   .v-footer {
     padding: 0 !important;
   }
-  
-  .footer > .section-inner-container {
+
+  .footer>.section-inner-container {
     padding-left: 10px;
     padding-right: 10px;
   }
+
   .footer section.pr-128 {
     padding-right: 0px !important;
   }
 }
+
 @media (max-width: 700px) {
   .footer {
     padding-left: 20px;
     padding-right: 20px;
   }
-  .footer > .section-inner-container {
+
+  .footer>.section-inner-container {
     padding-left: 10px;
     padding-right: 10px;
   }
 }
-
 </style>
 
 <style src="./views/common.css"></style>
-

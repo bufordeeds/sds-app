@@ -490,6 +490,9 @@ a.text-link {
 	text-transform: uppercase;
 }
 
+.left-section img.logo {
+	margin-top: -10px;
+}
 button.site-header-nav-item--link {
 	background: none;
 }
@@ -1154,6 +1157,11 @@ ul {
 	position: relative;
 }
 
+.home-hero {
+	z-index: 0;
+	margin-top: -68px;
+}
+
 .image-bg {
 	background-size: cover;
 	background-position: center;
@@ -1368,6 +1376,17 @@ ul li,
 		var(--surface-pale) 75%,
 		#ffffff 0
 	);
+}
+.angled-section-bottom.magenta {
+	background-image: linear-gradient(
+		169deg,
+		#054896 0%,
+		#2c3795 50%,
+		#ed008c 100%
+	);
+	background-position: right;
+	background-size: 250%;
+	padding-bottom: 164px;
 }
 
 .section-container.angled-section.ismobile {

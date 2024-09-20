@@ -490,9 +490,10 @@ a.text-link {
 	text-transform: uppercase;
 }
 
-img.logo {
+.logo {
 	margin-top: -10px;
 }
+
 button.site-header-nav-item--link {
 	background: none;
 }

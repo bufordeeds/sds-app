@@ -66,8 +66,6 @@ export default {
         this.loading = true;
         let loggedin = await this.$auth.login(this.email, this.password);
 
-        console.log('i ran', this.$auth.isAuthenticated());
-
         this.$emit('logged-in', loggedin);
         if (this.$route.path === '/' || this.$route.path === '/login') {
           if (this.$auth.profile.acct_type === 'SDS-ADMIN') {

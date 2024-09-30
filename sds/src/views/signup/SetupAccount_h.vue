@@ -1,148 +1,108 @@
 <template>
-  <div class="">
-    <div class="page-title">
-      Sign Up
-    </div>
-
-    <div
-      class="content-container-bg "
-      style="position: relative; padding-top: 40px"
-    >
-      <!-------- stepper header ------------------------------------------------------------------------------------>
-      <div class="row-container">
-        <stepper :step="step" />
+   <div class="">
+      <div class="page-title">
+         Sign Up
       </div>
 
+      <div class="content-container-bg " style="position: relative; padding-top: 40px">
+         <!-------- stepper header ------------------------------------------------------------------------------------>
+         <div class="row-container">
+            <stepper :step="step" />
+         </div>
 
 
-      <!-------- stepper container --------------------------------------------------------------------------------->
-      <div class="stepper-container">
-        <!-------- step 1 container --------------------------------------------------------->
-        <div
-          v-if="step===1"
-          style="display: flex; justify-content: center; align-items: center; "
-        >
-          <select-acct-type
-            @user-type-selected="acct_type=$event; step += 1"
-          />
-        </div>
+
+         <!-------- stepper container --------------------------------------------------------------------------------->
+         <div class="stepper-container">
+            <!-------- step 1 container --------------------------------------------------------->
+            <div v-if="step === 1" style="display: flex; justify-content: center; align-items: center; ">
+               <select-acct-type @user-type-selected="acct_type = $event; step += 1" />
+            </div>
 
 
-        <!-------- step 2 container --------------------------------------------------------->
-        <div
-          v-if="step===2"
-          style="display: flex; justify-content: center; align-items: center; "
-        >
-          <signup
-            v-if="verified_email == null"
-            :show-email-confirm="accountCreated"
-            :acct-type="acct_type"
-            @email-verified="on_email_confirmed"
-          />
+            <!-------- step 2 container --------------------------------------------------------->
+            <div v-if="step === 2" style="display: flex; justify-content: center; align-items: center; ">
+               <signup v-if="verified_email == null" :show-email-confirm="accountCreated" :acct-type="acct_type"
+                  @email-verified="on_email_confirmed" />
 
 
-          <div v-else>
-            <password-reset
-              :email-fill="verified_email"
-              heading="Email verified.  Please create password"
-              pw-reset
-              @pass-updated="step=3"
-            >
-              <template #heading>
-                <div style="text-align: center; font-size: 18pt">
-                  Welcome Back!   <br>
-                  Please choose a password.
-                </div>
-              </template>
+               <div v-else>
+                  <password-reset :email-fill="verified_email" heading="Email verified.  Please create password"
+                     pw-reset @pass-updated="step = 3">
+                     <template #heading>
+                        <div style="text-align: center; font-size: 18pt">
+                           Welcome Back! <br>
+                           Please choose a password.
+                        </div>
+                     </template>
 
-              <template #button-text>
-                Continue
-              </template>
-            </password-reset>
-          </div>
-        </div>
+                     <template #button-text>
+                        Continue
+                     </template>
+                  </password-reset>
+               </div>
+            </div>
 
 
 
 
 
 
-        <!-------- step 3 container --------------------------------------------------------->
-        <div v-if="step===3">
-          <v-row>
-            <v-col align="center">
-              <div class="my-stepper-container">
-                <terms :agreed.sync="tc_agreed" />
-              </div>
-            </v-col>
-          </v-row>
+            <!-------- step 3 container --------------------------------------------------------->
+            <div v-if="step === 3">
+               <v-row>
+                  <v-col align="center">
+                     <div class="my-stepper-container">
+                        <terms :agreed.sync="tc_agreed" />
+                     </div>
+                  </v-col>
+               </v-row>
 
-          <v-row
-            class="ma-0"
-            style="justify-content: center"
-          >
-            <v-btn
-              color="var(--color-primary)"
-              :disabled="!tc_agreed"
-              @click="on_terms_agreed"
-            >
-              Continue
-            </v-btn>
-          </v-row>
-        </div>
+               <v-row class="ma-0" style="justify-content: center">
+                  <v-btn color="var(--color-primary)" :disabled="!tc_agreed" @click="on_terms_agreed">
+                     Continue
+                  </v-btn>
+               </v-row>
+            </div>
 
 
 
-        <!-------- step 3 container --------------------------------------------------------->
-        <div v-if="step===4">
-          <v-row>
-            <v-col align="center">
-              <div class="my-stepper-container">
-                <handler-info
-                  v-if="isHandler"
-                  :setup-mode="true"
-                  @user_updated="on_basic_info"
-                />
+            <!-------- step 3 container --------------------------------------------------------->
+            <div v-if="step === 4">
+               <v-row>
+                  <v-col align="center">
+                     <div class="my-stepper-container">
+                        <handler-info v-if="isHandler" :setup-mode="true" @user_updated="on_basic_info" />
 
-                <user-info
-                  v-else
-                  @user_updated="on_basic_info"
-                />
-              </div>
-            </v-col>
-          </v-row>
-        </div>
+                        <user-info v-else @user_updated="on_basic_info" />
+                     </div>
+                  </v-col>
+               </v-row>
+            </div>
 
 
-        <!-------- step 3 container --------------------------------------------------------->
-        <div v-if="step===5">
-          <v-row>
-            <v-col
-              align="center"
-              style="margin-top: 50px"
-            >
-              <div>
-                <img
-                  v-if="step===5"
-                  src="../../assets/images/content/checkmark.gif"
-                  width="200px"
-                >
-              </div>
-              <div class="pt-5">
-                Congratulations on Joining Service Dog Standards!
-              </div>
+            <!-------- step 3 container --------------------------------------------------------->
+            <div v-if="step === 5">
+               <v-row>
+                  <v-col align="center" style="margin-top: 50px">
+                     <div>
+                        <img v-if="step === 5" src="../../assets/images/content/checkmark.gif" width="200px">
+                     </div>
+                     <div class="pt-5">
+                        Congratulations on Joining Service Dog Standards!
+                     </div>
 
-              <div class="mt-8">
-                <v-btn @click="nav_to_account">
-                  Go to my account
-                </v-btn>
-              </div>
-            </v-col>
-          </v-row>
-        </div>
+                     <div class="mt-8">
+                        <v-btn @click="nav_to_account">
+                           Go to my account
+                        </v-btn>
+                     </div>
+                  </v-col>
+               </v-row>
+            </div>
+         </div>
       </div>
-    </div>
-  </div>
+   </div>
 </template>
 
 <script>
@@ -170,7 +130,8 @@ import Stepper from "@/views/signup/Stepper";
 
 export default {
    name: "SetupAccount",
-   components: {Stepper, signup, terms, userInfo, selectAcctType,PasswordReset, handlerInfo
+   components: {
+      Stepper, signup, terms, userInfo, selectAcctType, PasswordReset, handlerInfo
       // uploadImage, social, census, behaviors
    },
    mixins: [data_getters],
@@ -205,11 +166,11 @@ export default {
          }
       },
 
-      isHandler(){
-         if (!this.$auth.authenticated){
+      isHandler() {
+         if (!this.$auth.authenticated) {
             return null
          }
-         else{
+         else {
             return this.$auth.profile.acct_type === 'HANDLER';
          }
       },
@@ -220,7 +181,7 @@ export default {
    },
    created() {
 
-      if (this.$auth.isAuthenticated() && this.$auth.profile.acct_confirmed){
+      if (this.$auth.isAuthenticated() && this.$auth.profile.acct_confirmed) {
          console.log('debug')
          this.$router.push('/accountHome');
 
@@ -237,7 +198,7 @@ export default {
 
 
          if (setup.basic_info) {
-            this.step =5;
+            this.step = 5;
          }
 
          // if (setup.additional_info) {
@@ -250,8 +211,8 @@ export default {
 
       }
 
-      else{
-         if (this.$route.query.verified_email !=null){
+      else {
+         if (this.$route.query.verified_email != null) {
             this.step = 2;
             this.verified_email = this.$route.query.verified_email;
 
@@ -260,15 +221,10 @@ export default {
 
    },
 
-
-
    methods: {
       test(e) {
          console.log('test', e);
       },
-
-
-
 
       async on_email_confirmed() {
 
@@ -281,8 +237,8 @@ export default {
 
       async on_terms_agreed() {
          try {
-            let payload = {email: this.$auth.profile.email, terms: 'USER_AGREED'};
-            await this.make_request('/private/updateSetup', payload, {authenticate: true});
+            let payload = { email: this.$auth.profile.email, terms: 'USER_AGREED' };
+            await this.make_request('/private/updateSetup', payload, { authenticate: true });
             this.step = 4;
          } catch (e) {
             console.log(e)
@@ -295,61 +251,23 @@ export default {
       //handler to save basic (trainer) info
       async on_basic_info() {
          try {
-            let payload = {email: this.$auth.profile.email, basic_info: 'USER_UPDATED'};
+            let payload = { email: this.$auth.profile.email, basic_info: 'USER_UPDATED' };
             await this.make_request('/private/updateSetup', payload,);
             this.step = 5;
-
-
-
-            // setTimeout(()=>{
-            //    window.location.replace(process.env.VUE_APP_BASE +'/accountHome')
-            // }, 1000);
-
-
-            //
-
-            // await this.$router.push('/memberCenter')
-
-            console.log('i ran')
 
          } catch (e) {
             console.log(e)
          }
       },
 
-      nav_to_account(){
-         window.location.replace(process.env.VUE_APP_BASE +'/accountHome')
+      nav_to_account() {
+         window.location.replace(process.env.VUE_APP_BASE + '/accountHome')
       },
 
 
-      // //handler to save handler info
-      // async on_handler_info(){
-      //    try {
-      //       let payload = {email: this.$auth.profile.email, basic_info: 'USER_UPDATED'};
-      //       await this.make_request('/private/updateSetup', payload,);
-      //       this.step = 5;
-      //
-      //
-      //
-      //       setTimeout(()=>{
-      //          window.location.replace(process.env.VUE_APP_BASE +'/accountHome')
-      //       }, 1000);
-      //       //
-      //
-      //       // await this.$router.push('/memberCenter')
-      //
-      //       console.log('i ran')
-      //
-      //    } catch (e) {
-      //       console.log(e)
-      //    }
-      //
-      // },
 
-
-
-      async on_social_saved(event){
-         this.social_info=event;
+      async on_social_saved(event) {
+         this.social_info = event;
 
          let payload = {
             user_id: this.$auth.profile.user_id,
@@ -359,11 +277,11 @@ export default {
          }
          let res = await this.make_request('/private/updateUserProfile', payload);
 
-         this.panel_ix=null;
+         this.panel_ix = null;
       },
 
-      async on_census_ans(event){
-         this.census_info=event;
+      async on_census_ans(event) {
+         this.census_info = event;
 
          let payload = {
             user_id: this.$auth.profile.user_id,
@@ -373,12 +291,12 @@ export default {
          }
          let res = await this.make_request('/private/updateUserProfile', payload);
 
-         this.panel_ix=null;
+         this.panel_ix = null;
       },
 
-      async on_additional_info(){
+      async on_additional_info() {
          try {
-            let payload = {email: this.$auth.profile.email, additional_info: 'USER_SAW'};
+            let payload = { email: this.$auth.profile.email, additional_info: 'USER_SAW' };
             await this.make_request('/private/updateSetup', payload,);
             this.step = 6;
          } catch (e) {
@@ -387,9 +305,9 @@ export default {
 
       },
 
-      async on_join(){
+      async on_join() {
          try {
-            let payload = {email: this.$auth.profile.email, behaviors: 'USER_AGREED'};
+            let payload = { email: this.$auth.profile.email, behaviors: 'USER_AGREED' };
             await this.make_request('/private/updateSetup', payload,);
 
 
@@ -408,13 +326,12 @@ export default {
 </script>
 
 <style scoped>
-
-.stepper-container{
+.stepper-container {
    padding-top: 30px;
    height: 100%;
 }
 
-.my-stepper-container{
+.my-stepper-container {
    max-width: 700px;
    width: 100%;
    text-align: left;
@@ -424,19 +341,15 @@ export default {
 }
 
 
-.content-bg{
+.content-bg {
    background-color: var(--color-bg);
    min-height: calc(100vh - 310px);
    padding: 20px;
 }
 
-.row-container{
+.row-container {
    display: flex;
    justify-content: center;
    width: 100%;
 }
-
-
-
-
 </style>

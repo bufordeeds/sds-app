@@ -1,181 +1,125 @@
 <template>
+
   <div>
-    <div class="page-title">
-      About Us
-    </div>
 
-    <div class="content-container-bg">
-      <div class="content-container-sm">
-        <div class="content-container-sm">
-          <div class="bread-crumb-title">
-            For Owners and Trainers
-          </div>
-          <div class="lm-title">
-            Service Dog Standards Training & Behavior Standards
-          </div>
-          <share-section />
+    <div class="section-container pt-1">
+      <div data-v-3dd2e005="" class="section-layout">
+        <div class="angled-ribbon">
+          <canvas id="gradient-canvas-sds1" data-js-darken-top data-transition-in>
+          </canvas>
         </div>
-
-        <div class="section">
-          <p>
-            Service Dog Standards is comprised of service dog trainers and owners who are trying to do the right thing by voluntarily choosing to hold themselves and their dogs to a higher standard which goes above and beyond the law. Our purpose is to create a powerful personal identification, record keeping, reference, information and educational tool for all Service Dog handlers regardless of certification levels, training methods or other affiliations. We hope to add clarity to the process of training and partnering with a Service Dog by outlining some of the more confusing parts of the process step-by-step.
-          </p>
-
-
-          <div class="lm-heading">
-            Please read each page carefully
-          </div>
-
-          <p>
-            Service Dog Standards represents community-defined training and behavior standards for handlers and
-            their Service Dogs. Accepting these standards is a way of voluntarily holding yourself and your animal
-            to a higher standard which goes above and beyond the law. Under the law the only requirement for
-            a Service Dog is that they be specifically trained to perform tasks or work for a disabled individual
-            who would otherwise have difficulty accomplishing those tasks on their own due to their disability.
-            Emotional support or other behaviors that a dog does naturally, while they may be beneficial and even
-            help mitigate a disability, should not be included when naming trained work or tasks.
-          </p>
-
-
-          <p>
-            This guide is designed to not only help with expectations and requirements for Service Dog trainers
-            and handlers but to also serve as a resource that covers commonly overlooked pitfalls and issues that handlers experience.
-          </p>
-        </div>
-
-
-
-
-
-        <!------------ code copy/pasted from accountHome ----------------------->
-        <div style="display: flex; justify-content: center">
-          <div class="account-status-container mt-4 pb-8">
-            <div
-              style="display: flex; justify-content: center"
-              class="pt-5 pb-5"
-            >
-              <img
-                src="../../assets/images/content/cloud-download.png"
-                width="100px"
-              >
+        <div data-v-3dd2e005="" class="section-inner-container pt-15">
+          <div data-v-3dd2e005="" class="row">
+            <div data-v-3dd2e005="" class="col-md-6 col-12">
+              <div data-v-3dd2e005="" class="small-header-line">{{ overline }}</div>
+              <h1 data-v-3dd2e005="" class="mt-4 pb-8">{{ page_title }}</h1>
+              <div v-html="page_sub_title"></div>
+              <div data-v-3dd2e005="">{{ page_description }}</div>
             </div>
-
-
-            <div class="headings pb-1">
-              Downloadables
-            </div>
-
-            <div
-              style="background-color: var(--color-bg)"
-              class="ml-4 mr-4 pa-3"
-            >
-              <div style="display: flex; justify-content: center; align-items: center; ">
-                <img
-                  src="../../assets/images/content/pdf_icon.png"
-                  width="50"
-                >
-                <div
-                  style="max-width: 250px; font-size: 11pt; color: var(--color-subheading); font-weight: 500"
-                  class="pl-2"
-                >
-                  Service Dogs Standards Training and Behavior Agreement
-                </div>
-              </div>
-
-
-              <div
-                style="margin-left:60px"
-                class="pt-2"
-              >
-                <!--<a href="/downloads/Service_Dog_Standards_Training_and_Behavior_Standards_SDSTBS-21.pdf"-->
-                <!--   target="_blank" style="text-decoration: none;">-->
-                <!--   Open in new window-->
-                <!--</a>-->
-                <!--<br>-->
-                <a
-                  href="/downloads/Service_Dog_Standards_Training_and_Behavior_Standards_SDSTBS-21.pdf"
-                  style="text-decoration: none;"
-                  download
-                >
-                  Download
-                </a>
+            <div data-v-3dd2e005="" class="col-md-6 col-12">
+              <div style="width:100%;" class="mt-12 bg-none">
+                <!--<img :src="header_image" alt="" class="bg-none Card--shadowLarge" style="width:100%;height:auto;border-radius:24px">-->
+                <img src="../learnMore/images/iStock-953742852.jpg" alt="" class="bg-none card--shadowLarge"
+                  style="width:100%;height:auto;border-radius:24px">
               </div>
             </div>
-
-            <div style="height: 10px" />
-
-            <div
-              style="background-color: var(--color-bg)"
-              class="ml-4 mr-4 pa-3"
-            >
-              <div style="display: flex; justify-content: center; align-items: center; ">
-                <img
-                  src="../../assets/images/content/pdf_icon.png"
-                  width="50"
-                >
-                <div
-                  style="max-width: 250px; font-size: 11pt; color: var(--color-subheading); font-weight: 500"
-                  class="pl-2"
-                >
-                  Service Dog Standards Public Access Test
-                </div>
-              </div>
-
-
-              <div
-                style="margin-left:60px"
-                class="pt-0"
-              >
-                <!--<a href="/downloads/Service_Dog_Standards_Public_Access_Test_SDSPAT-A21.pdf"-->
-                <!--   target="_blank" style="text-decoration: none;">-->
-                <!--   Open in new window-->
-                <!--</a>-->
-                <!--<br>-->
-                <a
-                  href="/downloads/Service_Dog_Standards_Public_Access_Test_SDSPAT-A21.pdf"
-                  style="text-decoration: none;"
-                  download
-                >
-                  Download
-                </a>
-              </div>
-            </div>
-
-            <div style="height: 15px" />
           </div>
         </div>
       </div>
     </div>
-  </div>
+
+    <div id="section_01" class="section-container">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h2 data-v-3dd2e005="" class="pb-0">{{ section_01_title }}</h2>
+            </section>
+          </div>
+        </div>
+        <!-- 3-column layout:: -->
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12">
+            <div data-v-3dd2e005="" class="column-layout3">
+              <div v-html="section_01_body_col1"></div>
+              <div v-html="section_01_body_col2"></div>
+              <div v-html="section_01_body_col3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section_02" class="section-container angled-section-bottom light">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h2 data-v-3dd2e005="" class="pb-8">{{ section_02_title }}</h2>
+              <div v-html="section_02_body"></div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section_03" class="section-container">
+      <div data-v-3dd2e005="" class="section-inner-container pt-0">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <section>
+              <h2 data-v-3dd2e005="" class="pb-8">{{ section_03_title }}</h2>
+              <div v-html="section_03_body"></div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="section_04" class="section-container bg-dark">
+      <div data-v-3dd2e005="" class="section-inner-container">
+        <div data-v-3dd2e005="" class="row pb-16">
+          <div data-v-3dd2e005="" class="col-md-8 col-12">
+            <h2 data-v-3dd2e005="" class="text-white pb-12">{{ section_04_title }}</h2>
+            <div v-html="section_04_body"></div>
+          </div>
+        </div>
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-12">
+            <div v-html="cta_join_today"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- END Content wrapper -->
+
 </template>
 
 <script>
-import SelectAcctType from "@/views/signup/selectAcctType";
-export default {
-   name: "BehaviorStandards",
-   components: {SelectAcctType}
-}
+  export default {
+    name: "BehaviorStandards",
+    data() {
+      return {
+        overline: 'About us',
+        page_title: 'Service Dog Standards Training & Behavior Standards',
+        page_sub_title: '<b>Service Dog Standards:</b> Empowering Teams and Promoting Inclusion',
+        page_description: 'Service Dog Standards is a community-driven organization founded by trainers and handlers who share a passion for excellence. We go beyond legal requirements by establishing high standards for service dog training and behavior.',
+        header_image: '../learnMore/images/iStock-953742852.jpg',
+        section_01_title: 'Our mission is to empower handlers and their canine partners through:',
+        section_01_body_col1: '<section class="txt-box-side"><h4 class="copy-title pb-3">A Powerful Identification and Information Hub</h4><p class="small-content">We provide a central resource for service dog handlers, regardless of their certification or training methods. Our website offers clear information and educational materials to navigate the complexities of service dog partnerships.</p></section>',
+        section_01_body_col2: '<section class="txt-box-side"><h4 class="copy-title pb-3">Clearly Defined Standards</h4><p class="small-content">We outline training and behavior expectations for both handlers and their service dogs. By voluntarily adhering to these standards, handlers demonstrate their commitment to a level of professionalism that exceeds legal mandates.</p></section>',
+        section_01_body_col3: '<section class="txt-box-side"><h4 class="copy-title pb-3">A Step-by-Step Guide</h4><p class="small-content">We break down the service dog journey into manageable steps, offering clarity and direction throughout the process.</p></section>',
+        section_02_title: 'More Than Just Legal Requirements',
+        section_02_body: "<section><p>The law defines a service dog as one that is specifically trained to perform tasks that directly mitigate a disability. Emotional support or natural behaviors a dog may exhibit, while helpful, don't qualify as service dog tasks. Service Dog Standards aims to raise the bar by promoting a clear distinction between emotional support animals and highly trained service dogs.</p></section",
+        section_03_title: 'A Comprehensive Resource for Service Dog Teams',
+        section_03_body: "<section><p>This website is designed to be a valuable tool for both aspiring and experienced service dog handlers. We not only outline expectations and requirements, but also address commonly encountered challenges and solutions.</p></section",
+        section_04_title: 'Our Commitment',
+        section_04_body: '<section class="theme-dark pb-4"><div class="dot full-width mb-8"></div><p class="text-secondary">Service Dog Standards offers downloadable resources, including a Service Dog Standards Training and Behavior Agreement and a Public Access Test. These tools can be instrumental in ensuring a successful and compliant service dog partnership.</p><div class="dot full-width mt-8"></div></section>',
+        cta_join_today: '<a data-v-3dd2e005="" href="/signup" class="v-btn v-btn--is-elevated v-btn--has-bg v-btn--router theme--dark v-size--default" style="padding:0 16px"><span class="standard-button-label text-dark">Join today</span></a>'
+      };
+    }
+  };
 </script>
 
-<style scoped src="./common.css"></style>
-
-<style scoped>
-.headings{
-    font-size: 18pt;
-    font-weight: 600;
-    color: var(--color-headline);
-    text-align: center;
-    /*margin-top: 5px;*/
-    margin-bottom: 15px;
-
-}
-
-.account-status-container{
-    background-color: white;
-    padding: 50px;
-    max-width: 450px;
-    width: 100%;
-}
-
-
-</style>
+<style scoped src="../common.css"></style>

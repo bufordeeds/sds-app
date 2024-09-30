@@ -23,3 +23,7 @@ yarn-error.log*
 *.sln
 *.bat
 *.sw*
+.DS_Store
+sds.code-workspace
+.DS_Store
+sds.code-workspace

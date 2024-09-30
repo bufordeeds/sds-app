@@ -1,36 +1,85 @@
 <template>
-   <div style="position: relative;">
-      <v-menu v-model="show_menu" :close-on-content-click="false" :nudge-right="0" transition="scale-transition"
-         offset-y :nudge-bottom="picker_nudge" max-width="599px">
-         <template #activator="inputscope">
-            <v-text-field v-model="datetime_fmt" :label="null" hint="YYYY-MM-DD format" :readonly="readonly2" outlined
-               dense hide-details :rules="rules" disable-lookup :clearable="clearable" v-on="inputscope.on"
-               @change="update_from_input" height="44px" />
-         </template>
+  <div style="position: relative;">
+    <v-menu
+      v-model="show_menu"
+      :close-on-content-click="false"
+      :nudge-right="0"
+      transition="scale-transition"
+      offset-y
+      :nudge-bottom="picker_nudge"
+      max-width="599px"
+    >
+      <template #activator="inputscope">
+        <v-text-field
+          v-model="datetime_fmt"
+          :label="null"
+          hint="YYYY-MM-DD format"
+          :readonly="readonly2"
+          outlined
+          dense
+          hide-details
+          :rules="rules"
+          disable-lookup
+          :clearable="clearable"
+          height="44px"
+          v-on="inputscope.on"
+          @change="update_from_input"
+        />
+      </template>
 
-         <v-card>
-            <v-date-picker v-model="date" class="ma-1" scrollable color="var(--color-primary)" />
+      <v-card>
+        <v-date-picker
+          v-model="date"
+          class="ma-1"
+          scrollable
+          color="var(--brand-primary-500)"
+        />
 
-            <v-container class="pa-2 ma-0" style="width:100%">
-               <v-row class="ma-0">
-                  <v-btn small @click="cancel">Cancel</v-btn>
-                  <v-spacer />
-                  <v-btn small color="primary" @click="get_now">Today</v-btn>
-                  <div class="pl-2">
-                     <v-btn small color="primary" @click="update_display">Ok</v-btn>
-                  </div>
-               </v-row>
-            </v-container>
-         </v-card>
-      </v-menu>
-      <label :for="id" :style="{
-         position: 'absolute',
-         top: '-20px',
-         left: '10px',
-         fontSize: '14px',
-         color: '#1D1D1F'
-      }">{{ label }}</label>
-   </div>
+        <v-container
+          class="pa-2 ma-0"
+          style="width:100%"
+        >
+          <v-row class="ma-0">
+            <v-btn
+              class="cancel-btn"
+              small
+              outlined
+              @click="cancel"
+            >
+              Cancel
+            </v-btn>
+            <v-spacer />
+            <v-btn
+              small
+              color="primary"
+              @click="get_now"
+            >
+              Today
+            </v-btn>
+            <div class="pl-2">
+              <v-btn
+                small
+                color="primary"
+                @click="update_display"
+              >
+                Ok
+              </v-btn>
+            </div>
+          </v-row>
+        </v-container>
+      </v-card>
+    </v-menu>
+    <label
+      :for="id"
+      :style="{
+        position: 'absolute',
+        top: '-20px',
+        left: '10px',
+        fontSize: '14px',
+        color: '#1D1D1F'
+      }"
+    >{{ label }}</label>
+  </div>
 </template>
 
 <script>
@@ -64,6 +113,17 @@ export default {
       readonly2() {
          return this.readonly === undefined ? true : this.readonly;
       },
+   },
+   watch: {
+      datetime_fmt() {
+         this.parse_input();
+      },
+      value() {
+         this.update_from_prop();
+      },
+   },
+   created() {
+      this.update_from_prop();
    },
    methods: {
       update_display() {
@@ -129,24 +189,33 @@ export default {
          }
       },
    },
-   watch: {
-      datetime_fmt() {
-         this.parse_input();
-      },
-      value() {
-         this.update_from_prop();
-      },
-   },
-   created() {
-      this.update_from_prop();
-   },
 };
 </script>
 
-<style>
-.v-time-picker-title__time .v-picker__title__btn,
-.v-time-picker-title__time span {
-   font-size: 50px !important;
-   height: 55.2px !important;
+<style scoped>
+/* Ensure non-active buttons use --text-default for text color */
+::v-deep .v-date-picker-table button.v-btn:not(.v-btn--active) .v-btn__content {
+   color: var(--text-default) !important;
+}
+
+/* Target the active rounded button with theme--light */
+.v-btn.v-btn--active.v-btn--rounded.theme--light {
+   background-color: var(--color-btn) !important;
+   color: white !important;
+}
+
+/* Ensure the cancel button text color is applied correctly for outlined button */
+::v-deep .theme--light.v-btn.cancel-btn.v-btn--outlined {
+   background-color: transparent !important;
+   /* No background for outlined button */
+   border-color: var(--color-btn) !important;
+   /* Customize the outline border color */
+   color: var(--color-btn) !important;
+   /* Customize the text color */
+}
+
+::v-deep .theme--light.v-btn.cancel-btn.v-btn--outlined .v-btn__content{
+   color: var(--color-btn) !important;
+   /* Customize the text color */
 }
 </style>

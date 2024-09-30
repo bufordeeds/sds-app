@@ -14,7 +14,7 @@
     <template v-if="showSite">
       <v-app id="app">
         <v-dialog v-model="show_cart">
-          <div style="background-color: var(--color-bg); width: 100%; position:relative;" class="pb-1 pt-1">
+          <div style="background-color: var(--surface-pale); width: 100%; position:relative;" class="pb-1 pt-1">
             <div style="display: flex; justify-content: flex-end; position: absolute; width: 100%" class="pr-2">
               <v-spacer />
               <v-btn icon @click="show_cart = false">
@@ -30,7 +30,7 @@
         <div v-if="show_nav"
           :style="{ 'background-image': `url(${require('./assets/images/content/header-background.jpg')})` }"
           style="background-size: cover;background-position: center;">
-          <div style="background-color: #fafafc;">
+          <div style="background-color: var(--surface-pale);">
             <nav-bar />
           </div>
         </div>
@@ -50,56 +50,52 @@
 
 
         <!-------------------- footer --------------------------------------------------------------------------------->
-        <v-footer
-          style="background-color: #363437; color: white; font-size: 10pt; font-weight: lighter; padding: 0; width: 100%">
-          <div style="display: flex; justify-content: flex-start; width: 100%" />
-
-          <div style="display: flex; justify-content: center; width: 100%">
-            <div style="max-width: 1280px" class="pt-7 pl-5 pr-5">
-              <div style="display: flex; flex-wrap: wrap;">
-                <div style="width: 100%; margin-top: -10px; margin-bottom: 10px;">
-                  <!--<img src="./assets/images/logo/SDSLogoforFooter.svg" style="max-width: 350px">-->
-                  <img src="./assets/images/content/ServiceDogStandardsFooterAsset25.svg" style="max-width: 350px">
-                </div>
-
-
-                <div style="">
-                  ©{{ cur_year }} Service Dog Standards. All Rights Reserved.
-                </div>
-                <v-spacer />
-                <div style="display: flex; flex-wrap: wrap">
-                  <a href="/privacy" class="footer-links" style="margin-left:0">
-                    Privacy and Cookie Policy
-                  </a>
-                  <span class="foot-link-divider">|</span>
-                  <a href="/terms-and-conditions" class="footer-links">
-                    Terms of Service
-                  </a>
-                  <span class="foot-link-divider">|</span>
-
-                  <a href="/terms-access-use" class="footer-links">
-                    Terms of Access and Use
-                  </a>
-                  <span class="foot-link-divider">|</span>
-                  <a href="/contact-us" class="footer-links">
-                    Contact Us
-                  </a>
+        <v-footer>
+          <div class="footer section-container">
+            <div data-v-3dd2e005="" class="section-inner-container">
+              <div data-v-3dd2e005="" class="row">
+                <div data-v-3dd2e005="" class="col-12">
+                  <section>
+                    <img src="./assets/images/content/logo-white.svg">
+                  </section>
                 </div>
               </div>
-              <div class="pt-9 pb-9">
-                Service Dog Standards, this website and our materials are provided as a benefit to the
-                Assistance and Service Dog community as a whole. We are built on the trust and good-will of
-                our members and the animals that serve them. We are not a certification process or substitute
-                for training. Service Dog Standards can not and will not be held responsible or liable for the
-                actions of individual owners or their dogs in any way, shape or form. All member data is
-                provided at the assertion of the animal owner. We are an educational tool for the public and
-                Service and Assistance Dog trainers and owners. Misrepresenting an animal as a Service or
-                Assistance Animal for any reason in any way is a crime. All members are subject to our
-                Terms and Conditions.
+              <div data-v-3dd2e005="" class="row">
+                <div data-v-3dd2e005="" class="col-md-9 col-12">
+                  <section class="pr-128">
+                    <div class="pt-8">
+                      Service Dog Standards, this website and our materials are provided as a benefit to the
+                      Assistance and Service Dog community as a whole. We are built on the trust and good-will of
+                      our members and the animals that serve them. We are not a certification process or substitute
+                      for training. Service Dog Standards can not and will not be held responsible or liable for the
+                      actions of individual owners or their dogs in any way, shape or form. All member data is
+                      provided at the assertion of the animal owner. We are an educational tool for the public and
+                      Service and Assistance Dog trainers and owners. Misrepresenting an animal as a Service or
+                      Assistance Animal for any reason in any way is a crime. All members are subject to our
+                      Terms and Conditions.
+                    </div>
+                  </section>
+                </div>
+                <div data-v-3dd2e005="" class="col-md-3 col-12">
+                  <section class="txt-box-side xsmall-content">
+                    <div style="display:flex;flex-direction:column;gap:16px;">
+                      <a href="/privacy" class="footer-links" style="margin-left:0">Privacy and Cookie Policy</a>
+                      <a href="/terms-and-conditions" class="footer-links">Terms of Service</a>
+                      <a href="/terms-access-use" class="footer-links">Terms of Access and Use</a>
+                      <a href="/contact-us" class="footer-links">Contact Us</a>
+                    </div>
+                  </section>
+                </div>
+              </div>
+              <div data-v-3dd2e005="" class="row">
+                <div data-v-3dd2e005="" class="col-md-9 col-12">
+                  <div class="copyright pt-8">©{{ cur_year }} Service Dog Standards. All Rights Reserved.</div>
+                </div>
               </div>
             </div>
           </div>
         </v-footer>
+
       </v-app>
     </template>
   </div>
@@ -115,12 +111,10 @@
 // import _ from 'lodash';
 import NavBar from '@/components/app/NavBar.vue'
 import SideNav from '@/components/app/SideNav'
-import helpers from "@/utilities/helpers";
 import data_getters from "@/mixins/data_getters";
 
 
 import ShoppingCart from "@/views/shop/ShoppingCart";
-import router from "@/router";
 
 export default {
   name: 'App',
@@ -273,8 +267,6 @@ export default {
 };
 </script>
 
-
-
 <style scoped lang="scss">
 @import 'assets/styles/variables';
 
@@ -283,14 +275,12 @@ export default {
   //background: linear-gradient(180deg, rgb(6, 6, 6) 0%, rgb(28, 28, 28) 40%, rgb(6, 6, 6) 100%);
 }
 
-
 #main-container {
   /*background: none;*/
   margin: 10px;
   max-width: 1200px;
   /*background-color: rgba(255, 60, 63, 0.35);*/
 }
-
 
 #main-background-gradient {
   position: fixed;
@@ -303,34 +293,76 @@ export default {
   //background: $color-app-background;
   z-index: -1;
   /*opacity: 0.5;*/
-
 }
 
+/* Footer */
+.vfooter {
+  justify-content: center;
+}
+
+.v-sheet.v-footer,
 .footer {
-  text-align: center;
   width: 100%;
+  background-color: var(--surface-dark);
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.footer section>img {
+  max-width: 300px;
+  opacity: .62;
 }
 
 a.footer-links {
   text-decoration: none;
-  color: white;
-  //margin-left: 10px;
-  //margin-right: 10px;
-  white-space: nowrap;
+  color: var(--text-light);
+  transition: all 150ms ease-in-out;
+}
+
+a.footer-links:hover {
+  color: var(--text-white);
 }
 
 .foot-link-divider {
   padding-left: 5px;
   padding-right: 5px;
 }
+
+section.pr-128 {
+  padding-right: 128px;
+}
+
+.copyright {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 768px) {
+  .v-footer {
+    padding: 0 !important;
+  }
+
+  .footer>.section-inner-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .footer section.pr-128 {
+    padding-right: 0px !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .footer>.section-inner-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
 </style>
 
-
-
-
-
-
 <style src="./views/common.css"></style>
-
-
-

@@ -253,7 +253,6 @@ export default {
 
         if (cart != null) {
           this.$store.commit('set_cart', cart);
-          console.log('i ran')
         }
       } catch (e) {
         console.error(e);
@@ -269,11 +268,6 @@ export default {
 
 <style scoped lang="scss">
 @import 'assets/styles/variables';
-
-#app {
-  /*background: none;*/
-  //background: linear-gradient(180deg, rgb(6, 6, 6) 0%, rgb(28, 28, 28) 40%, rgb(6, 6, 6) 100%);
-}
 
 #main-container {
   /*background: none;*/

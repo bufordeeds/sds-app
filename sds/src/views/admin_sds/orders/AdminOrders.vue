@@ -1,86 +1,46 @@
 <template>
-  <div>
-    <search-dialog
-      v-model="show_search"
-      @searched="on_search"
-    />
-    <my-show-error
-      v-model="dialog_show_error"
-      :error="show_error_obj"
-    />
+   <div>
+      <search-dialog v-model="show_search" @searched="on_search" />
+      <my-show-error v-model="dialog_show_error" :error="show_error_obj" />
 
-    <div class="page-title-app">
-      Manage Orders
-    </div>
-
-    <div class="content-container-bg">
-      <div
-        class="admin-content-container"
-        style="height: 70vh;"
-      >
-        <div style="display: flex; gap: 16px;">
-          <my-date-picker
-            v-model="date_start"
-            style="width: 150px; height: 44px !important;"
-            label="Date From"
-            readonly
-            :on-change="get_orders"
-          />
-
-          <my-date-picker
-            v-model="date_end"
-            class="ml-2"
-            style="width: 150px"
-            label="Date To"
-            readonly
-            :on-change="get_orders"
-          />
-
-          <v-btn
-            :loading="loading_download"
-            plain
-            class="custom-button"
-            @click="download_data"
-          >
-            Download
-          </v-btn>
-
-          <v-btn
-            plain
-            class="custom-button"
-            @click="show_search = true"
-          >
-            <v-icon class="icon">
-              search
-            </v-icon>Advanced Search
-          </v-btn>
-        </div>
-
-        <template v-if="search_results_msg !== null">
-          <div
-            style="background-color: #eaeaea; "
-            class="mt-4 pl-2 pr-2 pt-1 pb-1"
-          >
-            Search Results For: {{ search_results_msg }}
-            <v-spacer />
-            <v-btn
-              class="mt-2"
-              small
-              @click="clear_search"
-            >
-              Clear Results
-            </v-btn>
-          </div>
-        </template>
-
-        <orders-table
-          :orders="orders"
-          @buy-label="on_buy_label"
-          @buy-checked-labels="buy_labels_bulk"
-        />
+      <div class="page-title-app">
+         Manage Orders
       </div>
-    </div>
-  </div>
+
+      <div class="content-container-bg">
+         <div class="admin-content-container" style="height: 70vh;">
+            <div style="display: flex; gap: 16px;">
+               <my-date-picker v-model="date_start" style="width: 150px; height: 44px !important;" label="Date From"
+                  readonly :on-change="get_orders" />
+
+               <my-date-picker v-model="date_end" class="ml-2" style="width: 150px" label="Date To" readonly
+                  :on-change="get_orders" />
+
+               <v-btn :loading="loading_download" plain class="custom-button" @click="download_data">
+                  Download
+               </v-btn>
+
+               <v-btn plain class="custom-button" @click="show_search = true">
+                  <v-icon class="icon">
+                     search
+                  </v-icon>Advanced Search
+               </v-btn>
+            </div>
+
+            <template v-if="search_results_msg !== null">
+               <div style="background-color: #eaeaea; " class="mt-4 pl-2 pr-2 pt-1 pb-1">
+                  Search Results For: {{ search_results_msg }}
+                  <v-spacer />
+                  <v-btn class="mt-2" small @click="clear_search">
+                     Clear Results
+                  </v-btn>
+               </div>
+            </template>
+
+            <orders-table :orders="orders" @buy-label="on_buy_label" @buy-checked-labels="buy_labels_bulk" />
+         </div>
+      </div>
+   </div>
 </template>
 
 <script>
@@ -102,7 +62,7 @@ export default {
       return {
          orders: [],
          loading_download: false,
-         date_start: DateTime.local().minus({ days: 30 }).toISO(),
+         date_start: DateTime.local().minus({ year: 5 }).toISO(), // TODO: change back to 1 month after dev is done
          date_end: DateTime.local().toISO(),
          search_query: null,
          show_search: false,

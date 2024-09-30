@@ -27,7 +27,6 @@ console.log('EASYPOST_API_KEY:', process.env.EASYPOST_API_KEY);
 const corsOptions = {
 	origin: [
 		'http://localhost:5300', // Local frontend URL
-		'https://sds-app.vercel.app', // Production frontend URL
 		'https://servicedogstandards.org',
 		'https://testing.servicedogstandards.org',
 		'https://sds-app.ngrok.app'

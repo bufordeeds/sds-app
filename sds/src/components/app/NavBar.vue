@@ -288,21 +288,14 @@ export default {
   },
 
   watch: {
-    $route() {
-      this.updateButtonStyle();
-    },
+
   },
 
   created() {
-    console.log(this.$vuetify.breakpoint);
+
   },
 
   methods: {
-    updateButtonStyle() {
-      this.learnMoreButtonStyle = this.isRootUrl
-        ? { color: 'white', backgroundColor: 'transparent' }
-        : { color: 'black', backgroundColor: 'transparent' };
-    },
 
     on_login() {
       console.log('logged in')

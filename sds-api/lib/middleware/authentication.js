@@ -1,3 +1,5 @@
+// /Users/buford/Downloads/sds-app/sds-api/lib/middleware/authentication.js
+
 'use strict';
 
 const jwt = require('jsonwebtoken');
@@ -43,6 +45,9 @@ async function baseAuthenticate(req, res, next, adminCheck = false) {
 		const decoded = jwt.verify(token, publicKey, { algorithm: 'RS256' });
 		req.decoded_token = decoded;
 
+		console.log('Token received:', token);
+		console.log('Decoded token:', decoded);
+
 		if (adminCheck && decoded.acct_type !== 'SDS-ADMIN') {
 			res.status(403).send('Authentication failed - must be an admin');
 			return;
@@ -50,6 +55,7 @@ async function baseAuthenticate(req, res, next, adminCheck = false) {
 
 		next();
 	} catch (e) {
+		console.error('Authentication error:', e);
 		res.status(403).send('Authentication failed - token validation failed');
 	}
 }

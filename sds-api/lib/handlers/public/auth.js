@@ -1,3 +1,5 @@
+// /Users/buford/Downloads/sds-app/sds-api/lib/handlers/public/auth.js
+
 'use strict';
 var express = require('express');
 var router = express.Router();

@@ -1014,10 +1014,6 @@ a {
 		grid-template-columns: 1fr;
 		row-gap: var(--row-gap-medium);
 	}
-	h1 {
-		/*font-size: 2.1var(--rt-medium);*/
-		/*line-height: 48px;*/
-	}
 	.page-title {
 		/*font-size: 20pt;*/
 		font-size: 26pt;

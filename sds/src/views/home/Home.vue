@@ -94,21 +94,45 @@
   -->
 
     <!-- ROB New Hero Header -->
-    
+ <!--   
     <section data-v-2ee8aeaa=""  class="home-hero section-container">
       <canvas class="hero-section-bg"></canvas>
-      <div data-v-2ee8aeaa="" data-v-3dd2e005="" class="section-inner-container pt-0">
-        <div data-v-2ee8aeaa="" data-v-3dd2e005="" class="row">
-          <div data-v-2ee8aeaa="" data-v-3dd2e005="" class="col-md-6 col-12">
-              <div class="hero-container">
-                <img src="../../assets/images/logo/HomepageHeroHeader__black.svg" class="hero hero-under hero-under-blended"/>
-                <img src="../../assets/images/logo/HomepageHeroHeader__black.svg" class="hero hero-under hero-under-overlay"/>
-              </div>
-
+      <div data-v-3dd2e005="" class="section-inner-container pt-0">
+        <div data-v-3dd2e005="" class="row">
+          <div data-v-3dd2e005="" class="col-xs-12 col-md-7 col-7">
+            <div class="hero-container">
+              <img src="../../assets/images/logo/HomepageHeroHeader__black.svg" class="hero hero-under hero-under-blended"/>
+              <img src="../../assets/images/logo/HomepageHeroHeader__black.svg" class="hero hero-under hero-under-overlay"/>
+            </div>
+          </div>
+          <div data-v-3dd2e005="" class="col-xs-0 col-md-5 col-5">
+            <div class="hero-app-screenshot">
+              <img src="../../assets/images/content/hero-app-screenshot.png"/>
+            </div>
           </div>
         </div>
       </div>
     </section>
+  -->
+    <section data-v-2ee8aeaa=""  class="home-hero section-container">
+      <canvas class="hero-section-bg"></canvas>
+      <div data-v-3dd2e005="" class="section-inner-container pt-0">
+        <div data-v-3dd2e005="" class="hero-grid-container">
+          <div data-v-3dd2e005="" class="column-1">
+            <div class="hero-container">
+              <img src="../../assets/images/logo/HomepageHeroHeader__black.svg" class="hero hero-under hero-under-blended"/>
+              <img src="../../assets/images/logo/HomepageHeroHeader__black.svg" class="hero hero-under hero-under-overlay"/>
+            </div>
+          </div>
+          <div data-v-3dd2e005="" class="column-2">
+            <div class="hero-app-screenshot">
+              <img src="../../assets/images/content/hero-app-screenshot.png"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <!---------------------------- fold 2 box -------------------------------------------------------------->
     <!--

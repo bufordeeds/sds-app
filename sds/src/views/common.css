@@ -1341,17 +1341,22 @@ ul li,
 /* ROB This Hero Stripe BG might be the one! */
 /* Hero Section Styles */
 main.v-main {
-	/*margin-top: -68px;*/
+	margin-top: -68px;
 }
 .home-hero {
-	margin-top: -68px;
 	padding-top: 116px;
 	padding-bottom: 128px;
 	min-height: 715px;
+	height: auto;
 }
 .hero-container {
 	position: relative;
-	top: 346px;
+	top: 378px;
+	width: 100%;
+}
+.hero-container img {
+	width: 100%;
+	height: auto;
 }
 .hero-above {
 	position: relative;
@@ -1368,6 +1373,66 @@ main.v-main {
 .hero-under-overlay {
 	opacity: .2;
 }
+.home-hero .section-inner-container {
+	padding-bottom: 0 !important;
+}
+.hero-app-screenshot {
+    width: 975px;
+	height: auto;
+}
+.hero-app-screenshot img {
+	width: 100%;
+	height: auto;
+}
+
+/* Hero Grid Container */
+.hero-grid-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr; /* 2 columns of equal width */
+	gap: 10px;
+	align-items: start;
+}
+.column-1 {
+	width: 650px;
+}
+@media (min-width: 1113px) {
+	.home-hero {
+		padding-bottom: 128px !important;
+	}
+}
+@media (max-width: 1112px) {
+	.home-hero {
+		padding-bottom: 0 !important;
+	}
+	.column-1 {
+		width: calc(100vw * .5);
+	}
+	.column-1 .hero-container {
+		top: calc(100vw / 3.33);
+	}
+}
+@media (max-width: 600px) {
+	.hero-grid-container {
+		grid-template-columns: 1fr;
+	}
+	.column-1 .hero-container {
+		top: calc(100vw / 1.65)
+	}
+	.column-1 {
+		width: 100%;
+	}
+	.home-hero {
+		min-height: 588px;		
+	}
+	.column-2 {
+		display: none;
+	}
+	.hero-app-screenshot-wrapper {
+		display: none;
+	}
+}
+
+
 /* Skewed Background */
 .hero-section-bg {
     content: '';
@@ -1385,7 +1450,10 @@ main.v-main {
     background-position: left;
 	aspect-ratio: auto 1716 / 1200;
 	--transformOriginX: calc(var(--gutterWidth)* 0.8);
-	}
+}
+.hero-section-bg row {
+	gap: 32px;
+}
 
 /* ROB Stripe BG Gradient */
 .home {
@@ -1668,9 +1736,21 @@ main.v-main {
 	}
 }
 
-@media (max-width: 700px) {
+@media (max-width: 899px) {
+    .home-hero {
+        padding-bottom: calc(128px - 40px);
+    }
+	.section-inner-container {
+		padding-bottom: calc(128px - 40px) !important;
+	}
+}
+
+@media (max-width: 600px) {
 	.section-inner-container {
 		padding: 72px 10px; /*50px 10px 30px 10px;*/
+	}
+	.hero-app-screenshot {
+		display: none;;
 	}
 }
 

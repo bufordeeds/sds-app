@@ -12,9 +12,9 @@
 
 
     <template v-if="showSite">
-      <v-app id="app">
+      <v-app id="app" style="z-index:2;background: transparent;">
         <v-dialog v-model="show_cart">
-          <div style="background-color: var(--surface-pale); width: 100%; position:relative;" class="pb-1 pt-1">
+          <div style="background-color: transparent; width: 100%; position:relative;" class="pb-1 pt-1">
             <div style="display: flex; justify-content: flex-end; position: absolute; width: 100%" class="pr-2">
               <v-spacer />
               <v-btn icon @click="show_cart = false">
@@ -26,19 +26,21 @@
           </div>
         </v-dialog>
 
-
-        <div v-if="show_nav"
-          :style="{ 'background-image': `url(${require('./assets/images/content/header-background.jpg')})` }"
-          style="background-size: cover;background-position: center;">
-          <div style="background-color: var(--surface-pale);">
+      
+        <div v-if="show_nav" style="z-index:999;position: relative;">
+          <div style="background-color: transparent;">
+            <nav-bar/>
+          </div>
+        </div>
+      <!--
+        <div v-if="show_nav">
+          <div>
             <nav-bar />
           </div>
         </div>
+      -->
 
-
-
-
-        <v-main>
+        <v-main style="z-index:0"> <!-- Moves body up to cover the height of the TopNav -->
           <side-nav v-if="show_drawer" />
           <div :style="router_style">
             <router-view :key="$route.fullPath" />

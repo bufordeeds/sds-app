@@ -15,7 +15,7 @@ export default defineComponent({
     },
     size: {
       type: Number,
-      default: 32
+      default: 50
     },
     loop: {
       type: Boolean,

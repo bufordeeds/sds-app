@@ -214,7 +214,7 @@
         <v-row>
           <v-col cols="12" md="6">
             <div class="txt-box-side">
-              <LottieIcon icon="wired-gradient-436-love-care.json" :size="50" :repeatTime="5000" />
+              <LottieIcon icon="wired-gradient-436-love-care.json" />
               <div class="b1-heading">
                 Peace-of-mind for all
               </div>
@@ -226,7 +226,7 @@
           </v-col>
           <v-col cols="12" md="6">
             <div class="txt-box-side">
-              <LottieIcon icon="wired-gradient-406-study-graduation.json" :size="50" :repeatTime="5000" />
+              <LottieIcon icon="wired-gradient-406-study-graduation.json" />
               <div class="b1-heading">
                 Better educated
               </div>
@@ -407,7 +407,7 @@
             </div>
 
             <div class="txt-box-side" style="border-left: 1px solid white; color: white">
-              <LottieIcon icon="wired-gradient-457-shield-security.json" :size="50" :repeatTime="5000" />
+              <LottieIcon icon="wired-gradient-457-shield-security.json" />
               <div class="b1-heading" style="color: white">
                 Keep your documents private
               </div>
@@ -534,7 +534,7 @@
             </div>
 
             <div class="txt-box-side">
-              <LottieIcon icon="wired-gradient-399-grid-list.json" :size="50" :repeatTime="5000" />
+              <LottieIcon icon="wired-gradient-399-grid-list.json" />
               <div class="b1-heading">
                 Free robust business page
               </div>
@@ -552,7 +552,7 @@
             <!--mini matrix-->
             <div style="display: flex" class="mt-4" :style="{ 'flex-direction': ismobile ? 'column' : 'row' }">
               <div class="txt-box-side" :style="{ 'width': ismobile ? '100%' : '50%' }">
-                <LottieIcon icon="wired-gradient-178-two-envelopes.json" :size="50" :repeatTime="5000" />
+                <LottieIcon icon="wired-gradient-178-two-envelopes.json" />
                 <div class="b1-heading">
                   Invite clients
                 </div>
@@ -560,7 +560,7 @@
               </div>
 
               <div class="txt-box-side" :style="{ 'width': ismobile ? '100%' : '50%' }">
-                <LottieIcon icon="wired-gradient-19-magnifier-zoom-search.json" :size="50" :repeatTime="5000" />
+                <LottieIcon icon="wired-gradient-19-magnifier-zoom-search.json" />
                 <div class="b1-heading">
                   Track dogs & clients
                 </div>
@@ -569,7 +569,7 @@
             </div>
             <div style="display: flex" class="mt-4" :style="{ 'flex-direction': ismobile ? 'column' : 'row' }">
               <div class="txt-box-side" :style="{ 'width': ismobile ? '100%' : '50%' }">
-                <LottieIcon icon="wired-gradient-406-study-graduation.json" :size="50" :repeatTime="5000" />
+                <LottieIcon icon="wired-gradient-406-study-graduation.json" />
                 <div class="b1-heading">
                   Educate clients
                 </div>
@@ -577,7 +577,7 @@
               </div>
 
               <div class="txt-box-side" :style="{ 'width': ismobile ? '100%' : '50%' }">
-                <LottieIcon icon="wired-gradient-436-love-care.json" :size="50" :repeatTime="5000" />
+                <LottieIcon icon="wired-gradient-436-love-care.json" />
                 <div class="b1-heading">
                   Reduce Stress
                 </div>
@@ -768,7 +768,7 @@
         <!--mini matrix-->
         <div style="display: flex" class="mt-4" :style="{ 'flex-direction': ismobile ? 'column' : 'row' }">
           <div class="txt-box-side">
-            <LottieIcon icon="wired-gradient-1165-dog-training.json" :size="50" :repeatTime="5000" />
+            <LottieIcon icon="wired-gradient-1165-dog-training.json" />
             <div class="b1-heading">
               All dog breeds & sizes are
               allowed
@@ -783,7 +783,7 @@
 
 
           <div class="txt-box-side">
-            <LottieIcon icon="wired-gradient-486-school.json" :size="50" :repeatTime="5000" />
+            <LottieIcon icon="wired-gradient-486-school.json" />
             <div class="b1-heading">
               Service Dogs in Training are welcome
             </div>
@@ -796,7 +796,7 @@
           </div>
 
           <div class="txt-box-side">
-            <LottieIcon icon="wired-gradient-1796-sport-strategy.json" :size="50" :repeatTime="5000" />
+            <LottieIcon icon="wired-gradient-1796-sport-strategy.json" />
             <div class="b1-heading">
               Built for Owner-Trainers &
               Program-Trained Dogs

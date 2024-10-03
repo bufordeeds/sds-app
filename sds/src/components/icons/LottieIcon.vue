@@ -24,6 +24,10 @@ export default defineComponent({
     autoplay: {
       type: Boolean,
       default: false
+    },
+    repeatTime: {
+      type: Number,
+      default: 5000
     }
   },
   data() {
@@ -38,10 +42,7 @@ export default defineComponent({
   methods: {
     async loadAnimation() {
       try {
-
-        console.log('Loading animation:', this.icon);
         const module = await import(`@/assets/images/icons/Lordicons/${this.icon}`);
-        console.log('Animation data loaded:', module);
         const animationData = module.default;
 
         this.animation = lottie.loadAnimation({
@@ -52,7 +53,20 @@ export default defineComponent({
           animationData: animationData,
         });
 
-        console.log('Animation created:', this.animation);
+        // Calculate speed based on animation duration and desired repeat time
+        const duration = this.animation.getDuration() * 1000; // Convert to milliseconds
+        const speed = duration / this.repeatTime;
+        this.animation.setSpeed(speed);
+
+        // Set up loop
+        this.animation.addEventListener('complete', () => {
+          setTimeout(() => {
+            this.animation.goToAndPlay(0);
+          }, this.repeatTime - duration);
+        });
+
+        // Start the animation
+        this.animation.play();
 
         this.$refs[this.containerRef].style.width = `${this.size}px`;
         this.$refs[this.containerRef].style.height = `${this.size}px`;

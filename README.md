@@ -90,7 +90,6 @@ npm run serve
 ```
 
 The application should now be running at `http://localhost:5300` (frontend) and `http://localhost:5301` (backend API).
-Development
 
 Use `npm run build` in the sds/ directory to build the frontend for production
 

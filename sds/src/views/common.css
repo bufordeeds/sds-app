@@ -198,9 +198,9 @@
 	);
 	--gradient-hero: linear-gradient(
 		to bottom,
-		#054896 38%,
-		#2c3795 53%,
-		#ed008c 78%,
+		#054896 25%,
+		#2c3795 50%,
+		#ed008c 75%,
 		#0db2fa 100%
 
 	);
@@ -1023,6 +1023,7 @@ a {
 		text-align: center;
 	}
 
+
 	/*page header for member pages (with left menu)*/
 	.page-title-app {
 		font-size: 26pt;
@@ -1340,7 +1341,7 @@ main.v-main {
 	margin-top: -68px;
 }
 .home-hero {
-	padding-top: 116px;
+	padding-top: 165px;
 	padding-bottom: 128px;
 	min-height: 715px;
 	height: auto;
@@ -1393,7 +1394,7 @@ main.v-main {
 }
 @media (min-width: 1113px) {
 	.home-hero {
-		padding-bottom: 128px !important;
+		padding-bottom: 0 !important;
 	}
 }
 @media (max-width: 1112px) {
@@ -1408,6 +1409,9 @@ main.v-main {
 	}
 }
 @media (max-width: 600px) {
+	.hero-section-bg {
+		max-height: 375px !important;
+	}
 	.hero-grid-container {
 		grid-template-columns: 1fr;
 	}
@@ -1418,6 +1422,7 @@ main.v-main {
 		width: 100%;
 	}
 	.home-hero {
+		padding-top: 115px;
 		min-height: 588px;		
 	}
 	.column-2 {
@@ -1433,19 +1438,20 @@ main.v-main {
 .hero-section-bg {
     content: '';
     position: absolute;
-    top: -66vh;
+    top: -300px;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 800px;
+    min-height: 700px;
     background-image: var(--gradient-hero);
     -webkit-transform: skewY(-12deg);
     transform: skewY(-12deg);
     -webkit-transform-origin: center;
     transform-origin: center;
     z-index: 0;
-    background-position: left;
-	aspect-ratio: auto 1716 / 1200;
-	--transformOriginX: calc(var(--gutterWidth)* 0.8);
+    background-position: left top;
+    aspect-ratio: auto 1716 / 1200;
+    --transformOriginX: calc(var(--gutterWidth)* 0.8);
 }
 .hero-section-bg row {
 	gap: 32px;

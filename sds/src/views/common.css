@@ -1307,7 +1307,7 @@ ul li,
 }
 .home-hero {
 	margin-top: -68px;
-	padding-top: 165px;
+	padding-top: 128px;
 	padding-bottom: 128px;
 	min-height: 715px;
 	height: auto;
@@ -1395,6 +1395,9 @@ ul li,
 }
 .column-1 {
 	width: 650px;
+}
+.hero-text {
+	padding-bottom: 64px;
 }
 .hero-text > .hero-blurb > a + span.v-btn__content {
 	color: var(--text-white) !important;

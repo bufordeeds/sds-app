@@ -1494,12 +1494,18 @@ ul li,
 	left: 0;
 	z-index: 0;
 
-	clip-path: polygon(0 0, 100% 0, 100% 70%, 0% 100%);
+	clip-path: polygon(0 0, 100% 0, 100% 43%, 0% 100%);
 
+	/*
 	--gradient-color-1: #2c3795;
 	--gradient-color-2: #0db2fa;
 	--gradient-color-3: #ed008c;
 	--gradient-color-4: #054896;
+	*/
+	--gradient-color-1: #ed008c;
+    --gradient-color-2: #0db2fa;
+    --gradient-color-3: #ed008c;
+    --gradient-color-4: #0db2fa;
 }
 /* */
 .gradient-canvas {

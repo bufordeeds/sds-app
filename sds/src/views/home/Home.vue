@@ -83,8 +83,8 @@
 
     <!-- ROB New Hero Header -->
     <section data-v-2ee8aeaa="" class="home-hero section-container">
-      <canvas class="hero-section-bg" data-transition-in></canvas>
-      <!-- <canvas id="gradient-canvas" class="hero-section-bg" data-transition-in></canvas> -->
+      <!-- <canvas class="hero-section-bg" data-transition-in></canvas> -->
+      <canvas id="gradient-canvas" data-transition-in></canvas>
       <div data-v-3dd2e005="" class="section-inner-container pt-0">
         <div data-v-3dd2e005="" class="hero-grid-container">
           <div data-v-3dd2e005="" class="column-1">
@@ -808,6 +808,7 @@ import wpEmbed from "@/components/wpEmbed";
 import fold2 from "@/views/home/fold2";
 import fold2_mobile from "@/views/home/fold2_mobile";
 import LottieIcon from "@/components/icons/LottieIcon";
+import { Gradient } from '@/Gradient.js'
 
 export default {
   name: 'HomeComponent',
@@ -833,6 +834,12 @@ export default {
       title: '',
       subtitle: 'Free and voluntary training and behavior standards and team management solutions for Service Dog Trainers and Handlers.'
     }
+  },
+  mounted() {
+    // Create your instance
+    const gradient = new Gradient()
+    // Call `initGradient` with the selector to your canvas
+    gradient.initGradient('#gradient-canvas')
   },
   computed: {
     class_mission() {
@@ -906,16 +913,6 @@ export default {
   }
 }
 </script>
-
-<!-- ROB Gradient Canvas script
-<script>
-  import { Gradient } from './Gradient.js'
-  // Create your instance
-  const gradient = new Gradient()
-  // Call `initGradient` with the selector to your canvas
-  gradient.initGradient('#gradient-canvas')
-</script>
- END -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

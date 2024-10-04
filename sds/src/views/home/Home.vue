@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <nav-bar style="max-width: 1280px; margin-left: auto; margin-right: auto; background-color: rgba(0,0,0,0.4);" />
     <!------------dialog for showing error when no user found----------------->
     <v-dialog v-model="show_no_user" max-width="400px">
       <v-card>

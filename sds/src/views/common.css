@@ -1395,7 +1395,7 @@ ul li,
 	width: 650px;
 }
 .hero-text {
-	padding-bottom: 64px;
+	padding: 64px 0 128px;
 }
 .hero-text > .hero-blurb > a + span.v-btn__content {
 	color: var(--text-white) !important;

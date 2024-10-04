@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <nav-bar style="max-width: 1280px; margin-left: auto; margin-right: auto; background-color: rgba(0,0,0,0.4);" />
     <!------------dialog for showing error when no user found----------------->
     <v-dialog v-model="show_no_user" max-width="400px">
       <v-card>
@@ -20,25 +21,18 @@
       </v-card>
     </v-dialog>
 
-
-
     <!------------dialog for advanced search----------------->
 
     <advanced-team-search v-if="show_advanced_search" v-model="show_advanced_search" />
 
-
-
-
-
-
-
-
     <!------------------------main content--------------------------------------------------------------------------->
 
-
-
-    <Section background="black" class="image-bg"
-      :style="{ 'background-image': `url(${require('../../assets/images/content/header-background.jpg')})` }">
+    <!--
+    <Section
+      background="black"
+      class="image-bg"
+      :style="{ 'background-image': `url(${require('../../assets/images/content/header-background.jpg')})` }"
+    >
       <div style="background-color: rgba(0,0,0,0.4);">
         <nav-bar style="max-width: 1280px; margin-left: auto; margin-right:auto" />
       </div>
@@ -59,18 +53,25 @@
         </div>
       </div>
 
-
-
-      <div v-else class="  "
-        style="align-items: flex-start; padding-bottom: 180px; padding-top: 40px; align-items: center; display: flex; flex-direction: column">
-        <div class="fold-content" style="justify-content: center; flex-direction: column">
+      <div
+        v-else
+        class="  "
+        style="align-items: flex-start; padding-bottom: 180px; padding-top: 40px; align-items: center; display: flex; flex-direction: column"
+      >
+        <div
+          class="fold-content"
+          style="justify-content: center; flex-direction: column"
+        >
           <div style="width: 90%">
             <img src="../../assets/images/logo/service-dog-standards-h.png" style="width: 100%;">
           </div>
 
-          <div style="width: 90%; font-weight: 100; font-size: 16pt; line-height: 1.2" class="mt-4">
-            <!--Cloud-based voluntary training and behavioral standards and team management solutions for Service-->
-            <!--Dog Trainers and Handlers-->
+          <div
+            style="width: 90%; font-weight: 100; font-size: 16pt; line-height: 1.2"
+            class="mt-4"
+          >
+            <!- Cloud-based voluntary training and behavioral standards and team management solutions for Service ->
+            <!- Dog Trainers and Handlers ->
             Free and voluntary training and behavior standards and team management solutions for Service Dog Trainers
             and
             Handlers.
@@ -78,37 +79,51 @@
         </div>
       </div>
     </Section>
+  -->
 
+    <!-- ROB New Hero Header -->
+    <section data-v-2ee8aeaa="" class="home-hero section-container">
+      <canvas class="hero-section-bg" data-transition-in></canvas>
+      <!-- <canvas id="gradient-canvas" class="hero-section-bg" data-transition-in></canvas> -->
+      <div data-v-3dd2e005="" class="section-inner-container pt-0">
+        <div data-v-3dd2e005="" class="hero-grid-container">
+          <div data-v-3dd2e005="" class="column-1">
+            <div class="hero-container">
+              <div class="row">
+                <img src="../../assets/images/logo/HomepageHeroHeader__black.svg"
+                  class="hero-logo hero-under hero-under-blended" />
+                <img src="../../assets/images/logo/HomepageHeroHeader__black.svg"
+                  class="hero-logo hero-under hero-under-overlay" />
+              </div>
+            </div>
+            <div class="row hero-text">
+              <div class="hero-blurb pt-16">{{ subtitle }}</div>
+              <div data-v-3dd2e005="" style="margin-top: 40px;">
+                <a data-v-3dd2e005="" href="/signup"
+                  class="button_secondary v-btn v-btn--has-bg v-btn--router v-size--default">
+                  <span class="v-btn__content text-white"> Start now </span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div data-v-3dd2e005="" class="column-2">
+            <div class="hero-app-screenshot">
+              <img src="../../assets/images/content/hero-app-screenshot.png" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
 
     <!---------------------------- fold 2 box -------------------------------------------------------------->
+    <!--
     <fold2 v-if="$vuetify.breakpoint.smAndUp" :search-num.sync="search_member_num" @search-user="search_user"
       @show-advanced-search="show_advanced_search = true" />
 
     <fold2_mobile v-else :search-num.sync="search_member_num" @search-user="search_user"
       @show-advanced-search="show_advanced_search = true" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  -->
     <!---------------------------- More confidence... Section ------------------------------------------------------->
 
     <!--<div class="section-container" style="margin-top: 20px;">-->
@@ -117,7 +132,6 @@
     <!--      <div class="small-header-line">-->
     <!--         For Housing, Employment, Education & Travel-->
     <!--      </div>-->
-
 
     <!--      <div class="mt-4 large-header-line" >-->
     <!--         More confidence where you live, work and play.-->
@@ -168,8 +182,6 @@
     <!--         </div>-->
     <!--      </div>-->
 
-
-
     <!--      <div style="margin-top: 40px">-->
     <!--         <v-btn class="button_primary">-->
     <!--            Join today-->
@@ -179,15 +191,11 @@
     <!--   </div>-->
     <!--</div>-->
 
-
-
-
-    <div class="section-container" style="margin-top: 0px;">
+    <div class="section-container bg-pale" style="margin-top: 0px;">
       <div class="section-inner-container" :class="class_mobile">
         <div class="small-header-line" :class="class_mobile">
           For Housing, Employment, Education & Travel
         </div>
-
 
         <div class="mt-4 large-header-line" :class="class_mobile">
           More confidence where you live, work and play.
@@ -209,7 +217,6 @@
             </div>
           </v-col>
         </v-row>
-
 
         <v-row>
           <v-col cols="12" md="6">
@@ -240,7 +247,6 @@
           </v-col>
         </v-row>
 
-
         <div style="margin-top: 40px">
           <v-btn to="/signup" class="button_primary">
             Join today
@@ -248,7 +254,6 @@
         </div>
       </div>
     </div>
-
 
     <!---------------------------- Section Accepted Standards ------------------------------------------------------->
 
@@ -259,7 +264,6 @@
     <!--      <div class="small-header-line" :class="class_mobile">-->
     <!--         Accepted Standards-->
     <!--      </div>-->
-
 
     <!--      <div class="mt-4 large-header-line" :class="class_mobile">-->
     <!--           Credentials backed up by Standards.-->
@@ -275,8 +279,6 @@
     <!--               property managers, and landlords.-->
     <!--            </div>-->
 
-
-
     <!--         </div>-->
 
     <!--         <div>-->
@@ -287,18 +289,14 @@
     <!--               available only on this website.-->
     <!--            </div>-->
 
-
-
     <!--         </div>-->
     <!--      </div>-->
-
 
     <!--      <div style="margin-top: 40px">-->
     <!--         <v-btn class="button_primary">-->
     <!--            Get Started-->
     <!--         </v-btn>-->
     <!--      </div>-->
-
 
     <!--      <div style="width: 100%; overflow-x: hidden">-->
     <!--         <img src="../../assets/images/content/SDSMaterialsForIndexPageAsset_3.png" style="width: 100%">-->
@@ -308,7 +306,6 @@
     <!--   </div>-->
     <!--</div>-->
 
-
     <div class="section-container" style="margin-top: 20px; background-color: white">
       <div class="section-inner-container" :class="class_mobile">
         <!--style="padding: 100px 50px 30px 50px; "-->
@@ -316,7 +313,6 @@
         <div class="small-header-line" :class="class_mobile">
           Accepted Standards
         </div>
-
 
         <div class="mt-4 large-header-line" :class="class_mobile">
           Credentials backed up by Standards.
@@ -346,15 +342,12 @@
           </v-col>
         </v-row>
 
-
-
         <div style="display: flex; flex-direction: column">
           <div :style="ismobile ? 'margin-top:0px; margin-bottom: 20px;' : 'margin-top:20px'">
             <v-btn class="button_primary" to="/signup">
               Get Started
             </v-btn>
           </div>
-
 
           <!--<div style="width: 100%; overflow-x: hidden" :style="{order: ismobile? -1: 0}">-->
           <!--   <img src="../../assets/images/content/SDSMaterialsForIndexPageAsset_3.png" style="width: 100%">-->
@@ -368,10 +361,6 @@
     </div>
 
     <!---------------------------- Section free owners ------------------------------------------------------->
-
-
-
-
 
     <div class="section-container angled-section" :class="class_mobile">
       <div class="section-inner-container" :class="class_mobile">
@@ -389,8 +378,6 @@
               :class="class_mobile_img1">
           </div>
         </template>
-
-
 
         <v-row>
           <v-col>
@@ -434,8 +421,6 @@
         </v-row>
       </div>
     </div>
-
-
 
     <!--<div class="section-container angled-section" >-->
     <!--   <div class="section-inner-container" :class="class_mobile">-->
@@ -490,38 +475,23 @@
     <!--                 width="130%"-->
     <!--            >-->
 
-
-
     <!--         </div>-->
     <!--      </div>-->
-
-
-
-
-
-
 
     <!--   </div>-->
     <!--</div>-->
 
     <!---------------------------- Section Free for trainers ------------------------------------------------------->
 
-    <div class="section-container" :class="class_mobile" style="margin-top: 0px; ">
+    <div class="section-container bg-pale" :class="class_mobile" style="margin-top: 0px; ">
       <div class="section-inner-container" :class="class_mobile" style="overflow-x: hidden; ">
         <div class="small-header-line" :class="class_mobile">
           Free for Trainers
         </div>
 
-
         <div class="mt-4 large-header-line" :class="class_mobile">
           Grow your dog training practice or organization.
         </div>
-
-
-
-
-
-
 
         <div style="display: flex" class="mt-4">
           <div style="margin-right: 0%" :style="{ width: ismobile ? '100%' : '50%' }">
@@ -539,15 +509,12 @@
                 Free robust business page
               </div>
 
-
               Whether you currently train Service Dogs or would
               like to begin, Service Dog Standards lets you set up
               a free business page with ease. It's so powerful, you
               can even use it in place of a website. To get started,
               create an account with us today.
             </div>
-
-
 
             <!--mini matrix-->
             <div style="display: flex" class="mt-4" :style="{ 'flex-direction': ismobile ? 'column' : 'row' }">
@@ -585,19 +552,12 @@
               </div>
             </div>
 
-
-
             <div style="margin-top: 40px;" :style="{ 'padding-bottom': ismobile ? '0px' : '200px' }">
               <v-btn class="button_primary" to="/signup">
                 Join today
               </v-btn>
             </div>
           </div>
-
-
-
-
-
 
           <!--col2-->
           <div v-if="!ismobile" style="width: 50%;  ">
@@ -610,8 +570,6 @@
       </div>
     </div>
 
-
-
     <!--<div class="section-container" :class="class_mobile" style="margin-top: 0px; ">-->
     <!--   <div class="section-inner-container" :class="class_mobile" style="overflow-x: hidden; ">-->
 
@@ -619,15 +577,11 @@
     <!--         Free for Trainers-->
     <!--      </div>-->
 
-
     <!--      <div class="mt-4 large-header-line" :class="class_mobile">-->
     <!--         Grow your dog training practice or organization.-->
     <!--      </div>-->
 
     <!--      <div style="display: flex" class="mt-4">-->
-
-
-
 
     <!--         <div style="width: 50%; margin-right: -80px">-->
     <!--            <div class="txt-box " style="max-width: 500px">-->
@@ -645,15 +599,12 @@
     <!--                  Free robust business page-->
     <!--               </div>-->
 
-
     <!--               Whether you currently train Service Dogs or would-->
     <!--               like to begin, Service Dog Standards lets you set up-->
     <!--               a free business page with ease. It's so powerful, you-->
     <!--               can even use it in place of a website. To get started,-->
     <!--               create an account with us today.-->
     <!--            </div>-->
-
-
 
     <!--            &lt;!&ndash;mini matrix&ndash;&gt;-->
     <!--            <div style="display: flex" class="mt-4">-->
@@ -693,19 +644,12 @@
     <!--               </div>-->
     <!--            </div>-->
 
-
-
     <!--            <div style="margin-top: 40px">-->
     <!--               <v-btn class="button_primary">-->
     <!--                  Join today-->
     <!--               </v-btn>-->
     <!--            </div>-->
     <!--         </div>-->
-
-
-
-
-
 
     <!--         &lt;!&ndash;col2&ndash;&gt;-->
     <!--         <div style="width: 50%;  ">-->
@@ -717,16 +661,11 @@
 
     <!--            </div>-->
 
-
-
     <!--         </div>-->
     <!--      </div>-->
 
-
     <!--   </div>-->
     <!--</div>-->
-
-
 
     <!---------------------------- anything pawsable Section -------------------------------------------------------->
     <div class="section-container " style="background-color: white;" :class="class_mobile"
@@ -739,19 +678,13 @@
       </div>
     </div>
 
-
-
-
-
-
     <!---------------------------- Section begin today ------------------------------------------------------->
 
-    <div class="section-container" :class="class_mobile">
+    <div class="section-container bg-pale" :class="class_mobile">
       <div class="section-inner-container" style="overflow-x: hidden; " :class="class_mobile">
         <div class="small-header-line" :class="class_mobile">
           Begin today
         </div>
-
 
         <div class="mt-4 large-header-line" :class="class_mobile">
           Join Now. Level up as your dog progresses.
@@ -780,7 +713,6 @@
             do we. It's the training and
             behavior that matters.
           </div>
-
 
           <div class="txt-box-side">
             <LottieIcon icon="wired-gradient-486-school.json" />
@@ -824,12 +756,9 @@
       </div>
     </div>
 
-
-
-
     <!---------------------------- Social media Section --------------------------------------------------------------------->
-    <div class="section-container" style="margin-top: 100px; background-color: #404042">
-      <div class="section-inner-container" style=" padding: 80px 50px 80px 50px; ">
+    <div class="section-container" style="background-color: #404042">
+      <div class="section-inner-container">
         <div class="mb-3" style="color: white; font-size: 15pt; text-align: center">
           Please connect with us!
         </div>
@@ -870,34 +799,41 @@
 // import LoginModal from '@/components/app/LoginModal.vue'
 import Section from '@/components/Section.vue'
 import NavBar from '@/components/app/NavBar.vue'
-
 import HomeContentBox from "@/components/HomeContentBox";
 import data_getters from "@/mixins/data_getters";
 import validation from "@/mixins/validation";
 import AdvancedTeamSearch from "@/components/AdvancedTeamSearch";
 import LineAnimation2 from "@/components/LineAnimation2";
-
 import wpEmbed from "@/components/wpEmbed";
 import fold2 from "@/views/home/fold2";
 import fold2_mobile from "@/views/home/fold2_mobile";
 import LottieIcon from "@/components/icons/LottieIcon";
 
-
 export default {
   name: 'HomeComponent',
-  components: { AdvancedTeamSearch, Section, NavBar, HomeContentBox, wpEmbed, fold2, fold2_mobile, LineAnimation2, LottieIcon },
+  components: {
+    AdvancedTeamSearch,
+    Section,
+    NavBar,
+    HomeContentBox,
+    wpEmbed,
+    fold2,
+    fold2_mobile,
+    LineAnimation2,
+    LottieIcon
+  },
   mixins: [data_getters, validation],
-
   data() {
     return {
       show_mission: false,
       search_member_num: null,
-
       show_no_user: false,
       show_advanced_search: false,
+      /* Content Variables */
+      title: '',
+      subtitle: 'Free and voluntary training and behavior standards and team management solutions for Service Dog Trainers and Handlers.'
     }
   },
-
   computed: {
     class_mission() {
       if (this.show_mission) {
@@ -906,7 +842,6 @@ export default {
         return 'mission-collapsed';
       }
     },
-
     ismobile() {
       // return !this.$vuetify.breakpoint.mdAndUp
       return this.$vuetify.breakpoint.width < 700
@@ -914,64 +849,49 @@ export default {
     class_mobile() {
       if (!this.ismobile) {
         return ''
-      }
-      else {
+      } else {
         return 'ismobile'
       }
     },
-
     class_mobile_img1() {
       let ans = ''
       if (this.$vuetify.breakpoint.width < 500) {
         ans = 'mobile_sm'
-      }
-      else if (this.$vuetify.breakpoint.width < 900) {
+      } else if (this.$vuetify.breakpoint.width < 900) {
         ans = 'mobile_md'
       }
-
-
       return ans;
-
     }
   },
-
   created() {
     this.$store.commit("set_default_nav", false)
     this.$store.commit("set_show_side_nav", false);
-
     //check if advanced search should be shown
     let as = this.$route.query.advanced_search;
     if (as === 'true') {
       this.show_advanced_search = true;
     }
-
   },
-
   beforeDestroy() {
     this.$store.commit("set_default_nav", true)
   },
-
   methods: {
-
-
     async get_ap_data() {
       try {
         let xml = await this.make_request('/public/getAnythingPawsableContent', {});
-
-
       } catch (e) {
         console.log(e);
       }
     },
-
     async search_user() {
       //
       // if (!this.$refs.form1.validate()) {
       //    return;
       // }
-
       try {
-        let dog = await this.make_request('/public/getDogProfile', { dog_num: this.search_member_num });
+        let dog = await this.make_request('/public/getDogProfile', {
+          dog_num: this.search_member_num
+        });
         console.log(dog)
         if (dog !== null) {
           // await this.$router.push('/profile/' + user._id);
@@ -979,16 +899,23 @@ export default {
         } else {
           this.show_no_user = true;
         }
-
       } catch (e) {
         console.log(e);
       }
     }
   }
-
-
 }
 </script>
+
+<!-- ROB Gradient Canvas script
+<script>
+  import { Gradient } from './Gradient.js'
+  // Create your instance
+  const gradient = new Gradient()
+  // Call `initGradient` with the selector to your canvas
+  gradient.initGradient('#gradient-canvas')
+</script>
+ END -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

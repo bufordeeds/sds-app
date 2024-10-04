@@ -83,7 +83,8 @@
 
     <!-- ROB New Hero Header -->
     <section data-v-2ee8aeaa="" class="home-hero section-container">
-      <canvas class="hero-section-bg"></canvas>
+      <canvas class="hero-section-bg" data-transition-in></canvas>
+      <!-- <canvas id="gradient-canvas" class="hero-section-bg" data-transition-in></canvas> -->
       <div data-v-3dd2e005="" class="section-inner-container pt-0">
         <div data-v-3dd2e005="" class="hero-grid-container">
           <div data-v-3dd2e005="" class="column-1">
@@ -482,7 +483,7 @@
 
     <!---------------------------- Section Free for trainers ------------------------------------------------------->
 
-    <div class="section-container" :class="class_mobile" style="margin-top: 0px; ">
+    <div class="section-container bg-pale" :class="class_mobile" style="margin-top: 0px; ">
       <div class="section-inner-container" :class="class_mobile" style="overflow-x: hidden; ">
         <div class="small-header-line" :class="class_mobile">
           Free for Trainers
@@ -905,6 +906,16 @@ export default {
   }
 }
 </script>
+
+<!-- ROB Gradient Canvas script
+<script>
+  import { Gradient } from './Gradient.js'
+  // Create your instance
+  const gradient = new Gradient()
+  // Call `initGradient` with the selector to your canvas
+  gradient.initGradient('#gradient-canvas')
+</script>
+ END -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

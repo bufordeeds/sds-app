@@ -94,34 +94,24 @@
   -->
 
     <!-- ROB New Hero Header -->
- <!--   
-    <section data-v-2ee8aeaa=""  class="home-hero section-container">
-      <canvas class="hero-section-bg"></canvas>
-      <div data-v-3dd2e005="" class="section-inner-container pt-0">
-        <div data-v-3dd2e005="" class="row">
-          <div data-v-3dd2e005="" class="col-xs-12 col-md-7 col-7">
-            <div class="hero-container">
-              <img src="../../assets/images/logo/HomepageHeroHeader__black.svg" class="hero hero-under hero-under-blended"/>
-              <img src="../../assets/images/logo/HomepageHeroHeader__black.svg" class="hero hero-under hero-under-overlay"/>
-            </div>
-          </div>
-          <div data-v-3dd2e005="" class="col-xs-0 col-md-5 col-5">
-            <div class="hero-app-screenshot">
-              <img src="../../assets/images/content/hero-app-screenshot.png"/>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  -->
     <section data-v-2ee8aeaa=""  class="home-hero section-container">
       <canvas class="hero-section-bg"></canvas>
       <div data-v-3dd2e005="" class="section-inner-container pt-0">
         <div data-v-3dd2e005="" class="hero-grid-container">
           <div data-v-3dd2e005="" class="column-1">
             <div class="hero-container">
-              <img src="../../assets/images/logo/HomepageHeroHeader__black.svg" class="hero hero-under hero-under-blended"/>
-              <img src="../../assets/images/logo/HomepageHeroHeader__black.svg" class="hero hero-under hero-under-overlay"/>
+              <div class="row">
+                <img src="../../assets/images/logo/HomepageHeroHeader__black.svg" class="hero-logo hero-under hero-under-blended"/>
+                <img src="../../assets/images/logo/HomepageHeroHeader__black.svg" class="hero-logo hero-under hero-under-overlay"/>
+              </div>
+            </div>
+            <div class="row hero-text">
+              <div class="hero-blurb pt-16">{{ subtitle }}</div>
+              <div data-v-3dd2e005="" style="margin-top: 40px;">
+                <a data-v-3dd2e005="" href="/signup" class="button_secondary v-btn v-btn--has-bg v-btn--router v-size--default">
+                  <span class="v-btn__content text-white"> Start now </span>
+                </a>
+              </div>
             </div>
           </div>
           <div data-v-3dd2e005="" class="column-2">
@@ -845,8 +835,8 @@
         show_no_user: false,
         show_advanced_search: false,
         /* Content Variables */
-        title: 'Financial infrastructure to grow your revenue',
-        subtitle: 'Join the millions of companies of all sizes that use Stripe to accept payments online and in person, embed financial services, power custom revenue models, and build a more profitable business.'
+        title: '',
+        subtitle: 'Free and voluntary training and behavior standards and team management solutions for Service Dog Trainers and Handlers.'
       }
     },
     computed: {

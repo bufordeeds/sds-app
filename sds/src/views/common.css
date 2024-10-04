@@ -904,6 +904,13 @@ html {
 .button_primary {
 	background-color: var(--brand-primary-highlight) !important;
 }
+.button_secondary {
+	background-color: var(--surface-dark) !important;
+}
+.button_secondary:hover {
+	background-color: var(--surface-light-medium) !important;
+}
+
 .v-btn__content {
 	font-size: 15px !important;
 	font-weight: 600 !important;
@@ -1281,17 +1288,12 @@ ul {
 	font-weight: 700;
 }
 
-.small-header-line.ismobile {
-	font-weight: bold;
-	color: var(--color-txt-blue-dark);
-}
-
 .large-header-line.ismobile {
-	font-weight: 600;
-	color: var(--color-txt-blue-dark);
+	font-weight: 700;
 	font-size: 38px;
 	line-height: 48px;
-	letter-spacing: -0.2px;
+	letter-spacing: -1.2px;
+	padding-bottom: 16px;
 	max-width: 900px;
 }
 
@@ -1337,23 +1339,61 @@ ul li,
 
 /* ROB This Hero Stripe BG might be the one! */
 /* Hero Section Styles */
-main.v-main {
-	margin-top: -68px;
+.hero-section-bg > .section-inner-container {
+	padding-left: 28px;
 }
 .home-hero {
+	margin-top: -68px;
 	padding-top: 165px;
 	padding-bottom: 128px;
 	min-height: 715px;
 	height: auto;
 }
 .hero-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 	position: relative;
 	top: 378px;
 	width: 100%;
+	display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    height: 100%;
+    position: relative;
+    top: 48px;
+    width: 100%;
+    /* flex-wrap: nowrap; */
+    min-height: 410px;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 32px;
+    height: auto;
+}
+.hero-container > .row {
+	position: relative;
+	flex: 1; /* This will make the rows equal height */
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
 }
 .hero-container img {
 	width: 100%;
 	height: auto;
+	min-height: 200px;
+	bottom: 0;
+	width: 100%;
+    min-height: 200px;
+    top: 0;
+    height: auto;
+}
+.hero-logo {
+	min-height: 200px;
+	display: flex;
+	align-items: flex-end;
 }
 .hero-above {
 	position: relative;
@@ -1370,6 +1410,7 @@ main.v-main {
 .hero-under-overlay {
 	opacity: .2;
 }
+
 .home-hero .section-inner-container {
 	padding-bottom: 0 !important;
 }
@@ -1392,38 +1433,54 @@ main.v-main {
 .column-1 {
 	width: 650px;
 }
-@media (min-width: 1113px) {
-	.home-hero {
-		padding-bottom: 0 !important;
-	}
+.hero-text > .hero-blurb > a + span.v-btn__content {
+	color: var(--text-white) !important;
 }
-@media (max-width: 1112px) {
+@media (min-width: 1112px) {
 	.home-hero {
+		min-height: unset !important;
 		padding-bottom: 0 !important;
-	}
-	.column-1 {
-		width: calc(100vw * .5);
-	}
-	.column-1 .hero-container {
-		top: calc(100vw / 3.33);
-	}
-}
-@media (max-width: 600px) {
-	.hero-section-bg {
-		max-height: 375px !important;
 	}
 	.hero-grid-container {
-		grid-template-columns: 1fr;
+		padding: 0 12px !important;
 	}
-	.column-1 .hero-container {
-		top: calc(100vw / 1.65)
+}
+@media (max-width: 1111px) {
+	.home-hero {
+		min-height: unset !important;
+		padding-bottom: 0 !important;
+	}
+	.hero-section-bg .section-inner-container {
+		padding: 0 30px;
 	}
 	.column-1 {
 		width: 100%;
+		padding-left: 12px;
 	}
+	.hero-grid-container {
+		padding: 0 !important;
+	}
+	.hero-grid-container > .column-1 {
+		max-width: 580px;
+		min-width: 433px;
+	}
+}
+@media (max-width: 600px) {
 	.home-hero {
-		padding-top: 115px;
-		min-height: 588px;		
+		min-height: unset !important;
+		padding-bottom: 0 !important;
+	}
+	.hero-grid-container {
+		grid-template-columns: 1fr;
+		overflow: hidden;
+	}
+	.column-1 {
+		min-width: 433px;
+		padding-left: 12px;
+		padding-right: 12px;
+	}
+	.hero-text {
+		padding-bottom: 128px;
 	}
 	.column-2 {
 		display: none;
@@ -1432,8 +1489,6 @@ main.v-main {
 		display: none;
 	}
 }
-
-
 /* Skewed Background */
 .hero-section-bg {
     content: '';

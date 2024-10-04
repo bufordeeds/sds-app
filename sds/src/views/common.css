@@ -198,9 +198,9 @@
 	);
 	--gradient-hero: linear-gradient(
 		to bottom,
-		#054896 25%,
-		#2c3795 50%,
-		#ed008c 75%,
+		#054896 15%,
+		#2c3795 30%,
+		#ed008c 65%,
 		#0db2fa 100%
 
 	);
@@ -1408,7 +1408,7 @@ ul li,
 	mix-blend-mode: color-burn;
 }
 .hero-under-overlay {
-	opacity: .2;
+	opacity: 0.3;
 }
 
 .home-hero .section-inner-container {

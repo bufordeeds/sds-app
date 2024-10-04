@@ -199,8 +199,8 @@
     <!--   </div>-->
     <!--</div>-->
 
-    <div class="section-container" style="margin-top: 0px;">
-      <div class="section-inner-container pt-0" :class="class_mobile">
+    <div class="section-container bg-pale" style="margin-top: 0px;">
+      <div class="section-inner-container" :class="class_mobile">
         <div class="small-header-line" :class="class_mobile">
           For Housing, Employment, Education & Travel
         </div>
@@ -688,7 +688,7 @@
 
     <!---------------------------- Section begin today ------------------------------------------------------->
 
-    <div class="section-container" :class="class_mobile">
+    <div class="section-container bg-pale" :class="class_mobile">
       <div class="section-inner-container" style="overflow-x: hidden; " :class="class_mobile">
         <div class="small-header-line" :class="class_mobile">
           Begin today
@@ -765,8 +765,8 @@
     </div>
 
     <!---------------------------- Social media Section --------------------------------------------------------------------->
-    <div class="section-container" style="margin-top: 100px; background-color: #404042">
-      <div class="section-inner-container" style=" padding: 80px 50px 80px 50px; ">
+    <div class="section-container" style="background-color: #404042">
+      <div class="section-inner-container">
         <div class="mb-3" style="color: white; font-size: 15pt; text-align: center">
           Please connect with us!
         </div>

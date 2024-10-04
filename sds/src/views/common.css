@@ -1309,6 +1309,7 @@ ul li,
 	padding-bottom: 128px;
 	min-height: 715px;
 	height: auto;
+	overflow: hidden;
 }
 .hero-container {
 	display: flex;

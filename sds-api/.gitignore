@@ -40,3 +40,6 @@ local_log.log
 
 # profiling files
 /.profiling
+
+# DB generated files
+/lib/db/*

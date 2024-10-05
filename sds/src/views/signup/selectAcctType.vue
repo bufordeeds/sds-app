@@ -1,146 +1,114 @@
 <template>
-  <div class="flex-centered-content-col">
+  <div>
     <!--font-size: 16pt; font-weight: 600; color: var(&#45;&#45;color-headline)-->
 
     <!----------- box handler/trainer select ------------------------------------------------------------------------>
-    <div v-if="!isHandler">
-      <div
-        style="text-align: center; "
-        class="blue-heading"
-      >
+    <div
+      v-if="!isHandler"
+      id="user-type"
+    >
+      <h4 class="text-center">
         Are you a Trainer or Handler?
-      </div>
+      </h4>
 
-      <div style="display: flex; justify-content: center; flex-wrap: wrap;margin-top: 30px">
-        <div class="user-box">
-          <div
-            class="icon-container"
-            @click="isHandler=true"
-          >
-            <img
-              src="../../assets/images/icons/dog-with-belt-walking-with-a-man.svg"
-              width="60px"
-            >
-          </div>
-
-          <v-btn
-            text
-            @click="isHandler=true"
-          >
-            <div class="icon-text">
-              I'm a Handler
-            </div>
-          </v-btn>
-        </div>
-
-
-        <div class="user-box">
-          <div
-            class="icon-container"
-            @click="$emit('user-type-selected', 'TRAINER')"
-          >
-            <img
-              src="../../assets/images/icons/trainer.svg"
-              width="60px"
-            >
-          </div>
-
-          <v-btn
-            text
-            @click="$emit('user-type-selected', 'TRAINER')"
-          >
-            <div class="icon-text">
-              I'm a Trainer
-            </div>
-          </v-btn>
-        </div>
-      </div>
-    </div>
-
-
-
-    <!----------- box for animal types------------------------------------------------------------------------------->
-
-    <div v-if="isHandler">
       <div
-        style="text-align: center;"
-        class="blue-heading"
+        class="flex cards__group"
       >
-        What type of animal are you registering?
-      </div>
-
-      <div style="display: flex; justify-content: center; flex-wrap: wrap; margin-top: 30px">
-        <div class="user-box">
+        <button
+          @click="$emit('user-type-selected', 'TRAINER')"
+        >
           <div
-            class="icon-container"
-            @click="$emit('user-type-selected', 'HANDLER')"
+            class="card flex flex-col place-items-center"
           >
-            <img
-              src="../../assets/images/icons/service-dog.e7bc71b3.svg"
-              width="60px"
+            <div
+              class="card__icon"
             >
-          </div>
-
-          <v-btn
-            text
-            @click="$emit('user-type-selected', 'HANDLER')"
-          >
-            <div class="icon-text">
-              Service Dog
+              <img src="../../assets/images/icons/trainer.svg">
             </div>
-          </v-btn>
-        </div>
 
-
-        <div class="user-box">
+            <h2 class="card__title">
+              I'm a Trainer
+            </h2>
+          </div>
+        </button>
+        <button
+          @click="isHandler=true"
+        >
           <div
-            class="icon-container"
-            @click="animalType='ESA'"
+            class="card flex flex-col place-items-center"
           >
-            <img
-              src="../../assets/images/icons/cat.png"
-              width="60px"
+            <div
+              class="card__icon"
             >
-          </div>
-
-          <v-btn
-            text
-            @click="animalType='ESA'"
-          >
-            <div class="icon-text">
-              Emotional Support Animal
+              <img src="../../assets/images/icons/dog-with-belt-walking-with-a-man.svg">
             </div>
-          </v-btn>
-        </div>
 
-
-        <div class="user-box">
-          <div
-            class="icon-container"
-            @click="animalType='therapy'"
-          >
-            <img
-              src="../../assets/images/icons/therapy-dog.svg"
-              width="60px"
-            >
+            <h2 class="card__title">
+              I'm a Handler
+            </h2>
           </div>
-
-          <v-btn
-            text
-            @click="animalType='therapy'"
-          >
-            <div class="icon-text">
-              Therapy Dog
-            </div>
-          </v-btn>
-        </div>
+        </button>
       </div>
     </div>
+    <!----------- box for animal types------------------------------------------------------------------------------->
+    <div
+      v-if="isHandler"
+      id="animal-type"
+    >
+      <h4 class="text-center">
+        What type of animal are you registering?
+      </h4>
+
+      <div class="flex cards__group">
+        <button @click="$emit('user-type-selected', 'HANDLER')">
+          <div class="card flex flex-col place-items-center">
+            <div
+              class="card__icon"
+            >
+              <img
+                src="../../assets/images/icons/service-dog.e7bc71b3.svg"
+              >
+            </div>
+
+            <h2 class="card__title">
+              Service Dog
+            </h2>
+          </div>
+        </button>
 
 
+        <button @click="animalType='ESA'">
+          <div class="card flex flex-col place-items-center">
+            <div
+              class="card__icon"
+            >
+              <img src="../../assets/images/icons/cat.png">
+            </div>
 
+            <h2 class="card__title">
+              Emotional Support Animal
+            </h2>
+          </div>
+        </button>
+
+
+        <button @click="animalType='therapy'">
+          <div class="card flex flex-col place-items-center">
+            <div class="card__icon">
+              <img
+                src="../../assets/images/icons/therapy-dog.svg"
+                width="60px"
+              >
+            </div>
+
+            <h2 class="card__title">
+              Therapy Dog
+            </h2>
+          </div>
+        </button>
+      </div>
+    </div>
     <!----------- box info therapy dog------------------------------------------------------------------------------->
-
     <div
       v-if="animalType==='therapy'"
       class="content-container"
@@ -175,9 +143,6 @@
       </p>
     </div>
 
-
-
-
     <div
       v-if="animalType==='ESA'"
       class="content-container"
@@ -198,16 +163,10 @@
       <p>
         Of course, handlers of Emotional Support Animals do not have public access rights and should not be bring their animal partners into restaurants, stores or other public places. As well, Emotional Support Animals do not need to wear vests or any identifying gear.
       </p>
-
-
       <p style="background-color: white; padding: 15px">
         <span style="font-weight: 600">ADA REG § 35.104 Definitions.</span>
         Service animal means any dog that is individually trained to do work or perform tasks for the benefit of an individual with a disability, including a physical, sensory, psychiatric, intellectual, or other mental disability . . . The effects of an animal's presence and the provision of emotional support, well-being, comfort, or companionship do not constitute work or tasks for the purposes of this definition.
       </p>
-
-
-
-
       <p>
         <span style="font-weight: 600"> Read:</span>
         <a href="https://www.anythingpawsable.com/the-difference-between-service-dogs-therapy-dogs-emotional-support-animals-and-more/">
@@ -224,26 +183,69 @@
 export default {
    name: "SelectAcctType",
    data(){
-      return{
-         isHandler: false,
-
+      return {
          animalType: null,
+         isHandler: false,
       }
    },
-
    computed:{
       isMobile(){
-         return this.$vuetify.breakpoint.width < 700;
+        return this.$vuetify.breakpoint.width < 700;
       }
    }
-
-
-
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  @import url('../main.css');
 
+  #user-type h4,
+  #animal-type h4 {
+    margin-bottom: 32px;
+  }
+
+  .cards__group {
+    column-gap: 24px;
+    justify-content: center;
+
+    .card {
+      height: 100%;
+      min-height: 140px;
+      width: 120px;
+
+      .card__icon {
+        align-items: center;
+        background-color: var(--button-form-button);
+        border-radius: 50%;
+        height: 64px;
+        display: flex;
+        justify-content: center;
+        width:  64px;
+
+        img {
+          margin-bottom: 4px;
+          width: 40px;
+        }
+      }
+
+      .card__title {
+        color: var(--button-form-button);
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 20px;
+      }
+    }
+  }
+
+  .content-container{
+    max-width: 900px;
+    margin-top: 20px;
+    
+    img {
+      width: 100%;
+    }
+  }
+/*  OLD STYLES 10/04/24
 .user-box{
    display: flex;
    flex-direction: column;
@@ -265,7 +267,6 @@ export default {
 
 .icon-text{
    padding-top: 7px;
-   /*font-size: 14pt;*/
    font-weight: 600;
 }
 
@@ -278,14 +279,10 @@ export default {
    float: left;
    max-width: 500px;
     width: 100%;
-   /*background: red;*/
    margin-right: 20px;
 }
 
-
-
 .full-image{
     width: 100%;
-    /*margin-right: 20px;*/
-}
+} */
 </style>

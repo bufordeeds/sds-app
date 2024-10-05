@@ -1,25 +1,15 @@
 <template>
   <div style="max-width:800px">
     <template v-if="!showConfirmed2">
-      <div
-        class="subheading-txt"
-        style=""
-      >
-        <span v-if="err_msg == null">
-          Before we begin, let's verify your email
-        </span>
-
-        <div v-else>
-          Oops, it looks like you already have an account. <br>
-
-          <router-link to="/login">
-            Log In
-          </router-link>
-        </div>
-      </div>
-
-
-
+      <h4>
+        Before we begin, let's verify your email
+      </h4>
+      <h5 v-if="err_msg != null">
+        Oops, it looks like you already have an account.
+        <router-link to="/login">
+          Log In
+        </router-link>
+      </h5>
 
       <my-form
         ref="form"
@@ -41,7 +31,6 @@
 
             <my-text-input
               v-model="email"
-              label="Email Address"
               :rules="[isRequired, checkEmail]"
             />
           </v-col>

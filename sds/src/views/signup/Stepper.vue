@@ -7,73 +7,78 @@
     <!--   <li :class="highlighted(4)"><a href="#" class="pr-6">Basic Info</a></li>-->
     <!--</ul>-->
 
-    <div
-      class="breadcrumb-container mt-2"
-      style="margin-left: 10px"
+    <ol
+      id="steps"
+      class="flex flex-col"
     >
-      <div
-        class="block"
-        :class="highlighted(1)"
+      <li
+        class="steps__list-item flex flex-row"
+        :class="active(1)"
       >
-        <span v-if="!isMobile">Account Type</span>
-        <span v-else>Acct</span>
-      </div>
-      <svg class="svg-container">
+        <span
+          class="steps__counter"
+        >1</span>
+        Account Type
+      </li>
+      <!-- <svg class="svg-container">
         <path
           d="M0 0 L10 20 L00 40"
           class="svg-triangle"
           :style="triangle_style(1)"
         />
-      </svg>
+      </svg> -->
 
-
-      <div
-        class="block"
-        :class="highlighted(2)"
+      <li
+        class="steps__list-item flex flex-row"
+        :class="active(2)"
       >
-        <span v-if="!isMobile">Email Verification</span>
-        <span v-else>Email</span>
-      </div>
-      <svg class="svg-container">
+        <span
+          class="steps__counter"
+        >2</span>
+        Email Verification
+      </li>
+      <!-- <svg class="svg-container">
         <path
           d="M0 0 L10 20 L00 40"
           class="svg-triangle"
           :style="triangle_style(2)"
         />
-      </svg>
+      </svg> -->
 
-
-
-      <div
-        class="block"
-        :class="highlighted(3)"
+      <li
+        class="steps__list-item flex flex-row"
+        :class="active(3)"
       >
-        <span v-if="!isMobile">Terms & Conditions</span>
-        <span v-else>Terms</span>
-      </div>
-      <svg class="svg-container">
+        <span
+          class="steps__counter"
+        >3</span>
+        Terms & Conditions
+      </li>
+      <!-- <svg class="svg-container">
         <path
           d="M0 0 L10 20 L00 40"
           class="svg-triangle"
           :style="triangle_style(3)"
         />
-      </svg>
+      </svg> -->
 
-      <div
-        class="block"
-        :class="highlighted(4)"
+      <li
+        class="steps__list-item flex flex-row"
+        :class="active(4)"
       >
-        <span v-if="!isMobile">Basic Info</span>
-        <span v-else>Info</span>
-      </div>
-      <svg class="svg-container">
+        <span
+          class="steps__counter"
+        >4</span>
+        Basic Info
+      </li>
+      <!-- <svg class="svg-container">
         <path
           d="M0 0 L10 20 L00 40"
           class="svg-triangle"
           :style="triangle_style(4)"
         />
-      </svg>
-    </div>
+      </svg> -->
+    </ol>
   </div>
 </template>
 
@@ -92,13 +97,12 @@ export default {
    },
 
    methods:{
-      highlighted(step){
-
+      active(step){
          if (step < this.step){
-            return 'finished';
+            return 'steps__list-item--finished';
          }
          else if (this.step === step){
-            return 'highlighted';
+            return 'steps__list-item--active';
          }
          return  '';
       },
@@ -120,11 +124,72 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  #steps {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    row-gap: 32px;
+  }
 
-.breadcrumb-container{
+  .steps__list-item {
+    color: var(--text-medium);
+    
+    .steps__counter {
+      align-items: center;
+      background-color: var(--surface-light-white);
+      border-radius: 50%;
+      color: var(--text-medium);
+      display: flex;
+      flex-grow: 0;
+      font-weight: 700;
+      height: 40px;
+      justify-content: center;
+      position: relative;
+      width: 40px;
+    }
+    
+    &.steps__list-item--active  {
+      color: var(--brand-primary-500);
+
+      .steps__counter {
+        background-color: var(--button-form-button);
+        color: var(--text-white);
+      }
+    }
+
+    &.steps__list-item--finished {
+      .steps__counter::before {
+        background-color: var(--surface-light-white);
+        border: 2px solid var(--button-form-button);
+        border-radius: 50%;
+        content: '';
+        height: 40px;
+        position: absolute;
+        width: 40px;
+      }
+
+      .steps__counter::after {
+        border-bottom: 2px solid var(--button-form-button);
+        border-right: 2px solid var(--button-form-button);
+        content: '';
+        height: 20px;
+        transform: rotate(45deg) translate(-5px, 1px);
+        width: 10px;
+      }
+    }
+  }
+
+/**
+*
+*
+* 10/04 Removed old Stepper styles aage
+*
+*
+*/
+
+/* .breadcrumb-container{
     display: flex;
-
 }
 
 .block{
@@ -141,14 +206,6 @@ export default {
     font-weight: 500;
 }
 
-.highlighted {
-    background: #8cc63f !important;
-}
-
-/*controls color for finished section*/
-.finished {
-    background: #658d2f !important;
-}
 
 .svg-container{
     width: 10px;
@@ -165,17 +222,7 @@ export default {
     .block{
         font-size: 11pt;
     }
-}
-
-
-
-
-
-
-
-
-
-
+} */
 
 /*!*get rid of the normal styling for a list*!*/
 /*.breadcrumb {*/

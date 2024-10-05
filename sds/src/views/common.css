@@ -828,6 +828,7 @@ hr {
 	align-items: center;
 	gap: 16px;
 }
+
 .flex-centered-content {
 	display: flex;
 	justify-content: center;
@@ -1139,7 +1140,7 @@ ul {
 	max-width: 1080px; /*1280px;*/
 	margin-left: auto;
 	margin-right: auto;
-	padding: 10px;
+	/* padding: 10px; */
 }
 
 .card-title {

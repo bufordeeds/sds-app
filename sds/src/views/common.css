@@ -1425,9 +1425,17 @@ ul li,
 	.hero-grid-container {
 		padding: 0 !important;
 	}
+	.hero-container {
+		height: auto !important;
+		min-height: 325px;
+	}
 	.hero-grid-container > .column-1 {
 		max-width: 580px;
 		min-width: 433px;
+	}
+	.hero-text {
+		padding-top: 48px;
+		padding-bottom: 128px;
 	}
 }
 @media (max-width: 600px) {
@@ -1444,32 +1452,43 @@ ul li,
 		padding-top: 0 !important;
 	}
 	.hero-logo {
-		max-width: 305px !important;
+		display: block;
 		min-height: unset !important;
 	}
 	.hero-grid-container {
+		display: block;
 		min-width: unset;
-		grid-template-columns: 1fr;
-		overflow: hidden;
+		gap: 0;
 	}
 	.column-1 {
+		max-width: none !important;
 		min-width: unset !important;
-		padding-left: 12px;
-		padding-right: 12px;
+		padding-top: 40px;
+		padding-left: 0;
+		padding-right: 0;
 	}
 	.hero-container {
+		display: flex;
+		top: 0;
 		height: auto !important;
-		min-height: 164px;
+		min-height: 187px;
+		padding-top: 0;
+	}
+	.hero-container > .row {
+        display: block;
+        width: 100%;
+        margin: 0;
 	}
 	.hero-text {
-		padding-top: 48px;
-		padding-bottom: 128px;
+		margin: 0;
+		padding-top: 0;
+		padding-bottom: 72px;
 	}
 	.column-2 {
 		display: none;
 	}
 	#gradient-canvas {
-		top: -440px !important;
+		top: -420px !important;
 		height: auto !important;
 		min-height: unset;
 	}	
@@ -1493,7 +1512,7 @@ ul li,
     --gradient-color-3: #ed008c;
     --gradient-color-4: #0db2fa;
 }
-*/
+
 .gradient-canvas {
 	position: absolute;
 	z-index: -1;
@@ -1508,14 +1527,14 @@ ul li,
 	transform-origin: calc(var(--section-gap) * 0.8) 0;
 	background-image: var(--gradient-hero);
 }
-/* END */
+*/
 
 /* Skewed Background */
 .hero-section-bg,
 #gradient-canvas {
 	content: '';
 	position: absolute;
-	top: -300px;
+	top: -355px;
 	left: 0;
 	width: 100vw;
 	height: 800px;

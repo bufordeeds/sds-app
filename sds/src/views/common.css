@@ -1433,58 +1433,49 @@ ul li,
 @media (max-width: 600px) {
 	.home-hero {
 		min-height: unset !important;
+		margin-top: -68px;
+		padding-top: 78px;
 		padding-bottom: 0 !important;
 	}
+	.section-inner-container {
+		padding: 72px 10px !important; /*50px 10px 30px 10px;*/
+	}
+	.home-hero > .section-inner-container {
+		padding-top: 0 !important;
+	}
+	.hero-logo {
+		max-width: 305px !important;
+		min-height: unset !important;
+	}
 	.hero-grid-container {
+		min-width: unset;
 		grid-template-columns: 1fr;
 		overflow: hidden;
 	}
 	.column-1 {
-		min-width: 433px;
+		min-width: unset !important;
 		padding-left: 12px;
 		padding-right: 12px;
 	}
+	.hero-container {
+		height: auto !important;
+		min-height: 164px;
+	}
 	.hero-text {
+		padding-top: 48px;
 		padding-bottom: 128px;
 	}
 	.column-2 {
 		display: none;
 	}
-	.hero-app-screenshot-wrapper {
-		display: none;
-	}
-}
-/* Skewed Background */
-.hero-section-bg {
-	content: '';
-	position: absolute;
-	top: -300px;
-	left: 0;
-	width: 100vw;
-	height: 800px;
-	min-height: 700px;
-	background-image: var(--gradient-hero);
-	-webkit-transform: skewY(-12deg);
-	transform: skewY(-12deg);
-	-webkit-transform-origin: center;
-	transform-origin: center;
-	z-index: 0;
-	background-position: left top;
-	aspect-ratio: auto 1716 / 1200;
-	--transformOriginX: calc(var(--gutterWidth) * 0.8);
-}
-.hero-section-bg row {
-	gap: 32px;
+	#gradient-canvas {
+		top: -440px !important;
+		height: auto !important;
+		min-height: unset;
+	}	
 }
 
-/* ROB Stripe BG Gradient */
-.home {
-	z-index: 0;
-}
-.v-app-bar {
-	z-index: 999;
-}
-/* ROB Gradient Mesh generated at whatamesh.vercel.app */
+/* ROB Gradient Mesh generated at whatamesh.vercel.app
 #gradient-canvas {
 	width: 100%;
 	height: 50vh;
@@ -1497,17 +1488,12 @@ ul li,
 	clip-path: polygon(0 0, 100% 0, 100% 43%, 0% 100%);
 
 	/*
-	--gradient-color-1: #2c3795;
-	--gradient-color-2: #0db2fa;
-	--gradient-color-3: #ed008c;
-	--gradient-color-4: #054896;
-	*/
 	--gradient-color-1: #ed008c;
     --gradient-color-2: #0db2fa;
     --gradient-color-3: #ed008c;
     --gradient-color-4: #0db2fa;
 }
-/* */
+*/
 .gradient-canvas {
 	position: absolute;
 	z-index: -1;
@@ -1524,6 +1510,42 @@ ul li,
 }
 /* END */
 
+/* Skewed Background */
+.hero-section-bg,
+#gradient-canvas {
+	content: '';
+	position: absolute;
+	top: -300px;
+	left: 0;
+	width: 100vw;
+	height: 800px;
+	min-height: 700px;
+	background-image: var(--gradient-hero);
+	-webkit-transform: skewY(-12deg);
+	transform: skewY(-12deg);
+	-webkit-transform-origin: center;
+	transform-origin: center;
+	z-index: 0;
+	background-position: left top;
+	aspect-ratio: auto 1716 / 1200;
+	--transformOriginX: calc(var(--gutterWidth) * 0.8);
+
+	--gradient-color-1: #ed008c;
+    --gradient-color-2: #0db2fa;
+    --gradient-color-3: #ed008c;
+    --gradient-color-4: #0db2fa;
+}
+.hero-section-bg row {
+	gap: 32px;
+}
+
+/* ROB Stripe BG Gradient */
+.home {
+	z-index: 0;
+}
+.v-app-bar {
+	z-index: 999;
+}
 .angled-section {
 	-webkit-clip-path: polygon(0 200px, 100% 0, 100% 100%, 0 100%);
 	clip-path: polygon(0 200px, 100% 0, 100% 100%, 0 100%);
@@ -1701,15 +1723,6 @@ ul li,
 	}
 	.section-inner-container {
 		padding-bottom: calc(128px - 40px) !important;
-	}
-}
-
-@media (max-width: 600px) {
-	.section-inner-container {
-		padding: 72px 10px; /*50px 10px 30px 10px;*/
-	}
-	.hero-app-screenshot {
-		display: none;
 	}
 }
 

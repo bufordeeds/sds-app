@@ -212,6 +212,7 @@
 	--rt-h3: 24px; /*32px;*/
 	--rt-h4: var(--rt-medium);
 	--rt-h5: 15px;
+	--rt-h6: 12px;
 }
 
 @media (max-width: 768px) {
@@ -323,6 +324,13 @@ h5 {
 	font-weight: 700;
 	line-height: 24px;
 	letter-spacing: 0.2px;
+}
+
+h6 {
+	color: var(--text-medium);
+	font-size: var(--rt-h6);
+	font-weight: 500;
+	line-height: 14px;
 }
 
 .heading-color-default {
@@ -720,6 +728,18 @@ button > .nav-bar-btn {
 
 .sds-max-width {
 	max-width: 1080px; /*1280px;*/
+}
+
+.info-message {
+	color: var(--text-medium);
+	font-style: italic;
+}
+
+.error-message {
+	color: var(--text-error);
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 18px;
 }
 
 hr {

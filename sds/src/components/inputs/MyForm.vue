@@ -1,7 +1,10 @@
 <template>
-  <div class="my-form">
+  <form
+    ref="form"
+    @submit.prevent
+  >
     <slot />
-  </div>
+  </form>
 </template>
 
 <script>
@@ -26,7 +29,6 @@ export default {
          fields: {},
          num_fields: 0,
       }
-
    },
 
    methods:{
@@ -77,7 +79,7 @@ export default {
 </script>
 
 <style scoped>
-.my-form{
-   width: 100%;
-}
+   form {
+      width: 100%;
+   }
 </style>

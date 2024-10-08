@@ -1,28 +1,67 @@
 <template>
-  <v-card class="login-modal" max-width="400" elevation="8">
-    <v-card-title v-if="isModal" class="headline text-center">
+  <v-card
+    class="login-modal"
+    max-width="400"
+    elevation="8"
+  >
+    <v-card-title
+      v-if="isModal"
+      class="headline text-center"
+    >
       Sign in
     </v-card-title>
     <v-card-text>
       <my-form ref="form">
-        <div v-if="error_msg" class="error-message mb-4">
+        <div
+          v-if="error_msg"
+          class="error-message mb-4"
+        >
           {{ error_msg }}
         </div>
-        <my-text-input v-model="email" label="Email Address" :rules="[isRequired, checkEmail]" class="mb-4" />
-        <my-text-input v-model="password" label="Password" :rules="[isRequired]" :is-password="!showPass"
-          :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'" @click:append="showPass = !showPass" @keyup-enter="login"
-          class="mb-4" />
+        <my-text-input
+          v-model="email"
+          label="Email Address"
+          :rules="[isRequired, checkEmail]"
+          class="mb-4"
+        />
+        <my-text-input
+          v-model="password"
+          label="Password"
+          :rules="[isRequired]"
+          :is-password="!showPass"
+          :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
+          class="mb-4"
+          :type="showPass ? 'text' : 'password'"
+          @click:append="showPass = !showPass"
+          @keyup-enter="login"
+        />
         <div class="text-right mb-4">
-          <v-btn text small color="primary" to="/requestResetPassword">
+          <v-btn
+            text
+            small
+            color="primary"
+            to="/requestResetPassword"
+          >
             Forgot Password?
           </v-btn>
         </div>
-        <v-btn color="primary" block large :loading="loading" @click="login">
+        <v-btn
+          color="primary"
+          block
+          large
+          :loading="loading"
+          @click="login"
+        >
           Sign in
         </v-btn>
         <div class="text-center mt-4">
           <span class="caption">Don't have an account?</span>
-          <v-btn text small color="primary" to="/signup">
+          <v-btn
+            text
+            small
+            color="primary"
+            to="/signup"
+          >
             Create one
           </v-btn>
         </div>
@@ -32,7 +71,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import data_getters from "@/mixins/data_getters";
 import validation from "@/mixins/validation";
 

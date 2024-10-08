@@ -142,7 +142,7 @@
         </a>
       </p>
     </div>
-
+    <!----------- box info Emotional Support Animal ------------------------------------------------------------------------------->
     <div
       v-if="animalType==='ESA'"
       class="content-container"

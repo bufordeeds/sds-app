@@ -72,7 +72,7 @@ export default {
 
 
          if (['AlreadyValidated', 'EmailConfirmed'].includes(res.msg) && this.$route.query.new_acct === 'yes'){
-            await this.$router.push(`/signup?verified_email=${this.email}&pw_reset_code=${this.$route.query.pw_reset_code}`);
+            await this.$router.push(`/signup?verified_email=${this.email}&passwordResetCode=${this.$route.query.passwordResetCode}`);
             return;
          }
 

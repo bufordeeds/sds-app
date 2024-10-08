@@ -49,26 +49,25 @@ textarea, input{
 
 
 input:focus{
-    border: 2px solid var(--color-input-active);
+    border: 2px solid var(--border-dark);
     /*border-radius: 10px;*/
 }
-textarea:focus{
-    border: 2px solid var(--color-input-active);
+textarea:focus {
+    border: 2px solid var(--border-dark);
     /*border-radius: 10px;*/
 }
 
 
 .input-container{
-//padding-top: 20px;
+    /* padding-top: 20px; */
     width: 100%;
     position: relative;
-
-//border: 1px solid #ff2bfb;
+    /* border: 1px solid #ff2bfb; */
 }
 
 
 .error-msg-container{
-//height: 15px;
+    /* height: 15px; */
     padding-left: 10px;
     display: flex;
     align-items: flex-start;

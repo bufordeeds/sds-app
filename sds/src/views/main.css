@@ -9,6 +9,59 @@ html, body {
 	font-size: var(--font-size-base);
 }
 
+label {
+  color: var(--text-dark);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  line-height: 18px;
+}
+
+input[type='text'],
+input[type='password'] {
+  background-color: var(--surface-light-white);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  font-size: 14px;
+  height: 36px;
+  line-height: 20px;
+  padding: 8px 12px;
+}
+
+input[type='text']:hover,
+input[type='password']:hover {
+  border: 1px solid var(--border-hover);
+}
+
+input:focus {
+  border: 1px solid var(--border-dark);
+}
+
+.button {
+  background-color: var(--surface-light-pale);
+  border-radius: 6px;
+  height: 44px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.12px;
+  line-height: 20px;
+  padding: 12px;
+}
+
+.button:hover {
+  background-color: var(--surface-light-medium);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.button--primary {
+  background-color: var(--button-form-button);
+  color: var(--text-white);
+}
+
 .card {
 	border: 1px solid var(--border-light);
 	border-radius: 8px;
@@ -18,6 +71,14 @@ html, body {
 
 .card:hover {
   box-shadow: var(--card-shadow-small);
+}
+
+.dialogue-box {
+  background-color: var(--surface-light-white);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  max-width: 450px;
+  padding: 16px;
 }
 
 .flex {

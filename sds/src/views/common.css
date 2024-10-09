@@ -1474,6 +1474,9 @@ ul li,
 		padding-top: 48px;
 		padding-bottom: 128px;
 	}
+	.hero-blurb {
+		padding-top: 120px !important;
+	}
 }
 @media (max-width: 600px) {
 	.home-hero {
@@ -1520,6 +1523,10 @@ ul li,
 		margin: 0;
 		padding-top: 0;
 		padding-bottom: 72px;
+	}
+	.hero-blurb {
+		font-size: 20px;
+		letter-spacing: 0.2px;
 	}
 	.column-2 {
 		display: none;

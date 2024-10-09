@@ -858,19 +858,49 @@ html {
 .v-btn {
 	letter-spacing: 0px;
 	font-size: 15px;
-	border-radius: 40px;
+	border-radius: 48px;
 	box-shadow: none;
 	text-transform: none;
+	transition: .15s ease-in-out;
 }
-
+.v-btn__content {
+	line-height: 36px !important;
+}
 .button_primary {
 	background-color: var(--brand-primary-highlight) !important;
+	line-height: 36px !important;
+}
+.button_primary:hover {
+	background-color: var(--surface-dark) !important;
+}
+.button_primary_alt {
+	background-color: var(--brand-accent-400) !important;
+	color: var(--text-dark) !important;
+}
+.button_primary_alt:hover {
+	background-color: var(--surface-light-white) !important;
 }
 .button_secondary {
 	background-color: var(--surface-dark) !important;
 }
 .button_secondary:hover {
 	background-color: var(--surface-light-medium) !important;
+}
+.button_secondary_reverse {
+	box-sizing: border-box;
+	background-color: transparent;
+	border: solid 2px var(--text-dark);
+}
+.button_secondary_reverse > span {
+	color: var(--text-dark);
+}
+.button_secondary_reverse:hover {
+	background-color: var(--surface-light-light);
+}
+.button_actions { /* Container for 2 or more buttons */
+	display: flex;
+	flex-direction: row;
+	gap: 16px;
 }
 
 .v-btn__content {
@@ -1494,41 +1524,6 @@ ul li,
 	}	
 }
 
-/* ROB Gradient Mesh generated at whatamesh.vercel.app
-#gradient-canvas {
-	width: 100%;
-	height: 50vh;
-
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 0;
-
-	clip-path: polygon(0 0, 100% 0, 100% 43%, 0% 100%);
-
-	/*
-	--gradient-color-1: #ed008c;
-    --gradient-color-2: #0db2fa;
-    --gradient-color-3: #ed008c;
-    --gradient-color-4: #0db2fa;
-}
-
-.gradient-canvas {
-	position: absolute;
-	z-index: -1;
-	top: -128px;
-	width: 100%;
-	-webkit-transform: skewY(-12deg);
-	-ms-transform: skewY(-12deg);
-	transform: skewY(-12deg);
-	--section-gap: 24px;
-	-webkit-transform-origin: calc(var(--section-gap) * 0.8) 0;
-	-ms-transform-origin: calc(var(--section-gap) * 0.8) 0;
-	transform-origin: calc(var(--section-gap) * 0.8) 0;
-	background-image: var(--gradient-hero);
-}
-*/
-
 /* Skewed Background */
 .hero-section-bg,
 #gradient-canvas {
@@ -1573,14 +1568,6 @@ ul li,
 	background-image: var(--surface-gradient-dark);
 }
 .angled-section-bottom {
-	/*
-  -webkit-clip-path: polygon(0 0%, 100% 0, 100% 400px, 0 100%);
-  clip-path: polygon(0 0%, 100% 0, 100% 32vh, 0 100%);
-  margin-top: 0;
-  padding-bottom: 128px;
-  background-image: var(--surface-gradient-basic);
-  */
-
 	background-image: linear-gradient(
 		169deg,
 		#054896 25%,

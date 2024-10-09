@@ -98,10 +98,14 @@
             </div>
             <div class="row hero-text">
               <div class="hero-blurb pt-16">{{ subtitle }}</div>
-              <div data-v-3dd2e005="" style="margin-top: 40px;">
+              <div data-v-3dd2e005="" class="button_actions" style="margin-top: 40px;">
                 <a data-v-3dd2e005="" href="/signup"
                   class="button_secondary v-btn v-btn--has-bg v-btn--router v-size--default">
                   <span class="v-btn__content text-white"> Start now </span>
+                </a>
+                <a data-v-3dd2e005="" href=""
+                  class="button_secondary_reverse v-btn v-btn--has-bg v-btn--router v-size--default">
+                  <span class="v-btn__content text-dark"> Membership lookup </span>
                 </a>
               </div>
             </div>
@@ -123,7 +127,7 @@
 
     <fold2_mobile v-else :search-num.sync="search_member_num" @search-user="search_user"
       @show-advanced-search="show_advanced_search = true" />
-  -->
+    -->
     <!---------------------------- More confidence... Section ------------------------------------------------------->
 
     <!--<div class="section-container" style="margin-top: 20px;">-->
@@ -408,7 +412,7 @@
             </div>
 
             <div style="margin-top: 40px">
-              <v-btn class="button_primary" to="/signup">
+              <v-btn class="button_primary_alt" to="/signup">
                 Join today
               </v-btn>
             </div>

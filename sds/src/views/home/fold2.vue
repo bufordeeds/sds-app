@@ -14,7 +14,7 @@
           />
         </my-form>
         <v-btn
-          style="width:100%; margin-top: 10px"
+          style="width:100%;margin-top:10px;border-radius:36px;"
           color="var(--color-btn)"
           class="white--text"
           @click="search_user"
@@ -22,83 +22,23 @@
           Search
         </v-btn>
 
-
-
-        <div style="justify-content: flex-end; font-size:12pt; margin-top: 10px; display: flex; align-items: center">
+        <div class="mt-4">
           <v-btn
             text
-            class="white--text pr-0"
+            class="pr-0"
+            style="width:100%;padding:0;border-radius:36px;"
             @click="$emit('show-advanced-search')"
           >
-            <div style="justify-content: flex-start;  display: flex; align-items: center">
-              <div style="font-size:12pt; font-weight: 400">
+            <div>
+              <span style="color:#0066CC;font-size:15px;font-weight:500;line-height:36px;">
                 Advanced Search
-              </div>
-              <div class=" ml-1 triangle" />
+              </span>
             </div>
           </v-btn>
         </div>
+
       </div>
 
-
-      <!--- 2nd  column with buttons/fold2 content ------------------------------------>
-      <div style="width: 100%; display: flex; flex-direction: column">
-        <!----- 1st row with learn/join buttons ------>
-        <div>
-          <v-row class="ma-0">
-            <v-col>
-              <v-btn
-                text
-                class="learn-more-btn"
-                to="/learn-more/mission"
-              >
-                Learn More
-              </v-btn>
-            </v-col>
-            <v-col style="background-color: #3ab54a; color: white">
-              <v-btn
-                text
-                class="learn-more-btn"
-                color="white"
-                to="/signup"
-              >
-                Join for Free
-              </v-btn>
-            </v-col>
-          </v-row>
-        </div>
-
-        <div style="height: 100%">
-          <v-row
-            class="ma-0"
-            align="center"
-            style="height: calc(100% )"
-          >
-            <v-col style="font-weight: 600; font-size: 14pt; color: #054e85; padding-left: 30px; padding-right: 30px ">
-              <div style="display: flex; justify-content: center; align-items: center">
-                <div>
-                  Free and voluntary training and behavior standards and team management solutions for
-                  Service Dog Trainers and Handlers.
-                </div>
-              </div>
-
-              <div class="learn-more-btn-container">
-                <a
-                  href="/learn-more/mission"
-                  class="learn-more-txt"
-                >
-                  <div
-                    style="justify-content: flex-start; color:#054e85; font-size:12pt; display: flex; align-items: center"
-                  >
-                    Learn More
-                    <div class="triangle-blue ml-1 " />
-                  </div>
-                </a>
-              </div>
-            </v-col>
-          </v-row>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -152,48 +92,45 @@ export default {
 .fold2-container {
   display: flex;
   /*position: absolute;*/
-  width: 100%;
+  /*width: 100%;*/
   justify-content: center;
   margin-top: -50px;
   padding-bottom: 50px;
   padding-left: 20px;
   padding-right: 20px;
-
-
-
 }
 
 .fold2 {
   /*max-width: var(--max-width);*/
-  max-width: 1000px;
+  /*max-width: 1000px;*/
   background-color: white;
-  width: 100%;
-  min-height: 200px;
+  width: auto;
+  min-width: 300px;
   display: flex;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+  border-radius: 8px;
+  border: solid 4px #F6F9FB;
+  background-color: #FFF;
   z-index: 1;
-
 }
-
 
 .member-lookup-box {
   height: 100%;
-  width: 500px;
-  padding: 15px;
-  background-image: linear-gradient(to bottom, #60aee0, #2567b0);
+  width: 100%;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 8px;
 }
 
 .fold2-label {
-  color: white;
-  /*font-size: 14pt;*/
-
+  color: #101010;
   font-size: 16pt;
   font-weight: 600;
-  /*padding-left: 20px;*/
-  /*padding-right: 10px;*/
 }
-
+.input-container > input {
+  border: solid 1px #A4A4A9 !important;
+  border-radius: 4px;
+}
 
 .learn-more-btn {
   font-size: 16pt;
@@ -202,16 +139,11 @@ export default {
   padding-left: 20px;
   padding-right: 10px;
   letter-spacing: -0.1px;
-
-
 }
-
 
 div>>>.v-btn {
   border-radius: 0px;
-
 }
-
 
 .triangle {
   --width: 5px;
@@ -222,7 +154,6 @@ div>>>.v-btn {
   border-left: 7px solid #ffffff;
   margin-top: 2px;
 }
-
 
 .triangle-blue {
   --width: 5px;

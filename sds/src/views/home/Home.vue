@@ -97,7 +97,7 @@
               </div>
             </div>
             <div class="row hero-text">
-              <div class="hero-blurb pt-16">{{ subtitle }}</div>
+              <div class="hero-blurb pt-12">{{ subtitle }}</div>
               <div data-v-3dd2e005="" class="button_actions" style="margin-top: 40px;">
                 <a data-v-3dd2e005="" href="/signup"
                   class="button_secondary v-btn v-btn--has-bg v-btn--router v-size--default">
@@ -201,7 +201,7 @@
           For Housing, Employment, Education & Travel
         </div>
 
-        <div class="mt-4 large-header-line" :class="class_mobile">
+        <div class="mt-4 large-header-line pb-6" :class="class_mobile">
           More confidence where you live, work and play.
         </div>
 
@@ -224,8 +224,8 @@
 
         <v-row>
           <v-col cols="12" md="6">
-            <div class="txt-box-side">
-              <LottieIcon icon="wired-gradient-436-love-care.json" />
+            <div class="txt-box-side" style="padding-top: 8px;">
+              <img src="../../assets/images/content/SDSAccessIconsAsset18.svg" height="36px">
               <div class="b1-heading">
                 Peace-of-mind for all
               </div>
@@ -318,7 +318,7 @@
           Accepted Standards
         </div>
 
-        <div class="mt-4 large-header-line" :class="class_mobile">
+        <div class="mt-4 large-header-line pb-6" :class="class_mobile">
           Credentials backed up by Standards.
         </div>
 
@@ -347,7 +347,7 @@
         </v-row>
 
         <div style="display: flex; flex-direction: column">
-          <div :style="ismobile ? 'margin-top:0px; margin-bottom: 20px;' : 'margin-top:20px'">
+          <div style="margin-top:40px; margin-bottom:20px;">
             <v-btn class="button_primary" to="/signup">
               Get Started
             </v-btn>

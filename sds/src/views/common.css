@@ -1246,6 +1246,9 @@ ul {
 	font-weight: 700;
 	color: var(--color-txt-blue-dark);
 }
+.txt-box-side > .b1-heading {
+	padding-top: 8px;
+}
 
 .small-header-line {
 	font-size: 18px;
@@ -1268,7 +1271,7 @@ ul {
 .large-header-line {
 	font-size: var(--rt-h1);
 	font-weight: 700;
-	line-height: 68px;
+	line-height: 60px;
 	letter-spacing: -2.12px;
 	color: var(--color-txt-dark);
 	max-width: 900px;
@@ -1426,7 +1429,11 @@ ul li,
 	width: 650px;
 }
 .hero-text {
-	padding: 64px 0 128px;
+	padding: 52px 0 128px;
+}
+.hero-blurb {
+	font-size: 32px;
+	font-weight: 600;
 }
 .hero-text > .hero-blurb > a + span.v-btn__content {
 	color: var(--text-white) !important;

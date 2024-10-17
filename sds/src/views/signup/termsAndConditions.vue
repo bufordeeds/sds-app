@@ -1,53 +1,47 @@
 <template>
-  <div>
-    <div
-      class="subheading-txt pb-4"
-      style="text-align: center;"
-    >
+  <div id="terms-and-conditions__container">
+    <h4>
       In order to continue, you must accept the following...
-    </div>
+    </h4>
 
+    <ul class="flex flex-col">
+      <li>I am at least 18 years of age.</li>
+      <li>I am enrolling myself. If I am enrolling for someone else I have their permission to do so.</li>
+      <li>
+        I agree that I will not intentionally or unintentionally violate any applicable local, state, national
+        or international law, including but not limited to the Americans with Disabilities Act and its
+        implementing regulations.
+      </li>
+      <li>
+        I understand that it is against the law to intentionally misrepresent an animal as a Service or
+        Assistance Dog.
+      </li>
+      <li>I, or the person being enrolled, has a qualifying disability.</li>
+      <li>
+        This dog is either a fully trained Service or Assistance Dog, or is in the process of being trained to
+        help perform specific tasks related to the owner's disability. Please note that not all states recognize
+        Service or Assistance Dogs in Training. I understand that it is my responsibility to understand and obey
+        all applicable laws in my area.
+      </li>
+      <li>I understand that membership is not a substitute for proper training.</li>
+      <li>I understand that aggressive behavior constitutes an immediate forfeiture of membership.</li>
+      <li>
+        I understand that misrepresenting myself or my service animal, behaving in an unbecoming manner,
+        misquoting the law or the purpose of our service can result in immediate forfeiture of membership.
+      </li>
+      <li>
+        I will do my very best to leave an excellent impression with others with my behavior and that of my
+        Service Dog.
+      </li>
+      <!--<li>I have read, understand and comply with the definition of a Service or Assistance Animal.</li>-->
+      <!--<li>I have read, understand and comply with the Minimum Training Standards for a Service or Assistance Dog which includes a Public Access Test.</li>-->
+    </ul>
 
-    <div>
-      <ul>
-        <li>I am at least 18 years of age.</li>
-        <li>I am enrolling myself. If I am enrolling for someone else I have their permission to do so.</li>
-        <li>I agree that I will not intentionally or unintentionally violate any applicable local, state, national or international law, including but not limited to the Americans with Disabilities Act and its implementing regulations.</li>
-        <li>I understand that it is against the law to intentionally misrepresent an animal as a Service or Assistance Dog.</li>
-        <li>I, or the person being enrolled, has a qualifying disability.</li>
-        <li>This dog is either a fully trained Service or Assistance Dog, or is in the process of being trained to help perform specific tasks related to the owner's disability. Please note that not all states recognize Service or Assistance Dogs in Training. I understand that it is my responsibility to understand and obey all applicable laws in my area.</li>
-        <li>I understand that membership is not a substitute for proper training.</li>
-        <li>I understand that aggressive behavior constitutes an immediate forfeiture of membership.</li>
-        <li>I understand that misrepresenting myself or my service animal, behaving in an unbecoming manner, misquoting the law or the purpose of our service can result in immediate forfeiture of membership.</li>
-        <li>I will do my very best to leave an excellent impression with others with my behavior and that of my Service Dog.</li>
-        <!--<li>I have read, understand and comply with the definition of a Service or Assistance Animal.</li>-->
-        <!--<li>I have read, understand and comply with the Minimum Training Standards for a Service or Assistance Dog which includes a Public Access Test.</li>-->
-      </ul>
-    </div>
-
-
-    <!--<div class="my-checkbox">-->
-    <!--   <v-checkbox-->
-    <!--       v-model="agree1"-->
-    <!--       label="I UNDERSTAND AND AGREE TO ALL OF THE STATEMENTS LISTED ABOVE."-->
-    <!--   ></v-checkbox>-->
-
-    <!--</div>-->
-
-
-
-
-    <!--<div class="my-heading" style="margin-top: 30px">-->
-
-    <div
-      class="subheading-txt pb-4"
-      style="text-align: center; margin-top: 30px"
-    >
+    <h4 class="text-center">
       Terms of Service
-    </div>
-    <div class="terms-conditions">
-      <sds-terms />
-    </div>
+    </h4>
+
+    <sds-terms class="terms-conditions" />
 
     <div class="my-checkbox">
       <v-checkbox
@@ -55,96 +49,120 @@
         label="I agree to the statements above and the Service Dog Standards Terms of Service"
       />
     </div>
+
+    <div
+      id="terms-and-conditions__footer"
+      class="flex flex-col"
+    >
+      <button
+        class="button button--primary"
+        :disabled="!agree_terms"
+        @click="$emit('termsAgreed')"
+      >
+        Continue
+      </button>
+      <span class="notification flex">
+        <img
+          class=" notification__icon"
+          src="../../assets/images/icons/info-circle.png"
+        >
+        <p class="notification__message">
+          Your progress is auto-saved, so you can continue filling out the form at your convenience.
+        </p>
+      </span>
+    </div>
   </div>
 </template>
 
 <script>
 import SdsTerms from "@/components/SdsTerms";
 export default {
-   name: "TermsAndConditions",
-   components:{SdsTerms},
-   props: {
-      agreed: Boolean, //used to tell parent when user has agreed to all terms
-   },
-   data(){
-      return {
-         agree1: false,
-         agree_terms: false,
-      }
-   },
-
-   watch:{
-      // agree1(){
-      //
-      //    let ans = (this.agree1 && this.agree_terms)
-      //    this.$emit('update:agreed', ans);
-      //    // console.log('watch 1', ans)
-      // },
-      agree_terms(){
-
-         this.$emit('update:agreed', this.agree_terms);
-
-      }
-   }
+  name: "TermsAndConditions",
+  components: { SdsTerms },
+  props: {
+    agreed: Boolean, //used to tell parent when user has agreed to all terms
+  },
+  data() {
+    return {
+      agree_terms: false,
+    }
+  },
+  watch: {
+    agree_terms() {
+      this.$emit('update:agreed', this.agree_terms);
+    }
+  }
 }
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
+  #terms-and-conditions__container {
+    background-color: var(--surface-light-pale);
+    border-radius: 4px;
+    padding: 24px;
 
-ul{
-   /*list-style-image: url('../../assets/images/icons/tick.svg')*/
+    h4 {
+      margin-bottom: 16px;
+    }
 
-   padding-left: 10px;
-}
+    ul {
+      row-gap: 16px;
+      padding: 0;
 
-li{
-   margin: 0;
-   padding: 5px 0px 5px 25px;
-   list-style: none;
-   background-image: url('../../assets/images/icons/tick.svg');
-   background-repeat: no-repeat;
-   background-position: left 10px;
-   background-size: 15px;
-}
+      li {
+        background-image: url('../../assets/images/icons/circle-check.svg');
+        background-repeat: no-repeat;
+        background-position: left 0;
+        background-size: 24px;
+        list-style: none;
+        margin: 0;
+        padding-left: 30px;
+      }
+    }
 
-.my-heading{
-   text-align: center;
-   font-size: 20px;
-   font-weight: 600;
-   margin-bottom: 20px;
-}
+    .my-checkbox {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
 
-.my-checkbox{
-   display: flex;
-   justify-content: center;
-}
+    #terms-and-conditions__footer {
+      row-gap: 16px;
 
-.terms-conditions{
-   overflow: auto;
-   max-height: 50vh;
-   margin-left: 0px;
-   border: solid 1px #fefefe;
-   padding: 15px 15px 15px 20px;
+      button {
+        flex-grow: 1;
+      }
 
-   background-color: #f5f5f5;
-}
+      .notification {
+        align-items: center;
+        background-color: var(--alert-info-200);
+        border-radius: 8px;
+        column-gap: 8px;
+        padding: 8px;
 
-.tc-heading{
-   font-size: 17pt;
-}
+        .notification__icon {
+          height: 48px;
+          width: 48px;
+        }
 
-.tc-body{
-   font-size: 12pt;
-   margin-bottom: 20px;
-}
+        .notification__message {
+          font-size: 14px;
+          font-weight: 500;
+          letter-spacing: -0.2px;
+          line-height: 18px;
+          margin: 0;
+        }
+      }
+    }
 
-.tc-subheading{
-   font-size: 14pt;
-   font-weight: 500;
-   padding-top: 10px;
-}
-p{
-
-}
+    .terms-conditions {
+      background-color: var(--surface-light-white);
+      border: 1px solid var(--text-light);
+      border-radius: 8px;
+      max-height: 50vh;
+      margin-left: 0px;
+      overflow: auto;
+      padding: 15px 15px 15px 20px;
+    }
+  }
 </style>
-

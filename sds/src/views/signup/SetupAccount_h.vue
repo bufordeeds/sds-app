@@ -15,18 +15,19 @@
         <stepper :step="step" />
       </div>
 
-      <div
-        id="signup__form"
-        class="flex flex-col"
-      >
+      <div id="signup__form">
         <!-------- step 1 container --------------------------------------------------------->
         <select-acct-type
           v-if="step === 1"
+          id="step_1"
           @user-type-selected="acct_type = $event; step += 1"
         />
 
         <!-------- step 2 container --------------------------------------------------------->
-        <div v-if="step === 2">
+        <div
+          v-if="step === 2"
+          id="step_2"
+        >
           <signup
             v-if="verified_email == null"
             :show-email-confirm="accountCreated"
@@ -57,33 +58,23 @@
         </div>
 
         <!-------- step 3 container --------------------------------------------------------->
-        <div v-if="step === 3">
-          <v-row>
-            <v-col align="center">
-              <div class="my-stepper-container">
-                <terms :agreed.sync="tc_agreed" />
-              </div>
-            </v-col>
-          </v-row>
-
-          <v-row
-            class="ma-0"
-            style="justify-content: center"
-          >
-            <v-btn
-              color="var(--color-primary)"
-              :disabled="!tc_agreed"
-              @click="on_terms_agreed"
-            >
-              Continue
-            </v-btn>
-          </v-row>
+        <div
+          v-if="step === 3"
+          id="step_3"
+        >
+          <terms
+            :agreed.sync="tc_agreed"
+            @termsAgreed="on_terms_agreed"
+          />
         </div>
 
 
 
-        <!-------- step 3 container --------------------------------------------------------->
-        <div v-if="step === 4">
+        <!-------- step 4 container --------------------------------------------------------->
+        <div
+          v-if="step === 4"
+          id="step_4"
+        >
           <v-row>
             <v-col align="center">
               <div class="my-stepper-container">
@@ -103,8 +94,11 @@
         </div>
 
 
-        <!-------- step 3 container --------------------------------------------------------->
-        <div v-if="step === 5">
+        <!-------- step 5 container --------------------------------------------------------->
+        <div
+          v-if="step === 5"
+          id="step_5"
+        >
           <v-row>
             <v-col
               align="center"
@@ -154,16 +148,11 @@ export default {
     return {
       step: 1,
       verified_email: null,
-
       tc_agreed: false,
-
       acct_type: null,
-
-      //additional info
       image_uploaded: false,
       social_info: null,
       panel_ix: null, // used to keep track of which panel is open
-
       census_info: null,
     }
   }, //methods
@@ -324,13 +313,20 @@ h2 {
 
 #signup__steps {
   row-gap: 32px;
-  flex-basis: 50%;
 }
 
 #signup__form {
   border-radius: 4px;
   box-shadow: 0px 5px 15px 0px #0000001F, 0px 15px 35px 0px #3C425714;
-  flex-basis: 50%;
-  padding: 56px;
+  flex-basis: 55%;
+
+  #step_1,
+  #step_2 {
+    padding: 56px;
+  }
+
+  #step_3 {
+    padding: 24px;
+  }
 }
 </style>

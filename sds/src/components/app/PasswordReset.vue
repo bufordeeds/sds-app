@@ -9,7 +9,10 @@
       </h5>
     </slot>
 
-    <my-form ref="form">
+    <my-form
+      ref="form"
+      class="flex flex-col"
+    >
       <my-text-input
         v-model="password"
         label="Password"

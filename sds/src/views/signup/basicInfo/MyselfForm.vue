@@ -21,6 +21,7 @@
     <MyForm
       id="myself-form__form"
       ref="form"
+      :handle-submit="handleSave"
     >
       <TextInput
         v-model="firstName"
@@ -101,6 +102,7 @@
 </template>
 
 <script>
+import { EventBus } from '../../../eventBus';
 import validation from "../../../mixins/validation";
 
 import MyForm from '../../../components/inputs/MyForm.vue';
@@ -124,11 +126,17 @@ export default {
   },
   methods: {
     clearError(e) {
-      console.log(this, e.currentTarget);
       this.$delete(this.errors, e.currentTarget.name);
     },
     handleSave() {
-      console.log(this);
+      EventBus.$emit(
+        'handle-form-submission',
+        {
+          firstName: this.firstName,
+          middleName: this.middleName,
+          lastName: this.lastName,
+        }
+      );
     },
   }
 }

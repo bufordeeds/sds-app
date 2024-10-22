@@ -1,37 +1,28 @@
 <template>
   <div>
-    <div
+    <!-- <div
       id="someone-else-form__header"
       class="flex flex-col"
     >
       <h2 class="text-center">
         What's their Name?
       </h2>
-    </div>
+    </div> -->
 
     <MyForm
       id="someone-else-form__form"
       ref="form"
+      :handle-submit="handleSave"
     >
-      <TextInput
-        v-model="firstName"
-        label="First name"
-        :rules="[isRequired]"
-      />     
-      <TextInput
-        v-model="middleName"
-        label="Middle name"
-        :rules="[isRequired]"
-      />     
-      <TextInput
-        v-model="lastName"
-        label="Last name"
-        :rules="[isRequired]"
-      />     
       <TextInput
         v-model="emailAddress"
         label="Email Address"
         :rules="[isRequired, isEmail]"
+      />     
+      <TextInput
+        v-model="phoneNumber"
+        label="Phone Number"
+        :rules="[isRequired]"
       />     
       <MySelect
         id="someone-else-form__relationship"
@@ -63,6 +54,7 @@ import Notification from '../../../components/Notification.vue';
 import TextInput from '../../../components/inputs/TextInput.vue';
 import MySelect from '../../../components/inputs/Select.vue';
 import validation from '../../../mixins/validation';
+import { EventBus } from '../../../eventBus';
 
 export default {
   name: "SomeoneElse",
@@ -76,9 +68,7 @@ export default {
   data() {
     return {
       emailAddress: null,
-      firstName: null,
-      lastName: null,
-      middleName: null,
+      phoneNumber: null,
       relationship: null,
       list_relationship: [
         { value: 'Parent', label: 'Parent'},
@@ -90,6 +80,18 @@ export default {
         { value: 'SocialWorkerTherapist', label: 'Social Worker, Counselor, Therapist, Physician'},
       ],
     }
+  },
+  methods: {
+    handleSave() {
+      EventBus.$emit(
+        'handle-form-submission',
+        {
+          emailAddress: this.emailAddress,
+          phoneNumber: this.phoneNumber,
+          relationship: this.relationship,
+        }
+      );
+    }
   }
 }
 </script>
@@ -97,10 +99,10 @@ export default {
 <style lang="scss">
 @import url('../../vars.css');
 
-#someone-else-form__header {
-  margin-bottom: 16px;
-  row-gap: 16px;
-}
+// #someone-else-form__header {
+//   margin-bottom: 16px;
+//   row-gap: 16px;
+// }
 
 #someone-else-form__form {
   margin-bottom: 56px;

@@ -7,7 +7,16 @@
     <select
       :id="id"
       :name="name"
+      @change="handleValueChange"
     >
+      <option
+        disabled
+        hidden
+        selected
+        :value="null"
+      >
+        Select one or type your own...
+      </option>
       <option
         v-for="(option, index) in options"
         :key="index"
@@ -29,6 +38,7 @@ export default {
     name: { default: "my_select_name", type: String },
     options: { default: () => [], required: true, type: Array },
     rules: { default: () => [], type: Array },
+    handleValueChange: { default: (e) => { console.log(e); }, type: Function },
   },
   created(){
     if (this.registerThisField !=  null){
@@ -53,7 +63,7 @@ export default {
         }
 
         return true;
-    },
+    }
   }
 }
 </script>
@@ -75,6 +85,11 @@ export default {
     height: 44px;
     line-height: 24px;
     padding: 0 12px;
+
+    option:disabled {
+      color: var(--text-medium);
+      opacity: 0.8;
+    }
   }
 
   select::-ms-expand {

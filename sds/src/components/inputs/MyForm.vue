@@ -1,7 +1,7 @@
 <template>
   <form
     ref="form"
-    @submit.prevent
+    @submit.prevent="validate"
   >
     <slot />
   </form>
@@ -16,13 +16,20 @@
  */
 export default {
    name: "MyForm",
-
    provide() {
       return {
          registerThisField: this.registerSelf,
          unRegisterField: this.unRegisterField,
       }
-
+   },
+   props: {
+      handleSubmit: {
+         default: () => {
+            console.log('Pass a Callback function to handleSubmit.');
+         },
+         required: false,
+         type: Function
+      },
    },
    data(){
       return {
@@ -30,7 +37,6 @@ export default {
          num_fields: 0,
       }
    },
-
    methods:{
       /**
        * function intended to be injected into the child field component.  Calling it essentially registers the field
@@ -57,17 +63,19 @@ export default {
       validate(){
          let keys = Object.keys(this.fields);
 
-         let ans = true;
+         let valid = true;
 
-         for (let k of keys){
-            let tmp = this.fields[k].validate();
-            if (!tmp){
-               ans = false;
+         for (let k of keys) {
+            if (!this.fields[k].validate()){
+               valid = false;
             }
          }
 
-         return ans;
+         if (valid) {
+            this.handleSubmit();
+         }
 
+         return valid;
       },
 
       resetValidation(){

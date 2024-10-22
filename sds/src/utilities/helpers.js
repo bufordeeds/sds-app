@@ -119,3 +119,24 @@ export default {
 }; // export
 
 
+export function* formStateIterator(statesArr) {
+   if (statesArr === undefined || statesArr.length === 0) {
+      throw new Error('Please provide a state array');
+   }
+
+   let i = 0;
+   const FORM_STATES = statesArr;
+
+   while (i < FORM_STATES.length) {
+      // getting current state based on iterator index; starts at 0
+      const currState = FORM_STATES[i];
+      // increment iterator to next index
+      i++;
+
+      // yield the current state then wait for execution of .next() 
+      yield currState;
+   }
+}
+
+
+

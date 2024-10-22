@@ -4,30 +4,10 @@
       ref="addrCheck"
       :address-new="user.private_info.address"
       :address-old="private_info_address_old"
-      @checked-address="on_save({checked_addr: $event})"
+      @checked-address="on_save({ checked_addr: $event })"
     />
 
-
-
-
-
     <my-form ref="form">
-      <!--         <v-row dense>-->
-      <!--            <v-col cols="5">-->
-
-      <!--               <my-drop-down-->
-      <!--                   label="Account Type"-->
-      <!--                   v-model="user.account_type"-->
-      <!--                   :list="[{txt: 'Trainer', val: 'TRAINER'}, {txt: 'Handler', val: 'HANDLER'}, {txt: 'Aide', val: 'AIDE'}]"-->
-      <!--                   item-value="val"-->
-      <!--                   item-text="txt"-->
-      <!--                   :rules="[isRequired]"-->
-      <!--               />-->
-
-      <!--            </v-col>-->
-      <!--         </v-row>-->
-
-
       <v-row dense>
         <v-col>
           <my-text-input
@@ -38,15 +18,6 @@
         </v-col>
 
         <v-col>
-          <!--               <v-text-field-->
-          <!--                   label="Last Name*"-->
-          <!--                   v-model="user.name_last"-->
-          <!--                   outlined-->
-          <!--                   dense-->
-          <!--                   :hide-details="hide_details"-->
-          <!--                   :rules="[isRequired]"-->
-          <!--               ></v-text-field>-->
-
           <my-text-input
             v-model="user.name_last"
             label="Last Name*"
@@ -57,15 +28,6 @@
 
       <v-row dense>
         <v-col>
-          <!--               <v-text-field-->
-          <!--                   label="Address*"-->
-          <!--                   v-model="user.address1"-->
-          <!--                   outlined-->
-          <!--                   dense-->
-          <!--                   :hide-details="hide_details"-->
-          <!--                   :rules="[isRequired]"-->
-          <!--               ></v-text-field>-->
-
           <my-text-input
             v-model="user.private_info.address.street1"
             label="Address*"
@@ -90,16 +52,6 @@
             label="State*"
             :rules="[isRequired]"
           />
-
-          <!--<my-drop-down-->
-          <!--    label="State*"-->
-          <!--    v-model="user.address.state"-->
-          <!--    :list="states"-->
-          <!--    item-value="abbr"-->
-          <!--    item-text="txt"-->
-          <!--    show-value-->
-          <!--    :rules="[isRequired]"-->
-          <!--/>-->
         </v-col>
 
         <v-col cols="3">
@@ -112,15 +64,6 @@
       </v-row>
 
       <v-row dense>
-        <!--<v-col >-->
-        <!--   <my-text-input-->
-        <!--       label="Email*"-->
-        <!--       v-model="email"-->
-        <!--       :rules="[isRequired]"-->
-        <!--       disabled-->
-        <!--   ></my-text-input>-->
-        <!--</v-col>-->
-
         <v-col>
           <my-text-input
             v-model="user.private_info.phone"
@@ -148,171 +91,143 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import validation from "@/mixins/validation";
 import data_getters from "@/mixins/data_getters";
-import MyDropDown from "@/components/inputs/MyDropDown";
 import states from "@/data/states";
-import _ from 'lodash';
 import CheckAddress from "@/components/CheckAddress";
 
 export default {
-   name: "UserInfo",
-   components: {MyDropDown, CheckAddress},
-   mixins: [validation, data_getters],
-   data(){
-      return{
-         hide_details: true,
-         loading_save: false,
+  name: "UserInfo",
+  components: { CheckAddress },
+  mixins: [validation, data_getters],
+  data() {
+    return {
+      states: states,
 
-         email: this.$auth.profile.email,
-         states: states,
+      user: {
+        account_type: null,
+        name_first: null,
+        name_last: null,
+        private_info: {
+          address: {
+            street1: null,
+            street2: null,
+            city: null,
+            state: null,
+            zip: null,
+          },
+          phone: null
+        },
+      },
 
-         user: {
-            account_type: null,
-            name_first: null,
-            name_last: null,
-            private_info:{
-               address: {
-                  street1: null,
-                  street2: null,
-                  city: null,
-                  state: null,
-                  zip: null,
-               },
-               phone: null
-            },
+      show_address_confirm: false,
+      address_suggestion: null,
+      address_err: null,
 
-         },
+      private_info_address_old: {},
+    }
+  }, //methods
 
-         show_address_confirm: false,
-         address_suggestion: null,
-         address_err: null,
+  async created() {
+    try {
+      let user = await this.make_request('/private/getMyProfile', {});
+      this.user.account_type = user.account_type;
+      this.user.name_first = user.name_first;
+      this.user.name_last = user.name_last;
 
+      console.log(user)
 
+    } catch (e) {
+      console.log(e);
+    }
+  },
 
-         private_info_address_old: {},
+  methods: {
+    // async check_address(){
+    //    try{
+    //
+    //       if (!this.$refs.form.validate()){
+    //          return;
+    //       }
+    //
+    //
+    //       // this.loading_save = true;
+    //
+    //
+    //       let verify = await this.verify_address(this.user.address);
+    //       console.log({verify})
+    //
+    //       this.address_suggestion = null;
+    //
+    //       if (verify.success){
+    //
+    //          this.address_suggestion = verify.suggestion;
+    //       }
+    //       else{
+    //          this.address_err = verify.error_msg;
+    //       }
+    //       this.show_address_confirm = true;
+    //
+    //       this.loading_save = false;
+    //
+    //    }catch (e) {
+    //
+    //       throw e;
+    //    }
+    // },
+
+    async on_save({ checked_addr } = {}) {
+      if (!this.$refs.form.validate()) {
+        return;
       }
-   }, //methods
 
+      this.loading_save = true;
 
-   async created(){
-      try{
-         let user = await this.make_request('/private/getMyProfile', {});
-         this.user.account_type = user.account_type;
-         this.user.name_first = user.name_first;
-         this.user.name_last = user.name_last;
-
-         console.log(user)
-
-      }catch (e) {
-         console.log(e);
+      if (checked_addr === undefined) {
+        await this.$refs.addrCheck.check_address();
+        this.loading_save = false;
+        // this.private_info_address_old = _.cloneDeep(this.user.private_info.address);
+        return;
       }
-   },
-
-   methods: {
-
-
-
-      // async check_address(){
-      //    try{
-      //
-      //       if (!this.$refs.form.validate()){
-      //          return;
-      //       }
-      //
-      //
-      //       // this.loading_save = true;
-      //
-      //
-      //       let verify = await this.verify_address(this.user.address);
-      //       console.log({verify})
-      //
-      //       this.address_suggestion = null;
-      //
-      //       if (verify.success){
-      //
-      //          this.address_suggestion = verify.suggestion;
-      //       }
-      //       else{
-      //          this.address_err = verify.error_msg;
-      //       }
-      //       this.show_address_confirm = true;
-      //
-      //       this.loading_save = false;
-      //
-      //    }catch (e) {
-      //
-      //       throw e;
-      //    }
-      // },
-
-
-      async on_save({checked_addr}={}){
-
-         try{
-
-            if (!this.$refs.form.validate()){
-               return;
-            }
-
-
-            this.loading_save = true;
-
-            if (checked_addr === undefined){
-               await this.$refs.addrCheck.check_address();
-               this.loading_save = false;
-               // this.private_info_address_old = _.cloneDeep(this.user.private_info.address);
-               return;
-            }
-            else{
-               //value returned from CheckAddress component's event (see component in template)
-               this.user.private_info.address = checked_addr;
-            }
-
-
-
-
-
-            this.loading_save = true;
-            let update = _.cloneDeep(this.user);
-
-            if (update.account_type === 'TRAINER'){
-               update.trainer_info = {};
-            }
-
-            if (update.account_type === 'HANDLER'){
-               update.handler_info = {};
-            }
-
-            if (update.account_type === 'AIDE'){
-               update.aide_info = {};
-            }
-
-            let payload = {
-               user_id: this.$auth.profile.user_id,
-               update,
-            }
-            let res = await this.make_request('/private/updateUserProfile', payload);
-
-            this.$emit('user_updated')
-            //
-            this.loading_save = false;
-            this.show_address_confirm = false;
-         }catch (e) {
-
-            throw e;
-         }
-
+      else {
+        //value returned from CheckAddress component's event (see component in template)
+        this.user.private_info.address = checked_addr;
       }
-   }
 
+      let userInput = _.cloneDeep(this.user);
 
+      switch (userInput.account_type) {
+        case 'TRAINER':
+          userInput.trainer_info = {};
+          break;
+        case 'HANDLER':
+          userInput.handler_info = {};
+          break;
+        case 'AIDE':
+          userInput.aide_info = {};
+          break;
+        default:
+          break;
+      }
+
+      let payload = {
+        user_id: this.$auth.profile.user_id,
+        update: userInput,
+      }
+
+      await this.make_request('/private/updateUserProfile', payload);
+
+      this.$emit('user_updated')
+      this.loading_save = false;
+      this.show_address_confirm = false;
+    }
+  }
 }
 </script>
 
 <style scoped>
-div >>> .row{
-   padding: 5px;
+div>>>.row {
+  padding: 5px;
 }
-
 </style>

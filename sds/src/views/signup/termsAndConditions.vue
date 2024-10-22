@@ -61,24 +61,18 @@
       >
         Continue
       </button>
-      <span class="notification flex">
-        <img
-          class=" notification__icon"
-          src="../../assets/images/icons/info-circle.png"
-        >
-        <p class="notification__message">
-          Your progress is auto-saved, so you can continue filling out the form at your convenience.
-        </p>
-      </span>
+      <Notification content="Your progress is auto-saved, so you can continue filling out the form at your convenience." />
     </div>
   </div>
 </template>
 
 <script>
+import Notification from "../../components/Notification.vue";
 import SdsTerms from "@/components/SdsTerms";
+
 export default {
   name: "TermsAndConditions",
-  components: { SdsTerms },
+  components: { Notification, SdsTerms },
   props: {
     agreed: Boolean, //used to tell parent when user has agreed to all terms
   },
@@ -103,6 +97,16 @@ export default {
 
     h4 {
       margin-bottom: 16px;
+    }
+
+    .terms-conditions {
+      background-color: var(--surface-light-white);
+      border: 1px solid var(--text-light);
+      border-radius: 8px;
+      max-height: 50vh;
+      margin-left: 0px;
+      overflow: auto;
+      padding: 15px 15px 15px 20px;
     }
 
     ul {
@@ -132,37 +136,6 @@ export default {
       button {
         flex-grow: 1;
       }
-
-      .notification {
-        align-items: center;
-        background-color: var(--alert-info-200);
-        border-radius: 8px;
-        column-gap: 8px;
-        padding: 8px;
-
-        .notification__icon {
-          height: 48px;
-          width: 48px;
-        }
-
-        .notification__message {
-          font-size: 14px;
-          font-weight: 500;
-          letter-spacing: -0.2px;
-          line-height: 18px;
-          margin: 0;
-        }
-      }
-    }
-
-    .terms-conditions {
-      background-color: var(--surface-light-white);
-      border: 1px solid var(--text-light);
-      border-radius: 8px;
-      max-height: 50vh;
-      margin-left: 0px;
-      overflow: auto;
-      padding: 15px 15px 15px 20px;
     }
   }
 </style>

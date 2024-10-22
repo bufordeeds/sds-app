@@ -3,18 +3,20 @@
     <div class="input-group">
       <label
         class="flex flex-col"
-        :for="`${label.toLowerCase()}__input`"
+        :for="`${label.toLowerCase().split(' ').join('_')}__input`"
       >
         {{ label }}
 
         <input
-          :id="`${label.toLowerCase()}__input`"
+          :id="`${label.toLowerCase().split(' ').join('_')}__input`"
           ref="input"
           v-model="inputVal"
+          :name="name"
           :disabled="disabled"
           :type="type"
           data-1p-ignore
           @input="$emit('input', inputVal)"
+          @focus="handleInputFocus"
           @blur="$emit('blur')"
           @keyup.enter="$emit('keyup-enter')"
         >
@@ -29,10 +31,7 @@
           </v-icon>
         </button>
       </label>
-      <span
-        v-if="errorMessage != null"
-        class="error-message"
-      >
+      <span class="error-message">
         {{ errorMessage }}
       </span>
     </div>
@@ -56,6 +55,7 @@ export default {
       labelOnBottom: { type: Boolean, default: false }, //if true then the label is pushed to bottom of text box
       labelStyle: { type: String, default: '' },
       labelSmall: { type: Boolean, default: false }, //if true then label is always minimized regardless of value state
+      name: { type: String, default: '' },
       rules: { type: Array, default: () => [] },
       type: { type: String, default: 'text' },
       value: { type: [String, Number], default: null },
@@ -65,7 +65,7 @@ export default {
       return {
          inputVal: this.value,
          valFormat: '',
-         errorMessage: null,
+         errorMessage: this.error,
       }
    },
 
@@ -80,6 +80,11 @@ export default {
    },
 
    watch: {
+      error: function (newVal, oldVal) {
+         if (newVal !== oldVal) {
+            this.errorMessage = newVal;
+         }
+      },
       value(newVal) {
          if (newVal !== this.inputVal) {
             this.inputVal = newVal;
@@ -106,6 +111,10 @@ export default {
          else {
             this.$emit('click:append')
          }
+      },
+
+      handleInputFocus(e) {
+         this.$emit('input-focused', e);
       },
 
       validate() {
@@ -135,7 +144,7 @@ export default {
 
 
 <style scoped lang='scss'>
-  /* @import url('./input_styles.css'); */
+  @import url('../../views/common.css');
   @import url('../../views/main.css');
 
   .input-group {

@@ -17,7 +17,7 @@
 
       <div id="signup__form">
         <!-------- step 1 container --------------------------------------------------------->
-        <select-acct-type
+        <SelectAccountType
           v-if="step === 1"
           id="step_1"
           @user-type-selected="acct_type = $event; step += 1"
@@ -28,14 +28,14 @@
           v-if="step === 2"
           id="step_2"
         >
-          <signup
+          <Signup
             v-if="verified_email == null"
             :show-email-confirm="accountCreated"
             :acct-type="acct_type"
             @email-verified="on_email_confirmed"
           />
 
-          <password-reset
+          <PasswordReset
             v-else
             :email-fill="verified_email"
             heading="Email verified"
@@ -54,7 +54,7 @@
             <template #button-text>
               Continue
             </template>
-          </password-reset>
+          </PasswordReset>
         </div>
 
         <!-------- step 3 container --------------------------------------------------------->
@@ -62,35 +62,28 @@
           v-if="step === 3"
           id="step_3"
         >
-          <terms
+          <Terms
             :agreed.sync="tc_agreed"
             @termsAgreed="on_terms_agreed"
           />
         </div>
-
-
 
         <!-------- step 4 container --------------------------------------------------------->
         <div
           v-if="step === 4"
           id="step_4"
         >
-          <v-row>
-            <v-col align="center">
-              <div class="my-stepper-container">
-                <handler-info
-                  v-if="isHandler"
-                  :setup-mode="true"
-                  @user_updated="on_basic_info"
-                />
+          <BasicInfo />
+          <!-- <HandlerInfo
+              v-if="isHandler"
+              :setup-mode="true"
+              @user_updated="on_basic_info"
+            />
 
-                <user-info
-                  v-else
-                  @user_updated="on_basic_info"
-                />
-              </div>
-            </v-col>
-          </v-row>
+            <UserInfo
+              v-else
+              @user_updated="on_basic_info"
+            /> -->
         </div>
 
 
@@ -129,33 +122,34 @@
 </template>
 
 <script>
-import signup from './SignupModal';
-import terms from './termsAndConditions';
-import userInfo from './userInfo';
+import HandlerInfo from "@/views/mgmProfile/EditHandlerInfo";
+import SelectAccountType from "./selectAcctType.vue";
+import Signup from './SignupModal';
+import Stepper from "./Stepper";
+import Terms from './termsAndConditions';
+import BasicInfo from './basicInfo/BasicInfo.vue';
+
 import PasswordReset from "@/components/app/PasswordReset";
 import data_getters from "@/mixins/data_getters";
-import selectAcctType from "@/views/signup/selectAcctType";
-import handlerInfo from "@/views/mgmProfile/EditHandlerInfo";
-import Stepper from "@/views/signup/Stepper";
 
 export default {
   name: "SetupAccount",
   components: {
-    Stepper, signup, terms, userInfo, selectAcctType, PasswordReset, handlerInfo
+    BasicInfo, Stepper, Signup, Terms, SelectAccountType, PasswordReset, //HandlerInfo
   },
   mixins: [data_getters],
   data() {
     return {
-      step: 1,
-      verified_email: null,
-      tc_agreed: false,
       acct_type: null,
-      image_uploaded: false,
-      social_info: null,
-      panel_ix: null, // used to keep track of which panel is open
       census_info: null,
+      image_uploaded: false,
+      panel_ix: null, // used to keep track of which panel is open
+      social_info: null,
+      step: 1,
+      tc_agreed: false,
+      verified_email: null,
     }
-  }, //methods
+  },
 
   computed: {
     accountCreated() {
@@ -170,7 +164,7 @@ export default {
 
     isHandler() {
       if (!this.$auth.authenticated) {
-        return null
+        return false;
       }
 
       return this.$auth.profile.acct_type === 'HANDLER';
@@ -238,8 +232,6 @@ export default {
     nav_to_account() {
       window.location.replace(process.env.VUE_APP_BASE + '/accountHome')
     },
-
-
 
     async on_social_saved(event) {
       this.social_info = event;
@@ -321,7 +313,8 @@ h2 {
   flex-basis: 55%;
 
   #step_1,
-  #step_2 {
+  #step_2,
+  #step_4 {
     padding: 56px;
   }
 

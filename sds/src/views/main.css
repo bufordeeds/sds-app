@@ -37,6 +37,11 @@ input:focus {
   border: 1px solid var(--border-dark);
 }
 
+button {
+  appearance: none;
+  border: none;
+}
+
 .button {
   background-color: var(--surface-light-pale);
   border-radius: 6px;

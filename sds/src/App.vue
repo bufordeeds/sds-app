@@ -1,17 +1,22 @@
 <template>
   <div>
-    <div v-if="!showSite" style="display: flex; justify-content: center; align-items: center; flex-direction: column">
-      Site under construction. Please enter code to see testing site
+    <div v-if="!showSite && !isPublicRoute"
+      style="display: flex; justify-content: center; align-items: center; flex-direction: column; min-height: 100vh;">
+      <div style="text-align: center; margin-bottom: 20px;">
+        This page requires authorization. Please enter password to continue.
+        <div v-if="wrongPassword" style="color: red; margin-top: 10px;">
+          Incorrect password. Please try again.
+        </div>
+      </div>
       <my-form style="max-width: 400px; display: flex">
-        <my-text-input v-model="dev_code" label="Code" @keyup-enter="enter_dev_site" />
+        <my-text-input v-model="dev_code" label="Password" type="password" @keyup-enter="enter_dev_site" />
         <v-btn style="margin-top: 17px; margin-left: 10px" @click="enter_dev_site">
           Enter
         </v-btn>
       </my-form>
     </div>
 
-
-    <template v-if="showSite">
+    <template v-if="showSite || isPublicRoute">
       <v-app id="app" style="z-index:2;background: transparent;">
         <v-dialog v-model="show_cart">
           <div style="background-color: transparent; width: 100%; position:relative;" class="pb-1 pt-1">
@@ -26,32 +31,20 @@
           </div>
         </v-dialog>
 
-      
+
         <div v-if="show_nav" style="z-index:999;position: relative;">
           <div style="background-color: transparent;">
-            <nav-bar/>
-          </div>
-        </div>
-      <!--
-        <div v-if="show_nav">
-          <div>
             <nav-bar />
           </div>
         </div>
-      -->
 
-        <v-main style="z-index:0"> <!-- Moves body up to cover the height of the TopNav -->
+        <v-main style="z-index:0">
           <side-nav v-if="show_drawer" />
           <div :style="router_style">
             <router-view :key="$route.fullPath" />
           </div>
         </v-main>
 
-
-
-
-
-        <!-------------------- footer --------------------------------------------------------------------------------->
         <v-footer>
           <div class="footer section-container">
             <div data-v-3dd2e005="" class="section-inner-container">
@@ -91,31 +84,23 @@
               </div>
               <div data-v-3dd2e005="" class="row">
                 <div data-v-3dd2e005="" class="col-md-9 col-12">
-                  <div class="copyright pt-8">©{{ cur_year }} Service Dog Standards. All Rights Reserved.</div>
+                  <div class="copyright pt-8">
+                    ©{{ cur_year }} Service Dog Standards. All Rights Reserved.
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </v-footer>
-
       </v-app>
     </template>
   </div>
 </template>
 
-
-
-
-
-
 <script>
-
-// import _ from 'lodash';
 import NavBar from '@/components/app/NavBar.vue'
 import SideNav from '@/components/app/SideNav'
 import data_getters from "@/mixins/data_getters";
-
-
 import ShoppingCart from "@/views/shop/ShoppingCart";
 
 export default {
@@ -124,135 +109,108 @@ export default {
   mixins: [data_getters],
   data: () => ({
     dev_code: null,
+    wrongPassword: false
   }),
 
-
   computed: {
-
-    //controls site render while we're still in dev mode
-    showSite() {
-
-
-      return true;
-
-      // if (process.env.VUE_APP_node_env === 'dev'){
-      //    return true;
-      // }
-      //
-      // return (this.$store.state.seeDevSite || this.$auth.authenticated);
-
+    isPublicRoute() {
+      // Only allow home and learn more pages without password
+      const path = this.$route.path.toLowerCase();
+      return path === '/' || path.startsWith('/learn-more');
     },
 
-    //copyright year
+    showSite() {
+      // Check if password has been entered correctly
+      return this.$store.state.seeDevSite || this.isPublicRoute;
+    },
+
     cur_year() {
       let date = new Date();
       return date.getFullYear();
     },
-    show_cart: {
 
+    show_cart: {
       get() {
         return this.$store.state.show_cart;
       },
-
       set(value) {
         this.$store.commit('set_show_cart', value);
       }
-
     },
 
     router_style() {
-      // if (this.$store.state.show_side_nav){
       if (this.show_drawer) {
-        // return 'padding-left: 256px';
         return 'padding-left: 300px';
       }
-      else {
-        return '';
-      }
-
+      return '';
     },
+
     show_drawer() {
-      // if (this.$vuetify.breakpoint.mobile){
-      //    return false;
-      // }
-
-
-      //align this with hamburger menu for top nav
       if (this.$vuetify.breakpoint.width < 1200) {
         return false;
       }
-
       return this.$store.state.show_side_nav;
     },
 
     show_nav() {
       return this.$store.state.use_default_nav;
     }
-  }, //methods
+  },
 
+  watch: {
+    // Redirect to home if accessing protected route without password
+    '$route'(to) {
+      if (!this.isPublicRoute && !this.$store.state.seeDevSite) {
+        // Store attempted route to redirect back after password entry
+        localStorage.setItem('attempted_route', to.fullPath);
+      }
+    }
+  },
 
   async mounted() {
-    // console.log('breakpoint', this.$vuetify.breakpoint);
-    // this.get_cart_from_db().then(()=>{}).catch(err =>{
-    //    console.log(err);
-    // });
-
+    // Check for saved password state
+    const savedAuth = localStorage.getItem('sds_dev_auth');
+    if (savedAuth === 'true') {
+      this.$store.commit('set_seeDevSite', true);
+    }
 
     await this.get_cart_from_db();
 
-    // this.$auth.$on('logged-in', ()=> {
-    //    console.log('debug')
-    //    try{
-    //
-    //       let url = '/';
-    //       if (this.$auth.requested_url !== null && this.$auth.requested_url !== '/login'){
-    //          url = this.$auth.requested_url
-    //       }
-    //
-    //       this.$router.push({path: url});
-    //
-    //    }catch (e) {
-    //       console.log(e)
-    //    }
-    //
-    //
-    // });
-
-
     this.$auth.$on('logged-out', () => {
-
       if (this.$route.path !== '/') {
         this.$router.push({ path: '/' });
       }
-
       this.get_cart_from_db();
-
     });
-
 
     this.$auth.$on('logged-in', () => {
       this.get_cart_from_db();
-
     });
-
-  },
-
-  async created() {
-
   },
 
   methods: {
-
     enter_dev_site() {
+      // Simple password check - using SdsUnderDev#1 as the password
       if (this.dev_code === 'SdsUnderDev#1') {
-        this.$store.commit('set_seeDev', true);
+        this.$store.commit('set_seeDevSite', true);
+        localStorage.setItem('sds_dev_auth', 'true');
+        this.wrongPassword = false;
+
+        // Redirect to attempted route if exists
+        const attemptedRoute = localStorage.getItem('attempted_route');
+        if (attemptedRoute) {
+          this.$router.push(attemptedRoute);
+          localStorage.removeItem('attempted_route');
+        }
+      } else {
+        this.wrongPassword = true;
+        this.dev_code = ''; // Clear the input on wrong password
       }
     },
 
     async get_cart_from_db() {
       try {
         let cart = await this.make_request('/store/getActiveCart');
-
         if (cart != null) {
           this.$store.commit('set_cart', cart);
         }
@@ -260,11 +218,7 @@ export default {
         console.error(e);
       }
     },
-
-
-
   }
-
 };
 </script>
 
@@ -272,23 +226,16 @@ export default {
 @import 'assets/styles/variables';
 
 #main-container {
-  /*background: none;*/
   margin: 10px;
   max-width: 1200px;
-  /*background-color: rgba(255, 60, 63, 0.35);*/
 }
 
 #main-background-gradient {
   position: fixed;
   height: 100%;
-  /*min-height: 1000px;*/
   width: 100%;
   margin: 0;
-
-  //color: $color-white;
-  //background: $color-app-background;
   z-index: -1;
-  /*opacity: 0.5;*/
 }
 
 /* Footer */

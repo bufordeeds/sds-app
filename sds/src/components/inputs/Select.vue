@@ -1,7 +1,6 @@
 <template>
   <div
-    id="my-select__container"
-    class="flex flex-col"
+    class="flex flex-col my-select__container"
   >
     <label :for="id">{{ label }}</label>
     <select
@@ -15,7 +14,7 @@
         selected
         :value="null"
       >
-        Select one or type your own...
+        {{ placeholder }}
       </option>
       <option
         v-for="(option, index) in options"
@@ -37,6 +36,7 @@ export default {
     label: { default: "Default Label", required: true, type: String },
     name: { default: "my_select_name", type: String },
     options: { default: () => [], required: true, type: Array },
+    placeholder: { default: 'Select one...', type: String},
     rules: { default: () => [], type: Array },
     handleValueChange: { default: (e) => { console.log(e); }, type: Function },
   },
@@ -71,7 +71,7 @@ export default {
 <style lang='scss'>
 @import url('../../views/vars.css');
 
-#my-select__container {
+.my-select__container {
   position: relative;
   row-gap: 8px;
 
@@ -80,16 +80,12 @@ export default {
     background-color: var(--surface-light-white);
     border: 1px solid var(--border-default);
     border-radius: 4px;
+    color: var(--text-medium);
     cursor: pointer;
     font-size: 17px;
     height: 44px;
     line-height: 24px;
     padding: 0 12px;
-
-    option:disabled {
-      color: var(--text-medium);
-      opacity: 0.8;
-    }
   }
 
   select::-ms-expand {

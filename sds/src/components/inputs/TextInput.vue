@@ -15,6 +15,9 @@
           :disabled="disabled"
           :type="type"
           data-1p-ignore
+          :maxlength="maxLength"
+          :minlength="maxLength"
+          :placeholder="placeholder"
           @input="$emit('input', inputVal)"
           @focus="handleInputFocus"
           @blur="$emit('blur')"
@@ -39,7 +42,6 @@
 </template>
 
 <script>
-// import helpers from '../../utilities/helpers';
 export default {
    name: "TextInput",
    inject: ['registerThisField', 'unRegisterField'],
@@ -55,7 +57,10 @@ export default {
       labelOnBottom: { type: Boolean, default: false }, //if true then the label is pushed to bottom of text box
       labelStyle: { type: String, default: '' },
       labelSmall: { type: Boolean, default: false }, //if true then label is always minimized regardless of value state
+      maxLength: { default: 'none', type: String},
+      minLength: { default: 'none', type: String},
       name: { type: String, default: '' },
+      placeholder: { default: '', type: String },
       rules: { type: Array, default: () => [] },
       type: { type: String, default: 'text' },
       value: { type: [String, Number], default: null },

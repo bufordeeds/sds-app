@@ -1,4 +1,4 @@
-import Tabs from '../inputs/Tabs.vue';
+import Tabs from "../components/inputs/Tabs.vue";
 
 const meta = {
   component: Tabs,

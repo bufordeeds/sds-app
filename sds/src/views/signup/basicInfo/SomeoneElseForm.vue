@@ -22,12 +22,13 @@
       <TextInput
         v-model="phoneNumber"
         label="Phone Number"
-        :rules="[isRequired]"
+        :rules="[isRequired, isPhone]"
       />     
       <MySelect
         id="someone-else-form__relationship"
         v-model="relationship"
         label="Relationship to disabled handler"
+        placeholder="Select one or type your own"
         :options="list_relationship"
         :rules="[isRequired]"
       />

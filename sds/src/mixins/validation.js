@@ -102,10 +102,6 @@ export default {
       },
 
       isLessThan(x, y, msg='Check number'){
-
-
-
-
          if (typeof x ==='string')
             x = x.replace(/,/g, '');
          if (typeof y ==='string')
@@ -142,9 +138,6 @@ export default {
          return regx.test(x) || 'Not valid url';
       },
 
-
-
-
       isDate(x){
          if (x == null){
             return true;
@@ -153,6 +146,41 @@ export default {
          console.log('debug isdate')
          let d = DateTime.fromFormat(x, 'M/d/yyyy');
          return (d.invalid === null) || 'Invalid date.  Must be "M/D/YYYY"';
+      },
+
+      isValidMonth(month) {
+         if (!month || Number(month) <= 0 || Number(month) > 12) return 'Invalid month';
+
+         return true;
+      },
+
+      isValidDayOfMonth(day, month) {
+         const ERR_MESSAGE = 'Invalid day of month';
+
+         if (!day || Number(day) <= 0) return ERR_MESSAGE;
+
+         const monthsWith31Days = ["01", "03", "05", "07", "08", "10", "12"];
+         const monthsWith30Days = ["04", "06", "09", "11"];
+
+         if (monthsWith30Days.includes(month)) {
+            if (Number(day) > 31) return ERR_MESSAGE;
+         }
+
+         if (monthsWith31Days.includes(month)) {
+            if (Number(day) > 30) return ERR_MESSAGE;
+         }
+
+         if (month.toString() === "02") {
+            if (Number(day) > 29) return ERR_MESSAGE;
+         }
+
+         return true;
+      },
+
+      isValidYear(year) {
+         if (year.toString().length !== 4) return 'Invalid year';
+         
+         return true;
       },
 
 

@@ -3,7 +3,7 @@
     <NameInfo
       v-if="formState.value === 'name_info'"
     />
-    <p v-if="formState.value === 'personal_info'">Personal Info</p>
+    <PersonalInfo v-if="formState.value === 'personal_info'" />
   </section>
 </template>
 
@@ -11,11 +11,12 @@
 import { EventBus } from '../../../eventBus';
 import { formStateIterator } from '../../../utilities/helpers';
 import NameInfo from './NameInfo.vue';
+import PersonalInfo from './PersonalInfo.vue';
 
 
 export default {
   name: 'BasicInfo',
-  components: { NameInfo },
+  components: { NameInfo, PersonalInfo },
   data() {
     return {
       generator: null,

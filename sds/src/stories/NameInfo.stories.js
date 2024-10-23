@@ -1,4 +1,4 @@
-import NameInfo from "../../views/signup/basicInfo/NameInfo.vue";
+import NameInfo from "../views/signup/basicInfo/NameInfo.vue";
 
 const meta = {
   component: NameInfo,

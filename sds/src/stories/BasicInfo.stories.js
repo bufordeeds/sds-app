@@ -1,4 +1,4 @@
-import BasicInfo from "../../views/signup/basicInfo/BasicInfo.vue";
+import BasicInfo from "../views/signup/basicInfo/BasicInfo.vue";
 
 const meta = {
   component: BasicInfo,

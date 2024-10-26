@@ -10,6 +10,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@mdi/font": "^3.6.95",
     "@stripe/stripe-js": "^1.54.0",
     "axios": "^1.4.0",
     "crypto-browserify": "^3.12.0",

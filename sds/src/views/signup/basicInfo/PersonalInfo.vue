@@ -10,7 +10,7 @@
         v-model="gender"
         label="Gender"
         name="gender"
-        :options="genderOptions"
+        :options="gender_options"
         :rules="[isRequired]"
       />
       <TextInput
@@ -104,11 +104,6 @@
       TextInput,
     },
     mixins: [validation],
-    watch: {
-      gender(newVal, oldVal) {
-        console.log(newVal,oldVal);
-      }
-    },
     data() {
       return {
         gender: null,
@@ -123,7 +118,7 @@
           secondary: null,
         },
         alternateEmail: null,
-        genderOptions: [
+        gender_options: [
           {
             label: 'Male',
             value: 'male',
@@ -146,11 +141,16 @@
           },
         ]
       }
+    },
+    watch: {
+      gender(newVal, oldVal) {
+        console.log(newVal,oldVal);
+      }
     }
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import url('../../common.css');
 
 h3 {

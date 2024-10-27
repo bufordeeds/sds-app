@@ -122,7 +122,6 @@
 </template>
 
 <script>
-import HandlerInfo from "@/views/mgmProfile/EditHandlerInfo";
 import SelectAccountType from "./selectAcctType.vue";
 import Signup from './SignupModal';
 import Stepper from "./Stepper";

@@ -1,33 +1,49 @@
 <template>
-  <MyForm id="about-dog-form">
+  <MyForm
+    id="about-dog-form"
+    :handle-submit="handleSave"
+  >
     <h3>About the Dog</h3>
     <TextInput
       v-model="dog.name"
       label="Name"
+      :rules="[isRequired]"
     />
     <MySelect
       id="dog-gender__select"
       v-model="dog.gender"
       label="Gender"
       :options="gender_options"
+      :rules="[isRequired]"
     />
     <MySelect
       id="dog-yob__select"
       v-model="dog.yearOfBirth"
       label="What year was your dog born?"
       :options="yob_options"
+      :rules="[isRequired]"
+    />
+    <MySelect
+      id="dog-breed__select"
+      v-model="dog.breed"
+      label="Breed"
+      :options="[]"
+      :rules="[isRequired]"
     />
     <MySelect
       id="dog-size__select"
       v-model="dog.size"
       label="How big is your dog?"
       :options="dog_size_options"
+      :rules="[isRequired]"
     />
     <TextInput
       v-model="dog.microchipNum"
       label="Microchip Number (if applicable)"
+      max-length="14"
+      placeholder="12345678901234"
     />
-    <span>
+    <div>
       <label>Do you have a secondary disability?</label>
       <v-radio-group v-model="dog.training">
         <v-radio
@@ -39,18 +55,32 @@
           value="false"
         />
       </v-radio-group>
-    </span>
+    </div>
+    <div
+      id="about-dog-form__footer"
+      class="flex flex-col"
+    >
+      <button class="button button--primary">
+        Continue
+      </button>
+      <Notification content="Your progress is auto-saved, so you can continue filling out the form at your convenience." /> 
+    </div>
   </MyForm>
 </template>
 
 <script>
+import { EventBus } from '../../../EventBus';
 import MyForm from '../../../components/inputs/MyForm.vue';
 import MySelect from '../../../components/inputs/Select.vue';
+import Notification from '../../../components/Notification.vue';
 import TextInput from '../../../components/inputs/TextInput.vue';
+
+import validation from '../../../mixins/validation';
 
 export default {
   name: "AboutDog",
-  components: { MyForm, MySelect, TextInput },
+  components: { MyForm, MySelect, Notification, TextInput },
+  mixins: [validation],
   data() {
     return {
       dog: {
@@ -94,6 +124,9 @@ export default {
     }
   },
   methods: {
+    handleSave() {
+      EventBus.$emit('handle-form-submission');
+    },
     populateYearOfBirthOpts() {
       const yobOptions = [];
       const CURR_YEAR = new Date().getFullYear();
@@ -110,3 +143,34 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" module>
+@import url('../../main.css');
+@import url('../../vars.css');
+
+#about-dog-form {
+  & > h3 {
+    margin-bottom: 16px;
+  }
+
+  & > div {
+    margin-bottom: 36px;
+  }
+
+  label {
+    color: var(--text-dark);
+    font-size: 14px;
+    font-weight: 510;
+    letter-spacing: -0.2px;
+    line-height: 18px;
+  }
+
+  .input-group {
+    margin-bottom: 0;
+  }
+
+  #about-dog-form__footer {
+    row-gap: 16px;
+  }
+}
+</style>

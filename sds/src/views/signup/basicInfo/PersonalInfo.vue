@@ -4,7 +4,11 @@
       Personal Information
     </h3>
 
-    <MyForm id="personal-info__form">
+    <MyForm
+      id="personal-info__form"
+      ref="perons-info__form"
+      :handle-submit="handleSave"
+    >
       <MySelect
         id="gender-select"
         v-model="gender"
@@ -78,7 +82,7 @@
     >
       <button
         class="button button--primary"
-        form="personal-info-form__form"
+        form="personal-info__form"
       >
         Continue
       </button>
@@ -88,6 +92,7 @@
 </template>
 
 <script>
+  import { EventBus } from '../../../eventBus';
   import MyForm from '../../../components/inputs/MyForm.vue';
   import MySelect from '../../../components/inputs/Select.vue';
   import Notification from '../../../components/Notification.vue';
@@ -146,6 +151,11 @@
       gender(newVal, oldVal) {
         console.log(newVal,oldVal);
       }
+    },
+    methods: {
+      handleSave() {
+        EventBus.$emit('handle-form-submission');
+      },
     }
   }
 </script>

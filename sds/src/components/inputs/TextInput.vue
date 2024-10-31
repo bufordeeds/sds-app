@@ -16,7 +16,7 @@
           :type="type"
           data-1p-ignore
           :maxlength="maxLength"
-          :minlength="maxLength"
+          :minlength="minLength"
           :placeholder="placeholder"
           @input="$emit('input', inputVal)"
           @focus="handleInputFocus"

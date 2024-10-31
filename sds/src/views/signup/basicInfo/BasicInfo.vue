@@ -4,19 +4,25 @@
       v-if="formState.value === 'name_info'"
     />
     <PersonalInfo v-if="formState.value === 'personal_info'" />
+    <EmergencyInfo v-if="formState.value === 'emergency_contact_info'" />
+    <AboutDog v-if="formState.value === 'about_type_dog_info'" />
+    <OptionalInfo v-if="formState.value === 'optional_info'" />
   </section>
 </template>
 
 <script>
 import { EventBus } from '../../../eventBus';
 import { formStateIterator } from '../../../utilities/helpers';
+import AboutDog from './AboutDog.vue';
+import EmergencyInfo from './EmergencyInfo.vue';
 import NameInfo from './NameInfo.vue';
+import OptionalInfo from './OptionalInfo.vue';
 import PersonalInfo from './PersonalInfo.vue';
 
 
 export default {
   name: 'BasicInfo',
-  components: { NameInfo, PersonalInfo },
+  components: { AboutDog, EmergencyInfo, NameInfo, OptionalInfo, PersonalInfo },
   data() {
     return {
       generator: null,
@@ -24,7 +30,7 @@ export default {
     }
   },
   created() {
-    const gen = formStateIterator(['name_info', 'personal_info', 'emergency_contact_info', 'about_tye_dog_info']);
+    const gen = formStateIterator(['name_info', 'personal_info', 'emergency_contact_info', 'about_type_dog_info', 'optional_info']);
     this.generator = gen;
     this.formState = gen.next();
     EventBus.$on('handle-form-submission', this.handleEventEmission);

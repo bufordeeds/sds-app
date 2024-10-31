@@ -1,6 +1,8 @@
 <template>
   <MyForm
     id="emergency-contact-form"
+    ref="emergency-contact-form"
+    :handle-submit="handleSave"
     class="flex flex-col"
   >
     <h3>Emergency Contact Information</h3>
@@ -15,6 +17,7 @@
       name="lastName"
     />
     <MySelect
+      id="emergency-contact__relationship"
       label="Relationship to disabled inidividual"
       :options="relationship_list"
     />
@@ -33,6 +36,7 @@
       <p>Which best describes your PRIMARY reason for using a Service Dog?</p>
     </span>
     <MySelect
+      id="emergency-contact__primary-disability"
       v-model="disabilities.primary"
       label="Primary Disability"
       :options="disability_list"
@@ -55,7 +59,9 @@
       id="emergency-contact-form__footer"
       class="flex flex-col"
     >
-      <button class="button button--primary">
+      <button
+        class="button button--primary"
+      >
         Continue
       </button>
       <Notification content="Your progress is auto-saved, so you can continue filling out the form at your convenience." /> 
@@ -64,6 +70,7 @@
 </template>
 
 <script>
+import { EventBus } from '../../../EventBus';
 import MyForm from '../../../components/inputs/MyForm.vue';
 import MySelect from '../../../components/inputs/Select.vue';
 import Notification from '../../../components/Notification.vue';
@@ -120,6 +127,11 @@ export default {
         { value: 'SocialWorkerTherapist', label: 'Social Worker, Counselor, Therapist, Physician'},
       ],
     }
+  },
+  methods: {
+    handleSave() {
+      EventBus.$emit('handle-form-submission');
+    },
   }
 }
 </script>

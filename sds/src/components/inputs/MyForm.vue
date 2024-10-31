@@ -61,21 +61,24 @@ export default {
        * @returns {boolean}
        */
       validate(){
-         let keys = Object.keys(this.fields);
+         // let keys = Object.keys(this.fields);
 
-         let valid = true;
+         // let valid = true;
 
-         for (let k of keys) {
-            if (!this.fields[k].validate()){
-               valid = false;
-            }
-         }
+         // for (let k of keys) {
+         //    if (!this.fields[k].validate()){
+         //       valid = false;
+         //    }
+         // }
 
-         if (valid) {
-            this.handleSubmit();
-         }
+         // if (valid) {
+         //    this.handleSubmit();
+         // }
 
-         return valid;
+         // return valid;
+         console.log('submitting')
+         this.handleSubmit();
+         return true;
       },
 
       resetValidation(){

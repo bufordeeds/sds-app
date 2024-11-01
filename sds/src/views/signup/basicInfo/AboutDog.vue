@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { EventBus } from '../../../EventBus';
+import { EventBus } from '../../../eventBus.js';
 import MyForm from '../../../components/inputs/MyForm.vue';
 import MySelect from '../../../components/inputs/Select.vue';
 import Notification from '../../../components/Notification.vue';

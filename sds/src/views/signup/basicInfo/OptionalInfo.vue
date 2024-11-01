@@ -87,7 +87,7 @@
       class="flex flex-col"
     >
       <button class="button button--primary">
-        Continue
+        Submit & Finalize
       </button>
       <Notification content="Your progress is auto-saved, so you can continue filling out the form at your convenience." /> 
     </div>

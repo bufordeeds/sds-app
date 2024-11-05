@@ -4,66 +4,68 @@
     :handle-submit="handleSave"
   >
     <h3>About the Dog</h3>
-    <TextInput
-      v-model="dog.name"
-      label="Name"
-      :rules="[isRequired]"
-    />
-    <MySelect
-      id="dog-gender__select"
-      v-model="dog.gender"
-      label="Gender"
-      :options="gender_options"
-      :rules="[isRequired]"
-    />
-    <MySelect
-      id="dog-yob__select"
-      v-model="dog.yearOfBirth"
-      label="What year was your dog born?"
-      :options="yob_options"
-      :rules="[isRequired]"
-    />
-    <MySelect
-      id="dog-breed__select"
-      v-model="dog.breed"
-      label="Breed"
-      :options="[]"
-      :rules="[isRequired]"
-    />
-    <MySelect
-      id="dog-size__select"
-      v-model="dog.size"
-      label="How big is your dog?"
-      :options="dog_size_options"
-      :rules="[isRequired]"
-    />
-    <TextInput
-      v-model="dog.microchipNum"
-      label="Microchip Number (if applicable)"
-      max-length="14"
-      placeholder="12345678901234"
-    />
-    <div>
-      <label>Do you have a secondary disability?</label>
-      <v-radio-group v-model="dog.training">
-        <v-radio
-          label="Yes"
-          value="true"
-        />
-        <v-radio
-          label="No"
-          value="false"
-        />
-      </v-radio-group>
-    </div>
-    <div
-      id="about-dog-form__footer"
-      class="flex flex-col"
-    >
-      <button class="button button--primary">
-        Continue
-      </button>
-      <Notification content="Your progress is auto-saved, so you can continue filling out the form at your convenience." /> 
+    <div class="about-dog-form">
+      <TextInput
+        v-model="dog.name"
+        label="Name"
+        :rules="[isRequired]"
+      />
+      <MySelect
+        id="dog-gender__select"
+        v-model="dog.gender"
+        label="Gender"
+        :options="gender_options"
+        :rules="[isRequired]"
+      />
+      <MySelect
+        id="dog-yob__select"
+        v-model="dog.yearOfBirth"
+        label="What year was your dog born?"
+        :options="yob_options"
+        :rules="[isRequired]"
+      />
+      <MySelect
+        id="dog-breed__select"
+        v-model="dog.breed"
+        label="Breed"
+        :options="[]"
+        :rules="[isRequired]"
+      />
+      <MySelect
+        id="dog-size__select"
+        v-model="dog.size"
+        label="How big is your dog?"
+        :options="dog_size_options"
+        :rules="[isRequired]"
+      />
+      <TextInput
+        v-model="dog.microchipNum"
+        label="Microchip Number (if applicable)"
+        max-length="14"
+        placeholder="12345678901234"
+      />
+      <div>
+        <label>Do you have a secondary disability?</label>
+        <v-radio-group v-model="dog.training">
+          <v-radio
+            label="Yes"
+            value="true"
+          />
+          <v-radio
+            label="No"
+            value="false"
+          />
+        </v-radio-group>
+      </div>
+      <div
+        id="about-dog-form__footer"
+        class="flex flex-col"
+      >
+        <button class="button button--primary">
+          Continue
+        </button>
+        <Notification content="Your progress is auto-saved, so you can continue filling out the form at your convenience." /> 
+      </div>
     </div>
   </MyForm>
 </template>
@@ -153,9 +155,9 @@ export default {
     margin-bottom: 16px;
   }
 
-  & > div {
+  /*& div {
     margin-bottom: 36px;
-  }
+  }*/
 
   label {
     color: var(--text-dark);
@@ -170,7 +172,12 @@ export default {
   }
 
   #about-dog-form__footer {
-    row-gap: 16px;
+    gap: 16px;
   }
+}
+.about-dog-form {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
 }
 </style>

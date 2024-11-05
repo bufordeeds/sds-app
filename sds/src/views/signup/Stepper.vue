@@ -133,6 +133,8 @@ export default {
   }
 
   .steps__list-item {
+    font-size: var(--rt-h5);
+    font-weight: 600;
     color: var(--text-medium);
     
     .steps__counter {

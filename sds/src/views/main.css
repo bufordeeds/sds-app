@@ -46,15 +46,15 @@ button {
   background-color: var(--surface-light-pale);
   border-radius: 6px;
   height: 44px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--rt-small);
+  font-weight: 600;
   letter-spacing: -0.12px;
   line-height: 20px;
   padding: 12px;
 }
 
 .button:hover {
-  background-color: var(--surface-light-medium);
+  background-color: var(--surface-dark-hover);
 }
 
 .button:disabled {

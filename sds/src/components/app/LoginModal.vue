@@ -1,7 +1,7 @@
 <template>
   <v-card
     class="login-modal"
-    max-width="400"
+    min-width="540"
     elevation="8"
   >
     <v-card-title
@@ -12,6 +12,8 @@
     </v-card-title>
     <v-card-text>
       <my-form ref="form">
+        <h4 class="pb-4">Sign in to your account</h4>
+        <div class="text-center captions-caption-medium pb-4">Sign in with your social media account</div>
         <div
           v-if="error_msg"
           class="error-message mb-4"
@@ -52,7 +54,7 @@
           :loading="loading"
           @click="login"
         >
-          Sign in
+          Continue
         </v-btn>
         <div class="text-center mt-4">
           <span class="caption">Don't have an account?</span>
@@ -125,6 +127,7 @@ export default {
 <style scoped>
 .login-modal {
   margin: auto;
+  margin-top: 56px;
 }
 
 .error-message {

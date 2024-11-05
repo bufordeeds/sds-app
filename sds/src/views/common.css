@@ -935,6 +935,7 @@ html {
 	font-weight: 600 !important;
 }
 
+/* Register/Sign-in form styles */
 .v-input--radio-group__input {
 	gap: 8px;
 }
@@ -952,21 +953,26 @@ html {
 #about-dog-form__footer {
     gap: 16px;
 }
+
 input[type='text']:not(.main_v-input__control_dht_q *),
 input[type='text']:not(.main_v-input__control_dht_q *):hover,
 input[type='text']:not(.main_v-input__control_dht_q *):focus,
 input[type='password']:not(.main_v-input__control_dht_q *),
 input[type='password']:not(.main_v-input__control_dht_q *):hover,
 input[type='password']:not(.main_v-input__control_dht_q *):focus {
-  border: none !important;
+  border: none;
+}
+.v-select__selections input {
+	border: none !important;
 }
 .v-text-field--enclosed .v-input__append-inner {
-	margin-top: 20px;
+	margin-top: 20px !important;
 }
 #optional-info-form> p {
 	font-size: var(--rt-small);
 	line-height: normal;
 }
+/* END Register/Sign-in form styles */
 
 /* Theme styles */
 .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {

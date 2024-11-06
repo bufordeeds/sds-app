@@ -132,6 +132,8 @@ export default {
     row-gap: 32px;
 
     .steps__list-item {
+      font-size: var(--rt-h5);
+      font-weight: 600;
       color: var(--text-medium);
       
       .steps__counter {
@@ -139,47 +141,53 @@ export default {
         background-color: var(--surface-light-white);
         border-radius: 50%;
         color: var(--text-medium);
-        display: flex;
-        flex-grow: 0;
-        font-weight: 700;
-        height: 40px;
-        justify-content: center;
-        position: relative;
-        width: 40px;
-      }
-      
-      &.steps__list-item--active  {
-        color: var(--brand-primary-500);
-
+        
         .steps__counter {
-          background-color: var(--button-form-button);
-          color: var(--text-white);
-        }
-      }
-
-      &.steps__list-item--finished {
-        .steps__counter::before {
+          align-items: center;
           background-color: var(--surface-light-white);
-          border: 2px solid var(--button-form-button);
           border-radius: 50%;
-          content: '';
+          color: var(--text-medium);
+          display: flex;
+          flex-grow: 0;
+          font-weight: 700;
           height: 40px;
-          position: absolute;
+          justify-content: center;
+          position: relative;
           width: 40px;
         }
+        
+        &.steps__list-item--active  {
+          color: var(--brand-primary-500);
 
-        .steps__counter::after {
-          border-bottom: 2px solid var(--button-form-button);
-          border-right: 2px solid var(--button-form-button);
-          content: '';
-          height: 20px;
-          transform: rotate(45deg) translate(-5px, 1px);
-          width: 10px;
+          .steps__counter {
+            background-color: var(--button-form-button);
+            color: var(--text-white);
+          }
+        }
+
+        &.steps__list-item--finished {
+          .steps__counter::before {
+            background-color: var(--surface-light-white);
+            border: 2px solid var(--button-form-button);
+            border-radius: 50%;
+            content: '';
+            height: 40px;
+            position: absolute;
+            width: 40px;
+          }
+
+          .steps__counter::after {
+            border-bottom: 2px solid var(--button-form-button);
+            border-right: 2px solid var(--button-form-button);
+            content: '';
+            height: 20px;
+            transform: rotate(45deg) translate(-5px, 1px);
+            width: 10px;
+          }
         }
       }
     }
   }
-
 
 /**
 *

@@ -1,11 +1,5 @@
 <template>
   <div>
-    <div class="page-title">
-      Sign in
-    </div>
-
-
-
     <div
       class="content-container-bg bg-full-height"
       style=" padding-top: 50px "

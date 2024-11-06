@@ -291,8 +291,8 @@ export default {
 
 h2 {
   color: var(--brand-primary-500);
-  font-size: 36px;
-  font-weight: 500;
+  font-size: var(--rt-h2);
+  font-weight: 700;
   letter-spacing: -0.5px;
   line-height: 48px;
 }
@@ -312,6 +312,7 @@ h2 {
   border-radius: 4px;
   box-shadow: 0px 5px 15px 0px #0000001F, 0px 15px 35px 0px #3C425714;
   flex-basis: 55%;
+  max-width: 55%;
 
   #step_1,
   #step_2,

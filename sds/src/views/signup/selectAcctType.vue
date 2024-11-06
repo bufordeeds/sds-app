@@ -118,20 +118,20 @@
         :class="isMobile? 'full-image': 'floated-image'"
       >
 
-      <p>
-        <span style="font-weight: 600">Therapy Dogs</span>
+      <p class="body-small-regular">
+        <span class="body-small-regular" style="font-weight: 600">Therapy Dogs</span>
         are an important type of working dog, but they are not Service Dogs. Therapy Dogs are trained to help others who may or may not be disabled. These dogs typically work with their handler in hospitals, nursing homes or other facilities. We don't allow Therapy Dogs to be included as part of Service Dog Standards because they are not Service Dogs and therefore not covered under the Americans With Disabilities Act (ADA).
       </p>
 
-      <p>
+      <p class="body-small-regular">
         There are no universally mandated licensing, registration, certification or training requirements for Therapy Dogs or Therapy Dog trainers. Since these dogs work alongside their handler with the public at a specific facility, each facility that utilizes Therapy Dogs sets their own requirements. Please check with the organization where you wish to volunteer or work. There are voluntary programs that provide training and behavior standards for Therapy Dogs much like we do for Service Dogs.
       </p>
 
-      <p>
+      <p class="body-small-regular">
         Of course, handlers of Therapy Dogs do not have public access rights and should not bring their animal partners into restaurants, stores or other public places. There are programs that provide training and behavior standards for Therapy Dogs much like we do for Service Dogs.
       </p>
 
-      <p style="background-color: white; padding: 15px">
+      <p class="body-small-regular" style="background-color: white; padding: 15px">
         Note: Some disabled Service Dog handlers have cross-trained their dog to work as a Therapy Dog. However, it's worth mentioning that some trainers believe this can be dangerous because Service Dogs are typically taught to focus solely on their handler, while Therapy Dogs are trained to focus on others. We do not advise cross-training a Service Dog for this reason, however we believe this decision should be left to each handler with consideration given to the disability involved and the individual characteristics of each team.
       </p>
 
@@ -151,20 +151,20 @@
         src="../../assets/images/content/emotional_support_animal.png"
         :class="isMobile? 'full-image': 'floated-image'"
       >
-
-      <p>
+    
+      <p class="body-small-regular">
         Emotional Support Animals (ESAs) are an important type of working dog, but they are not Service Dogs. There is no legal or valid registration, certification or training requirements for Emotional Support Animals. We don't allow Emotional Support Animals to be included as part of Service Dog Standards because they are not Service Dogs and therefore not covered under the Americans With Disabilities Act (ADA). A simple letter from a physician or counselor stating need (but not mentioning any specifics) is the only documentation that is recognized under law.
       </p>
 
-      <p>
+      <p class="body-small-regular">
         ESAs help individuals by comforting them with their presence but are not required to perform work or tasks related to a disability. ESAs have their own rights, separate from Service Dogs.
       </p>
 
-      <p>
+      <p class="body-small-regular">
         Of course, handlers of Emotional Support Animals do not have public access rights and should not be bring their animal partners into restaurants, stores or other public places. As well, Emotional Support Animals do not need to wear vests or any identifying gear.
       </p>
-      <p style="background-color: white; padding: 15px">
-        <span style="font-weight: 600">ADA REG § 35.104 Definitions.</span>
+      <p class="captions-caption-medium" style="background-color: white; padding: 15px">
+        <span style="font-weight: 600">ADA REG § 35.104 Definitions.</span><br/>
         Service animal means any dog that is individually trained to do work or perform tasks for the benefit of an individual with a disability, including a physical, sensory, psychiatric, intellectual, or other mental disability . . . The effects of an animal's presence and the provision of emotional support, well-being, comfort, or companionship do not constitute work or tasks for the purposes of this definition.
       </p>
       <p>
@@ -212,15 +212,16 @@ export default {
       height: 100%;
       min-height: 140px;
       width: 120px;
+      gap: 8px;
 
       .card__icon {
+        display: flex;
+        justify-content: center;
         align-items: center;
         background-color: var(--button-form-button);
         border-radius: 50%;
+        width: 64px;
         height: 64px;
-        display: flex;
-        justify-content: center;
-        width:  64px;
 
         img {
           margin-bottom: 4px;
@@ -231,7 +232,7 @@ export default {
       .card__title {
         color: var(--button-form-button);
         font-size: 17px;
-        font-weight: 700;
+        font-weight: 600;
         line-height: 20px;
       }
     }

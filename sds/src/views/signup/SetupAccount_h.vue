@@ -7,7 +7,7 @@
       <!-------- Stepper --------------------------------------------------------->
       <div
         id="signup__steps"
-        class="flex flex-col"
+        class="flex flex-col sm:hidden"
       >
         <h2>
           Create your Account
@@ -16,6 +16,7 @@
       </div>
 
       <div id="signup__form">
+        <MobileStepper :step="step" />
         <!-------- step 1 container --------------------------------------------------------->
         <SelectAccountType
           v-if="step === 1"
@@ -130,11 +131,12 @@ import BasicInfo from './basicInfo/BasicInfo.vue';
 
 import PasswordReset from "@/components/app/PasswordReset";
 import data_getters from "@/mixins/data_getters";
+import MobileStepper from "./MobileStepper.vue";
 
 export default {
   name: "SetupAccount",
   components: {
-    BasicInfo, Stepper, Signup, Terms, SelectAccountType, PasswordReset, //HandlerInfo
+    BasicInfo, MobileStepper, Stepper, Signup, Terms, SelectAccountType, PasswordReset, //HandlerInfo
   },
   mixins: [data_getters],
   data() {
@@ -144,7 +146,7 @@ export default {
       image_uploaded: false,
       panel_ix: null, // used to keep track of which panel is open
       social_info: null,
-      step: 1,
+      step: 4,
       tc_agreed: false,
       verified_email: null,
     }
@@ -319,6 +321,28 @@ h2 {
 
   #step_3 {
     padding: 24px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #signup {
+    align-items: center;
+    justify-content: center;
+
+    #signup__steps {
+      display: none;
+    }
+
+    #signup__form {
+      min-width: 350px;
+
+      #step_1,
+      #step_2,
+      #step_3,
+      #step_4 {
+        padding: 16px;
+      }
+    }
   }
 }
 </style>

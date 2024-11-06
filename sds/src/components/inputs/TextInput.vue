@@ -152,6 +152,26 @@ export default {
   @import url('../../views/common.css');
   @import url('../../views/main.css');
 
+   input[type='text']:not(.v-input__control *),
+   input[type='password']:not(.v-input__control *) {
+   background-color: var(--surface-light-white);
+   border: 1px solid var(--border-default);
+   border-radius: 4px;
+   font-size: 17px;
+   height: 44px;
+   line-height: 24px;
+   padding: 8px 12px;
+   }
+
+   input[type='text']:not(.v-input__control *):hover,
+   input[type='password']:not(.v-input__control *):hover {
+   border: 1px solid var(--border-hover);
+   }
+
+   input:not(.v-input__control *):focus {
+   border: 1px solid var(--border-dark);
+   }
+
   .input-group {
     row-gap: 8px;
     margin-bottom: 32px;

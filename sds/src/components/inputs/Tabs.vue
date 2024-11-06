@@ -68,7 +68,7 @@ ul.tabs-container {
   list-style-type: none;
   margin: 0;
   max-width: 100%;
-  min-width: 350px;
+  min-width: 300px;
   overflow: auto;
   padding: 0;
   width: 100%;

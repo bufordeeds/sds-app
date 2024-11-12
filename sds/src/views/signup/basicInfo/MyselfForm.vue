@@ -4,9 +4,9 @@
       id="myself-form__header"
       class="flex flex-col"
     >
-      <h2 class="text-center">
+      <h4 class="text-center">
         What's your Name?
-      </h2>
+      </h4>
       <div
         id="validation-info"
         class="flex"
@@ -151,14 +151,16 @@ export default {
 }
 
 #validation-info {
-  align-items: center;
   column-gap: 16px;
 
+  img {
+    margin-top: 4px;
+  }
   p {
     color: var(--text-medium);
     font-family: var(--font-family);
-    font-size: 16px;
-    font-weight: 400;
+    font-size: var(--rt-xsmall);
+    font-weight: 500;
     line-height: 20px;
   }
 }
@@ -170,8 +172,8 @@ export default {
   p {
     color: var(--text-medium);
     font-family: var(--font-family);
-    font-size: 16px;
-    font-weight: 400;
+    font-size: var(--rt-xsmall);
+    font-weight: 500;
     line-height: 20px;
   }
 
@@ -185,9 +187,9 @@ export default {
   border-radius: 8px;
   color: var(--text-medium);
   height: 216px;
-  margin-bottom: 56px;
   overflow: auto;
   padding: 8px;
+  margin-bottom: 16px;
   width: 100%;
 
   h4,
@@ -214,6 +216,12 @@ export default {
     padding-left: 20px;
     row-gap: 4px;
   }
+}
+select, option,
+.my-select__container select {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text-dark);
 }
 
 #myself-form__footer {

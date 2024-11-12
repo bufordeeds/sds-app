@@ -2,7 +2,6 @@
   <v-card
     class="login-modal"
     min-width="540"
-    elevation="8"
   >
     <v-card-title
       v-if="isModal"
@@ -11,9 +10,11 @@
       Sign in
     </v-card-title>
     <v-card-text>
+
+      <h3 class="pb-4">Sign in to your account</h3>
+      <div class="text-center captions-caption-medium pb-4">Sign in with your social media account</div>
+
       <my-form ref="form">
-        <h4 class="pb-4">Sign in to your account</h4>
-        <div class="text-center captions-caption-medium pb-4">Sign in with your social media account</div>
         <div
           v-if="error_msg"
           class="error-message mb-4"
@@ -37,35 +38,35 @@
           @click:append="showPass = !showPass"
           @keyup-enter="login"
         />
-        <div class="text-right mb-4">
+        <div class="login--modal--footer">
           <v-btn
             text
-            small
+            large
             color="primary"
             to="/requestResetPassword"
           >
             Forgot Password?
           </v-btn>
-        </div>
-        <v-btn
-          color="primary"
-          block
-          large
-          :loading="loading"
-          @click="login"
-        >
-          Continue
-        </v-btn>
-        <div class="text-center mt-4">
-          <span class="caption">Don't have an account?</span>
           <v-btn
-            text
-            small
             color="primary"
-            to="/signup"
+            block
+            large
+            :loading="loading"
+            @click="login"
           >
-            Create one
+            Continue
           </v-btn>
+          <div class="text-center">
+            <span class="caption">Don't have an account?</span>
+            <v-btn
+              text
+              small
+              color="primary"
+              to="/signup"
+            >
+              Create one
+            </v-btn>
+          </div>
         </div>
       </my-form>
     </v-card-text>
@@ -124,10 +125,23 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .login-modal {
-  margin: auto;
-  margin-top: 56px;
+  margin: 0 auto;
+  max-width: 540px;
+  width: 540px;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow-xlarge) !important;
+
+  .v-card__text {
+    padding: 56px 48px;
+  }
+  form {
+    margin-top: 32px;
+  }
+  .login--modal--footer {
+    gap: 16px;
+  }
 }
 
 .error-message {

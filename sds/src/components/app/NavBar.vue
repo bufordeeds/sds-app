@@ -369,7 +369,7 @@ export default {
 }
 
 :root {
-  --font-family: "Inter", "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+  --font-family: "Montserrat","Inter", "Helvetica Neue", Arial, sans-serif;
   --font-size-base: 18px;
   --text-white: #FFFFFFFF;
   --text-default: #425466;

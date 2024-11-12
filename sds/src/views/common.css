@@ -359,6 +359,13 @@ span,
 	text-transform: none;
 }
 
+/* Transitions */
+.v-button, button, input, select, li,
+.v-input--selection-controls__input {
+	transition: all 150ms ease-in-out;
+}
+/* */
+
 .text-bold {
 	font-weight: bold !important;
 }
@@ -939,17 +946,40 @@ html {
 .v-input--radio-group__input {
 	gap: 8px;
 }
-.about-dog-form {
+#signup__form h3 {
+	margin-bottom: 24px !important;
+}
+#signup__form h3:has(+p) {
+	margin-bottom: 0px !important;
+}
+#signup__form div > button.button--primary {
+	margin-top: 32px;
+}
+form {
+	display: flex;
+	flex-direction: column;
+	row-gap: 32px;
+	margin-bottom: 16px;
+}
+form .input-group {
+	margin: 0 !important;
+}
+form > div {
 	display: flex;
 	flex-direction: column;
 	gap: 32px;
 }
-#about-dog-form h3 {
-	margin-bottom: 16px;
+form label {
+    color: var(--text-dark);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    line-height: 18px;
 }
-#about-dog-form .input-group {
-	margin: 0;
+form section {
+	margin-top: 0px !important;
 }
+
 #about-dog-form__footer {
     gap: 16px;
 }

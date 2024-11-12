@@ -2,7 +2,7 @@
   <section>
     <h4>ACCEPTANCE OF TERMS OF SERVICE</h4>
     <p>
-      Service Dog Standards or referred to here as “SDS”) warmly welcomes you. SDS has been created as a benefit to Service and Assistance Dog owners or handlers living or residing in the United States. SDS provides Services (defined below) to you subject to the following Terms and Conditions or Terms of Service ("TOS"), which may be updated by us from time to time without notice to you. By accessing and using this Website or Services you accept and agree to be bound by the terms and provision of the TOS. In addition, if you choose to use Identification Materials with references to SDS (regardless of their source, i.e. either made by you or purchased from a third party), use any of Materials we sell or provide on our website (including, but not limited to Membership Cards, Certificates, Patches, Animal Tags, etc.), refer to SDS in any way online or offline, you accept and agree to be bound by the terms and provision of the TOS. All such terms, guidelines or rules (including but not limited to our Privacy Policy) are hereby incorporated by reference into the TOS. All information in SDS, including but not limited to, data and information provided by users and registrants, information provided by SDS both in online form and offline form, shall hereby referred to as Content.
+      Service Dog Standards or referred to here as “SDS” warmly welcomes you. SDS has been created as a benefit to Service and Assistance Dog owners or handlers living or residing in the United States. SDS provides Services (defined below) to you subject to the following Terms and Conditions or Terms of Service ("TOS"), which may be updated by us from time to time without notice to you. By accessing and using this Website or Services you accept and agree to be bound by the terms and provision of the TOS. In addition, if you choose to use Identification Materials with references to SDS (regardless of their source, i.e. either made by you or purchased from a third party), use any of Materials we sell or provide on our website (including, but not limited to Membership Cards, Certificates, Patches, Animal Tags, etc.), refer to SDS in any way online or offline, you accept and agree to be bound by the terms and provision of the TOS. All such terms, guidelines or rules (including but not limited to our Privacy Policy) are hereby incorporated by reference into the TOS. All information in SDS, including but not limited to, data and information provided by users and registrants, information provided by SDS both in online form and offline form, shall hereby referred to as Content.
     </p>
 
     <h4>DESCRIPTION OF SDS SERVICES</h4>
@@ -223,14 +223,16 @@ export default {
   section {
     counter-reset: heading subheading;
   }
-
   h4::before {
     counter-increment: heading;
     content: counter(heading) ". ";
   }
-
   h5::before {
     counter-increment: subheading;
     content: counter(heading) "." counter(subheading) ". ";
+  }
+  p, ol {
+    font-size: var(--rt-xsmall);
+    line-height: normal;
   }
 </style>

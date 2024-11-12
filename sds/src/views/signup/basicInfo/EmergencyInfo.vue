@@ -1,72 +1,75 @@
 <template>
-  <MyForm
-    id="emergency-contact-form"
-    ref="emergency-contact-form"
-    :handle-submit="handleSave"
-    class="flex flex-col"
-  >
+  <div>
     <h3>Emergency Contact Information</h3>
-    <TextInput
-      v-model="firstName"
-      label="First Name"
-      name="firstName"
-    />
-    <TextInput
-      v-model="lastName"
-      label="Last Name"
-      name="lastName"
-    />
-    <MySelect
-      id="emergency-contact__relationship"
-      label="Relationship to disabled inidividual"
-      :options="relationship_list"
-    />
-    <TextInput
-      v-model="phone"
-      label="Primary Phone"
-      name="phone"
-    />
-    <TextInput
-      v-model="emailAddress"
-      label="Email address"
-      name="emailAddress"
-    />
-    <span>
-      <h3>Disability Information</h3>
-      <p>Which best describes your PRIMARY reason for using a Service Dog?</p>
-    </span>
-    <MySelect
-      id="emergency-contact__primary-disability"
-      v-model="disabilities.primary"
-      label="Primary Disability"
-      :options="disability_list"
-      name="disabilities.primary"
-    />
-    <span>
-      <label>Do you have a secondary disability?</label>
-      <v-radio-group v-model="disabilities.secondary">
-        <v-radio
-          label="Yes"
-          value="true"
-        />
-        <v-radio
-          label="No"
-          value="false"
-        />
-      </v-radio-group>
-    </span>
-    <div
-      id="emergency-contact-form__footer"
+
+    <MyForm
+      id="emergency-contact-form"
+      ref="emergency-contact-form"
+      :handle-submit="handleSave"
       class="flex flex-col"
     >
-      <button
-        class="button button--primary"
+      <TextInput
+        v-model="firstName"
+        label="First Name"
+        name="firstName"
+      />
+      <TextInput
+        v-model="lastName"
+        label="Last Name"
+        name="lastName"
+      />
+      <MySelect
+        id="emergency-contact__relationship"
+        label="Relationship to disabled inidividual"
+        :options="relationship_list"
+      />
+      <TextInput
+        v-model="phone"
+        label="Primary Phone"
+        name="phone"
+      />
+      <TextInput
+        v-model="emailAddress"
+        label="Email address"
+        name="emailAddress"
+      />
+      <span>
+        <h3>Disability Information</h3>
+        <p>Which best describes your PRIMARY reason for using a Service Dog?</p>
+      </span>
+      <MySelect
+        id="emergency-contact__primary-disability"
+        v-model="disabilities.primary"
+        label="Primary Disability"
+        :options="disability_list"
+        name="disabilities.primary"
+      />
+      <span>
+        <label>Do you have a secondary disability?</label>
+        <v-radio-group v-model="disabilities.secondary">
+          <v-radio
+            label="Yes"
+            value="true"
+          />
+          <v-radio
+            label="No"
+            value="false"
+          />
+        </v-radio-group>
+      </span>
+      <div
+        id="emergency-contact-form__footer"
+        class="flex flex-col"
       >
-        Continue
-      </button>
-      <Notification content="Your progress is auto-saved, so you can continue filling out the form at your convenience." /> 
-    </div>
-  </MyForm>
+        <button
+          class="button button--primary"
+        >
+          Continue
+        </button>
+        <Notification content="Your progress is auto-saved, so you can continue filling out the form at your convenience." /> 
+      </div>
+    </MyForm>
+  </div>
 </template>
 
 <script>
@@ -160,6 +163,10 @@ export default {
 
   #emergency-contact-form__footer {
     row-gap: 16px;
+
+    button.button--primary {
+      margin-top: 16px;
+    }
   }
 }
 </style>

@@ -1910,3 +1910,20 @@ a.learn-more-txt:focus {
 div.social-container > a {
 	text-decoration: none;
 }
+
+/**
+	VUETIFY OVERRIDES END
+**/
+.v-text-field--filled > .v-input__control > .v-input__slot,
+.v-text-field--full-width > .v-input__control > .v-input__slot,
+.v-text-field--outlined > .v-input__control > .v-input__slot {
+	align-items: center !important;
+}
+
+.v-text-field--enclosed .v-input__append-inner {
+	margin-top: 16px !important;
+}
+
+/**
+	VUETIFY OVERRIDES END
+**/

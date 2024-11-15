@@ -4,7 +4,7 @@
       <h4>
         Before we begin, let's verify your email
       </h4>
-      <h5
+      <!-- <h5
         v-if="errMessage != null"
         class="info-message"
       >
@@ -12,7 +12,7 @@
         <router-link to="/login">
           Log In
         </router-link>
-      </h5>
+      </h5> -->
 
       <my-form
         id="signup__form"
@@ -44,17 +44,17 @@
     </template>
 
     <Modal v-if="emailVerificationState == 'MODAL'">
-      <dialogue class="dialogue-box flex flex-col">
-        <h5 class="dialogue__title">
+      <dialog class="dialog-box flex flex-col">
+        <h5 class="dialog__title">
           Please verify your email address
         </h5>
-        <p class="dialogue__body">
+        <p class="dialog__body">
           Thanks for enrolling in Service Dog Standards! Please verify your email to activate your account, begin your Training and Behavior Standards Agreement and create your Profile page.
         </p>
         <button
           :disabled="loading_signup"
           class="button button--primary"
-          @click="signup"
+          @click="verify"
         >
           Verify my Email
         </button>
@@ -62,12 +62,12 @@
           Service Dogs Standards is a cloud-based voluntary training and behavior standards and team management solutions for Service Dog Trainers and Handlers. Please note that unverified accounts are automatically deleted in 30 days after sign up.
         </h6>
         <span
-          class="dialogue__close"
+          class="dialog__close"
           @click="changeVerificationState('FORM')"
         >
           <v-icon>close</v-icon>
         </span>
-      </dialogue>
+      </dialog>
     </Modal>
 
 
@@ -131,16 +131,6 @@
       }
     },
 
-    computed: {
-      // showConfirmed2(){
-      //   if (this.showEmailConfirm || this.showConfirm ){
-      //       return true;
-      //   }
-
-      //   return false;
-      // }
-    },
-
     methods:{
       changeVerificationState(newState) {
         this.emailVerificationState = newState;
@@ -148,7 +138,7 @@
       async signup(){
         let valid = this.$refs.form.validate();
         if (!valid){
-            return null;
+          return null;
         }
 
         let payload = {
@@ -158,22 +148,22 @@
         }
 
         try {
-            this.loading_signup = true;
+          this.loading_signup = true;
 
-            await this.make_request('/auth/createUser', payload, {throwHTTPError: true})
-              .then(() => {
-                this.changeVerificationState('SUCCESS');
-              });
+          await this.make_request('/auth/createUser', payload, {throwHTTPError: true})
+            .then(() => {
+              this.changeVerificationState('SUCCESS');
+            });
         } catch(e) {
-            console.error(e)
-            this.changeVerificationState('FORM');
+          console.error(e)
+          this.changeVerificationState('FORM');
 
-            if (e.status === 400 && e.response && e.response.data.includes('email already exists')){
-              this.errMessage = "Oops, it looks like you already have an account"
-              this.loading_signup = false;
-            }
+          if (e.status === 400 && e.response && e.response.data.includes('email already exists')){
+            this.errMessage = "Oops, it looks like you already have an account"
+            this.loading_signup = false;
+          }
         }
-        // this.$router.push({path: url});
+        // this.$router.push({ path: url });
       },
 
       //verify the email with code
@@ -191,10 +181,10 @@
         }
 
         try {
-            await this.make_request('/auth/confirmEmail', payload);
+            const resp = await this.make_request('/auth/confirmEmail', payload);
             this.codeConfirmed = true;
             this.codeErrMessage = [];
-            this.$emit('email-verified')
+            this.$emit('email-verified', resp)
         }
         catch(e){
             this.codeErrMessage = [`Couldn't verify code`];
@@ -208,42 +198,46 @@
   }
 </script>
 
-<style scoped lang='scss'>
+<style scoped>
   @import url('../main.css');
 
   form#signup__form {
     margin-top: 24px;
-
-    .button {
-      margin-bottom: 12px;
-    }
   }
 
-  dialogue {
+  form#signup__form .button {
+    margin-bottom: 12px;
+  }
+
+  dialog {
+    border: none;
+    border-radius: 4px;
+    max-width: 450px;
+    padding: 16px;
     position: relative;
+  }
 
-    .dialogue__close {
-      cursor: pointer;
-      position: absolute;
-      right: 8px;
-      top: 8px;
-    }
+  dialog .dialog__close {
+    cursor: pointer;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+  }
 
-    .dialogue__title{
-      margin-bottom: 38px;
-    }
+  dialog .dialog__title{
+    margin-bottom: 38px;
+  }
 
-    .dialogue__body {
-      color: var(--text-dark);
-      font-size: 15px;
-      font-weight: 500;
-      line-height: 24px;
-      letter-spacing: 0.2px;
-      margin-bottom: 56px;
-    }
+  dialog .dialog__body {
+    color: var(--text-dark);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    margin-bottom: 56px;
+  }
 
-    button {
-      margin-bottom: 24px;
-    }
+  dialog button {
+    margin-bottom: 24px;
   }
 </style>

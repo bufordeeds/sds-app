@@ -16,10 +16,11 @@
       label="Last Name"
       name="lastName"
     />
-    <MySelect
+    <v-select
       id="emergency-contact__relationship"
       label="Relationship to disabled inidividual"
-      :options="relationship_list"
+      :items="relationship_list"
+      outlined
     />
     <TextInput
       v-model="phone"
@@ -35,12 +36,13 @@
       <h3>Disability Information</h3>
       <p>Which best describes your PRIMARY reason for using a Service Dog?</p>
     </span>
-    <MySelect
+    <v-select
       id="emergency-contact__primary-disability"
       v-model="disabilities.primary"
       label="Primary Disability"
-      :options="disability_list"
+      :items="disability_list"
       name="disabilities.primary"
+      outlined
     />
     <span>
       <label>Do you have a secondary disability?</label>
@@ -72,7 +74,6 @@
 <script>
 import { EventBus } from '../../../eventBus.js';
 import MyForm from '../../../components/inputs/MyForm.vue';
-import MySelect from '../../../components/inputs/Select.vue';
 import Notification from '../../../components/Notification.vue';
 import TextInput from '../../../components/inputs/TextInput.vue';
 
@@ -80,7 +81,6 @@ export default {
   name: "EmergencyContactInfo",
   components: {
     MyForm,
-    MySelect,
     Notification,
     TextInput,
   },
@@ -96,35 +96,35 @@ export default {
         secondary: null,
       },
       disability_list: [
-        { label: 'Arthritis (severe)', value: 'severe-arthritis' },
-        { label: 'Ataxia (poor balance)', value: 'ataxia' },
-        { label: 'Autism or Autism Spectrum', value: 'autism-spectrum' },
-        { label: 'Blindness or Impaired Vision', value: 'blind-impaired' },
-        { label: 'Cardio/Pulmonary Disease', value: 'cardio-pulmonary' },
-        { label: 'Cerebral Palsy', value: 'cerebral-palsy' },
-        { label: 'Deafness or Impaired Hearing', value: 'deaf-impaired' },
-        { label: 'Diabetes', value: 'diabetes' },
-        { label: 'Life Threatening Allergies/Anaphylaxis', value: 'anaphylaxis' },
-        { label: 'Multiple Sclerosis (M.S.)', value: 'multiple-sclerosis' },
-        { label: 'Medical Alert or Response', value: 'medical-alert-response' },
-        { label: 'Neurological Disorders', value: 'neurological-disorder' },
-        { label: 'Physical Mobility Issues', value: 'physical-mobility-issues' },
-        { label: 'Psychiatric Disabilities', value: 'psychiatric' },
-        { label: 'Seizure Disorders (Epilepsy)', value: 'epilepsy' },
-        { label: 'Spina Bifida', value: 'spina-bifida' },
-        { label: 'Spinal Cord/Head Trauma', value: 'spinal-head-trauma' },
-        { label: 'Mobility Issues', value: 'mobility-issues' },
-        { label: 'Stroke', value: 'stroke' },
-        { label: 'Not listed', value: 'not-listed' },
+        'Arthritis (severe)',
+        'Ataxia (poor balance)',
+        'Autism or Autism Spectrum',
+        'Blindness or Impaired Vision',
+        'Cardio/Pulmonary Disease',
+        'Cerebral Palsy',
+        'Deafness or Impaired Hearing',
+        'Diabetes',
+        'Life Threatening Allergies/Anaphylaxis',
+        'Multiple Sclerosis (M.S.)',
+        'Medical Alert or Response',
+        'Neurological Disorders',
+        'Physical Mobility Issues',
+        'Psychiatric Disabilities',
+        'Seizure Disorders (Epilepsy)',
+        'Spina Bifida',
+        'Spinal Cord/Head Trauma',
+        'Mobility Issues',
+        'Stroke',
+        'Not listed',
       ],
       relationship_list: [
-        { value: 'Parent', label: 'Parent'},
-        { value: 'Spouse', label: 'Spouse'},
-        { value: 'OtherFamilyMember', label: 'Other Family Member'},
-        { value: 'FriendOrNeighbor', label: 'Friend or Neighbor'},
-        { value: 'Caretaker', label: 'Caretaker'},
-        { value: 'ServiceDogTrainer', label: 'Service Dog Trainer or Training Organization'},
-        { value: 'SocialWorkerTherapist', label: 'Social Worker, Counselor, Therapist, Physician'},
+        'Parent',
+        'Spouse',
+        'OtherFamilyMember',
+        'FriendOrNeighbor',
+        'Caretaker',
+        'ServiceDogTrainer',
+        'SocialWorkerTherapist',
       ],
     }
   },

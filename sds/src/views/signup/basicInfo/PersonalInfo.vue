@@ -9,13 +9,14 @@
       ref="perons-info__form"
       :handle-submit="handleSave"
     >
-      <MySelect
+      <v-select
         id="gender-select"
         v-model="gender"
         label="Gender"
         name="gender"
-        :options="gender_options"
+        :items="gender_options"
         :rules="[isRequired]"
+        outlined
       />
       <TextInput
         v-if="gender === 'other'"
@@ -94,7 +95,6 @@
 <script>
   import { EventBus } from '../../../eventBus';
   import MyForm from '../../../components/inputs/MyForm.vue';
-  import MySelect from '../../../components/inputs/Select.vue';
   import Notification from '../../../components/Notification.vue';
   import TextInput from '../../../components/inputs/TextInput.vue';
 
@@ -104,7 +104,6 @@
     name: "PersonalInfo",
     components: {
       MyForm,
-      MySelect,
       Notification,
       TextInput,
     },
@@ -124,26 +123,11 @@
         },
         alternateEmail: null,
         gender_options: [
-          {
-            label: 'Male',
-            value: 'male',
-          },
-          {
-            label: 'Female',
-            value: 'female',
-          },
-          {
-            label: 'Non-binary',
-            value: 'non-binary',
-          },
-          {
-            label: 'Prefer not to say',
-            value: 'prefer-not-to-say',
-          },
-          {
-            label: 'Other',
-            value: 'other',
-          },
+          'Male',
+          'Female',
+          'Non-binary',
+          'Prefer not to say',
+          'Other',
         ]
       }
     },
@@ -169,7 +153,7 @@ h3 {
 
 #personal-info__form {
   #dob__section {
-    margin-top: 32px;
+    margin-top: 12px;
 
     h4 {
       font-weight: 500;

@@ -34,7 +34,7 @@
       <v-select
         v-model="income"
         hint="Select one..."
-        :items="['High School', 'GED', 'Some College', 'Associates Degree', 'Bachelors Degree', 'Doctorates']"
+        :items="['<$20,000', '$20,000-$50,000', '$50,000-$100,000', '>$100,000']"
         persist-hint
         outlined
       />

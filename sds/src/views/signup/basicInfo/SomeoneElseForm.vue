@@ -24,13 +24,14 @@
         label="Phone Number"
         :rules="[isRequired, isPhone]"
       />     
-      <MySelect
+      <v-select
         id="someone-else-form__relationship"
         v-model="relationship"
         label="Relationship to disabled handler"
         placeholder="Select one or type your own"
-        :options="list_relationship"
+        :items="list_relationship"
         :rules="[isRequired]"
+        outlined
       />
     </MyForm>
 
@@ -53,7 +54,6 @@
 import MyForm from '../../../components/inputs/MyForm.vue';
 import Notification from '../../../components/Notification.vue';
 import TextInput from '../../../components/inputs/TextInput.vue';
-import MySelect from '../../../components/inputs/Select.vue';
 import validation from '../../../mixins/validation';
 import { EventBus } from '../../../eventBus';
 
@@ -62,7 +62,6 @@ export default {
   components: {
     MyForm,
     Notification,
-    MySelect,
     TextInput,
   },
   mixins: [validation],
@@ -72,13 +71,13 @@ export default {
       phoneNumber: null,
       relationship: null,
       list_relationship: [
-        { value: 'Parent', label: 'Parent'},
-        { value: 'Spouse', label: 'Spouse'},
-        { value: 'OtherFamilyMember', label: 'Other Family Member'},
-        { value: 'FriendOrNeighbor', label: 'Friend or Neighbor'},
-        { value: 'Caretaker', label: 'Caretaker'},
-        { value: 'ServiceDogTrainer', label: 'Service Dog Trainer or Training Organization'},
-        { value: 'SocialWorkerTherapist', label: 'Social Worker, Counselor, Therapist, Physician'},
+        'Parent',
+        'Spouse',
+        'OtherFamilyMember',
+        'FriendOrNeighbor',
+        'Caretaker',
+        'ServiceDogTrainer',
+        'SocialWorkerTherapist',
       ],
     }
   },

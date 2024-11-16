@@ -203,9 +203,13 @@ export default {
       console.log('test', e);
     },
 
-    async on_email_confirmed() {
+    async on_email_confirmed(verificationResponse) {
+      console.dir(verificationResponse);
+      if ('reset_pw' in verificationResponse) {
+        this.$router.push({ path: '/signup', query: { email: verificationResponse.user_email } });
+      }
       await this.$auth.check_is_logged_in().then(() => {
-        this.step = 3;
+        // this.step = 3;
       });
     },
 

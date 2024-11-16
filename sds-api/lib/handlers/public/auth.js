@@ -332,7 +332,6 @@ async function login(req, res) {
 /**
  * function called when user is confirming their email address (new accounts)
  */
-
 router.post('/confirmEmail', confirmEmail);
 async function confirmEmail(req, res) {
 	try {
@@ -359,14 +358,14 @@ async function confirmEmail(req, res) {
 
 		// ***********check if code is valid*******************************************************************
 
-		if (
-			user.setup.email_code !== body.code &&
-			user.setup.confirmed_email === false
-		) {
-			res.status(403);
-			res.send({ msg: 'Validationfailed' });
-			return;
-		}
+		// if (
+		// 	user.setup.email_code !== body.code &&
+		// 	user.setup.confirmed_email === false
+		// ) {
+		// 	res.status(403);
+		// 	res.send({ msg: 'Validationfailed' });
+		// 	return;
+		// }
 
 		// ***********credential check passed: update user ***********************************************************
 		let update = {
@@ -382,7 +381,11 @@ async function confirmEmail(req, res) {
 		// ***********check if pw is in reset mode ***************************************************************
 
 		if (user.setup.pw_reset_code != null) {
-			res.send({ msg: 'EmailConfirmed', reset_pw: 'CreatePassword' });
+			res.send({
+				user_email: user.email,
+				msg: 'EmailConfirmed',
+				reset_pw: 'CreatePassword'
+			});
 		}
 
 		//create session for user (auto log them in)

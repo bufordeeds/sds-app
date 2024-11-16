@@ -157,7 +157,7 @@ h3 {
 
     h4 {
       font-weight: 500;
-      margin-bottom: 32px;
+      margin-bottom: 16px;
     }
 
     .flex {
@@ -167,6 +167,9 @@ h3 {
       & > div {
         width: calc(33% - 10px);
       }
+    }
+    input[type=text][data-v-73c54332]:not(.v-input__control *) {
+      font-weight: 500;
     }
   }
 }

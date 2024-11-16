@@ -1,7 +1,7 @@
 <template>
   <div id="name-info__container">
     <div class="name-info__header flex flex-col">
-      <h2>Let's Begin!</h2>
+      <h3>Let's Begin!</h3>
       <p>Are you filling out this form and signing this training and behavior standards agreement on behalf of for yourself or someone else?</p>
       <Tabs
         variant="pill"
@@ -43,17 +43,17 @@ export default {
 #name-info__container {
   .name-info__header {
     margin-bottom: 24px;
-    row-gap: 24px;
+    row-gap: 16px;
 
     h2 {
-      color: #1D1D1F;
+      color: red;
       font-weight: 500
     }
 
     p {
       color: var(--text-medium);
       font-size: 14px;
-      font-weight: 400;
+      font-weight: 500;
       line-height: 20px;
     }
   }

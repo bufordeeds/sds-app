@@ -2,10 +2,9 @@
   <div>
     <div
       class="content-container-bg bg-full-height"
-      style=" padding-top: 50px "
+      style=" padding:16px; "
     >
       <login-modal
-        style="width: 300px"
         :is-modal="false"
       />
     </div>
@@ -24,6 +23,9 @@ export default {
 </script>
 
 <style scoped>
-
-
+@media (min-width: 960px) {
+  .content-container-bg.bg-full-height {
+    padding-top: 48px;
+  }
+}
 </style>

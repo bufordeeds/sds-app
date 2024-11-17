@@ -152,7 +152,7 @@ export default {
       image_uploaded: false,
       panel_ix: null, // used to keep track of which panel is open
       social_info: null,
-      step: 4, //ROBDEBUG Change this number to start at that page
+      step: 1, //ROBDEBUG Change this number to start at that page
       tc_agreed: false,
       verified_email: null,
     }

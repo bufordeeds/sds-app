@@ -59,9 +59,14 @@
         </div>
 
         <!-------- step 3 container --------------------------------------------------------->
+        <div v-if="step === 3">
+          <CreateAccountDialog />
+        </div>
+
+        <!-------- step 4 container --------------------------------------------------------->
         <div
-          v-if="step === 3"
-          id="step_3"
+          v-if="step === 4"
+          id="step_4"
         >
           <Terms
             :agreed.sync="tc_agreed"
@@ -69,10 +74,10 @@
           />
         </div>
 
-        <!-------- step 4 container --------------------------------------------------------->
+        <!-------- step 5 container --------------------------------------------------------->
         <div
-          v-if="step === 4"
-          id="step_4"
+          v-if="step === 5"
+          id="step_5"
         >
           <BasicInfo />
           <!-- <HandlerInfo
@@ -88,19 +93,19 @@
         </div>
 
 
-        <!-------- step 5 container --------------------------------------------------------->
+        <!-------- step 6 container --------------------------------------------------------->
         <div
-          v-if="step === 5"
-          id="step_5"
+          v-if="step === 6"
+          id="step_6"
         >
           <v-row>
             <v-col
-              align="center"
+              align-self="center"
               style="margin-top: 50px"
             >
               <div>
                 <img
-                  v-if="step === 5"
+                  v-if="step === 6"
                   src="../../assets/images/content/checkmark.gif"
                   width="200px"
                 >
@@ -127,16 +132,17 @@ import SelectAccountType from "./selectAcctType.vue";
 import Signup from './SignupModal';
 import Stepper from "./Stepper";
 import Terms from './termsAndConditions';
+import CreateAccountDialog from '../../components/app/CreateAccountDialog.vue'
 import BasicInfo from './basicInfo/BasicInfo.vue';
+import MobileStepper from "./MobileStepper.vue";
 
 import PasswordReset from "@/components/app/PasswordReset";
 import data_getters from "@/mixins/data_getters";
-import MobileStepper from "./MobileStepper.vue";
 
 export default {
   name: "SetupAccount",
   components: {
-    BasicInfo, MobileStepper, Stepper, Signup, Terms, SelectAccountType, PasswordReset, //HandlerInfo
+    BasicInfo, CreateAccountDialog, MobileStepper, Stepper, Signup, Terms, SelectAccountType, PasswordReset, //HandlerInfo
   },
   mixins: [data_getters],
   data() {
@@ -320,11 +326,11 @@ h2 {
 
   #step_1,
   #step_2,
-  #step_4 {
+  #step_5 {
     padding: 56px;
   }
 
-  #step_3 {
+  #step_4 {
     padding: 24px;
   }
 }

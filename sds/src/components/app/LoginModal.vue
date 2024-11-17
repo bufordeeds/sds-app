@@ -166,7 +166,7 @@ export default {
 .login-modal {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 0 auto 56px;
   width: 540px;
   min-width: 540px;
   border-radius: 12px;
@@ -177,7 +177,7 @@ export default {
     padding: 56px 48px;
   }
   form {
-    margin-top: 32px;
+    margin-top: 24px;
   }
 
   .social-logos,

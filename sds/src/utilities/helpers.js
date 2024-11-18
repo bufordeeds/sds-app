@@ -138,5 +138,9 @@ export function* formStateIterator(statesArr) {
    }
 }
 
+export function smoothScrollToTop() {
+   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 
 

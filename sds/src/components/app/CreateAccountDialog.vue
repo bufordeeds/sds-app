@@ -45,7 +45,7 @@
         </button>
         <v-row class="place-content-center">
           <p>
-            Have an account? <a href="/login">Sign In</a>
+            Have an account? <a :href="`/login?email=${this.$route.query.email}`">Sign In</a>
           </p>
         </v-row>
       </v-col>
@@ -77,7 +77,17 @@ export default {
         account_type: this.$route.query.account_type,
       }
 
-      const resp = this.make_request('/auth/createUser', payload);
+      this.make_request('/auth/createUser', payload)
+        .then(async (resp) => {
+          console.dir(this.$auth, resp)
+          await this.$auth.save_session_token(resp.token)
+            .then(() => {
+              this.$router.push('/accountHome');
+            })
+        })
+        .catch(err => {
+          console.error(err);
+        });
     }
   }
 }

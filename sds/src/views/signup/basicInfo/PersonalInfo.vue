@@ -9,21 +9,23 @@
       ref="perons-info__form"
       :handle-submit="handleSave"
     >
-      <v-select
-        id="gender-select"
-        v-model="gender"
-        label="Gender"
-        name="gender"
-        :items="gender_options"
-        :rules="[isRequired]"
-        outlined
-      />
-      <TextInput
-        v-if="gender === 'other'"
-        v-model="other"
-        name="other"
-        placeholder="Please specify..."
-      />
+      <span>
+        <v-select
+          id="gender-select"
+          v-model="gender"
+          label="Gender"
+          name="gender"
+          :items="gender_options"
+          :rules="[isRequired]"
+          outlined
+        />
+        <TextInput
+          v-if="gender === 'Other'"
+          v-model="other"
+          name="other"
+          placeholder="Please specify..."
+        />
+      </span>
       <section id="dob__section">
         <h4>What is your date of birth?</h4>
         <div class="flex">
@@ -75,20 +77,21 @@
         name="alternateEmail"
         :rules="[isEmail]"
       />
+
+      <div
+        id="personal-info-form__footer"
+        class="flex flex-col"
+      >
+        <button
+          class="button button--primary"
+          form="personal-info__form"
+        >
+          Continue
+        </button>
+        <Notification content="Your progress is auto-saved, so you can continue filling out the form at your convenience." /> 
+      </div>
     </MyForm>
 
-    <div
-      id="personal-info-form__footer"
-      class="flex flex-col"
-    >
-      <button
-        class="button button--primary"
-        form="personal-info__form"
-      >
-        Continue
-      </button>
-      <Notification content="Your progress is auto-saved, so you can continue filling out the form at your convenience." /> 
-    </div>
   </div>
 </template>
 
@@ -152,6 +155,10 @@ h3 {
 }
 
 #personal-info__form {
+  & > .col {
+    padding: 0;
+  }
+
   #dob__section {
     margin-top: 12px;
 

@@ -103,6 +103,7 @@
 
 <script>
 import { EventBus } from '../../../eventBus';
+import data_getters from '../../../mixins/data_getters';
 import validation from "../../../mixins/validation";
 
 import MyForm from '../../../components/inputs/MyForm.vue';
@@ -115,7 +116,7 @@ export default {
     Notification,
     TextInput,
   },
-  mixins: [validation],
+  mixins: [data_getters, validation],
   data() {
     return  {
       firstName: '',
@@ -128,15 +129,14 @@ export default {
     clearError(e) {
       this.$delete(this.errors, e.currentTarget.name);
     },
-    handleSave() {
-      EventBus.$emit(
-        'handle-form-submission',
-        {
-          firstName: this.firstName,
-          middleName: this.middleName,
-          lastName: this.lastName,
-        }
-      );
+    async handleSave() {
+      const payload = {
+        name_first: this.firstName,
+        name_middle: this.middleName,
+        name_last: this.lastName,
+      };
+
+      await this.make_request('/private/updateUserInfo', payload);
     },
   }
 }

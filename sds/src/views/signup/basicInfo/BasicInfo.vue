@@ -13,7 +13,7 @@
 
 <script>
 import { EventBus } from '../../../eventBus';
-import { formStateIterator } from '../../../utilities/helpers';
+import { formStateIterator, smoothScrollToTop } from '../../../utilities/helpers';
 import AboutDog from './AboutDog.vue';
 import SignUpComplete from './SignUpComplete.vue';
 import EmergencyInfo from './EmergencyInfo.vue';
@@ -42,6 +42,7 @@ export default {
   },
   methods: {
     handleEventEmission() {
+      smoothScrollToTop();
       this.formState = this.generator.next();
     }
   },

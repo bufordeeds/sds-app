@@ -30,22 +30,19 @@ async function login_guard(to, from, next) {
 		//       }
 		//    }
 
+		debugger;
 		if (auth.profile.acct_confirmed && auth.profile.acct_active) {
 			next();
+		} 
+
+		// if (!auth.profile.acct_confirmed) {
+		// 	next({ path: '/signup' });
+		// }
+
+		if(['/accountHome', '/behaviorStandardsViewer'].includes(to.path)) {
+			next();
 		} else {
-			if (!auth.profile.acct_confirmed) {
-				next({ path: '/signup' });
-			} else if (!auth.profile.acct_active) {
-				if (
-					['/accountHome', '/behaviorStandardsViewer'].includes(
-						to.path
-					)
-				) {
-					next();
-				} else {
-					next({ path: '/accountHome' });
-				}
-			}
+			next({ path: '/accountHome' });
 		}
 	} else {
 		// Otherwise, log in

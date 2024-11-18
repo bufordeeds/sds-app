@@ -7,7 +7,7 @@
       <!-------- Stepper --------------------------------------------------------->
       <div
         id="signup__steps"
-        class="flex flex-col sm:hidden"
+        :class="step === 3 ? 'flex flex-col invisible' : 'flex flex-col sm:hidden'"
       >
         <h2>
           Create your Account
@@ -179,6 +179,10 @@ export default {
   },
 
   created() {
+    if (this.$route.query.email != null) {
+      this.step = 3;
+    }
+
     if (this.$auth.isAuthenticated() && this.$auth.profile.acct_confirmed) {
       this.$router.push('/accountHome');
     }
@@ -186,15 +190,15 @@ export default {
     if (this.$auth.isAuthenticated() && !this.$auth.profile.acct_confirmed) {
       let setup = this.$auth.profile.setup;
       if (setup.confirmed_email) {
-        this.step = 3;
-      }
-
-      if (setup.confirmed_tc) {
         this.step = 4;
       }
 
-      if (setup.basic_info) {
+      if (setup.confirmed_tc) {
         this.step = 5;
+      }
+
+      if (setup.basic_info) {
+        this.step = 6;
       }
     } else {
       if (this.$route.query.verified_email != null) {
@@ -210,13 +214,18 @@ export default {
     },
 
     async on_email_confirmed(verificationResponse) {
-      console.dir(verificationResponse);
-      if ('reset_pw' in verificationResponse) {
-        this.$router.push({ path: '/signup', query: { email: verificationResponse.user_email } });
+      if (verificationResponse.status === 404) {
+        this.$router.push({
+          query: {
+            email: verificationResponse.response.data.user_email,
+            account_type: this.acct_type,
+          }
+        });
       }
-      await this.$auth.check_is_logged_in().then(() => {
-        // this.step = 3;
-      });
+
+      if (verificationResponse.msg === 'EmailConfirmed' && 'reset_pw' in verificationResponse) {
+        this.$router.push({ path: '/login', query: { email: verificationResponse.user_email }});
+      }
     },
 
     async on_terms_agreed() {
@@ -356,4 +365,9 @@ h2 {
     }
   }
 }
+
+.invisible {
+  display: none;
+}
+
 </style>

@@ -1,6 +1,9 @@
 <template>
   <dialog id="create-account__dialog">
-    <MyForm id="create-account__form">
+    <MyForm
+      id="create-account__form"
+      :handle-submit="handle_account_creation"
+    >
       <h4 class="create-account__form-title">
         Create your account
       </h4>
@@ -20,7 +23,7 @@
           >
           <img
             class="social-media__login"
-            src="../../assets/images/icons/Apple.png"
+            src="../../assets/images/icons/apple.png"
             alt="Apple SSO Login"
           >
         </v-row>
@@ -31,9 +34,14 @@
       <v-col class="create-account__form-footer">
         <TextInput
           label="Email address"
+          v-model="email"
+          :rules="[isRequired, isEmail]"
         />
-        <button class="button--primary">
-          Continue
+        <button
+          class="button button--primary"
+          type="submit"
+        >
+          Create Account
         </button>
         <v-row class="place-content-center">
           <p>
@@ -57,6 +65,21 @@ export default {
   name: "CreateAccountDialog",
   components: { HorizontalDivider, MyForm, TextInput },
   mixins: [data_getters, validation],
+  data() {
+    return {
+      email: this.$route.query.email || '',
+    }
+  },
+  methods: {
+    handle_account_creation() {
+      const payload = {
+        email: this.email,
+        account_type: this.$route.query.account_type,
+      }
+
+      const resp = this.make_request('/auth/createUser', payload);
+    }
+  }
 }
 </script>
 
@@ -69,9 +92,10 @@ export default {
   border: none;
   box-shadow: 0px 5px 15px 0px #0000001F, 0px 15px 35px 0px #3C425714;
   display: inline-block;
-  /* height: 506px; */
+  min-width: 350px;
   padding: 56px;
-  width: 540px;
+  position: relative;
+  width: 100%;
 }
 
 #create-account__dialog h2 {

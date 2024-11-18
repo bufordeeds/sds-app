@@ -125,7 +125,7 @@ export default {
 
   data() {
     return {
-      email: this.emailFill,
+      email: this.emailFill || this.$route.query.email || '',
       password: null,
       showPass: false,
       error_msg: null,

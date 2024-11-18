@@ -4,15 +4,6 @@
       <h4>
         Before we begin, let's verify your email
       </h4>
-      <!-- <h5
-        v-if="errMessage != null"
-        class="info-message"
-      >
-        Oops, it looks like you already have an account.
-        <router-link to="/login">
-          Log In
-        </router-link>
-      </h5> -->
 
       <my-form
         id="signup__form"
@@ -181,10 +172,16 @@
         }
 
         try {
-            const resp = await this.make_request('/auth/confirmEmail', payload);
-            this.codeConfirmed = true;
-            this.codeErrMessage = [];
-            this.$emit('email-verified', resp)
+          await this.make_request('/auth/confirmEmail', payload)
+            .then(resp => {
+              this.$emit('email-verified', resp);
+            })
+            .catch(err => {
+              this.$emit('email-verified', err);
+            });
+
+          this.codeConfirmed = true;
+          this.codeErrMessage = [];
         }
         catch(e){
             this.codeErrMessage = [`Couldn't verify code`];

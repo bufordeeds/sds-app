@@ -18,10 +18,11 @@
         label="Last Name"
         name="lastName"
       />
-      <MySelect
+      <v-select
         id="emergency-contact__relationship"
         label="Relationship to disabled inidividual"
-        :options="relationship_list"
+        :items="relationship_list"
+        outlined
       />
       <TextInput
         v-model="phone"
@@ -37,12 +38,13 @@
         <h3>Disability Information</h3>
         <p>Which best describes your PRIMARY reason for using a Service Dog?</p>
       </span>
-      <MySelect
+      <v-select
         id="emergency-contact__primary-disability"
         v-model="disabilities.primary"
         label="Primary Disability"
-        :options="disability_list"
+        :items="disability_list"
         name="disabilities.primary"
+        outlined
       />
       <span>
         <label>Do you have a secondary disability?</label>

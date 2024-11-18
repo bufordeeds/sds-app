@@ -130,13 +130,15 @@ export default {
       this.$delete(this.errors, e.currentTarget.name);
     },
     async handleSave() {
-      const payload = {
-        name_first: this.firstName,
-        name_middle: this.middleName,
-        name_last: this.lastName,
-      };
+      // const payload = {
+      //   name_first: this.firstName,
+      //   name_middle: this.middleName,
+      //   name_last: this.lastName,
+      // };
 
-      await this.make_request('/private/updateUserInfo', payload);
+      // await this.make_request('/private/updateUserInfo', payload);
+
+      EventBus.$emit('handle-form-submission');
     },
   }
 }

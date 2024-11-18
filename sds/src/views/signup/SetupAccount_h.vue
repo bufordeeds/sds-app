@@ -70,7 +70,7 @@
         >
           <Terms
             :agreed.sync="tc_agreed"
-            @termsAgreed="on_terms_agreed"
+            @terms-agreed="on_terms_agreed"
           />
         </div>
 
@@ -79,7 +79,7 @@
           v-if="step === 4"
           id="step_4"
         >
-          <BasicInfo />
+          <BasicInfo @signup-finish="step = 5" />
           <!-- <HandlerInfo
               v-if="isHandler"
               :setup-mode="true"
@@ -139,6 +139,8 @@ import MobileStepper from "./MobileStepper.vue";
 import PasswordReset from "@/components/app/PasswordReset";
 import data_getters from "@/mixins/data_getters";
 
+import { smoothScrollToTop } from "../../utilities/helpers";
+
 export default {
   name: "SetupAccount",
   components: {
@@ -152,7 +154,7 @@ export default {
       image_uploaded: false,
       panel_ix: null, // used to keep track of which panel is open
       social_info: null,
-      step: 4, //ROBDEBUG Change this number to start at that page
+      step: 3, //ROBDEBUG Change this number to start at that page
       tc_agreed: false,
       verified_email: null,
     }
@@ -229,24 +231,26 @@ export default {
     },
 
     async on_terms_agreed() {
-      try {
-        let payload = { email: this.$auth.profile.email, terms: 'USER_AGREED' };
-        await this.make_request('/private/updateSetup', payload, { authenticate: true });
-        this.step = 4;
-      } catch (e) {
-        console.log(e)
-      }
+      smoothScrollToTop();
+      this.step = 4;
+      // try {
+      //   let payload = { email: this.$auth.profile.email, terms: 'USER_AGREED' };
+      //   await this.make_request('/private/updateSetup', payload, { authenticate: true });
+      // } catch (e) {
+      //   console.log(e)
+      // }
     },
 
     //handler to save basic (trainer) info
     async on_basic_info() {
-      try {
-        let payload = { email: this.$auth.profile.email, basic_info: 'USER_UPDATED' };
-        await this.make_request('/private/updateSetup', payload);
-        this.step = 5;
-      } catch (e) {
-        console.log(e)
-      }
+      smoothScrollToTop();
+      this.step = 5;
+      // try {
+      //   let payload = { email: this.$auth.profile.email, basic_info: 'USER_UPDATED' };
+      //   await this.make_request('/private/updateSetup', payload);
+      // } catch (e) {
+      //   console.log(e)
+      // }
     },
 
     nav_to_account() {
@@ -254,6 +258,7 @@ export default {
     },
 
     async on_social_saved(event) {
+      smoothScrollToTop();
       this.social_info = event;
 
       let payload = {
@@ -269,6 +274,7 @@ export default {
     },
 
     async on_census_ans(event) {
+      smoothScrollToTop();
       this.census_info = event;
 
       let payload = {
@@ -284,6 +290,7 @@ export default {
     },
 
     async on_additional_info() {
+      smoothScrollToTop();
       try {
         let payload = { email: this.$auth.profile.email, additional_info: 'USER_SAW' };
         await this.make_request('/private/updateSetup', payload,);
@@ -294,6 +301,7 @@ export default {
     },
 
     async on_join() {
+      smoothScrollToTop();
       try {
         let payload = { email: this.$auth.profile.email, behaviors: 'USER_AGREED' };
         await this.make_request('/private/updateSetup', payload,);

@@ -6,7 +6,10 @@
     <PersonalInfo v-if="formState.value === 'personal_info'" />
     <EmergencyInfo v-if="formState.value === 'emergency_contact_info'" />
     <AboutDog v-if="formState.value === 'about_type_dog_info'" />
-    <OptionalInfo v-if="formState.value === 'optional_info'" />
+    <OptionalInfo
+      v-if="formState.value === 'optional_info'"
+      @signup-finish="handleSignupFinish"
+    />
     <SignUpComplete v-if="formState.value === 'complete'" />
   </section>
 </template>
@@ -44,6 +47,9 @@ export default {
     handleEventEmission() {
       smoothScrollToTop();
       this.formState = this.generator.next();
+    },
+    handleSignupFinish() {
+      this.$emit('signup-finish');
     }
   },
 }

@@ -104,6 +104,7 @@
 <script>
 import MyForm from '../../../components/inputs/MyForm.vue';
 import Notification from '../../../components/Notification.vue';
+import { smoothScrollToTop } from '../../../utilities/helpers';
 
 export default {
   name: "OptionalInfo",
@@ -120,7 +121,8 @@ export default {
   },
   methods: {
     handleSave() {
-      alert('handle sign up completion')
+      smoothScrollToTop()
+      this.$emit('signup-finish');
     },
   }
 }

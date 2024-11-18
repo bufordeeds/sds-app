@@ -12,33 +12,37 @@
           label="Name"
           :rules="[isRequired]"
         />
-        <MySelect
+        <v-select
           id="dog-gender__select"
           v-model="dog.gender"
           label="Gender"
-          :options="gender_options"
+          :items="gender_options"
           :rules="[isRequired]"
+          outlined
         />
-        <MySelect
+        <v-select
           id="dog-yob__select"
           v-model="dog.yearOfBirth"
           label="What year was your dog born?"
-          :options="yob_options"
+          :items="yob_options"
           :rules="[isRequired]"
+          outlined
         />
-        <MySelect
+        <v-select
           id="dog-breed__select"
           v-model="dog.breed"
           label="Breed"
-          :options="[]"
+          :items="[]"
           :rules="[isRequired]"
+          outlined
         />
-        <MySelect
+        <v-select
           id="dog-size__select"
           v-model="dog.size"
           label="How big is your dog?"
-          :options="dog_size_options"
+          :items="dog_size_options"
           :rules="[isRequired]"
+          outlined
         />
         <TextInput
           v-model="dog.microchipNum"
@@ -76,7 +80,6 @@
 <script>
 import { EventBus } from '../../../eventBus.js';
 import MyForm from '../../../components/inputs/MyForm.vue';
-import MySelect from '../../../components/inputs/Select.vue';
 import Notification from '../../../components/Notification.vue';
 import TextInput from '../../../components/inputs/TextInput.vue';
 
@@ -84,7 +87,7 @@ import validation from '../../../mixins/validation';
 
 export default {
   name: "AboutDog",
-  components: { MyForm, MySelect, Notification, TextInput },
+  components: { MyForm, Notification, TextInput },
   mixins: [validation],
   data() {
     return {

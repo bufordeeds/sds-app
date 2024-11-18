@@ -57,7 +57,7 @@
       <button
         class="button button--primary"
         :disabled="!agree_terms"
-        @click="$emit('termsAgreed')"
+        @click="handleTermsAgreed"
       >
         Continue
       </button>
@@ -69,6 +69,7 @@
 <script>
 import Notification from "../../components/Notification.vue";
 import SdsTerms from "@/components/SdsTerms";
+import { smoothScrollToTop } from "../../utilities/helpers";
 
 export default {
   name: "TermsAndConditions",
@@ -84,6 +85,12 @@ export default {
   watch: {
     agree_terms() {
       this.$emit('update:agreed', this.agree_terms);
+    }
+  },
+  methods: {
+    handleTermsAgreed() {
+      smoothScrollToTop()
+      this.$emit('terms-agreed')
     }
   }
 }

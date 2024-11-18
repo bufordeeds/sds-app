@@ -7,7 +7,7 @@
       <!-------- Stepper --------------------------------------------------------->
       <div
         id="signup__steps"
-        :class="step === 3 ? 'flex flex-col invisible' : 'flex flex-col sm:hidden'"
+        :class="step === 'create' ? 'flex flex-col invisible' : 'flex flex-col sm:hidden'"
       >
         <h2>
           Create your Account
@@ -59,14 +59,14 @@
         </div>
 
         <!-------- step 3 container --------------------------------------------------------->
-        <div v-if="step === 3">
+        <div v-if="step === 'create'">
           <CreateAccountDialog />
         </div>
 
         <!-------- step 4 container --------------------------------------------------------->
         <div
-          v-if="step === 4"
-          id="step_4"
+          v-if="step === 3"
+          id="step_3"
         >
           <Terms
             :agreed.sync="tc_agreed"
@@ -76,8 +76,8 @@
 
         <!-------- step 5 container --------------------------------------------------------->
         <div
-          v-if="step === 5"
-          id="step_5"
+          v-if="step === 4"
+          id="step_4"
         >
           <BasicInfo />
           <!-- <HandlerInfo
@@ -93,10 +93,10 @@
         </div>
 
 
-        <!-------- step 6 container --------------------------------------------------------->
+        <!-------- step 5 container --------------------------------------------------------->
         <div
-          v-if="step === 6"
-          id="step_6"
+          v-if="step === 5"
+          id="step_5"
         >
           <v-row>
             <v-col
@@ -152,7 +152,7 @@ export default {
       image_uploaded: false,
       panel_ix: null, // used to keep track of which panel is open
       social_info: null,
-      step: 1, //ROBDEBUG Change this number to start at that page
+      step: 4, //ROBDEBUG Change this number to start at that page
       tc_agreed: false,
       verified_email: null,
     }
@@ -180,7 +180,7 @@ export default {
 
   created() {
     if (this.$route.query.email != null) {
-      this.step = 3;
+      this.step = 'create';
     }
 
     if (this.$auth.isAuthenticated() && this.$auth.profile.acct_confirmed) {
@@ -335,11 +335,11 @@ h2 {
 
   #step_1,
   #step_2,
-  #step_5 {
+  #step_4 {
     padding: 56px;
   }
 
-  #step_4 {
+  #step_3 {
     padding: 24px;
   }
 }

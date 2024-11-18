@@ -72,6 +72,31 @@ router.post('/test', async (req, res) => {
 
 
 
+router.post('/updateUserInfo', async (req, res) => {
+   if (!req.body.email) {
+      res.status(500);
+      res.send({
+         type: "Invalid Credentials",
+         message: "Missing email address"
+      });
+   }
+
+   const {
+      body: {
+         email,
+         my_db,
+         name_first,
+         name_middle,
+         name_last
+      },
+   } = req;
+
+   const users_model = my_db.models['users'];
+
+   // users_model.findOneAndUpdate()
+
+   res.send({ ...req.body, msg: 'your mom' });
+});
 
 
 

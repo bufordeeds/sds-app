@@ -352,7 +352,11 @@ async function confirmEmail(req, res) {
 
 		if (user == null) {
 			res.status(404);
-			res.send("Email Doesn't Exist");
+			res.send({
+				user_email: body.email,
+				msg: "EmailNotFound",
+				details: "Email Doesn't Exist"
+			});
 			return;
 		}
 
@@ -391,7 +395,6 @@ async function confirmEmail(req, res) {
 		//create session for user (auto log them in)
 		else {
 			let session = await create_session(user, req);
-			let msg;
 			if (user.setup.confirmed_email === true) {
 				res.send({ msg: 'AlreadyValidated' });
 			} else {
@@ -626,8 +629,8 @@ async function create_user(req, res) {
 		});
 
 		//create session
-		// let session = await create_session(doc, req);
-		// res.send({token: session.jwt_token});
+		let session = await create_session(doc, req);
+		res.send({token: session.jwt_token});
 
 		res.send('User Created');
 	} catch (err) {

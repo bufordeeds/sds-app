@@ -311,7 +311,7 @@ async function login(req, res) {
 
 		if (user.password.hash !== hash) {
 			res.status(403);
-			res.send('Credentials Invalid');
+			res.send('Invalid Credentials');
 			return;
 		}
 
@@ -630,9 +630,12 @@ async function create_user(req, res) {
 
 		//create session
 		let session = await create_session(doc, req);
-		res.send({token: session.jwt_token});
+		// res.send({token: session.jwt_token});
 
-		res.send('User Created');
+		res.send({
+			msg: 'User Created',
+			token: session.jwt_token,
+		});
 	} catch (err) {
 		res.log.error(err);
 		res.status(500);

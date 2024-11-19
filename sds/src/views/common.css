@@ -1971,6 +1971,10 @@ div.social-container > a {
 	margin-top: 16px !important;
 }
 
+.v-input > .v-input__control >.v-input__slot > .v-select__slot {
+	padding-top: 8px;
+}
+
 /**
 	VUETIFY OVERRIDES END
 **/

@@ -18,7 +18,7 @@
         label="Last Name"
         name="lastName"
       />
-      <v-select
+      <MySelect
         id="emergency-contact__relationship"
         label="Relationship to disabled inidividual"
         :items="relationship_list"
@@ -38,7 +38,7 @@
         <h3>Disability Information</h3>
         <p>Which best describes your PRIMARY reason for using a Service Dog?</p>
       </span>
-      <v-select
+      <MySelect
         id="emergency-contact__primary-disability"
         v-model="disabilities.primary"
         label="Primary Disability"
@@ -77,6 +77,7 @@
 <script>
 import { EventBus } from '../../../eventBus.js';
 import MyForm from '../../../components/inputs/MyForm.vue';
+import MySelect from '../../../components/inputs/Select.vue';
 import Notification from '../../../components/Notification.vue';
 import TextInput from '../../../components/inputs/TextInput.vue';
 
@@ -84,6 +85,7 @@ export default {
   name: "EmergencyContactInfo",
   components: {
     MyForm,
+    MySelect,
     Notification,
     TextInput,
   },

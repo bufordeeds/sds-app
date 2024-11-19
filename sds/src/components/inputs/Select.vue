@@ -5,13 +5,15 @@
     <label :for="id">{{ label }}</label>
     <v-select
       :id="id"
-      :label="label"
       :name="name"
       :placeholder="placeholder"
-      :items="list_relationship"
+      :items="items"
       :rules="rules"
+      :value="modelValue"
+      @input="checkValue"
       outlined
       hide-details
+      append-icon=""
     />
   </div>
 </template>
@@ -23,6 +25,7 @@ export default {
   props: {
     id: { required: true, type: String },
     label: { default: "Default Label", required: true, type: String },
+    modelValue: { type: String }, 
     name: { default: "my_select_name", type: String },
     items: { required: true, type: Array },
     placeholder: { default: 'Select one...', type: String},
@@ -37,6 +40,9 @@ export default {
       this.unRegisterField(this.field_id);
   },
   methods: {
+    checkValue(e) {
+      this.$emit('input', e);
+    },
     validate() {
         this.errorMessage = null;
 
@@ -83,7 +89,7 @@ export default {
   &::after {
     border-bottom: 2px solid var(--border-default);
     border-left: 2px solid var(--border-default);
-    bottom: 18px;
+    bottom: 20px;
     content: '';
     display: inline-block;
     height: 10px;

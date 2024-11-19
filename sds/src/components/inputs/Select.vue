@@ -3,27 +3,16 @@
     class="flex flex-col my-select__container"
   >
     <label :for="id">{{ label }}</label>
-    <select
+    <v-select
       :id="id"
+      :label="label"
       :name="name"
-      @change="handleValueChange"
-    >
-      <option
-        disabled
-        hidden
-        selected
-        :value="null"
-      >
-        {{ placeholder }}
-      </option>
-      <option
-        v-for="(option, index) in options"
-        :key="index"
-        :value="option.value"
-      >
-        {{ option.label }}
-      </option>
-    </select>
+      :placeholder="placeholder"
+      :items="list_relationship"
+      :rules="rules"
+      outlined
+      hide-details
+    />
   </div>
 </template>
 
@@ -32,13 +21,12 @@ export default {
   name: "MySelect",
   inject: ['registerThisField', 'unRegisterField'],
   props: {
-    id: { default: "my_select", required: true, type: String },
+    id: { required: true, type: String },
     label: { default: "Default Label", required: true, type: String },
     name: { default: "my_select_name", type: String },
-    options: { default: () => [], required: true, type: Array },
+    items: { required: true, type: Array },
     placeholder: { default: 'Select one...', type: String},
     rules: { default: () => [], type: Array },
-    handleValueChange: { default: (e) => { console.log(e); }, type: Function },
   },
   created(){
     if (this.registerThisField !=  null){

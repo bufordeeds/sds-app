@@ -1,8 +1,12 @@
 <template>
   <div>
+
+    <!-- Angle BG -->
+    <canvas class="hero-section-bg default" data-transition-in></canvas>
+
     <div
       class="content-container-bg bg-full-height"
-      style=" padding:16px; "
+      style="background-color:transparent;padding:16px;"
     >
       <login-modal
         :is-modal="false"

@@ -1,5 +1,9 @@
 <template>
   <main>
+    
+    <!-- Angle BG -->
+    <canvas class="hero-section-bg default" data-transition-in></canvas>
+
     <div
       id="signup"
       class="content-container flex"
@@ -316,6 +320,12 @@ export default {
 <style scoped lang="scss">
 @import url('../common.css');
 
+.content-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0;
+}
+
 h2 {
   color: var(--brand-primary-500);
   font-size: var(--rt-h2);
@@ -354,7 +364,7 @@ h2 {
 
 @media only screen and (max-width: 768px) {
   #signup {
-    align-items: center;
+    /*align-items: center;*/
     justify-content: center;
 
     #signup__steps {

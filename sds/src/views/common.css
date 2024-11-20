@@ -946,6 +946,9 @@ html {
 .v-input--radio-group__input {
 	gap: 8px;
 }
+#signup__form {
+	background-color: var(--surface-light-white);
+}
 #signup__form h3 {
 	margin-bottom: 24px !important;
 }
@@ -1535,6 +1538,15 @@ ul li,
 .hero-text > .hero-blurb > a + span.v-btn__content {
 	color: var(--text-white) !important;
 }
+
+@media (max-width: 1149px) {
+	.content-container {
+		margin: 0 auto;
+		padding-left: 32px !important;
+		padding-right: 32px !important;
+	  }	  
+}
+
 @media (min-width: 1112px) {
 	.home-hero {
 		min-height: unset !important;
@@ -1660,6 +1672,12 @@ ul li,
     --gradient-color-3: #ed008c;
     --gradient-color-4: #0db2fa;
 }
+.hero-section-bg.default {
+	z-index: -1;
+	background-image: none;
+	background-color: var(--surface-light-pale);
+}
+
 .hero-section-bg row {
 	gap: 32px;
 }

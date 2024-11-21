@@ -886,7 +886,6 @@ html {
 
 .v-application {
 	font-family: var(--font-family);
-	/*-apple-system, system-ui, BlinkMacSystemFont !important;*/
 }
 
 .v-btn {

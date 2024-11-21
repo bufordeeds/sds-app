@@ -35,7 +35,7 @@
     </template>
 
     <Modal v-if="emailVerificationState == 'MODAL'">
-      <dialog class="dialog-box flex flex-col">
+      <dialog class="dialog-box flex flex-col card--shadowXLarge">
         <h5 class="dialog__title">
           Please verify your email address
         </h5>
@@ -208,8 +208,9 @@
 
   dialog {
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     max-width: 450px;
+    margin: 0 16px;
     padding: 16px;
     position: relative;
   }

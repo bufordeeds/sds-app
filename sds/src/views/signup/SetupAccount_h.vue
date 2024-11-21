@@ -346,7 +346,7 @@ h2 {
 }
 
 #signup__form {
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: 0px 5px 15px 0px #0000001F, 0px 15px 35px 0px #3C425714;
   flex-basis: 55%;
   max-width: 55%;
@@ -366,6 +366,7 @@ h2 {
   #signup {
     /*align-items: center;*/
     justify-content: center;
+    padding-top: 24px;
 
     #signup__steps {
       display: none;

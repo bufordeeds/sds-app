@@ -1691,8 +1691,8 @@ ul li,
 .angled-section {
 	-webkit-clip-path: polygon(0 200px, 100% 0, 100% 100%, 0 100%);
 	clip-path: polygon(0 200px, 100% 0, 100% 100%, 0 100%);
-	margin-top: -180px;
-	padding-top: 200px;
+	margin-top: -120px;
+	padding-top: 164px;
 	background-image: var(--surface-gradient-dark);
 }
 .angled-section-bottom {

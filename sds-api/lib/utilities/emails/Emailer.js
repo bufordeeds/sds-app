@@ -77,6 +77,9 @@ class Emailer {
 
       let html = this._template_confirm.replace('CONFIRMATION_LINK', encodeURI(link))
 
+      console.dir(html);
+
+      debugger;
       let year = new Date();
       year = year.getFullYear().toString();
       html = html.replace(/CURRENT_YEAR/g, year);

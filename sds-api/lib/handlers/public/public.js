@@ -39,6 +39,12 @@ const emailer = new Emailer();
 
 
 
+router.get('/test', test);
+async function test(req, res) {
+   res.status(418);
+   res.send(`Reached the ${req.path} test endpoint.`);
+   return;
+}
 
 
 /**

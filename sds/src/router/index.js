@@ -30,7 +30,6 @@ async function login_guard(to, from, next) {
 		//       }
 		//    }
 
-		debugger;
 		if (auth.profile.acct_confirmed && auth.profile.acct_active) {
 			next();
 		} 

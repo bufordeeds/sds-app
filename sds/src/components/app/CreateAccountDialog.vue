@@ -33,19 +33,21 @@
 
       <v-col class="create-account__form-footer">
         <TextInput
-          label="Email address"
           v-model="email"
+          :error="error"
+          label="Email address"
           :rules="[isRequired, isEmail]"
         />
         <button
           class="button button--primary"
+          :disabled="requestSending"
           type="submit"
         >
           Create Account
         </button>
         <v-row class="place-content-center">
           <p>
-            Have an account? <a :href="`/login?email=${this.$route.query.email}`">Sign In</a>
+            Have an account? <a :href="`/login?email=${$route.query.email}`">Sign In</a>
           </p>
         </v-row>
       </v-col>
@@ -68,25 +70,28 @@ export default {
   data() {
     return {
       email: this.$route.query.email || '',
+      error: null,
+      requestSending: false,
     }
   },
   methods: {
     handle_account_creation() {
+      this.requestSending = true;
+
       const payload = {
         email: this.email,
         account_type: this.$route.query.account_type,
       }
 
       this.make_request('/auth/createUser', payload)
-        .then(async (resp) => {
-          console.dir(this.$auth, resp)
-          await this.$auth.save_session_token(resp.token)
-            .then(() => {
-              this.$router.push('/accountHome');
-            })
+        .then(async () => {
+          this.requestSending = false;
+          this.$router.push({ path: '/' });
         })
         .catch(err => {
-          console.error(err);
+          this.requestSending = false;
+          this.error = err.response.data;
+          console.dir(err);
         });
     }
   }

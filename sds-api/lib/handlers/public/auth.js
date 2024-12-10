@@ -582,17 +582,16 @@ async function create_user(req, res) {
 			// req.log.warn(`User attempted to create account with email=${body.email}, pass=${pass}`)
 			return;
 		}
-		// console.log(body.email);
 
 		let email = helpers.clean_email(body.email);
-		let model = req.my_db.models['user'];
+		let user_model = req.my_db.models['user'];
 
 		//step 1: check if email is already in db *******************************************************
 		//TODO: make sure user can't pass in null and get any records with a field that's not defined
 
-		let data = await model.collection.findOne({ email: email });
+		let user = await user_model.collection.findOne({ email });
 
-		if (data !== null) {
+		if (user !== null) {
 			res.status(400);
 			res.send('email already exists');
 			return;
@@ -606,31 +605,24 @@ async function create_user(req, res) {
 		}
 
 		//step 2: save user to db **********************************************************************
-
-		//todo: check email is valid form
-
-		//important so that we don't have issues with different string encodings
-		// let pass = helpers.clean_pass(body.password);
-
 		let pass = crypto.randomBytes(16).toString('hex');
 
-		var doc = await create_user_db_record(email, pass, req.my_db, {
+		var user_doc = await create_user_db_record(email, pass, req.my_db, {
 			acct_type: body.account_type,
 			forceReset: true
 		});
 
 		//step 3: send email to user******************************************************************
-		let email_code = doc.setup.email_code;
-		let pw_code = doc.setup.pw_reset_code;
-		let email_res = await emailer.send_email_confirmation({
+		let email_code = user_doc.setup.email_code;
+		let pw_code = user_doc.setup.pw_reset_code;
+		await emailer.send_email_confirmation({
 			to: email,
 			email_code,
 			pw_code
 		});
 
 		//create session
-		let session = await create_session(doc, req);
-		// res.send({token: session.jwt_token});
+		let session = await create_session(user_doc, req);
 
 		res.send({
 			msg: 'User Created',
@@ -639,7 +631,6 @@ async function create_user(req, res) {
 	} catch (err) {
 		res.log.error(err);
 		res.status(500);
-		// res.send(err.message)
 		res.send('There was an internal server error');
 	}
 }
@@ -647,7 +638,12 @@ async function create_user(req, res) {
 router.post('/updatePassword', updatePassword);
 async function updatePassword(req, res) {
 	try {
-		let body = req.body;
+		const {
+			body,
+			my_db: {
+				models,
+			},
+		} = req;
 
 		//********check param values************************************************
 		let params = ['email', 'code', 'pass'];
@@ -661,7 +657,7 @@ async function updatePassword(req, res) {
 
 		let email = helpers.clean_email(body.email);
 		//****check credentials against db*****************
-		let mld_user = req.my_db.models['user'];
+		let mld_user = models['user'];
 		let user = await mld_user.collection.findOne({ email });
 
 		if (user == null) {
@@ -686,7 +682,8 @@ async function updatePassword(req, res) {
 		let update = {
 			_id: user._id,
 			password: hashed_pw,
-			'setup.pw_reset_code': null
+			'setup.pw_reset_code': null,
+			'setup.confirmed_email': true,
 		};
 
 		await helpers.update_db_record(update, mld_user);

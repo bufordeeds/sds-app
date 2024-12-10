@@ -101,6 +101,7 @@
   import Notification from '../../../components/Notification.vue';
   import TextInput from '../../../components/inputs/TextInput.vue';
 
+  import data_getters from '../../../mixins/data_getters';
   import validation from '../../../mixins/validation';
 
   export default {
@@ -110,7 +111,7 @@
       Notification,
       TextInput,
     },
-    mixins: [validation],
+    mixins: [data_getters, validation],
     data() {
       return {
         gender: null,
@@ -140,8 +141,24 @@
       }
     },
     methods: {
-      handleSave() {
-        EventBus.$emit('handle-form-submission');
+      async handleSave() {
+        const payload = {
+          email: this.$auth.profile.email,
+          'private_info.gender': this.gender,
+          'private_info.phone': this.phone.primary,
+          'private_info.phone2': this.phone.secondary,
+          'private_info.email2': this.alternateEmail,
+          'private_info.dob': new Date(`${this.dob.month}/${this.dob.date}/${this.dob.year}`),
+        };
+
+        await this.make_request('/private/updateUserPrivateInfo', payload)
+          .then(() => {
+            EventBus.$emit('handle-form-submission');
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+        
       },
     }
   }

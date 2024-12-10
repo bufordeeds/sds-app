@@ -68,11 +68,9 @@ export default {
          }
 
          let res = await this.make_request('/auth/confirmEmail', payload);
-         console.log('res')
 
-
-         if (['AlreadyValidated', 'EmailConfirmed'].includes(res.msg) && this.$route.query.new_acct === 'yes'){
-            await this.$router.push(`/signup?verified_email=${this.email}&passwordResetCode=${this.$route.query.passwordResetCode}`);
+         if (['AlreadyValidated', 'EmailConfirmed'].includes(res.msg) && this.$route.query.new_acct === 'yes') {
+            await this.$router.push(`/signup?verified_email=${this.email}&passwordResetCode=${this.$route.query.pw_reset_code}`);
             return;
          }
 
@@ -99,6 +97,7 @@ export default {
 
          //log in if session is provided
          if (res.jwt_token){
+            // eslint-disable-next-line no-unused-vars
             let saved = await this.$auth.save_session_token(res.jwt_token);
             await this.$auth.check_is_logged_in();
          }

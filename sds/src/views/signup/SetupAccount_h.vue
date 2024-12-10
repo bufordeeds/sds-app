@@ -158,7 +158,7 @@ export default {
       image_uploaded: false,
       panel_ix: null, // used to keep track of which panel is open
       social_info: null,
-      step: 3, //ROBDEBUG Change this number to start at that page
+      step: 1, //ROBDEBUG Change this number to start at that page
       tc_agreed: false,
       verified_email: null,
     }
@@ -166,8 +166,6 @@ export default {
 
   computed: {
     accountCreated() {
-      console.log(this.$auth.authenticated)
-
       if (this.$auth.authenticated) {
         return true
       }
@@ -185,6 +183,7 @@ export default {
   },
 
   created() {
+    console.dir(this.$auth.setup, this.$auth.profile);
     if (this.$route.query.email != null) {
       this.step = 'create';
     }
@@ -235,14 +234,20 @@ export default {
     },
 
     async on_terms_agreed() {
-      smoothScrollToTop();
-      this.step = 4;
-      // try {
-      //   let payload = { email: this.$auth.profile.email, terms: 'USER_AGREED' };
-      //   await this.make_request('/private/updateSetup', payload, { authenticate: true });
-      // } catch (e) {
-      //   console.log(e)
-      // }
+      try {
+        let payload = {
+          email: this.$auth.profile.email,
+          terms: 'USER_AGREED',
+        };
+
+        await this.make_request('/private/updateSetup', payload, { authenticate: true })
+          .then(() => {
+            smoothScrollToTop();
+            this.step = 4;
+          });
+      } catch (e) {
+        console.log(e)
+      }
     },
 
     //handler to save basic (trainer) info
@@ -336,6 +341,7 @@ h2 {
 
 #signup {
   align-items: flex-start;
+  justify-content: center;
   min-height: calc(100vh - 68px);
   padding-bottom: 56px;
   padding-top: 56px;

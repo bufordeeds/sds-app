@@ -63,13 +63,8 @@
 export default {
   name: "MobileStepper",
   props: {
-    step: { type: Number, default: 1 },
+    step: { type: [String, Number], default: 1 },
   },
-  data() {
-    return {
-      
-    }
-  }
 }
 </script>
 

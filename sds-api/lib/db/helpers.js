@@ -44,17 +44,23 @@ module.exports.check_single_param = function (params, accepted_params) {
 /**
  * just a wrapper to check_params() but with an object destructed interface.
  */
-module.exports.check_params2 =
-    function(params, accepted, {required=[], anyOneOf= [], onlyOneOf=[],passOnNull=false,
-                                          printError=true, res=null}={}) {
-
+module.exports.check_params2 = function(
+   params,
+   accepted,
+   {
+      required=[],
+      anyOneOf= [],
+      onlyOneOf=[],
+      passOnNull=false,
+      printError=true,
+      res=null,
+   } = {}
+) {
    let err = module.exports.check_params(params, accepted, required, anyOneOf, onlyOneOf, passOnNull);
-   if (printError)
-      console.log(err);
+   if (printError) console.error(err);
 
    if (res !== null && err !== null){
       res.status(400);
-      // res.send('Check Parameters');
       res.send(err);
    }
    return err;

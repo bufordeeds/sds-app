@@ -54,22 +54,9 @@ const auth_middleware = require('../../middleware/authentication');
 router.use(auth_middleware.authenticate);
 
 
-
-
-
-
-router.post('/test', async (req, res) => {
-
-   // let collection = req.db.collection('users');
-   //
-   // let data = await collection.find({}).toArray();
-
-   let data = [];
-
-   res.send(data);
+router.get('/test', async (req, res) => {
+   res.send([{ key: 'Successfully reached Private Test endpoint' }]);
 });
-
-
 
 
 router.post('/updateUserInfo', async (req, res) => {
@@ -82,20 +69,52 @@ router.post('/updateUserInfo', async (req, res) => {
    }
 
    const {
+      my_db,
       body: {
          email,
-         my_db,
-         name_first,
-         name_middle,
-         name_last
+         ...data
       },
    } = req;
 
-   const users_model = my_db.models['users'];
+   const users_model = my_db.models['user'];
 
-   // users_model.findOneAndUpdate()
+   await users_model.collection.findOneAndUpdate({ email }, { $set: { ...data } })
+      .then(() => {
+         res.send({ msg: 'User successfully updated.' });
+      })
+      .catch(err => {
+         res.status(500);
+         res.send({ msg: err });
+      });
+});
 
-   res.send({ ...req.body, msg: 'your mom' });
+router.post('/updateUserPrivateInfo', async (req, res) => {
+   if (!req.body.email) {
+      res.status(500);
+      res.send({
+         type: "Invalid Credentials",
+         message: "Missing email address"
+      });
+   }
+
+   const {
+      my_db,
+      body: {
+         email,
+         ...data
+      }
+   } = req;
+
+   const users_model = my_db.models['user'];
+
+   await users_model.collection.findOneAndUpdate({ email }, { $set: { ...data } })
+      .then((resp) => {
+         res.send({ msg: 'User successfully updated.' });
+      })
+      .catch((err) => {
+         res.status(500);
+         res.send(err);
+      });
 });
 
 
@@ -958,14 +977,6 @@ async function acceptDog(req, res) {
       let user_id = req.decoded_token.user_id;
       let acct_type = req.decoded_token.acct_type;
 
-
-
-
-
-
-
-
-
       let update;
       let already_accepted = false;
       if (acct_type === 'TRAINER'  ){
@@ -987,8 +998,6 @@ async function acceptDog(req, res) {
             return
          }
       }
-
-
       else if (acct_type === 'HANDLER'  ){
          if (dog.handler_id.toString() === user_id){
 
@@ -1009,18 +1018,6 @@ async function acceptDog(req, res) {
          }
       }
 
-
-      // if (acct_type === 'HANDLER' && dog.handler_id.toString() === user_id && dog.confirmed_handler === false){
-      //    update = {
-      //       _id: dog._id,
-      //       confirmed_handler: true,
-      //       user_id, //transfer user_id to handler
-      //    }
-      //
-      // }
-
-
-
       // run update
       if (update !== undefined){
          await helpers.update_db_record(update, mld_dog);
@@ -1031,24 +1028,14 @@ async function acceptDog(req, res) {
 
          res.send({msg: 'accepted', dog: dog2});
          return;
-      }
-
-
-      else{
+      } else {
          if (already_accepted){
             res.send({msg: 'already_accepted'});
          }
          else{
             res.status(400).send('There was an issue')
          }
-
-
       }
-
-
-
-
-
 
    } catch (err) {
 
@@ -1059,20 +1046,6 @@ async function acceptDog(req, res) {
 
    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**
  * invites a user to be a dog's trainer or handler

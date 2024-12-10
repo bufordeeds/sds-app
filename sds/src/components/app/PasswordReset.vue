@@ -78,7 +78,6 @@ export default {
     }
   },
 
-
   computed: {
     btn_disabled() {
       return (

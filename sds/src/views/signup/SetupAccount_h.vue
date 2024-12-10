@@ -182,8 +182,13 @@ export default {
     },
   },
 
+  beforeCreate() {
+    if (this.$route.query.email || this.$route.query.verified_email) {
+      // do some shit
+    }
+  },
+
   created() {
-    console.dir(this.$auth.setup, this.$auth.profile);
     if (this.$route.query.email != null) {
       this.step = 'create';
     }

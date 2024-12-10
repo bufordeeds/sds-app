@@ -3,27 +3,18 @@
     class="flex flex-col my-select__container"
   >
     <label :for="id">{{ label }}</label>
-    <select
+    <v-select
       :id="id"
       :name="name"
-      @change="handleValueChange"
-    >
-      <option
-        disabled
-        hidden
-        selected
-        :value="null"
-      >
-        {{ placeholder }}
-      </option>
-      <option
-        v-for="(option, index) in options"
-        :key="index"
-        :value="option.value"
-      >
-        {{ option.label }}
-      </option>
-    </select>
+      :placeholder="placeholder"
+      :items="items"
+      :rules="rules"
+      :value="modelValue"
+      @input="checkValue"
+      outlined
+      hide-details
+      append-icon=""
+    />
   </div>
 </template>
 
@@ -32,13 +23,13 @@ export default {
   name: "MySelect",
   inject: ['registerThisField', 'unRegisterField'],
   props: {
-    id: { default: "my_select", required: true, type: String },
+    id: { required: true, type: String },
     label: { default: "Default Label", required: true, type: String },
+    modelValue: { type: String }, 
     name: { default: "my_select_name", type: String },
-    options: { default: () => [], required: true, type: Array },
+    items: { required: true, type: Array },
     placeholder: { default: 'Select one...', type: String},
     rules: { default: () => [], type: Array },
-    handleValueChange: { default: (e) => { console.log(e); }, type: Function },
   },
   created(){
     if (this.registerThisField !=  null){
@@ -49,6 +40,9 @@ export default {
       this.unRegisterField(this.field_id);
   },
   methods: {
+    checkValue(e) {
+      this.$emit('input', e);
+    },
     validate() {
         this.errorMessage = null;
 
@@ -95,7 +89,7 @@ export default {
   &::after {
     border-bottom: 2px solid var(--border-default);
     border-left: 2px solid var(--border-default);
-    bottom: 18px;
+    bottom: 20px;
     content: '';
     display: inline-block;
     height: 10px;

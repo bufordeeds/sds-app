@@ -10,7 +10,7 @@
       :handle-submit="handleSave"
     >
       <span>
-        <v-select
+        <MySelect
           id="gender-select"
           v-model="gender"
           label="Gender"
@@ -24,6 +24,7 @@
           v-model="other"
           name="other"
           placeholder="Please specify..."
+          :rules="gender === 'Other' ? [isRequired] : []"
         />
       </span>
       <section id="dob__section">
@@ -98,6 +99,7 @@
 <script>
   import { EventBus } from '../../../eventBus';
   import MyForm from '../../../components/inputs/MyForm.vue';
+  import MySelect from '../../../components/inputs/Select.vue';
   import Notification from '../../../components/Notification.vue';
   import TextInput from '../../../components/inputs/TextInput.vue';
 
@@ -108,6 +110,7 @@
     name: "PersonalInfo",
     components: {
       MyForm,
+      MySelect,
       Notification,
       TextInput,
     },
@@ -133,11 +136,6 @@
           'Prefer not to say',
           'Other',
         ]
-      }
-    },
-    watch: {
-      gender(newVal, oldVal) {
-        console.log(newVal,oldVal);
       }
     },
     methods: {

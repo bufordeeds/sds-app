@@ -366,8 +366,8 @@
 
     <!---------------------------- Section free owners ------------------------------------------------------->
 
-    <div class="section-container angled-section" :class="class_mobile">
-      <div class="section-inner-container" :class="class_mobile">
+    <div id="freeForOwners" class="section-container angled-section" style="margin-bottom:-68px" :class="class_mobile">
+      <div class="section-inner-container pb-4" :class="class_mobile">
         <div class="small-header-line on-dark">
           Free for owners
         </div>
@@ -418,9 +418,9 @@
             </div>
           </v-col>
 
-          <v-col v-if="class_mobile_img1 === ''" cols="12" md="7">
+          <v-col v-if="class_mobile_img1 === ''" cols="12" md="7" class="">
             <img src="../../assets/images/content/SDSSecureProfileExampleAsset_15.png"
-              :style="ismobile ? 'margin-left: -50px' : 'margin-top: -200px; margin-left: -50px'" width="150%">
+              :style="ismobile ? 'margin-left: -50px' : 'margin-top: -128px; margin-left: -50px'" width="150%">
           </v-col>
         </v-row>
       </div>
@@ -922,4 +922,8 @@ export default {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
 
-<style scoped src="../common.css"></style>
+<style scoped src="../common.css">
+  #freeForOwners {
+    overflow-y: hidden;
+  }
+</style>

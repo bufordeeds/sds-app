@@ -12,7 +12,7 @@
     >
       <div>
         <v-label>What is your race, ethnicity, or origin?</v-label>
-        <v-select
+        <MySelect
           v-model="ethnicity"
           hint="Select all that apply..."
           :items="['Asian', 'Black/African', 'Caucasian', 'Hispanic/Latinx', 'Native American', 'Pacific Islander', 'Prefer not to answer', 'Other']"
@@ -24,7 +24,7 @@
 
       <div>
         <v-label>Highest level of education</v-label>
-        <v-select
+        <MySelect
           v-model="education"
           hint="Select one..."
           :items="['High School', 'GED', 'Some College', 'Associates Degree', 'Bachelors Degree', 'Doctorates']"
@@ -35,7 +35,7 @@
 
       <div>
         <v-label>Approximate annual income</v-label>
-        <v-select
+        <MySelect
           v-model="income"
           hint="Select one..."
           :items="['<$20,000', '$20,000-$50,000', '$50,000-$100,000', '>$100,000']"
@@ -103,12 +103,13 @@
 
 <script>
 import MyForm from '../../../components/inputs/MyForm.vue';
+import MySelect from '../../../components/inputs/Select.vue';
 import Notification from '../../../components/Notification.vue';
 import { smoothScrollToTop } from '../../../utilities/helpers';
 
 export default {
   name: "OptionalInfo",
-  components: { MyForm, Notification },
+  components: { MyForm, MySelect, Notification },
   data() {
     return {
       ethnicity: null,

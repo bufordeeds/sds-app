@@ -24,7 +24,7 @@
         label="Phone Number"
         :rules="[isRequired, isPhone]"
       />     
-      <v-select
+      <MySelect
         id="someone-else-form__relationship"
         v-model="relationship"
         label="Relationship to disabled handler"
@@ -52,6 +52,7 @@
 
 <script>
 import MyForm from '../../../components/inputs/MyForm.vue';
+import MySelect from '../../../components/inputs/Select.vue';
 import Notification from '../../../components/Notification.vue';
 import TextInput from '../../../components/inputs/TextInput.vue';
 import validation from '../../../mixins/validation';
@@ -61,6 +62,7 @@ export default {
   name: "SomeoneElse",
   components: {
     MyForm,
+    MySelect,
     Notification,
     TextInput,
   },

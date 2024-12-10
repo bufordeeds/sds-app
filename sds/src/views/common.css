@@ -1691,8 +1691,8 @@ ul li,
 .angled-section {
 	-webkit-clip-path: polygon(0 200px, 100% 0, 100% 100%, 0 100%);
 	clip-path: polygon(0 200px, 100% 0, 100% 100%, 0 100%);
-	margin-top: -180px;
-	padding-top: 200px;
+	margin-top: -120px;
+	padding-top: 164px;
 	background-image: var(--surface-gradient-dark);
 }
 .angled-section-bottom {
@@ -1969,6 +1969,10 @@ div.social-container > a {
 
 .v-text-field--enclosed .v-input__append-inner {
 	margin-top: 16px !important;
+}
+
+.v-input > .v-input__control >.v-input__slot > .v-select__slot {
+	padding-top: 8px;
 }
 
 /**

@@ -149,7 +149,7 @@
           'private_info.dob': new Date(`${this.dob.month}/${this.dob.date}/${this.dob.year}`),
         };
 
-        await this.make_request('/private/updateUserPrivateInfo', payload)
+        await this.make_request('/private/updateUserInfo', payload)
           .then(() => {
             EventBus.$emit('handle-form-submission');
           })

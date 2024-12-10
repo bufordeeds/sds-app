@@ -76,6 +76,8 @@
 
 <script>
 import { EventBus } from '../../../eventBus.js';
+import data_getters from '../../../mixins/data_getters.js';
+
 import MyForm from '../../../components/inputs/MyForm.vue';
 import MySelect from '../../../components/inputs/Select.vue';
 import Notification from '../../../components/Notification.vue';
@@ -89,6 +91,7 @@ export default {
     Notification,
     TextInput,
   },
+  mixins: [data_getters],
   data() {
     return {
       firstName: null,
@@ -124,18 +127,34 @@ export default {
       ],
       relationship_list: [
         'Parent',
+        'Partner', 
         'Spouse',
-        'OtherFamilyMember',
-        'FriendOrNeighbor',
+        'Other Family Member',
+        'Friend Or Neighbor',
         'Caretaker',
-        'ServiceDogTrainer',
-        'SocialWorkerTherapist',
+        'Service Dog Trainer',
+        'Social Worker Therapist',
       ],
     }
   },
   methods: {
-    handleSave() {
-      EventBus.$emit('handle-form-submission');
+    async handleSave() {
+      const payload = {
+        email: this.$auth.profile.email,
+        'emergency_contact.name_first': this.firstName,
+        'emergency_contact.name_last': this.lastName,
+        'emergency_contact.email': this.emailAddress,
+        'emergency_contact.phone': this.phone,
+        'emergency_contact.relationship': this.relationshipToIndividual,
+      }
+
+      await this.make_request('/private/updateUserInfo', payload)
+        .then(() => {
+          EventBus.$emit('handle-form-submission');
+        })
+        .catch((err) => {
+          console.err(err);
+        });
     },
   }
 }

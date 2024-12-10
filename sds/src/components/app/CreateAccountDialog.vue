@@ -1,6 +1,7 @@
 <template>
   <dialog id="create-account__dialog">
     <MyForm
+      v-if="createSuccessful == false"
       id="create-account__form"
       :handle-submit="handle_account_creation"
     >
@@ -52,6 +53,7 @@
         </v-row>
       </v-col>
     </MyForm>
+    <create-account-success v-else :email="email" />
   </dialog>
 </template>
 
@@ -61,14 +63,16 @@ import validation from "../../mixins/validation";
 
 import MyForm from '../inputs/MyForm.vue';
 import TextInput from '../inputs/TextInput.vue';
+import CreateAccountSuccess from "./CreateAccountSuccess.vue";
 import HorizontalDivider from "./HorizontalDivider.vue";
 
 export default {
   name: "CreateAccountDialog",
-  components: { HorizontalDivider, MyForm, TextInput },
+  components: { CreateAccountSuccess, HorizontalDivider, MyForm, TextInput },
   mixins: [data_getters, validation],
   data() {
     return {
+      createSuccessful: false,
       email: this.$route.query.email || '',
       error: null,
       requestSending: false,
@@ -86,7 +90,12 @@ export default {
       this.make_request('/auth/createUser', payload)
         .then(async () => {
           this.requestSending = false;
-          this.$router.push({ path: '/' });
+          this.createSuccessful = true;
+
+          // redirect after successful creation
+          setTimeout(() => {
+            this.$router.push({ path: '/' });
+          }, 5000);
         })
         .catch(err => {
           this.requestSending = false;

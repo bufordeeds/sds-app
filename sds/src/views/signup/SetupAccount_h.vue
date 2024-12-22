@@ -109,7 +109,6 @@
             >
               <div>
                 <img
-                  v-if="step === 5"
                   src="../../assets/images/content/checkmark.gif"
                   width="200px"
                 >

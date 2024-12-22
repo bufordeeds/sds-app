@@ -28,9 +28,9 @@ const emailer = new Emailer();
 //    next()
 // })
 
-// function createSession(email, ){
-//
-// }
+router.get('/test', async (req, res) => {
+   res.send([{ key: 'Successfully reached Auth Test endpoint' }]);
+});
 
 router.get('/well-known/public.rsa', public_key);
 async function public_key(req, res) {

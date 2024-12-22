@@ -39,13 +39,9 @@ const emailer = new Emailer();
 
 
 
-router.get('/test', test);
-async function test(req, res) {
-   res.status(418);
-   res.send(`Reached the ${req.path} test endpoint.`);
-   return;
-}
-
+router.get('/test', async (req, res) => {
+   res.send([{ key: 'Successfully reached Public Test endpoint' }]);
+});
 
 /**
  * generates an id for anonymous users

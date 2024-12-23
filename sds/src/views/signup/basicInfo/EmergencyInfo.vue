@@ -20,6 +20,7 @@
       />
       <MySelect
         id="emergency-contact__relationship"
+        v-model="relationshipToIndividual"
         label="Relationship to disabled inidividual"
         :items="relationship_list"
         outlined
@@ -65,6 +66,7 @@
       >
         <button
           class="button button--primary"
+          :disabled="loading"
         >
           Continue
         </button>
@@ -103,6 +105,7 @@ export default {
         primary: null,
         secondary: null,
       },
+      loading: false,
       disability_list: [
         'Arthritis (severe)',
         'Ataxia (poor balance)',
@@ -139,20 +142,25 @@ export default {
   },
   methods: {
     async handleSave() {
+      this.loading = true;
       const payload = {
         email: this.$auth.profile.email,
-        'emergency_contact.name_first': this.firstName,
-        'emergency_contact.name_last': this.lastName,
-        'emergency_contact.email': this.emailAddress,
-        'emergency_contact.phone': this.phone,
-        'emergency_contact.relationship': this.relationshipToIndividual,
+        'private_info.emergency_contact.name_first': this.firstName,
+        'private_info.emergency_contact.name_last': this.lastName,
+        'private_info.emergency_contact.email': this.emailAddress,
+        'private_info.emergency_contact.phone': this.phone,
+        'private_info.emergency_contact.relationship': this.relationshipToIndividual,
+        'private_info.disability.primary': this.disabilities.primary,
+        'private_info.disability.secondary': this.disabilities.secondary,
       }
 
       await this.make_request('/private/updateUserInfo', payload)
         .then(() => {
+          this.loading = false;
           EventBus.$emit('handle-form-submission');
         })
         .catch((err) => {
+          this.loading = false;
           console.err(err);
         });
     },

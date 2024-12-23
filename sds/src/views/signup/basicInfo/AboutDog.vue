@@ -32,7 +32,7 @@
           id="dog-breed__select"
           v-model="dog.breed"
           label="Breed"
-          :items="[]"
+          :items="dog_breed_options"
           :rules="[isRequired]"
           outlined
         />
@@ -51,7 +51,7 @@
           placeholder="12345678901234"
         />
         <div>
-          <label>Do you have a secondary disability?</label>
+          <label>Is your dog currently in training?</label>
           <v-radio-group v-model="dog.training">
             <v-radio
               label="Yes"
@@ -84,12 +84,13 @@ import MySelect from '../../../components/inputs/Select.vue';
 import Notification from '../../../components/Notification.vue';
 import TextInput from '../../../components/inputs/TextInput.vue';
 
+import data_getters from '../../../mixins/data_getters.js';
 import validation from '../../../mixins/validation';
 
 export default {
   name: "AboutDog",
   components: { MyForm, MySelect, Notification, TextInput },
-  mixins: [validation],
+  mixins: [data_getters, validation],
   data() {
     return {
       dog: {
@@ -101,50 +102,96 @@ export default {
         microchipNum: null,
         training: null,
       },
-      gender_options: [
-        {
-          label: 'Male',
-          value: 'male',
-        },
-        {
-          label: 'Female',
-          value: 'female',
-        },
-        {
-          label: 'Non-binary',
-          value: 'non-binary',
-        },
-        {
-          label: 'Prefer not to say',
-          value: 'prefer-not-to-say',
-        },
-        {
-          label: 'Other',
-          value: 'other',
-        },
+      loading: false,
+      gender_options: ['Male', 'Female', 'Non-Binary', 'Prefer not to say', 'Other'],
+      dog_breed_options: [
+        "Labrador Retriever",
+        "German Shepherd",
+        "Golden Retriever",
+        "Bulldog",
+        "Poodle",
+        "Beagle",
+        "Rottweiler",
+        "Yorkshire Terrier",
+        "Dachshund",
+        "Siberian Husky",
+        "Boxer",
+        "Chihuahua",
+        "Great Dane",
+        "Doberman Pinscher",
+        "Shih Tzu",
+        "Australian Shepherd",
+        "Cavalier King Charles Spaniel",
+        "Border Collie",
+        "Pomeranian",
+        "French Bulldog",
+        "Cocker Spaniel",
+        "Boston Terrier",
+        "Pembroke Welsh Corgi",
+        "Maltese",
+        "Basset Hound",
+        "Bernese Mountain Dog",
+        "Akita",
+        "Staffordshire Bull Terrier",
+        "Newfoundland",
+        "Weimaraner",
+        "Collie",
+        "Saint Bernard",
+        "Samoyed",
+        "English Springer Spaniel",
+        "Miniature Schnauzer",
+        "Shetland Sheepdog",
+        "Bullmastiff",
+        "Airedale Terrier",
+        "Whippet",
+        "Irish Setter",
+        "Vizsla",
+        "Rhodesian Ridgeback",
+        "Alaskan Malamute",
+        "Italian Greyhound",
+        "Bloodhound",
+        "Australian Cattle Dog",
+        "Papillon",
+        "Havanese",
+        "Lhasa Apso",
+        "Schipperke"
       ],
-      dog_size_options: [
-        { label: 'Small (under 20lbs)', value: 'small' },
-        { label: 'Medium (20-50lbs)', value: 'medium' },
-        { label: 'Large (50-90lbs)', value: 'large' },
-        { label: 'Extra Large (90+lbs)', value: 'extra-large' },
-      ],
+      dog_size_options: ['Small (under 20lbs)', 'Medium (20-50lbs)', 'Large (50-90lbs)', 'Extra Large (90+lbs)'],
       yob_options: this.populateYearOfBirthOpts(),
     }
   },
   methods: {
-    handleSave() {
-      EventBus.$emit('handle-form-submission');
+    async handleSave() {
+      this.loading = true;
+      const payload = {
+        email: this.$auth.profile.email,
+        'dog_info.name': this.dog.name,
+        'dog_info.gender': this.dog.gender,
+        'dog_info.yob': this.dog.yearOfBirth,
+        'dog_info.breed': this.dog.breed,
+        'dog_info.size': this.dog.size,
+        'dog_info.microchipNumber': this.dog.microchipNum,
+        'dog_info.training': this.dog.training,
+        'setup.basic_info_passed': true,
+      };
+
+      await this.make_request('/private/updateUserInfo', payload)
+        .then((res) => {
+          this.loading = false;
+          EventBus.$emit('handle-form-submission');
+        })
+        .catch((err) => {
+          this.loading = false;
+          console.error(err);
+        })
+      
     },
     populateYearOfBirthOpts() {
       const yobOptions = [];
       const CURR_YEAR = new Date().getFullYear();
 
       for (let i = 0; i < 20; i++) {
-        yobOptions.push({
-          label: (CURR_YEAR - i).toString(),
-          value: (CURR_YEAR - i).toString()
-        });
+        yobOptions.push((CURR_YEAR - i).toString());
       }
 
       return yobOptions;

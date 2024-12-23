@@ -91,6 +91,7 @@
       <div
         id="optional-info-form__footer"
         class="flex flex-col"
+        :disabled="loading"
       >
         <button class="button button--primary">
           Submit & Finalize
@@ -118,12 +119,33 @@ export default {
       serveInMilitary: null,
       civilianWartimeContractor: null,
       useDogForMilitaryOrContractor: null,
+      loading: false,
     }
   },
   methods: {
-    handleSave() {
-      smoothScrollToTop()
-      this.$emit('signup-finish');
+    async handleSave() {
+      this.loading = true;
+      const payload = {
+        email: this.$auth.profile.email,
+        'setup.additional_info_passed': true,
+        'private_info.census.ethnicity': this.ethnicity,
+        'private_info.census.education': this.education,
+        'private_info.census.income': this.income,
+        'private_info.census.serveInMilitary': this.serveInMilitary,
+        'private_info.census.civilianWartimeContractor': this.civilianWartimeContractor,
+        'private_info.census.useDogForMilitaryOrContractor': this.useDogForMilitaryOrContractor,
+      };
+
+      await this.make_request('/private/updateUserInfo', payload)
+        .then((res) => {
+          this.loading = false;
+          smoothScrollToTop()
+          this.$emit('signup-finish');
+        })
+        .catch((err) => {
+          this.loading = false;
+          console.error(err);
+        })
     },
   }
 }

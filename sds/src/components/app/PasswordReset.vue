@@ -81,11 +81,17 @@ export default {
   computed: {
     btn_disabled() {
       return (
-        this.password !== this.passwordVerification ||
-        this.password == null ||
-        this.passwordVerification == null ||
-        this.password === '' ||
-        this.passwordVerification === ''
+        (
+          this.password === '' ||
+          this.password == null
+        )
+        && (
+          this.passwordVerification == null ||
+          this.passwordVerification === ''
+        )
+        && (
+          this.password !== this.passwordVerification
+        )
       );
     },
 

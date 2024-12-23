@@ -30,7 +30,6 @@ var upload = multer({ storage: storage, limits });
 
 const axios = require('axios');
 
-
 const auth_helpers = require('../public/auth');
 
 
@@ -66,6 +65,8 @@ router.post('/updateUserInfo', async (req, res) => {
          type: "Invalid Credentials",
          message: "Missing email address"
       });
+
+      return;
    }
 
    const {

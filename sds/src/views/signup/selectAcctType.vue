@@ -192,6 +192,8 @@ export default {
       isMobile(){
         return this.$vuetify.breakpoint.width < 700;
       }
+   },
+   methods: {
    }
 }
 </script>

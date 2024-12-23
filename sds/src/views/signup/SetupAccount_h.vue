@@ -102,28 +102,23 @@
           v-if="step === 5"
           id="step_5"
         >
-          <v-row>
-            <v-col
-              align-self="center"
-              style="margin-top: 50px"
+          <v-col id="success__container" align-self="center">
+            <img
+              src="../../assets/images/content/success-checkmark.gif"
+              width="200px"
             >
-              <div>
-                <img
-                  src="../../assets/images/content/checkmark.gif"
-                  width="200px"
-                >
-              </div>
-              <div class="pt-5">
-                Congratulations on Joining Service Dog Standards!
-              </div>
 
-              <div class="mt-8">
-                <v-btn @click="nav_to_account">
-                  Go to my account
-                </v-btn>
-              </div>
-            </v-col>
-          </v-row>
+            <span>
+              <h3>Woohoo!</h3>
+              <p>
+                Congratulations! Your profile is complete.
+              </p>
+            </span>
+
+            <button class="button button--primary" @click="nav_to_account">
+              Go to my account
+            </button>
+          </v-col>
         </div>
       </div>
     </div>
@@ -218,10 +213,6 @@ export default {
   },
 
   methods: {
-    test(e) {
-      console.log('test', e);
-    },
-
     async on_email_confirmed(verificationResponse) {
       if (verificationResponse.status === 404) {
         this.$router.push({
@@ -267,7 +258,7 @@ export default {
     },
 
     nav_to_account() {
-      window.location.replace(process.env.VUE_APP_BASE + '/accountHome')
+      this.$router.push({ path: '/accountHome' });
     },
 
     async on_social_saved(event) {
@@ -333,6 +324,19 @@ export default {
   max-width: 1080px;
   margin: 0 auto;
   padding: 0;
+}
+
+#success__container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  padding: 24px;
+}
+
+#success__container > span,
+#success__container > button {
+  align-self: stretch;
 }
 
 h2 {
